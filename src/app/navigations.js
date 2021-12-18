@@ -5,6 +5,11 @@ export const navigations = [
         icon: 'dashboard',
     },
     {
+        name: 'Teacher Master',
+        path: '/teacher',
+        icon: 'teacher',
+    },
+    {
         label: 'PAGES',
         type: 'label',
     },
