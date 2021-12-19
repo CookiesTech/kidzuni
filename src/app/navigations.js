@@ -4,6 +4,22 @@ export const navigations = [
         path: '/dashboard/default',
         icon: 'dashboard',
     },
+
+    {
+        name: 'Teacher Master',
+        icon: 'dashboard',
+        children: [
+            {
+                name: 'Add Teacher',
+                path: '/material/TeacherTable',
+            },
+            {
+                name: 'Teacher List',
+                path: '/material/TeacherTable',
+            },
+        ],
+    },
+
     {
         label: 'PAGES',
         type: 'label',

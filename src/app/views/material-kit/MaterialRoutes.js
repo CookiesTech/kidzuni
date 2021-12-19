@@ -22,6 +22,10 @@ const materialRoutes = [
         element: <AppTable />,
     },
     {
+        path: '/material/TeacherTable',
+        element: <AppTable />,
+    },
+    {
         path: '/material/form',
         element: <AppForm />,
     },
