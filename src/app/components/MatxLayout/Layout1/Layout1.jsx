@@ -8,7 +8,7 @@ import { styled, Box, useTheme } from '@mui/system'
 import React, { useEffect, useRef } from 'react'
 import { ThemeProvider, useMediaQuery } from '@mui/material'
 import SidenavTheme from '../../MatxTheme/SidenavTheme/SidenavTheme'
-import SecondarySidebar from '../../SecondarySidebar/SecondarySidebar'
+///import SecondarySidebar from '../../SecondarySidebar/SecondarySidebar'
 import { sidenavCompactWidth, sideNavWidth } from 'app/utils/constant'
 import { Outlet } from 'react-router-dom'
 
@@ -144,7 +144,6 @@ const Layout1 = () => {
 
                 {settings.footer.show && settings.footer.fixed && <Footer />}
             </LayoutContainer>
-            {settings.secondarySidebar.show && <SecondarySidebar />}
         </Layout1Root>
     )
 }

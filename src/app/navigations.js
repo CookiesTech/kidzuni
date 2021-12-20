@@ -1,9 +1,10 @@
 export const navigations = [
     {
         name: 'Dashboard',
-        path: '/dashboard/default',
+        path: '/admin/dashboard',
         icon: 'dashboard',
     },
+
     {
         label: 'PAGES',
         type: 'label',
@@ -131,6 +132,6 @@ export const navigations = [
         name: 'Documentation',
         icon: 'launch',
         type: 'extLink',
-        path: 'http://demos.ui-lib.com/matx-react-doc/',
+        path: '*',
     },
 ]

@@ -76,7 +76,7 @@ const AuthContext = createContext({
     ...initialState,
     method: 'JWT',
     login: () => Promise.resolve(),
-    logout: () => { },
+    logout: () => {},
     register: () => Promise.resolve(),
 })
 
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const login = async (email, password) => {
-        const response = await axios.post('/api/auth/login', {
+        const response = await axios.post('/api/auth/login1', {
             email,
             password,
         })
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        ; (async () => {
+        ;(async () => {
             try {
                 const accessToken = window.localStorage.getItem('accessToken')
 
