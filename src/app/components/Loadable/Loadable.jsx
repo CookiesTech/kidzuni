@@ -3,6 +3,7 @@ import Loading from '../MatxLoading/MatxLoading'
 
 const Loadable = (Component) => (props) => (
    <Suspense fallback={<Loading />}>
+      
       <Component {...props} />
    </Suspense>
 );

@@ -1,9 +1,24 @@
 export const navigations = [
     {
         name: 'Dashboard',
-        path: '/dashboard/default',
+        path: '/admin/dashboard',
         icon: 'dashboard',
     },
+    {
+        name: 'Teacher Master',
+        icon: 'dashboard',
+        children: [
+            {
+                name: 'List Teacher',
+                path: 'admin/Teachers/List',
+            },
+            {
+                name: 'Add Teacher',
+                path: 'admin/Teachers/add_teacher',
+            },
+        ],
+    },
+
     {
         label: 'PAGES',
         type: 'label',
@@ -131,6 +146,6 @@ export const navigations = [
         name: 'Documentation',
         icon: 'launch',
         type: 'extLink',
-        path: 'http://demos.ui-lib.com/matx-react-doc/',
+        path: '*',
     },
 ]

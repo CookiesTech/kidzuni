@@ -1,9 +1,7 @@
 import React from 'react'
-import SimpleTable from './SimpleTable'
-import PaginationTable from './PaginationTable'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
-// import Teachers from '../../admin/Teachers/List'
+import Table from './table'
 
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -18,27 +16,19 @@ const Container = styled('div')(({ theme }) => ({
     },
 }))
 
-const AppTable = () => {
+const TeachersList = () => {
     return (
         <Container>
             <div className="breadcrumb">
-                <Breadcrumb
-                    routeSegments={[
-                        { name: 'Material', path: '/material' },
-                        { name: 'Table' },
-                    ]}
-                />
+                <Breadcrumb routeSegments={[{ name: 'Teachers List' }]} />
             </div>
-            <SimpleCard title="Simple Table">
-                <SimpleTable />
-            </SimpleCard>
+
             <Box py="12px" />
             <SimpleCard title="Pagination Table">
-                <PaginationTable />
-                {/* <Teachers /> */}
+                <Table />
             </SimpleCard>
         </Container>
     )
 }
 
-export default AppTable
+export default TeachersList
