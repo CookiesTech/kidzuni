@@ -8,6 +8,7 @@ import { SettingsProvider } from 'app/contexts/SettingsContext'
 import { MatxTheme } from 'app/components'
 import { AllPages } from './routes/routes'
 
+
 const App = () => {
     const all_pages = useRoutes(AllPages())
 

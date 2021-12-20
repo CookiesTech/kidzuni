@@ -4,6 +4,7 @@ import materialRoutes from 'app/views/material-kit/MaterialRoutes'
 import sessionRoutes from 'app/views/sessions/SessionRoutes'
 import MatxLayout from '../components/MatxLayout/MatxLayout'
 
+
 export const AllPages = () => {
     const all_routes = [
         {
@@ -11,6 +12,7 @@ export const AllPages = () => {
             element: (
                 <AuthGuard>
                     <MatxLayout />
+                   
                 </AuthGuard>
             ),
             children: [...materialRoutes],
@@ -20,6 +22,7 @@ export const AllPages = () => {
             path: '*',
             element: <NotFound />,
         },
+        
     ]
 
     return all_routes

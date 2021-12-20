@@ -4,6 +4,20 @@ export const navigations = [
         path: '/admin/dashboard',
         icon: 'dashboard',
     },
+    {
+        name: 'Teacher Master',
+        icon: 'dashboard',
+        children: [
+            {
+                name: 'List Teacher',
+                path: 'admin/Teachers/List',
+            },
+            {
+                name: 'Add Teacher',
+                path: 'admin/Teachers/add_teacher',
+            },
+        ],
+    },
 
     {
         label: 'PAGES',
