@@ -48,6 +48,17 @@ const SimpleForm = () => {
         })
     }
 
+    handleFileChange(e) {
+        const file = e.target.files[0];
+        const reader = new window.FileReader();
+        this.setState({ fileName: e.target.files[0].name });
+        reader.readAsText(file);
+        reader.onload = e => {
+            const headers = e.target.result.split('\n')[0].split(',');
+            this.setState({ file: e.target.result });
+            this.setState({ headers });
+        }
+    }
     // const handleDateChange = (date) => {
     //     setState({ ...state, date })
     // }
@@ -244,6 +255,13 @@ const SimpleForm = () => {
                         />
                         </Grid>   
                         <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
+                        <label htmlFor="import-csv" styleName="s.label-input">
+                            <i className="fa fa-upload" style={{ marginRight: '5px' }} />
+                                    Upload
+                            <input id="import-csv" styleName="s.file-input" type="file" accept="text/csv" 
+                                onChange={e => this.handleFileChange(e)} />
+                        </label>
+
                         </Grid>      
                     </Grid>
                 <Button color="primary" variant="contained" type="submit">
