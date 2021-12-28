@@ -9,6 +9,23 @@ export const navigations = [
         type: 'label',
     },
     {
+        name: 'Teachers Master',
+        icon: 'security',
+        children: [
+            {
+                name: 'Teachers List',
+                iconText: 'SI',
+                path: 'admin/teachersList',
+            },
+            {
+                name: 'Add Teacher',
+                iconText: 'SU',
+                path: '/admin/add_teacher',
+            },
+        ],
+    },
+
+    {
         name: 'Session/Auth',
         icon: 'security',
         children: [
