@@ -22,13 +22,20 @@ const isValidToken = (accessToken) => {
 const setSession = (accessToken) => {
     if (accessToken) {
         localStorage.setItem('accessToken', accessToken)
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
+        axios.defaults.headers.common.Authorization = `bearer ${accessToken}`
     } else {
         localStorage.removeItem('accessToken')
         delete axios.defaults.headers.common.Authorization
     }
 }
 
+const setUserSession = (user) => {
+    if (user) {
+        localStorage.setItem('user', JSON.stringify(user))
+    } else {
+        localStorage.removeItem('user')
+    }
+}
 const reducer = (state, action) => {
     switch (action.type) {
         case 'INIT': {
@@ -76,7 +83,7 @@ const AuthContext = createContext({
     ...initialState,
     method: 'JWT',
     login: () => Promise.resolve(),
-    logout: () => { },
+    logout: () => {},
     register: () => Promise.resolve(),
 })
 
@@ -84,14 +91,18 @@ export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const login = async (email, password) => {
-        const response = await axios.post('/api/auth/login', {
-            email,
-            password,
-        })
-        const { accessToken, user } = response.data
+        const response = await axios.post(
+            'http://localhost:8000/public/api/login',
+            {
+                email,
+                password,
+            }
+        )
 
+        let user = response.data.user
+        let accessToken = response.data.token
         setSession(accessToken)
-
+        setUserSession(user)
         dispatch({
             type: 'LOGIN',
             payload: {
@@ -125,14 +136,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        ; (async () => {
+        ;(async () => {
             try {
                 const accessToken = window.localStorage.getItem('accessToken')
 
                 if (accessToken && isValidToken(accessToken)) {
                     setSession(accessToken)
-                    const response = await axios.get('/api/auth/profile')
-                    const { user } = response.data
+                    let user = localStorage.getItem('user')
 
                     dispatch({
                         type: 'INIT',

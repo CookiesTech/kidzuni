@@ -9,18 +9,18 @@ export const navigations = [
         type: 'label',
     },
     {
-        name: 'Session/Auth',
+        name: 'Teacher Master',
         icon: 'security',
         children: [
             {
-                name: 'Sign in',
+                name: 'Teacher List',
                 iconText: 'SI',
-                path: '/session/signin',
+                path: '/admin/teachersList',
             },
             {
-                name: 'Sign up',
+                name: 'Add Teacher',
                 iconText: 'SU',
-                path: '/session/signup',
+                path: '/admin/add_teacher',
             },
             {
                 name: 'Forgot Password',
