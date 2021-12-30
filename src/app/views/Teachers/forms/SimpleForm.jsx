@@ -12,9 +12,10 @@ import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
+import Toast from 'app/components/Toast/Toast'
 import React, { useState } from 'react'
 import FileUploadService from 'app/services/FileUploadService'
-import TeacherServices from 'app/services/TeacherService'
+import TeacherServices from 'app/services/TeacherServices'
 const SimpleForm = () => {
     const fileuploadservice = new FileUploadService()
     const teacherservice = new TeacherServices()
@@ -42,7 +43,7 @@ const SimpleForm = () => {
     const handleAddClick = () => {
         setInputList([...inputList, { document_name: '', image: '' }])
     }
-    console.log(inputList)
+
     const handleInputChangeImage = (e, index) => {
         const { name } = e.target
         const value = e.target.files[0]
@@ -62,27 +63,29 @@ const SimpleForm = () => {
         setInputList(list)
     }
     const handleSubmit = async (event) => {
+        event.persist()
         let imgArray = []
-
-        inputList?.forEach((img) => {
-            fileuploadservice.upload(img.image).then((data) => {
-                imgArray.push({
-                    image: data,
-                    document_name: img.document_name,
-                })
-            })
+        inputList.forEach((img) => {
+            imgArray.push(fileuploadservice.upload(img.image))
         })
-
-        await teacherservice
-            .create({
-                ...state,
-                image: imgArray,
-            })
-            .then((res) => {
-                if (res.status) {
-                    alert(res.message)
+        Promise.all(imgArray).then(async (imgRes) => {
+            let imgData = imgRes.map((img, index) => {
+                return {
+                    image: img,
+                    document_name: inputList[index].document_name,
                 }
             })
+            await teacherservice
+                .create({
+                    ...state,
+                    img: imgData,
+                })
+                .then((res) => {
+                    if (res.data.status) {
+                        Toast('success', '🦄 Wow so easy!')
+                    }
+                })
+        })
     }
     return (
         <div>
@@ -155,7 +158,6 @@ const SimpleForm = () => {
                     style={{ width: '396px', height: '51px' }}
                 />
                 {inputList.map((x, i) => {
-                    console.log(x, i)
                     return (
                         <>
                             <TextField

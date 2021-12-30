@@ -10,7 +10,7 @@ export default class FileUploadService extends ApiService {
         return fetch(url, { method: 'post', body: formData })
             .then((resp) => resp.json())
             .then((data) => {
-                return data
+                return data.secure_url
             })
             .catch((err) => console.log(err))
     }

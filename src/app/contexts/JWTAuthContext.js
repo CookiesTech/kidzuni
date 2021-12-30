@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
 
                 if (accessToken && isValidToken(accessToken)) {
                     setSession(accessToken)
-                    let user = localStorage.getItem('user')
+                    let user = JSON.parse(localStorage.getItem('user'))
 
                     dispatch({
                         type: 'INIT',

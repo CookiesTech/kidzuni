@@ -32,8 +32,10 @@
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.0.2",
         "react-scripts": "^4.0.3",
+        "react-toastify": "^8.1.0",
         "redux": "^4.1.2",
         "redux-thunk": "^2.4.0",
+        "rimraf": "^3.0.2",
         "shortid": "^2.2.16",
         "yup": "^0.32.11"
     },
@@ -42,7 +44,8 @@
         "build": "GENERATE_SOURCEMAP=false react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "ghp": "react-scripts build && gh-pages -d build"
+        "ghp": "react-scripts build && gh-pages -d build",
+        "prepare-dev": "cp src/environments/config.dev.js src/config.js"
     },
     "eslintConfig": {
         "extends": "react-app"
