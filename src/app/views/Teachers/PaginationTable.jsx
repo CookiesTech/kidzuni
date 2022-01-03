@@ -8,9 +8,13 @@ import {
     Icon,
     TablePagination,
 } from '@mui/material'
-import React, { useState, useEffect } from 'react'
-import { Box, styled } from '@mui/system'
 
+import React, { useState, useEffect } from 'react'
+import { Box, styled, useTheme } from '@mui/system'
+
+import Swal from 'sweetalert2'
+import { config } from 'config'
+import TeacherServices from 'app/services/TeacherServices'
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
     '& thead': {
@@ -30,80 +34,37 @@ const StyledTable = styled(Table)(({ theme }) => ({
         },
     },
 }))
-
-const subscribarList = [
-    // {
-    //     name: 'john doe',
-    //     date: '18 january, 2019',
-    //     amount: 1000,
-    //     status: 'close',
-    //     company: 'ABC Fintech LTD.',
-    // },
-    // {
-    //     name: 'kessy bryan',
-    //     date: '10 january, 2019',
-    //     amount: 9000,
-    //     status: 'open',
-    //     company: 'My Fintech LTD.',
-    // },
-    // {
-    //     name: 'kessy bryan',
-    //     date: '10 january, 2019',
-    //     amount: 9000,
-    //     status: 'open',
-    //     company: 'My Fintech LTD.',
-    // },
-    // {
-    //     name: 'james cassegne',
-    //     date: '8 january, 2019',
-    //     amount: 5000,
-    //     status: 'close',
-    //     company: 'Collboy Tech LTD.',
-    // },
-    // {
-    //     name: 'lucy brown',
-    //     date: '1 january, 2019',
-    //     amount: 89000,
-    //     status: 'open',
-    //     company: 'ABC Fintech LTD.',
-    // },
-    // {
-    //     name: 'lucy brown',
-    //     date: '1 january, 2019',
-    //     amount: 89000,
-    //     status: 'open',
-    //     company: 'ABC Fintech LTD.',
-    // },
-    // {
-    //     name: 'lucy brown',
-    //     date: '1 january, 2019',
-    //     amount: 89000,
-    //     status: 'open',
-    //     company: 'ABC Fintech LTD.',
-    // },
-    // {
-    //     name: 'lucy brown',
-    //     date: '1 january, 2019',
-    //     amount: 89000,
-    //     status: 'open',
-    //     company: 'ABC Fintech LTD.',
-    // },
-    // {
-    //     name: 'lucy brown',
-    //     date: '1 january, 2019',
-    //     amount: 89000,
-    //     status: 'open',
-    //     company: 'ABC Fintech LTD.',
-    // },
-]
-
+const Small = styled('small')(({ bgcolor }) => ({
+    height: 15,
+    width: 50,
+    color: '#fff',
+    padding: '2px 8px',
+    borderRadius: '4px',
+    overflow: 'hidden',
+    background: bgcolor,
+    boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+}))
 const PaginationTable = (props) => {
-    const [formData, setFormData] = useState([])
-    const [rowsPerPage, setRowsPerPage] = useState(5)
-    const [page, setPage] = useState(0)
+    const { palette } = useTheme()
+    const bgError = palette.error.main
+    const bgSecondary = palette.secondary.main
+    const teacherservice = new TeacherServices(config.baseURL)
+    const [formData = [], setFormData] = useState()
     useEffect(() => {
-        setFormData(props.data)
-    }, [props])
+        fetchData()
+        // eslint-disable-next-line no-use-before-define
+    }, [])
+
+    const fetchData = async () => {
+        await teacherservice.getAll().then((res) => {
+            if (res?.data?.status) {
+                setFormData(res?.data?.data)
+            }
+        })
+    }
+    const [rowsPerPage, setRowsPerPage] = useState(1)
+    const [page, setPage] = useState(0)
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage)
     }
@@ -113,6 +74,32 @@ const PaginationTable = (props) => {
         setPage(0)
     }
 
+    const editTeacher = (e, id) => {
+        console.log(id)
+    }
+    const deleteTeacher = (e, id) => {
+        Swal.fire({
+            title: 'Are you sure want to delete This Teacher? ',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                teacherservice.delete(id).then((res) => {
+                    if (res.data.status) {
+                        Swal.fire('Deleted!', res.data.message, 'success')
+                        fetchData()
+                    } else {
+                        console.log(res)
+                        Swal.fire('Cancelled!', +res.message, 'error')
+                    }
+                })
+            }
+        })
+    }
     return (
         <Box width="100%" overflow="auto">
             <StyledTable>
@@ -122,30 +109,59 @@ const PaginationTable = (props) => {
                         <TableCell>Last Name</TableCell>
                         <TableCell>Qualification</TableCell>
                         <TableCell>Phone</TableCell>
+                        <TableCell>Status</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {subscribarList
+                    {formData
                         .slice(
                             page * rowsPerPage,
                             page * rowsPerPage + rowsPerPage
                         )
-                        .map((subscriber, index) => (
+                        .map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell align="left">
-                                    {subscriber.first_name}
+                                    {data.first_name}
                                 </TableCell>
                                 <TableCell align="left">
-                                    {subscriber.last_name}
+                                    {data.last_name}
                                 </TableCell>
                                 <TableCell align="left">
-                                    {subscriber.qualification}
+                                    {data.qualification}
                                 </TableCell>
-                                <TableCell>{subscriber.phone}</TableCell>
+                                <TableCell>{data.phone}</TableCell>
+                                <TableCell>
+                                    {formData.status === 1 ? (
+                                        <Small bgcolor={bgSecondary}>
+                                            {formData.status} Active
+                                        </Small>
+                                    ) : (
+                                        <Small bgcolor={bgError}>
+                                            Disabled
+                                        </Small>
+                                    )}
+                                </TableCell>
                                 <TableCell>
                                     <IconButton>
-                                        <Icon color="error">close</Icon>
+                                        <Icon
+                                            color="primary"
+                                            onClick={(e) =>
+                                                editTeacher(e, data.id)
+                                            }
+                                        >
+                                            edit
+                                        </Icon>
+                                    </IconButton>
+                                    <IconButton>
+                                        <Icon
+                                            color="error"
+                                            onClick={(e) =>
+                                                deleteTeacher(e, data.id)
+                                            }
+                                        >
+                                            close
+                                        </Icon>
                                     </IconButton>
                                 </TableCell>
                             </TableRow>
@@ -157,7 +173,7 @@ const PaginationTable = (props) => {
                 sx={{ px: 2 }}
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={subscribarList.length}
+                count={formData.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 backIconButtonProps={{
@@ -166,8 +182,8 @@ const PaginationTable = (props) => {
                 nextIconButtonProps={{
                     'aria-label': 'Next Page',
                 }}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
             />
         </Box>
     )

@@ -54,7 +54,7 @@ export default function AlertDialogSlide() {
                         Disagree
                     </Button>
                     <Button onClick={handleClose} color="primary">
-                        Agree
+                        Agreeq
                     </Button>
                 </DialogActions>
             </Dialog>

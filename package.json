@@ -26,6 +26,7 @@
         "notistack": "^2.0.3",
         "prop-types": "^15.7.2",
         "react": "^17.0.2",
+        "react-confirm-alert": "^2.7.0",
         "react-dom": "^17.0.2",
         "react-material-ui-form-validator": "^3.0.0",
         "react-perfect-scrollbar": "^1.5.8",
@@ -37,6 +38,7 @@
         "redux-thunk": "^2.4.0",
         "rimraf": "^3.0.2",
         "shortid": "^2.2.16",
+        "sweetalert2": "^11.3.3",
         "yup": "^0.32.11"
     },
     "scripts": {

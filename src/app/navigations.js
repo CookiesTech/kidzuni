@@ -22,16 +22,6 @@ export const navigations = [
                 iconText: 'SU',
                 path: '/admin/add_teacher',
             },
-            {
-                name: 'Forgot Password',
-                iconText: 'FP',
-                path: '/session/forgot-password',
-            },
-            {
-                name: 'Error',
-                iconText: '404',
-                path: '/session/404',
-            },
         ],
     },
     {
