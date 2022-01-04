@@ -12,6 +12,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import { Box, styled, useTheme } from '@mui/system'
 
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { config } from 'config'
 import TeacherServices from 'app/services/TeacherServices'
@@ -45,6 +46,7 @@ const Small = styled('small')(({ bgcolor }) => ({
     boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
 }))
 const PaginationTable = (props) => {
+    const navigate = useNavigate()
     const { palette } = useTheme()
     const bgError = palette.error.main
     const bgSecondary = palette.secondary.main
@@ -62,7 +64,7 @@ const PaginationTable = (props) => {
             }
         })
     }
-    const [rowsPerPage, setRowsPerPage] = useState(1)
+    const [rowsPerPage, setRowsPerPage] = useState(10)
     const [page, setPage] = useState(0)
 
     const handleChangePage = (event, newPage) => {
@@ -75,7 +77,10 @@ const PaginationTable = (props) => {
     }
 
     const editTeacher = (e, id) => {
-        console.log(id)
+        navigate('/admin/edit_teacher/' + id)
+        // history.push({
+        //     pathname: '/editTeacher/' + id,
+        // })
     }
     const deleteTeacher = (e, id) => {
         Swal.fire({

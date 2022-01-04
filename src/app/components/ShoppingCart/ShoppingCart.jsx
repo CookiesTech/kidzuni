@@ -1,22 +1,22 @@
 import { useEffect } from 'react'
 import useAuth from 'app/hooks/useAuth'
-import { styled, useTheme } from '@mui/system'
-import { useNavigate } from 'react-router-dom'
+//import { styled, useTheme } from '@mui/system'
+//import { useNavigate } from 'react-router-dom'
 import useSettings from 'app/hooks/useSettings'
 import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { themeShadows } from '../MatxTheme/themeColors'
-import { sideNavWidth, topBarHeight } from 'app/utils/constant'
+// import { themeShadows } from '../MatxTheme/themeColors'
+// import { sideNavWidth, topBarHeight } from 'app/utils/constant'
 import { getCartList } from 'app/redux/actions/EcommerceActions'
 import { Drawer, ThemeProvider } from '@mui/material'
 
 let cartListLoaded = false
 
 function ShoppingCart({ container }) {
-    const [totalCost, setTotalCost] = useState(0)
+    // const [totalCost, setTotalCost] = useState(0)
     const [panelOpen, setPanelOpen] = useState(false)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     const { user } = useAuth()
     const { cartList } = useSelector((state) => state.ecommerce)
     const { settings } = useSettings()
@@ -31,12 +31,12 @@ function ShoppingCart({ container }) {
     }
 
     useEffect(() => {
-        let total = 0
+        // let total = 0
 
         cartList.forEach((product) => {
-            total += product.price * product.amount
+            //total += product.price * product.amount
         })
-        setTotalCost(total)
+        //setTotalCost(total)
     }, [cartList])
 
     return (

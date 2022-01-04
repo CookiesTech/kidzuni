@@ -8,6 +8,7 @@ export const navigations = [
         label: 'PAGES',
         type: 'label',
     },
+
     {
         name: 'Teacher Master',
         icon: 'security',
@@ -21,6 +22,28 @@ export const navigations = [
                 name: 'Add Teacher',
                 iconText: 'SU',
                 path: '/admin/add_teacher',
+            },
+        ],
+    },
+
+    {
+        label: 'SUBJECTS',
+        type: 'label',
+    },
+
+    {
+        name: 'Subject Master',
+        icon: 'trending_up',
+        children: [
+            {
+                name: 'Subject List',
+                iconText: 'SI',
+                path: '/admin/subjectsList',
+            },
+            {
+                name: 'Add Subject',
+                iconText: 'SU',
+                path: '/admin/add_subject',
             },
         ],
     },

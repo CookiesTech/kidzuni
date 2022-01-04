@@ -1,5 +1,5 @@
 import ApiService from './ApiServices'
-export default class TeacherServices extends ApiService {
+export default class SubjectServices extends ApiService {
     getAll = async () => {
         let Url = this.baseURL + 'getActive/'
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import SimpleForm from './SimpleForm'
-import EditTeacher from './EditTeacher'
+import PaginationTable from './PaginationTable'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
 
@@ -17,33 +16,24 @@ const Container = styled('div')(({ theme }) => ({
     },
 }))
 
-const AppForm = () => {
-    const lastItem = window.location.pathname.split('/').pop()
-
+const AppTable = () => {
     return (
         <Container>
             <div className="breadcrumb">
                 <Breadcrumb
                     routeSegments={[
                         { name: 'Material', path: '/material' },
-                        { name: 'Form' },
+                        { name: 'Table' },
                     ]}
                 />
             </div>
 
-            {lastItem === 'add_teacher' ? (
-                <SimpleCard title="Simple Form">
-                    <SimpleForm />
-                </SimpleCard>
-            ) : (
-                <SimpleCard>
-                    <EditTeacher />
-                </SimpleCard>
-            )}
-
             <Box py="12px" />
+            <SimpleCard title="Pagination Table">
+                <PaginationTable />
+            </SimpleCard>
         </Container>
     )
 }
 
-export default AppForm
+export default AppTable

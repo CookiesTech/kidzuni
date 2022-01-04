@@ -7,23 +7,57 @@ import {
     // FormControlLabel,
     // Checkbox,
 } from '@mui/material'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import Toast from 'app/components/Toast/Toast'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
-const SimpleForm = () => {
+import { styled } from '@mui/system'
+import { config } from 'config'
+import { useNavigate } from 'react-router-dom'
+toast.configure()
+const Container = styled('div')(({ theme }) => ({
+    margin: '30px',
+    [theme.breakpoints.down('sm')]: {
+        margin: '16px',
+    },
+    '& .breadcrumb': {
+        marginBottom: '30px',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '16px',
+        },
+    },
+}))
+const EditTeacher = () => {
+    const lastItem = window.location.pathname.split('/').pop()
+    const navigate = useNavigate()
     const fileuploadservice = new FileUploadService()
-    const teacherservice = new TeacherServices()
-    const [inputList, setInputList] = useState([
-        { document_name: '', image: '' },
-    ])
+    const teacherservice = new TeacherServices(config.baseURL)
+    const [inputList, setInputList] = useState([])
     const [state, setState] = useState({})
-
+    useEffect(() => {
+        fetchData()
+    }, [lastItem])
+    const fetchData = async () => {
+        await teacherservice.getProfile(lastItem).then((res) => {
+            if (res?.data?.status) {
+                setState(res?.data?.data?.teacher)
+                let imageUpdate = false
+                setInputList(
+                    res?.data?.data?.images.map((image) => ({
+                        ...image,
+                        imageUpdate,
+                    }))
+                )
+            }
+        })
+    }
     const handleChange = (event) => {
         event.persist()
         setState({
@@ -48,7 +82,7 @@ const SimpleForm = () => {
         const { name } = e.target
         const value = e.target.files[0]
         const list = [...inputList]
-
+        list[index].imageUpdate = true
         list[index][name] = value
 
         setInputList(list)
@@ -66,7 +100,11 @@ const SimpleForm = () => {
         event.persist()
         let imgArray = []
         inputList.forEach((img) => {
-            imgArray.push(fileuploadservice.upload(img.image))
+            if (img.imageUpdate) {
+                imgArray.push(fileuploadservice.upload(img.image))
+            } else {
+                imgArray.push(img.image)
+            }
         })
         Promise.all(imgArray).then(async (imgRes) => {
             let imgData = imgRes.map((img, index) => {
@@ -75,21 +113,26 @@ const SimpleForm = () => {
                     document_name: inputList[index].document_name,
                 }
             })
+
             await teacherservice
-                .create({
+                .update({
                     ...state,
                     img: imgData,
+                    id: lastItem,
                 })
                 .then((res) => {
                     if (res.data.status) {
                         Toast('success', res.data.message)
+                        navigate('/admin/teachersList/')
                     }
                 })
         })
     }
+    console.log(state)
     return (
-        <div>
+        <Container>
             <Box
+                component="form"
                 sx={{
                     '& > :not(style)': { m: 1, width: '50ch' },
                 }}
@@ -98,62 +141,70 @@ const SimpleForm = () => {
             >
                 <TextField
                     name="username"
-                    id="outlined-name"
                     label="UserName"
+                    value={state?.username}
                     onChange={handleChange}
                 />
                 <TextField
                     name="firstname"
-                    id="outlined-uncontrolled"
                     label="FirstName"
+                    value={state?.first_name}
                     onChange={handleChange}
                 />
                 <TextField
                     name="lastname"
                     id="outlined-name"
                     label="LastName"
+                    value={state?.last_name}
                     onChange={handleChange}
                 />
                 <TextField
                     name="email"
                     id="outlined-name"
                     label="Email"
+                    value={state?.email}
                     onChange={handleChange}
                 />
                 <TextField
                     name="password"
                     id="outlined-name"
                     label="Password"
+                    value={state?.password}
                     onChange={handleChange}
                 />
                 <TextField
                     name="qualification"
                     id="outlined-name"
                     label="Qualification"
+                    value={state?.qualification}
                     onChange={handleChange}
                 />
                 <TextField
                     name="experience"
                     id="outlined-name"
                     label="Experience"
+                    value={state?.experience}
                     onChange={handleChange}
                 />
                 <TextField
                     name="previous_institution_name"
                     id="outlined-name"
                     label="Previous Institution Name"
+                    value={state?.previous_institution_name}
                     onChange={handleChange}
                 />
                 <TextField
                     name="phone"
                     id="outlined-name"
                     label="Phone"
+                    value={state?.phone}
                     onChange={handleChange}
                 />
                 <TextareaAutosize
                     name="address"
                     aria-label="empty textarea"
                     placeholder="Address"
+                    value={state?.address}
                     style={{ width: '396px', height: '51px' }}
                 />
                 {inputList.map((x, i) => {
@@ -168,14 +219,23 @@ const SimpleForm = () => {
                                     handleInputChangeDocument(e, i)
                                 }
                             />
-
-                            <TextField
-                                name="image"
-                                type="file"
-                                id="outlined-name"
-                                // value={x?.image}
-                                onChange={(e) => handleInputChangeImage(e, i)}
-                            />
+                            <Button variant="contained" component="label">
+                                Upload File
+                                <input
+                                    type="file"
+                                    name="image"
+                                    onChange={(e) =>
+                                        handleInputChangeImage(e, i)
+                                    }
+                                />
+                            </Button>
+                            {/* {x?.image && (
+                                <img
+                                    src={x.image}
+                                    alt="..."
+                                    className="bonquet-image-preview"
+                                />
+                            )} */}
                             <div className="btn-box">
                                 {inputList.length !== 1 && (
                                     <button
@@ -200,8 +260,8 @@ const SimpleForm = () => {
                 <Icon>send</Icon>
                 <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Submit</Span>
             </Button>
-        </div>
+        </Container>
     )
 }
 
-export default SimpleForm
+export default EditTeacher

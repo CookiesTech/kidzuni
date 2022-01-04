@@ -3,7 +3,11 @@ import Loadable from 'app/components/Loadable/Loadable'
 
 const TeacherForm = Loadable(lazy(() => import('../Teachers/forms/AppForm')))
 const TeacherTable = Loadable(lazy(() => import('../Teachers/AppTable')))
-
+const EditTeacher = Loadable(
+    lazy(() => import('../Teachers/forms/EditTeacher'))
+)
+const SubjectForm = Loadable(lazy(() => import('../Subjects/forms/AppForm')))
+const SubjectsTable = Loadable(lazy(() => import('../Subjects/AppTable')))
 const AppTable = Loadable(lazy(() => import('./tables/AppTable')))
 const AppForm = Loadable(lazy(() => import('./forms/AppForm')))
 const AppButton = Loadable(lazy(() => import('./buttons/AppButton')))
@@ -31,6 +35,18 @@ const materialRoutes = [
     {
         path: '/admin/teachersList',
         element: <TeacherTable />,
+    },
+    {
+        path: '/admin/edit_teacher/:value',
+        element: <EditTeacher />,
+    },
+    {
+        path: '/admin/subjectsList',
+        element: <SubjectsTable />,
+    },
+    {
+        path: '/admin/add_subject',
+        element: <SubjectForm />,
     },
     {
         path: '/material/table',

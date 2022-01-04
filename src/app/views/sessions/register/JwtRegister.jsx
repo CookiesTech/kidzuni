@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import useAuth from 'app/hooks/useAuth'
 import React, { useState } from 'react'
 import { Box, styled } from '@mui/system'
@@ -144,7 +143,9 @@ const JwtRegister = () => {
                                     <Span sx={{ mr: 1, ml: '20px' }}>or</Span>
                                     <Button
                                         sx={{ textTransform: 'capitalize' }}
-                                        onClick={() => navigate("/session/signin")}
+                                        onClick={() =>
+                                            navigate('/session/signin')
+                                        }
                                     >
                                         Sign in
                                     </Button>
