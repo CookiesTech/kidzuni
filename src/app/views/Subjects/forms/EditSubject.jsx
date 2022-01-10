@@ -15,30 +15,43 @@ import Select from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import Toast from 'app/components/Toast/Toast'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SubjectServices from 'app/services/SubjectServices'
 import { config } from 'config'
-toast.configure()
-const SubjectForm = () => {
+import { styled } from '@mui/system'
+import { useNavigate } from 'react-router-dom'
+const Container = styled('div')(({ theme }) => ({
+    margin: '30px',
+    [theme.breakpoints.down('sm')]: {
+        margin: '16px',
+    },
+    '& .breadcrumb': {
+        marginBottom: '30px',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '16px',
+        },
+    },
+}))
+const EditSubject = () => {
+    const lastItem = window.location.pathname.split('/').pop()
     const subjectservice = new SubjectServices(config.baseURL)
+    const navigate = useNavigate()
     const [inputList, setInputList] = useState([
         { subject_name: '', standard: '' },
     ])
 
+    useEffect(() => {
+        fetchData()
+    }, [lastItem])
+    const fetchData = async () => {
+        await subjectservice.getSubjectByID(lastItem).then((res) => {
+            if (res?.data?.status) {
+                setInputList([res?.data?.data])
+            }
+        })
+    }
     // handle click event of the Remove button
-    const handleRemoveClick = (index) => {
-        const list = [...inputList]
-        list.splice(index, 1)
-        setInputList(list)
-    }
-
-    // handle click event of the Add button
-    const handleAddClick = () => {
-        setInputList([...inputList, { subject_name: '', standard: '' }])
-    }
 
     const handleInputChange = (e, index) => {
         const { name } = e.target
@@ -53,21 +66,20 @@ const SubjectForm = () => {
         event.persist()
 
         await subjectservice
-            .create({
-                data: inputList,
+            .update({
+                ...inputList,
+                id: lastItem,
             })
             .then((res) => {
-                if (res.data.status === 'true') {
+                if (res.data.status === true) {
                     Toast('success', res.data.message)
-                } else {
-                    Toast('error', res.data.message)
                 }
-                setInputList([{ subject_name: '', standard: '' }])
+                navigate('/admin/subjectsList/')
             })
     }
 
     return (
-        <div>
+        <Container>
             <Box
                 sx={{
                     '& > :not(style)': { m: 1, width: '50ch' },
@@ -103,21 +115,6 @@ const SubjectForm = () => {
                                 value={x?.standard}
                                 onChange={(e) => handleInputChange(e, i)}
                             />
-                            <div className="btn-box">
-                                {inputList.length !== 1 && (
-                                    <button
-                                        className="mr10"
-                                        onClick={() => handleRemoveClick(i)}
-                                    >
-                                        Remove
-                                    </button>
-                                )}
-                                {inputList.length - 1 === i && (
-                                    <button onClick={handleAddClick}>
-                                        Add
-                                    </button>
-                                )}
-                            </div>
                         </>
                     )
                 })}
@@ -125,10 +122,10 @@ const SubjectForm = () => {
 
             <Button color="primary" variant="contained" onClick={handleSubmit}>
                 <Icon>send</Icon>
-                <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Submit</Span>
+                <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Update</Span>
             </Button>
-        </div>
+        </Container>
     )
 }
 
-export default SubjectForm
+export default EditSubject

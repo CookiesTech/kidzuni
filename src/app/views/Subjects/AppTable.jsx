@@ -1,5 +1,5 @@
 import React from 'react'
-import PaginationTable from './PaginationTable'
+import SubjectsTable from './SubjectsTable'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
 
@@ -19,18 +19,18 @@ const Container = styled('div')(({ theme }) => ({
 const AppTable = () => {
     return (
         <Container>
-            <div className="breadcrumb">
+            {/* <div className="breadcrumb">
                 <Breadcrumb
                     routeSegments={[
                         { name: 'Material', path: '/material' },
                         { name: 'Table' },
                     ]}
                 />
-            </div>
+            </div> */}
 
             <Box py="12px" />
-            <SimpleCard title="Pagination Table">
-                <PaginationTable />
+            <SimpleCard title="Subjects Master">
+                <SubjectsTable />
             </SimpleCard>
         </Container>
     )

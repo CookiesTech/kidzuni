@@ -1,28 +1,7 @@
 import ApiService from './ApiServices'
 export default class SubjectServices extends ApiService {
-    getAll = async () => {
-        let Url = this.baseURL + 'getActive/'
-
-        let response = await this.get(Url)
-        if (response.status !== 200) {
-            throw Error(response)
-        }
-        return response
-    }
-
-    getProfile = async (id) => {
-        let Url = this.baseURL + 'get_teacherProfile/' + id
-
-        let response = await this.get(Url)
-        if (response.status !== 200) {
-            throw Error(response)
-        }
-        return response
-    }
-
     create = async (data) => {
-        let Url = this.baseURL + 'teacher_add'
-
+        let Url = this.baseURL + 'add_subject_mapping'
         let response = await this.post(Url, data)
         if (response.status !== 200) {
             throw Error(response)
@@ -31,8 +10,7 @@ export default class SubjectServices extends ApiService {
     }
 
     update = async (data) => {
-        let Url = this.baseURL + 'teacher_update'
-
+        let Url = this.baseURL + 'subject_update'
         let response = await this.post(Url, data)
         if (response.status !== 200) {
             throw Error(response)
@@ -41,9 +19,28 @@ export default class SubjectServices extends ApiService {
     }
 
     delete = async (id) => {
-        let Url = this.baseURL + `delete_teacher/${id}`
+        let Url = this.baseURL + `delete_subject/${id}`
 
-        let response = await this.post(Url)
+        let response = await this.get(Url)
+
+        if (response.status !== 200) {
+            throw Error(response)
+        }
+        return response
+    }
+
+    getAll = async () => {
+        let Url = this.baseURL + 'getAllSubjects'
+        let response = await this.get(Url)
+        if (response.status !== 200) {
+            throw Error(response)
+        }
+        return response
+    }
+
+    getSubjectByID = async (id) => {
+        let Url = this.baseURL + 'getSubjectByID/' + id
+        let response = await this.get(Url)
 
         if (response.status !== 200) {
             throw Error(response)

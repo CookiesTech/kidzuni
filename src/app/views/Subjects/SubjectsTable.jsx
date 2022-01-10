@@ -8,14 +8,13 @@ import {
     Icon,
     TablePagination,
 } from '@mui/material'
-
 import React, { useState, useEffect } from 'react'
-import { Box, styled, useTheme } from '@mui/system'
-
+import { Box, styled } from '@mui/system'
+import { config } from 'config'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { config } from 'config'
-import TeacherServices from 'app/services/TeacherServices'
+
+import SubjectServices from 'app/services/SubjectServices'
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
     '& thead': {
@@ -35,22 +34,10 @@ const StyledTable = styled(Table)(({ theme }) => ({
         },
     },
 }))
-const Small = styled('small')(({ bgcolor }) => ({
-    height: 15,
-    width: 50,
-    color: '#fff',
-    padding: '2px 8px',
-    borderRadius: '4px',
-    overflow: 'hidden',
-    background: bgcolor,
-    boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-}))
-const PaginationTable = (props) => {
+
+const SubjectsTable = () => {
     const navigate = useNavigate()
-    const { palette } = useTheme()
-    const bgError = palette.error.main
-    const bgSecondary = palette.secondary.main
-    const teacherservice = new TeacherServices(config.baseURL)
+    const subjectservice = new SubjectServices(config.baseURL)
     const [formData = [], setFormData] = useState()
     useEffect(() => {
         fetchData()
@@ -58,14 +45,14 @@ const PaginationTable = (props) => {
     }, [])
 
     const fetchData = async () => {
-        await teacherservice.getAll().then((res) => {
+        await subjectservice.getAll().then((res) => {
             if (res?.data?.status) {
                 setFormData(res?.data?.data)
             }
         })
     }
-    const [rowsPerPage, setRowsPerPage] = useState(10)
-    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = React.useState(5)
+    const [page, setPage] = React.useState(0)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage)
@@ -75,11 +62,10 @@ const PaginationTable = (props) => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
-
     const editTeacher = (e, id) => {
-        navigate('/admin/edit_teacher/' + id)
+        navigate('/admin/edit_subject/' + id)
     }
-    const deleteTeacher = (e, id) => {
+    const deleteSubject = (e, id) => {
         Swal.fire({
             title: 'Are you sure want to delete This Teacher? ',
             text: "You won't be able to revert this!",
@@ -90,7 +76,7 @@ const PaginationTable = (props) => {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                teacherservice.delete(id).then((res) => {
+                subjectservice.delete(id).then((res) => {
                     if (res.data.status) {
                         Swal.fire('Deleted!', res.data.message, 'success')
                         fetchData()
@@ -107,11 +93,9 @@ const PaginationTable = (props) => {
             <StyledTable>
                 <TableHead>
                     <TableRow>
-                        <TableCell>First Name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Qualification</TableCell>
-                        <TableCell>Phone</TableCell>
-                        <TableCell>Status</TableCell>
+                        <TableCell>S.no</TableCell>
+                        <TableCell>Subject</TableCell>
+                        <TableCell>Standard</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -121,35 +105,22 @@ const PaginationTable = (props) => {
                             page * rowsPerPage,
                             page * rowsPerPage + rowsPerPage
                         )
-                        .map((data, index) => (
+                        .map((row, index) => (
                             <TableRow key={index}>
+                                <TableCell>{index + 1}</TableCell>
                                 <TableCell align="left">
-                                    {data.first_name}
-                                </TableCell>
-                                <TableCell align="left">
-                                    {data.last_name}
+                                    {row.subject_name}
                                 </TableCell>
                                 <TableCell align="left">
-                                    {data.qualification}
+                                    {row.standard}
                                 </TableCell>
-                                <TableCell>{data.phone}</TableCell>
-                                <TableCell>
-                                    {formData.status === 1 ? (
-                                        <Small bgcolor={bgSecondary}>
-                                            {formData.status} Active
-                                        </Small>
-                                    ) : (
-                                        <Small bgcolor={bgError}>
-                                            Disabled
-                                        </Small>
-                                    )}
-                                </TableCell>
+
                                 <TableCell>
                                     <IconButton>
                                         <Icon
                                             color="primary"
                                             onClick={(e) =>
-                                                editTeacher(e, data.id)
+                                                editTeacher(e, row.id)
                                             }
                                         >
                                             edit
@@ -159,7 +130,7 @@ const PaginationTable = (props) => {
                                         <Icon
                                             color="error"
                                             onClick={(e) =>
-                                                deleteTeacher(e, data.id)
+                                                deleteSubject(e, row.id)
                                             }
                                         >
                                             close
@@ -184,11 +155,11 @@ const PaginationTable = (props) => {
                 nextIconButtonProps={{
                     'aria-label': 'Next Page',
                 }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
             />
         </Box>
     )
 }
 
-export default PaginationTable
+export default SubjectsTable

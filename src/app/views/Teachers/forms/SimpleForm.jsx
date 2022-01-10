@@ -4,8 +4,8 @@ import {
     // Grid,
     // Radio,
     // RadioGroup,
-    // FormControlLabel,
-    // Checkbox,
+    FormControlLabel,
+    Checkbox,
 } from '@mui/material'
 
 import TextareaAutosize from '@mui/material/TextareaAutosize'
@@ -13,16 +13,33 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import Toast from 'app/components/Toast/Toast'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
+import SubjectServices from 'app/services/SubjectServices'
+import { config } from 'config'
+
 const SimpleForm = () => {
     const fileuploadservice = new FileUploadService()
-    const teacherservice = new TeacherServices()
+    const teacherservice = new TeacherServices(config.baseURL)
+    const subjectservices = new SubjectServices(config.baseURL)
+
     const [inputList, setInputList] = useState([
         { document_name: '', image: '' },
     ])
+    const [subject, setSubject] = useState([])
     const [state, setState] = useState({})
+    const [standard, setStandard] = useState([{ standard: '', subject: '' }])
+    useEffect(() => {
+        const fetchSubjects = async () => {
+            await subjectservices.getAll().then((res) => {
+                if (res?.data?.status) {
+                    setSubject(res?.data?.data)
+                }
+            })
+        }
+        fetchSubjects()
+    }, [])
 
     const handleChange = (event) => {
         event.persist()
@@ -87,6 +104,20 @@ const SimpleForm = () => {
                 })
         })
     }
+    const handleInputChange = (e) => {
+        const { name } = e.target
+        const value = e.target.value
+        console.log(name)
+    }
+    const handleInputChangeEnglish = (e, index) => {
+        const { name } = e.target
+        const value = e.target.value
+        const list = [...standard]
+
+        list[index][name] = value
+        setStandard(list)
+    }
+    console.log(standard)
     return (
         <div>
             <Box
@@ -195,7 +226,46 @@ const SimpleForm = () => {
                     )
                 })}
             </Box>
+            {subject.map((x, i) => {
+                var array = x.standard.split(',')
 
+                return (
+                    <>
+                        <FormControlLabel
+                            key={`check-${i}`}
+                            name="subject_name"
+                            options={x?.subject_name}
+                            value={x?.subject_name}
+                            control={<Checkbox />}
+                            label={x?.subject_name}
+                            onChange={(e) => handleInputChangeEnglish(e, i)}
+                        />
+                        {/* <FormControlLabel
+                            name="subject_name"
+                            control={<Checkbox />}
+                            label={x?.subject_name}
+                            onChange={(e) => handleInputChange(e, i)}
+                        /> */}
+                        <br />
+                        {array.map((j, k) => {
+                            return (
+                                <FormControlLabel
+                                    key={`check-${i}`}
+                                    name="standard"
+                                    options={j}
+                                    value={j}
+                                    control={<Checkbox />}
+                                    label={j}
+                                    onChange={(e) =>
+                                        handleInputChangeEnglish(e, i)
+                                    }
+                                />
+                            )
+                        })}
+                        <br />
+                    </>
+                )
+            })}
             <Button color="primary" variant="contained" onClick={handleSubmit}>
                 <Icon>send</Icon>
                 <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Submit</Span>

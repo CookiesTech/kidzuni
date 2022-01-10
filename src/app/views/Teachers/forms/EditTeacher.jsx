@@ -7,21 +7,18 @@ import {
     // FormControlLabel,
     // Checkbox,
 } from '@mui/material'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
-import Toast from 'app/components/Toast/Toast'
 import React, { useState, useEffect } from 'react'
 import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
 import { styled } from '@mui/system'
 import { config } from 'config'
+import Toast from 'app/components/Toast/Toast'
 import { useNavigate } from 'react-router-dom'
-toast.configure()
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: {
@@ -128,7 +125,7 @@ const EditTeacher = () => {
                 })
         })
     }
-    console.log(state)
+
     return (
         <Container>
             <Box
