@@ -21,7 +21,6 @@ const errorRoute = [
 const routes = [
     ...dashboardRoutes,
     ...materialRoutes,
-    ...chartsRoute,
     ...redirectRoute,
     ...errorRoute,
 ]

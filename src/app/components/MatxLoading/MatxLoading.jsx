@@ -12,16 +12,15 @@ const StyledLoading = styled('div')(() => ({
         width: 'auto',
         height: '25px',
     },
-    "& .circleProgress": {
+    '& .circleProgress': {
         position: 'absolute',
         left: -7,
         right: 0,
         top: 'calc(50% - 25px)',
-    }
+    },
 }))
 
 const Loading = () => {
-
     return (
         <StyledLoading>
             <Box position="relative">

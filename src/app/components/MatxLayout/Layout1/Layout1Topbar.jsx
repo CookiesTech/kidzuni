@@ -88,6 +88,7 @@ const Layout1Topbar = () => {
     const theme = useTheme()
     const { settings, updateSettings } = useSettings()
     const { logout, user } = useAuth()
+    // let user = JSON.parse(localStorage.getItem('user'))
     const isMdScreen = useMediaQuery(theme.breakpoints.down('md'))
 
     const updateSidebarMode = (sidebarSettings) => {
@@ -138,19 +139,19 @@ const Layout1Topbar = () => {
                     </IconBox>
                 </Box>
                 <Box display="flex" alignItems="center">
-                    <MatxSearchBox />
+                    {/* <MatxSearchBox /> */}
                     <NotificationProvider>
                         <NotificationBar />
                     </NotificationProvider>
 
-                    <ShoppingCart />
+                    {/* <ShoppingCart /> */}
 
                     <MatxMenu
                         menuButton={
                             <UserMenu>
                                 <Hidden xsDown>
                                     <Span>
-                                        Hi <strong>{user.name}</strong>
+                                        Hi <strong>{user?.name}</strong>
                                     </Span>
                                 </Hidden>
                                 <Avatar

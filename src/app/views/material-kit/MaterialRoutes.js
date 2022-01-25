@@ -1,9 +1,34 @@
 import React, { lazy } from 'react'
 import Loadable from 'app/components/Loadable/Loadable'
 
+
+
 const AppTable = Loadable(lazy(() => import('./tables/AppTable')))
 const AppForm = Loadable(lazy(() => import('./forms/AppForm')))
 const AppButton = Loadable(lazy(() => import('./buttons/AppButton')))
+
+const TeacherForm = Loadable(lazy(() => import('../Teachers/forms/AppForm')))
+const TeacherTable = Loadable(lazy(() => import('../Teachers/AppTable')))
+const EditTeacher = Loadable(
+    lazy(() => import('../Teachers/forms/EditTeacher'))
+)
+const SubjectForm = Loadable(lazy(() => import('../Subjects/forms/AppForm')))
+const SubjectsTable = Loadable(lazy(() => import('../Subjects/AppTable')))
+const EditSubject = Loadable(
+    lazy(() => import('../Subjects/forms/EditSubject'))
+)
+
+const StandardForm = Loadable(lazy(() => import('../Standards/forms/AppForm')))
+const StandardTable = Loadable(lazy(() => import('../Standards/AppTable')))
+const MainCategoryForm = Loadable(lazy(() => import('../MainCategory/AppForm')))
+const MainCategoryTable = Loadable(
+    lazy(() => import('../MainCategory/AppTable'))
+)
+const SubCategoryForm = Loadable(lazy(() => import('../SubCategory/AppForm')))
+const SubCategoryTable = Loadable(lazy(() => import('../SubCategory/AppTable')))
+
+const QuestionTable = Loadable(lazy(() => import('../Questions/AppTable')))
+//  dca9ff93a7e6e7f259b3d99470ec1020942bb26
 const AppIcon = Loadable(lazy(() => import('./icons/AppIcon')))
 const AppProgress = Loadable(lazy(() => import('./AppProgress')))
 const AppMenu = Loadable(lazy(() => import('./menu/AppMenu')))
@@ -22,16 +47,59 @@ const AppExpansionPanel = Loadable(
 
 const materialRoutes = [
     {
-        path: '/material/table',
-        element: <AppTable />,
+        path: '/admin/add_teacher',
+        element: <TeacherForm />,
     },
     {
-        path: '/material/form',
-        element: <AppForm />,
+        path: '/admin/teachersList',
+        element: <TeacherTable />,
     },
     {
-        path: '/material/buttons',
-        element: <AppButton />,
+        path: '/admin/edit_teacher/:value',
+        element: <EditTeacher />,
+    },
+    {
+        path: '/admin/subjectsList',
+        element: <SubjectsTable />,
+    },
+    {
+        path: '/admin/add_subject',
+        element: <SubjectForm />,
+    },
+
+    {
+        path: '/admin/edit_subject/:value',
+        element: <EditSubject />,
+    },
+
+    {
+        path: '/admin/standardsList',
+        element: <StandardTable />,
+    },
+    {
+        path: '/admin/add_standard',
+        element: <StandardForm />,
+    },
+    {
+        path: '/admin/maincategoryList',
+        element: <MainCategoryTable />,
+    },
+    {
+        path: '/admin/add_maincategory',
+        element: <MainCategoryForm />,
+    },
+
+    {
+        path: '/admin/subcategoryList',
+        element: <SubCategoryTable />,
+    },
+    {
+        path: '/admin/add_subcategory',
+        element: <SubCategoryForm />,
+    },
+    {
+        path: '/admin/questions',
+        element: <QuestionTable />,
     },
     {
         path: '/material/icons',

@@ -1,11 +1,11 @@
 import React from 'react'
-import { styled, useTheme } from '@mui/system'
-import { Chatbox } from 'app/components'
-import { ChatHead } from 'app/components'
 import { Span } from '../Typography'
-import { IconButton, Icon } from '@mui/material'
-import ShoppingCart from '../ShoppingCart/ShoppingCart'
-import MatxCustomizer from '../MatxCustomizer/MatxCustomizer'
+import { styled, useTheme } from '@mui/system'
+// import { ChatHead } from 'app/components'
+// import { Chatbox } from 'app/components'
+// import { IconButton, Icon } from '@mui/material'
+// import ShoppingCart from '../ShoppingCart/ShoppingCart'
+// import MatxCustomizer from '../MatxCustomizer/MatxCustomizer'
 
 const SidebarRoot = styled('div')(({ theme, width }) => ({
     position: 'fixed',
@@ -40,15 +40,15 @@ const SidebarRoot = styled('div')(({ theme, width }) => ({
 }))
 
 const SecondarySidebarContent = () => {
-    const { palette } = useTheme()
-    const textColor = palette.primary.contrastText
+    //const { palette } = useTheme()
+    //const textColor = palette.primary.contrastText
     return (
         <SidebarRoot width={'50px'} className="secondary-sidebar">
             <Span sx={{ m: 'auto' }}></Span>
-            <MatxCustomizer />
-            <ShoppingCart />
+            {/* <MatxCustomizer /> */}
+            {/* <ShoppingCart /> */}
 
-            <ChatHead
+            {/* <ChatHead
                 icon={
                     <IconButton
                         sx={{ my: '12px', color: textColor }}
@@ -59,7 +59,7 @@ const SecondarySidebarContent = () => {
                 }
             >
                 <Chatbox />
-            </ChatHead>
+            </ChatHead> */}
             <Span sx={{ m: 'auto' }}></Span>
         </SidebarRoot>
     )

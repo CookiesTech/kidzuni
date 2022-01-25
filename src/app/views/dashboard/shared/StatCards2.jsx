@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Card, Icon, Fab } from '@mui/material'
 import { lighten, styled, useTheme } from '@mui/system'
-import { Small } from 'app/components/Typography'
+//import { Small } from 'app/components/Typography'
 
 const ContentBox = styled('div')(({ theme }) => ({
     display: 'flex',

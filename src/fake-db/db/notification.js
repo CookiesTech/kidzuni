@@ -42,10 +42,10 @@ const NotificationDB = {
     ],
 }
 
-Mock.onGet('/api/notification').reply((config) => {
-    const response = NotificationDB.list
-    return [200, response]
-})
+// Mock.onGet('/api/notification').reply((config) => {
+//     const response = NotificationDB.list
+//     return [200, response]
+// })
 
 Mock.onPost('/api/notification/add').reply((config) => {
     const response = NotificationDB.list
