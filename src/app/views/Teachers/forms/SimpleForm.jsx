@@ -12,24 +12,32 @@ import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
-import Toast from 'app/components/Toast/Toast'
 import React, { useState, useEffect } from 'react'
 import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
 import SubjectServices from 'app/services/SubjectServices'
+import StandardServices from 'app/services/StandardServices'
+import { SimpleCard } from 'app/components'
 import { config } from 'config'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+toast.configure()
 
 const SimpleForm = () => {
+    const navigate = useNavigate()
     const fileuploadservice = new FileUploadService()
     const teacherservice = new TeacherServices(config.baseURL)
     const subjectservices = new SubjectServices(config.baseURL)
+    const standardservices = new StandardServices(config.baseURL)
 
     const [inputList, setInputList] = useState([
         { document_name: '', image: '' },
     ])
-    const [subject, setSubject] = useState([])
+
     const [state, setState] = useState({})
-    const [standard, setStandard] = useState([{ standard: '', subject: '' }])
+    const [mapStandard, setmapStandard] = useState([])
+    const [subject, setSubject] = useState([{ subject_name: [] }])
+    const [standard, setStandard] = useState([{ standard_name: '' }])
     useEffect(() => {
         const fetchSubjects = async () => {
             await subjectservices.getAll().then((res) => {
@@ -38,7 +46,16 @@ const SimpleForm = () => {
                 }
             })
         }
+
+        const fetchStandards = async () => {
+            await standardservices.getAll().then((res) => {
+                if (res?.data?.status) {
+                    setStandard(res?.data?.data)
+                }
+            })
+        }
         fetchSubjects()
+        fetchStandards()
     }, [])
 
     const handleChange = (event) => {
@@ -96,28 +113,30 @@ const SimpleForm = () => {
                 .create({
                     ...state,
                     img: imgData,
+                    std_id: mapStandard,
                 })
                 .then((res) => {
+                    console.log(res.data)
                     if (res.data.status) {
-                        Toast('success', res.data.message)
+                        toast.success(res.data.message)
+                        navigate('/admin/teachersList/')
+                    } else {
+                        toast.error(res.data.message)
                     }
                 })
         })
     }
-    const handleInputChange = (e) => {
-        const { name } = e.target
-        const value = e.target.value
-        console.log(name)
+    const ChangeSubject = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value,
+        })
+        //setmapSubject({ sub_id: e.target.value })
     }
-    const handleInputChangeEnglish = (e, index) => {
-        const { name } = e.target
-        const value = e.target.value
-        const list = [...standard]
+    const ChangeStandard = (e) => {
+        setmapStandard([...mapStandard, { std_id: e.target.value }])
+    }
 
-        list[index][name] = value
-        setStandard(list)
-    }
-    console.log(standard)
     return (
         <div>
             <Box
@@ -227,45 +246,35 @@ const SimpleForm = () => {
                 })}
             </Box>
             {subject.map((x, i) => {
-                var array = x.standard.split(',')
-
                 return (
                     <>
                         <FormControlLabel
-                            key={`check-${i}`}
-                            name="subject_name"
-                            options={x?.subject_name}
-                            value={x?.subject_name}
+                            name="subject_id"
                             control={<Checkbox />}
                             label={x?.subject_name}
-                            onChange={(e) => handleInputChangeEnglish(e, i)}
+                            value={x?.id}
+                            onChange={(e) => ChangeSubject(e)}
                         />
-                        {/* <FormControlLabel
-                            name="subject_name"
-                            control={<Checkbox />}
-                            label={x?.subject_name}
-                            onChange={(e) => handleInputChange(e, i)}
-                        /> */}
-                        <br />
-                        {array.map((j, k) => {
-                            return (
-                                <FormControlLabel
-                                    key={`check-${i}`}
-                                    name="standard"
-                                    options={j}
-                                    value={j}
-                                    control={<Checkbox />}
-                                    label={j}
-                                    onChange={(e) =>
-                                        handleInputChangeEnglish(e, i)
-                                    }
-                                />
-                            )
-                        })}
+
                         <br />
                     </>
                 )
             })}
+            <SimpleCard>
+                {standard.map((y, i) => {
+                    return (
+                        <>
+                            <FormControlLabel
+                                name="standard_id"
+                                control={<Checkbox />}
+                                label={y.standard_name}
+                                value={y?.id}
+                                onChange={(e) => ChangeStandard(e)}
+                            />
+                        </>
+                    )
+                })}
+            </SimpleCard>
             <Button color="primary" variant="contained" onClick={handleSubmit}>
                 <Icon>send</Icon>
                 <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Submit</Span>

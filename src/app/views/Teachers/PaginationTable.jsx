@@ -124,19 +124,19 @@ const PaginationTable = (props) => {
                         .map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell align="left">
-                                    {data.first_name}
+                                    {data?.first_name}
                                 </TableCell>
                                 <TableCell align="left">
-                                    {data.last_name}
+                                    {data?.last_name}
                                 </TableCell>
                                 <TableCell align="left">
-                                    {data.qualification}
+                                    {data?.qualification}
                                 </TableCell>
-                                <TableCell>{data.phone}</TableCell>
+                                <TableCell>{data?.phone}</TableCell>
                                 <TableCell>
-                                    {formData.status === 1 ? (
+                                    {data?.status === 1 ? (
                                         <Small bgcolor={bgSecondary}>
-                                            {formData.status} Active
+                                            Active
                                         </Small>
                                     ) : (
                                         <Small bgcolor={bgError}>

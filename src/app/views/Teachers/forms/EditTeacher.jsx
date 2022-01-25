@@ -4,10 +4,11 @@ import {
     // Grid,
     // Radio,
     // RadioGroup,
-    // FormControlLabel,
-    // Checkbox,
+    FormControlLabel,
+    Checkbox,
 } from '@mui/material'
 
+import { SimpleCard } from 'app/components'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -17,8 +18,9 @@ import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
 import { styled } from '@mui/system'
 import { config } from 'config'
-import Toast from 'app/components/Toast/Toast'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+toast.configure()
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: {
@@ -36,6 +38,7 @@ const EditTeacher = () => {
     const navigate = useNavigate()
     const fileuploadservice = new FileUploadService()
     const teacherservice = new TeacherServices(config.baseURL)
+
     const [inputList, setInputList] = useState([])
     const [state, setState] = useState({})
     useEffect(() => {
@@ -119,7 +122,7 @@ const EditTeacher = () => {
                 })
                 .then((res) => {
                     if (res.data.status) {
-                        Toast('success', res.data.message)
+                        toast.success(res.data.message)
                         navigate('/admin/teachersList/')
                     }
                 })
@@ -139,62 +142,62 @@ const EditTeacher = () => {
                 <TextField
                     name="username"
                     label="UserName"
-                    value={state?.username}
+                    value={state?.username || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="firstname"
                     label="FirstName"
-                    value={state?.first_name}
+                    value={state?.first_name || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="lastname"
                     id="outlined-name"
                     label="LastName"
-                    value={state?.last_name}
+                    value={state?.last_name || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="email"
                     id="outlined-name"
                     label="Email"
-                    value={state?.email}
+                    value={state?.email || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="password"
                     id="outlined-name"
                     label="Password"
-                    value={state?.password}
+                    value={state?.password || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="qualification"
                     id="outlined-name"
                     label="Qualification"
-                    value={state?.qualification}
+                    value={state?.qualification || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="experience"
                     id="outlined-name"
                     label="Experience"
-                    value={state?.experience}
+                    value={state?.experience || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="previous_institution_name"
                     id="outlined-name"
                     label="Previous Institution Name"
-                    value={state?.previous_institution_name}
+                    value={state?.previous_institution_name || ''}
                     onChange={handleChange}
                 />
                 <TextField
                     name="phone"
                     id="outlined-name"
                     label="Phone"
-                    value={state?.phone}
+                    value={state?.phone || ''}
                     onChange={handleChange}
                 />
                 <TextareaAutosize
@@ -226,13 +229,14 @@ const EditTeacher = () => {
                                     }
                                 />
                             </Button>
-                            {/* {x?.image && (
+                            {x?.image && (
                                 <img
                                     src={x.image}
+                                    style={{ width: '40px' }}
                                     alt="..."
                                     className="bonquet-image-preview"
                                 />
-                            )} */}
+                            )}
                             <div className="btn-box">
                                 {inputList.length !== 1 && (
                                     <button

@@ -5,30 +5,29 @@ export const navigations = [
         icon: 'dashboard',
     },
     {
+        name: 'Questions',
+        path: '/admin/questions',
+        icon: 'dashboard',
+    },
+    {
         label: 'PAGES',
         type: 'label',
     },
-
     {
-        name: 'Teacher Master',
-        icon: 'security',
+        name: 'Standard Master',
+        icon: 'favorite',
         children: [
             {
-                name: 'Teacher List',
+                name: 'Standard List',
                 iconText: 'SI',
-                path: '/admin/teachersList',
+                path: '/admin/standardsList',
             },
             {
-                name: 'Add Teacher',
+                name: 'Add Standard',
                 iconText: 'SU',
-                path: '/admin/add_teacher',
+                path: '/admin/add_standard',
             },
         ],
-    },
-
-    {
-        label: 'SUBJECTS',
-        type: 'label',
     },
 
     {
@@ -41,90 +40,65 @@ export const navigations = [
                 path: '/admin/subjectsList',
             },
             {
-                name: 'Add Subject',
-                iconText: 'SU',
+                name: 'Subject Add',
+                iconText: 'SI',
                 path: '/admin/add_subject',
             },
         ],
     },
     {
-        label: 'Components',
+        name: 'Teacher Master',
+        icon: 'security',
+        children: [
+            {
+                name: 'Add Teacher',
+                iconText: 'SU',
+                path: '/admin/add_teacher',
+            },
+            {
+                name: 'Teacher List',
+                iconText: 'SI',
+                path: '/admin/teachersList',
+            },
+        ],
+    },
+
+    {
+        label: 'Categories',
         type: 'label',
     },
     {
-        name: 'Components',
+        name: 'MainCategory',
         icon: 'favorite',
-        badge: { value: '30+', color: 'secondary' },
+
         children: [
             {
-                name: 'Auto Complete',
-                path: '/material/autocomplete',
+                name: 'MainCategory List',
+                path: '/admin/maincategoryList',
                 iconText: 'A',
             },
             {
-                name: 'Buttons',
-                path: '/material/buttons',
+                name: 'Add MainCategory',
+                path: '/admin/add_maincategory',
                 iconText: 'B',
             },
+        ],
+    },
+
+    {
+        name: 'SubCategory',
+        icon: 'trending_up',
+
+        children: [
             {
-                name: 'Checkbox',
-                path: '/material/checkbox',
-                iconText: 'C',
+                name: 'SubCategory List',
+                path: '/admin/subcategoryList',
+                iconText: 'A',
             },
             {
-                name: 'Dialog',
-                path: '/material/dialog',
-                iconText: 'D',
-            },
-            {
-                name: 'Expansion Panel',
-                path: '/material/expansion-panel',
-                iconText: 'E',
-            },
-            {
-                name: 'Form',
-                path: '/material/form',
-                iconText: 'F',
-            },
-            {
-                name: 'Icons',
-                path: '/material/icons',
-                iconText: 'I',
-            },
-            {
-                name: 'Menu',
-                path: '/material/menu',
-                iconText: 'M',
-            },
-            {
-                name: 'Progress',
-                path: '/material/progress',
-                iconText: 'P',
-            },
-            {
-                name: 'Radio',
-                path: '/material/radio',
-                iconText: 'R',
-            },
-            {
-                name: 'Switch',
-                path: '/material/switch',
-                iconText: 'S',
-            },
-            {
-                name: 'Slider',
-                path: '/material/slider',
-                iconText: 'S',
-            },
-            {
-                name: 'Snackbar',
-                path: '/material/snackbar',
-                iconText: 'S',
-            },
-            {
-                name: 'Table',
-                path: '/material/table',
-                iconText: 'T',
+                name: 'Add SubCategory',
+                path: '/admin/add_subcategory',
+                iconText: 'B',
             },
         ],
     },

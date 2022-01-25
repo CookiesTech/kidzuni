@@ -7,21 +7,42 @@ import {
     // FormControlLabel,
     // Checkbox,
 } from '@mui/material'
-
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Toast from 'app/components/Toast/Toast'
-import React, { useState } from 'react'
-import SubjectServices from 'app/services/SubjectServices'
+import React, { useState, useEffect } from 'react'
+import MainCategoryServices from 'app/services/MainCategoryServices'
+import SubCategoryServices from 'app/services/SubCategoryServices'
+import { useNavigate } from 'react-router-dom'
 import { config } from 'config'
 toast.configure()
-const SubjectForm = () => {
-    const subjectservice = new SubjectServices(config.baseURL)
-    const [inputList, setInputList] = useState([{ subject_name: '' }])
+const SubCategoryForm = () => {
+    const maincategoryservices = new MainCategoryServices(config.baseURL)
+    const subcategoryservices = new SubCategoryServices(config.baseURL)
+    const [inputList, setInputList] = useState([{ category_name: '' }])
+    const [formData = [], setFormData] = useState()
+    const [mc_id, setmc_id] = useState({})
+    const navigate = useNavigate()
 
+    useEffect(() => {
+        fetchData()
+        // eslint-disable-next-line no-use-before-define
+    }, [])
+
+    const fetchData = async () => {
+        await maincategoryservices.getAll().then((res) => {
+            if (res?.data?.status) {
+                setFormData(res?.data?.data)
+            }
+        })
+    }
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
         const list = [...inputList]
@@ -31,7 +52,7 @@ const SubjectForm = () => {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, { subject_name: '' }])
+        setInputList([...inputList, { category_name: '' }])
     }
 
     const handleInputChange = (e, index) => {
@@ -43,20 +64,28 @@ const SubjectForm = () => {
 
         setInputList(list)
     }
+
+    const handleStandardChange = (e) => {
+        const { name, value } = e.target
+        setmc_id({ [name]: value })
+    }
+
     const handleSubmit = async (event) => {
         event.persist()
 
-        await subjectservice
+        await subcategoryservices
             .create({
                 data: inputList,
+                mc_id: mc_id,
             })
             .then((res) => {
                 if (res.data.status === true) {
                     Toast('success', res.data.message)
+                    navigate('/admin/subcategoryList')
                 } else {
                     Toast('error', res.data.message)
                 }
-                setInputList([{ subject_name: '' }])
+                setInputList([{ category_name: '' }])
             })
     }
 
@@ -69,16 +98,32 @@ const SubjectForm = () => {
                 noValidate
                 autoComplete="off"
             >
+                <FormControl fullWidth>
+                    <InputLabel>MainCategory</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="mc_id"
+                        name="mc_id"
+                        onChange={handleStandardChange}
+                    >
+                        {formData.map((x, i) => {
+                            return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+
                 {inputList.map((x, i) => {
                     return (
                         <div key={`check-${i}`}>
                             <TextField
-                                name="subject_name"
+                                fullWidth
+                                name="category_name"
                                 id="outlined-uncontrolled"
-                                label="Subject Name"
+                                label="SubCategory Name"
                                 onChange={(e) => handleInputChange(e, i)}
                             />
-
+                            <br /> <br />
                             <div className="btn-box">
                                 {inputList.length !== 1 && (
                                     <button
@@ -107,4 +152,4 @@ const SubjectForm = () => {
     )
 }
 
-export default SubjectForm
+export default SubCategoryForm

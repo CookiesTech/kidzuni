@@ -11,10 +11,8 @@ import {
 import React, { useState, useEffect } from 'react'
 import { Box, styled } from '@mui/system'
 import { config } from 'config'
-import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-
-import SubjectServices from 'app/services/SubjectServices'
+import SubCategoryServices from 'app/services/SubCategoryServices'
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
     '& thead': {
@@ -35,9 +33,8 @@ const StyledTable = styled(Table)(({ theme }) => ({
     },
 }))
 
-const SubjectsTable = () => {
-    const navigate = useNavigate()
-    const subjectservice = new SubjectServices(config.baseURL)
+const SubCategoryTable = () => {
+    const subcategoryservices = new SubCategoryServices(config.baseURL)
     const [formData = [], setFormData] = useState()
     useEffect(() => {
         fetchData()
@@ -45,9 +42,8 @@ const SubjectsTable = () => {
     }, [])
 
     const fetchData = async () => {
-        await subjectservice.getAll().then((res) => {
+        await subcategoryservices.getAll().then((res) => {
             if (res?.data?.status) {
-                console.log(res.data)
                 setFormData(res?.data?.data)
             }
         })
@@ -55,7 +51,7 @@ const SubjectsTable = () => {
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
     const [page, setPage] = React.useState(0)
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (newPage) => {
         setPage(newPage)
     }
 
@@ -63,10 +59,8 @@ const SubjectsTable = () => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
-    const editTeacher = (e, id) => {
-        navigate('/admin/edit_subject/' + id)
-    }
-    const deleteSubject = (e, id) => {
+
+    const deleteCategory = (e, id) => {
         Swal.fire({
             title: 'Are you sure want to delete This Teacher? ',
             text: "You won't be able to revert this!",
@@ -77,7 +71,7 @@ const SubjectsTable = () => {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                subjectservice.delete(id).then((res) => {
+                subcategoryservices.delete(id).then((res) => {
                     if (res.data.status) {
                         Swal.fire('Deleted!', res.data.message, 'success')
                         fetchData()
@@ -95,25 +89,26 @@ const SubjectsTable = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>S.no</TableCell>
-                        <TableCell>Subject Name</TableCell>
+                        <TableCell>MainCategory Name</TableCell>
+                        <TableCell>Category Name</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {formData
-                        .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell align="left">
-                                    {row.subject_name}
-                                </TableCell>
+                    {formData.length > 0 ? (
+                        formData
+                            .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                            )
+                            .map((row, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{row.mcname}</TableCell>
+                                    <TableCell>{row.name}</TableCell>
 
-                                <TableCell>
-                                    {/* <IconButton>
+                                    <TableCell>
+                                        {/* <IconButton>
                                         <Icon
                                             color="primary"
                                             onClick={(e) =>
@@ -123,19 +118,24 @@ const SubjectsTable = () => {
                                             edit
                                         </Icon>
                                     </IconButton> */}
-                                    <IconButton>
-                                        <Icon
-                                            color="error"
-                                            onClick={(e) =>
-                                                deleteSubject(e, row.id)
-                                            }
-                                        >
-                                            close
-                                        </Icon>
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                                        <IconButton>
+                                            <Icon
+                                                color="error"
+                                                onClick={(e) =>
+                                                    deleteCategory(e, row.id)
+                                                }
+                                            >
+                                                close
+                                            </Icon>
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                    ) : (
+                        <TableRow>
+                            <TableCell> No Data Found ! </TableCell>
+                        </TableRow>
+                    )}
                 </TableBody>
             </StyledTable>
 
@@ -159,4 +159,4 @@ const SubjectsTable = () => {
     )
 }
 
-export default SubjectsTable
+export default SubCategoryTable

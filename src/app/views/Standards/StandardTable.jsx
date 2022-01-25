@@ -11,10 +11,10 @@ import {
 import React, { useState, useEffect } from 'react'
 import { Box, styled } from '@mui/system'
 import { config } from 'config'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
-import SubjectServices from 'app/services/SubjectServices'
+import StandardServices from 'app/services/StandardServices'
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
     '& thead': {
@@ -35,9 +35,9 @@ const StyledTable = styled(Table)(({ theme }) => ({
     },
 }))
 
-const SubjectsTable = () => {
-    const navigate = useNavigate()
-    const subjectservice = new SubjectServices(config.baseURL)
+const StandardTable = () => {
+    // const navigate = useNavigate()
+    const standardservice = new StandardServices(config.baseURL)
     const [formData = [], setFormData] = useState()
     useEffect(() => {
         fetchData()
@@ -45,7 +45,7 @@ const SubjectsTable = () => {
     }, [])
 
     const fetchData = async () => {
-        await subjectservice.getAll().then((res) => {
+        await standardservice.getAll().then((res) => {
             if (res?.data?.status) {
                 console.log(res.data)
                 setFormData(res?.data?.data)
@@ -63,9 +63,9 @@ const SubjectsTable = () => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
-    const editTeacher = (e, id) => {
-        navigate('/admin/edit_subject/' + id)
-    }
+    // const editTeacher = (e, id) => {
+    //     navigate('/admin/edit_subject/' + id)
+    // }
     const deleteSubject = (e, id) => {
         Swal.fire({
             title: 'Are you sure want to delete This Teacher? ',
@@ -77,7 +77,7 @@ const SubjectsTable = () => {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                subjectservice.delete(id).then((res) => {
+                standardservice.delete(id).then((res) => {
                     if (res.data.status) {
                         Swal.fire('Deleted!', res.data.message, 'success')
                         fetchData()
@@ -95,7 +95,7 @@ const SubjectsTable = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>S.no</TableCell>
-                        <TableCell>Subject Name</TableCell>
+                        <TableCell>Standard Name</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -109,7 +109,7 @@ const SubjectsTable = () => {
                             <TableRow key={index}>
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell align="left">
-                                    {row.subject_name}
+                                    {row.standard_name}
                                 </TableCell>
 
                                 <TableCell>
@@ -159,4 +159,4 @@ const SubjectsTable = () => {
     )
 }
 
-export default SubjectsTable
+export default StandardTable

@@ -12,9 +12,16 @@ const EditSubject = Loadable(
     lazy(() => import('../Subjects/forms/EditSubject'))
 )
 
-const AppTable = Loadable(lazy(() => import('./tables/AppTable')))
-const AppForm = Loadable(lazy(() => import('./forms/AppForm')))
-const AppButton = Loadable(lazy(() => import('./buttons/AppButton')))
+const StandardForm = Loadable(lazy(() => import('../Standards/forms/AppForm')))
+const StandardTable = Loadable(lazy(() => import('../Standards/AppTable')))
+const MainCategoryForm = Loadable(lazy(() => import('../MainCategory/AppForm')))
+const MainCategoryTable = Loadable(
+    lazy(() => import('../MainCategory/AppTable'))
+)
+const SubCategoryForm = Loadable(lazy(() => import('../SubCategory/AppForm')))
+const SubCategoryTable = Loadable(lazy(() => import('../SubCategory/AppTable')))
+
+const QuestionTable = Loadable(lazy(() => import('../Questions/AppTable')))
 const AppIcon = Loadable(lazy(() => import('./icons/AppIcon')))
 const AppProgress = Loadable(lazy(() => import('./AppProgress')))
 const AppMenu = Loadable(lazy(() => import('./menu/AppMenu')))
@@ -52,22 +59,40 @@ const materialRoutes = [
         path: '/admin/add_subject',
         element: <SubjectForm />,
     },
+
     {
         path: '/admin/edit_subject/:value',
         element: <EditSubject />,
     },
 
     {
-        path: '/material/table',
-        element: <AppTable />,
+        path: '/admin/standardsList',
+        element: <StandardTable />,
     },
     {
-        path: '/material/form',
-        element: <AppForm />,
+        path: '/admin/add_standard',
+        element: <StandardForm />,
     },
     {
-        path: '/material/buttons',
-        element: <AppButton />,
+        path: '/admin/maincategoryList',
+        element: <MainCategoryTable />,
+    },
+    {
+        path: '/admin/add_maincategory',
+        element: <MainCategoryForm />,
+    },
+
+    {
+        path: '/admin/subcategoryList',
+        element: <SubCategoryTable />,
+    },
+    {
+        path: '/admin/add_subcategory',
+        element: <SubCategoryForm />,
+    },
+    {
+        path: '/admin/questions',
+        element: <QuestionTable />,
     },
     {
         path: '/material/icons',

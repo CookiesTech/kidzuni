@@ -15,12 +15,12 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Toast from 'app/components/Toast/Toast'
 import React, { useState } from 'react'
-import SubjectServices from 'app/services/SubjectServices'
+import StandardServices from 'app/services/StandardServices'
 import { config } from 'config'
 toast.configure()
-const SubjectForm = () => {
-    const subjectservice = new SubjectServices(config.baseURL)
-    const [inputList, setInputList] = useState([{ subject_name: '' }])
+const StandardForm = () => {
+    const standardservice = new StandardServices(config.baseURL)
+    const [inputList, setInputList] = useState([{ standard_name: '' }])
 
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
@@ -31,7 +31,7 @@ const SubjectForm = () => {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, { subject_name: '' }])
+        setInputList([...inputList, { standard_name: '' }])
     }
 
     const handleInputChange = (e, index) => {
@@ -46,7 +46,7 @@ const SubjectForm = () => {
     const handleSubmit = async (event) => {
         event.persist()
 
-        await subjectservice
+        await standardservice
             .create({
                 data: inputList,
             })
@@ -56,7 +56,7 @@ const SubjectForm = () => {
                 } else {
                     Toast('error', res.data.message)
                 }
-                setInputList([{ subject_name: '' }])
+                setInputList([{ standard_name: '' }])
             })
     }
 
@@ -71,14 +71,13 @@ const SubjectForm = () => {
             >
                 {inputList.map((x, i) => {
                     return (
-                        <div key={`check-${i}`}>
+                        <>
                             <TextField
-                                name="subject_name"
-                                id="outlined-uncontrolled"
-                                label="Subject Name"
+                                name="standard_name"
+                                id="outlined-name"
+                                label="Standard Name"
                                 onChange={(e) => handleInputChange(e, i)}
                             />
-
                             <div className="btn-box">
                                 {inputList.length !== 1 && (
                                     <button
@@ -94,7 +93,7 @@ const SubjectForm = () => {
                                     </button>
                                 )}
                             </div>
-                        </div>
+                        </>
                     )
                 })}
             </Box>
@@ -107,4 +106,4 @@ const SubjectForm = () => {
     )
 }
 
-export default SubjectForm
+export default StandardForm

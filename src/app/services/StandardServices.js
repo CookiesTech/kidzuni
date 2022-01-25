@@ -1,7 +1,7 @@
 import ApiService from './ApiServices'
-export default class SubjectServices extends ApiService {
+export default class StandardServices extends ApiService {
     create = async (data) => {
-        let Url = this.baseURL + 'add_subject'
+        let Url = this.baseURL + 'add_standard'
         let response = await this.post(Url, data)
         if (response.status !== 200) {
             throw Error(response)
@@ -19,7 +19,7 @@ export default class SubjectServices extends ApiService {
     }
 
     delete = async (id) => {
-        let Url = this.baseURL + `delete_subject/${id}`
+        let Url = this.baseURL + `delete_standard/${id}`
 
         let response = await this.get(Url)
 
@@ -30,7 +30,7 @@ export default class SubjectServices extends ApiService {
     }
 
     getAll = async () => {
-        let Url = this.baseURL + 'getAllSubjects'
+        let Url = this.baseURL + 'getAllStandard'
         let response = await this.get(Url)
         if (response.status !== 200) {
             throw Error(response)
