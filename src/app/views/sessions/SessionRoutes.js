@@ -5,13 +5,19 @@ const NotFound = Loadable(lazy(() => import("./NotFound")));
 const ForgotPassword = Loadable(lazy(() => import("./ForgotPassword")));
 const JwtLogin = Loadable(lazy(() => import("./login/JwtLogin")));
 const JwtRegister = Loadable(lazy(() => import("./register/JwtRegister")));
-const Home = Loadable(lazy(() => import("../frontend/home")))
+const Home = Loadable(lazy(() => import("../frontend/home/Main")));
+const SubjectList = Loadable(lazy(() => import("../frontend/standard/index")))
 
 const sessionRoutes = [
     {
         path: '/home',
         element: <Home />
     },
+    {
+        path: '/Lkg-class', 
+        element: <SubjectList />
+    },
+
     {
         path: '/session/signup',
         element: <JwtRegister />,
