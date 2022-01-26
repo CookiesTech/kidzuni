@@ -4,8 +4,7 @@ import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { styled, useTheme, Box } from '@mui/system'
 import { Span } from '../../../components/Typography'
-import { MatxMenu, MatxSearchBox } from 'app/components'
-import ShoppingCart from '../../ShoppingCart/ShoppingCart'
+import { MatxMenu } from 'app/components'
 import NotificationBar from '../../NotificationBar/NotificationBar'
 import { themeShadows } from 'app/components/MatxTheme/themeColors'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
@@ -88,7 +87,7 @@ const Layout1Topbar = () => {
     const theme = useTheme()
     const { settings, updateSettings } = useSettings()
     const { logout, user } = useAuth()
-    // let user = JSON.parse(localStorage.getItem('user'))
+
     const isMdScreen = useMediaQuery(theme.breakpoints.down('md'))
 
     const updateSidebarMode = (sidebarSettings) => {
@@ -124,7 +123,7 @@ const Layout1Topbar = () => {
                         <Icon>menu</Icon>
                     </StyledIconButton>
 
-                    <IconBox>
+                    {/* <IconBox>
                         <StyledIconButton>
                             <Icon>mail_outline</Icon>
                         </StyledIconButton>
@@ -136,13 +135,13 @@ const Layout1Topbar = () => {
                         <StyledIconButton>
                             <Icon>star_outline</Icon>
                         </StyledIconButton>
-                    </IconBox>
+                    </IconBox> */}
                 </Box>
                 <Box display="flex" alignItems="center">
                     {/* <MatxSearchBox /> */}
-                    <NotificationProvider>
+                    {/* <NotificationProvider>
                         <NotificationBar />
-                    </NotificationProvider>
+                    </NotificationProvider> */}
 
                     {/* <ShoppingCart /> */}
 

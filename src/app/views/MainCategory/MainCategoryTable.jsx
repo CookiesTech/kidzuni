@@ -7,6 +7,7 @@ import {
     TableCell,
     Icon,
     TablePagination,
+    CircularProgress,
 } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { Box, styled } from '@mui/system'
@@ -34,8 +35,13 @@ const StyledTable = styled(Table)(({ theme }) => ({
         },
     },
 }))
-
+const StyledProgress = styled(CircularProgress)(() => ({
+    position: 'absolute',
+    top: '6px',
+    left: '25px',
+}))
 const MainCategoryTable = () => {
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const maincategoryservices = new MainCategoryServices(config.baseURL)
     const [formData = [], setFormData] = useState()
@@ -47,7 +53,7 @@ const MainCategoryTable = () => {
     const fetchData = async () => {
         await maincategoryservices.getAll().then((res) => {
             if (res?.data?.status) {
-                console.log(res.data)
+                setLoading(false)
                 setFormData(res?.data?.data)
             }
         })
@@ -143,6 +149,9 @@ const MainCategoryTable = () => {
                         </TableRow>
                     )}
                 </TableBody>
+                {loading && (
+                    <StyledProgress size={24} className="buttonProgress" />
+                )}
             </StyledTable>
 
             <TablePagination

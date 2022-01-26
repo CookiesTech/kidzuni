@@ -42,7 +42,7 @@ const Analytics = () => {
         <Fragment>
             <ContentBox className="analytics">
                 <h4>Hi Welcome to Kidzuni</h4>
-                {/* <Grid container spacing={3}>
+                <Grid container spacing={3}>
                     <Grid item lg={8} md={8} sm={12} xs={12}>
                         <StatCards />
                         <TopSellingTable />
@@ -67,7 +67,7 @@ const Analytics = () => {
                         <UpgradeCard />
                         <Campaigns />
                     </Grid>
-                </Grid> */}
+                </Grid>
             </ContentBox>
         </Fragment>
     )

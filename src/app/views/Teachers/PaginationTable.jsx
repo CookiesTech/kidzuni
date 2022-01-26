@@ -7,6 +7,7 @@ import {
     TableCell,
     Icon,
     TablePagination,
+    CircularProgress,
 } from '@mui/material'
 
 import React, { useState, useEffect } from 'react'
@@ -45,7 +46,14 @@ const Small = styled('small')(({ bgcolor }) => ({
     background: bgcolor,
     boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
 }))
+const StyledProgress = styled(CircularProgress)(() => ({
+    position: 'absolute',
+    top: '6px',
+    left: '25px',
+}))
+
 const PaginationTable = (props) => {
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const { palette } = useTheme()
     const bgError = palette.error.main
@@ -60,6 +68,7 @@ const PaginationTable = (props) => {
     const fetchData = async () => {
         await teacherservice.getAll().then((res) => {
             if (res?.data?.status) {
+                setLoading(false)
                 setFormData(res?.data?.data)
             }
         })
@@ -169,6 +178,9 @@ const PaginationTable = (props) => {
                             </TableRow>
                         ))}
                 </TableBody>
+                {loading && (
+                    <StyledProgress size={24} className="buttonProgress" />
+                )}
             </StyledTable>
 
             <TablePagination
