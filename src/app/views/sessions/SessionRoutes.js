@@ -8,6 +8,15 @@ const JwtRegister = Loadable(lazy(() => import('./register/JwtRegister')))
 
 const sessionRoutes = [
     {
+        path: '/home',
+        element: <Home />,
+    },
+    {
+        path: '/Lkg-class',
+        element: <SubjectList />,
+    },
+
+    {
         path: '/session/signup',
         element: <JwtRegister />,
     },

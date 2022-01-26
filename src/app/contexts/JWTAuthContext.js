@@ -4,6 +4,7 @@ import axios from 'axios.js'
 import { MatxLoading } from 'app/components'
 import { config } from 'config'
 
+
 const initialState = {
     isAuthenticated: false,
     isInitialised: false,

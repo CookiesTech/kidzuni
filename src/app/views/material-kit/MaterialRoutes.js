@@ -1,6 +1,12 @@
 import React, { lazy } from 'react'
 import Loadable from 'app/components/Loadable/Loadable'
 
+
+
+const AppTable = Loadable(lazy(() => import('./tables/AppTable')))
+const AppForm = Loadable(lazy(() => import('./forms/AppForm')))
+const AppButton = Loadable(lazy(() => import('./buttons/AppButton')))
+
 const TeacherForm = Loadable(lazy(() => import('../Teachers/forms/AppForm')))
 const TeacherTable = Loadable(lazy(() => import('../Teachers/AppTable')))
 const EditTeacher = Loadable(
@@ -22,6 +28,7 @@ const SubCategoryForm = Loadable(lazy(() => import('../SubCategory/AppForm')))
 const SubCategoryTable = Loadable(lazy(() => import('../SubCategory/AppTable')))
 
 const QuestionTable = Loadable(lazy(() => import('../Questions/AppTable')))
+//  dca9ff93a7e6e7f259b3d99470ec1020942bb26
 const AppIcon = Loadable(lazy(() => import('./icons/AppIcon')))
 const AppProgress = Loadable(lazy(() => import('./AppProgress')))
 const AppMenu = Loadable(lazy(() => import('./menu/AppMenu')))
