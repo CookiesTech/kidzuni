@@ -22,7 +22,7 @@ export default function Courses() {
                             <span className="subject-skills">
                                 <li>
                                     <h6>Maths</h6>
-                                    <Link className="nav-link" to={"/Lkg"}>
+                                    <Link className="nav-link" to={"/standard-Lkg"}>
                                         <a className="nav-link" href="">44 Expertise {'>'}</a>
                                     </Link>
                                     
@@ -30,7 +30,7 @@ export default function Courses() {
                             </span>
 
                             <div className="explore-detail">
-                                <Link className="nav-link" to="/Lkg">
+                                <Link className="nav-link" to="/standard-Lkg">
                                     <a className="nav-link" href="">Explore Details..</a>
                                 </Link>
                                 

@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "../home/navbar";
-import Classes from "./classnavbar";
-import Topics from "./subjectTopics";
+import Marks from "./marks";
+// import Quiz from "./quiz";
 import Footer from "../home/footer";
 
-export default function Standard () {
+export default function Test () {
     return (
         <div>
             <div className="container">
                 <Navbar />
-                <Classes />
-                <Topics />
+                <Marks />
+                {/* <Quiz /> */}
             </div>
-            <Footer />    
+            <Footer />
         </div>
     )
-} 
+}

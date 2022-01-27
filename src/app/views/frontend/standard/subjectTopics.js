@@ -1,7 +1,8 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Topics() {
+    
     return (
         <div>
             <div className="main-content">
@@ -19,22 +20,32 @@ export default function Topics() {
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types">
                         <h5>Count up to 10</h5>
                         <div className="sub-list">
-                            <li>1.1 &nbsp;<a className="nav-link" href="test.html">Types of Question</a></li>
-                            <li>1.2 &nbsp;<a className="nav-link" href="test.html">Count Dots</a></li>
-                            <li>1.3 &nbsp;<a className="nav-link" href="test.html">Count Numbers</a></li>
-                            <li>1.4 &nbsp;<a className="nav-link" href="test.html">Choose the Best</a></li>
-                            <li>1.5 &nbsp;<a className="nav-link" href="test.html">Even or Odd</a></li>
+                            <Link className="nav-link" to={'/test'}>
+                                <li>1.1 &nbsp;<a className="nav-link" href="">Types of Question</a></li>
+                            </Link>
+                            <Link className="nav-link" to={'/test'}>
+                                <li>1.2 &nbsp;<a className="nav-link" href="">Count Dots</a></li>
+                            </Link>
+                            <Link className="nav-link" to={'/test'}>
+                                <li>1.3 &nbsp;<a className="nav-link" href="">Count Numbers</a></li>
+                            </Link>
+                            <Link className="nav-link" to={'/test'}>
+                                <li>1.4 &nbsp;<a className="nav-link" href="">Choose the Best</a></li>
+                            </Link>
+                            <Link className="nav-link" to={'/test'}>
+                                <li>1.5 &nbsp;<a className="nav-link" href="">Even or Odd</a></li>
+                            </Link>
                         </div>
                     </div>
 
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types">
                         <h5>Shapes</h5>
                         <div className="sub-list">
-                            <li>2.1 &nbsp;<a className="nav-link" href="test.html">Types of Question</a></li>
-                            <li>2.2 &nbsp;<a className="nav-link" href="test.html">Count Dots</a></li>
-                            <li>2.3 &nbsp;<a className="nav-link" href="test.html">Count Numbers</a></li>
-                            <li>2.4 &nbsp;<a className="nav-link" href="test.html">Choose the Best</a></li>
-                            <li>2.5 &nbsp;<a className="nav-link" href="test.html">Even or Odd</a></li>
+                            <li>2.1 &nbsp;<a className="nav-link" href="">Types of Question</a></li>
+                            <li>2.2 &nbsp;<a className="nav-link" href="">Count Dots</a></li>
+                            <li>2.3 &nbsp;<a className="nav-link" href="">Count Numbers</a></li>
+                            <li>2.4 &nbsp;<a className="nav-link" href="">Choose the Best</a></li>
+                            <li>2.5 &nbsp;<a className="nav-link" href="">Even or Odd</a></li>
                         </div>
                     </div>
 
