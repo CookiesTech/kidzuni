@@ -4,7 +4,7 @@ import Courses from "./courses";
 import Footer from "./footer";
 
 export default function Home () {
-    return(    
+    return(
         <div>
             <div className="container">
                <Navbar />

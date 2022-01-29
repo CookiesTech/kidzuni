@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../home/navbar";
 import Marks from "./marks";
-// import Quiz from "./quiz";
+import Quiz from "./quiz";
 import Footer from "../home/footer";
 
 export default function Test () {
@@ -10,7 +10,7 @@ export default function Test () {
             <div className="container">
                 <Navbar />
                 <Marks />
-                {/* <Quiz /> */}
+                <Quiz />
             </div>
             <Footer />
         </div>

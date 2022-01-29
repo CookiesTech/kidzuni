@@ -9,7 +9,7 @@ export default function Navbar() {
         <div>
             <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  nav-home">
-                    <nav className="navbar navbar-expand-lg">
+                    <nav className="navbar navbar-expand-lg home-menu">
                         <Link className="navbar-brand" to={"/home"}>
                             <img src="assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
@@ -19,7 +19,7 @@ export default function Navbar() {
                                 <div className="dropdown">
                                     <a className="nav-link" href="">Learning</a>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a className="dropdown-item" href="#">Maths</a>
+                                        <Link className="dropdown-item" to={"/standard-lkg"}>Maths</Link>
                                     </div>
                                 </div>
 
@@ -31,11 +31,11 @@ export default function Navbar() {
 
                                 <div className="img-changebox">
                                     <div className="img-change" id="imgoutput">
-                                        <span type="button" className="btn btn-default" data-toggle="dropdown"
+                                        {/* <span type="button" className="btn btn-default" data-toggle="dropdown"
                                             aria-expanded="true">
-                                            <img src="assets/frontend/images/sri-lankaflag.jpg" alt="" />
+                                            <img src="assets/frontend/images/sri-lankaflag.jpg" alt="" /> */}
                                             {/* <!-- <img id="dynamic_flag" src="https://adjoinz.s3.ap-southeast-1.amazonaws.com/country_flag/lk.png?AWSAccessKeyId=AKIAQJN5IESYMDRTPJ77&amp;Signature=0Nb53dOsLgojuehlaiMKyB5R67o%3D&amp;Expires=1642573637"> --> */}
-                                        </span>
+                                        {/* </span> */}
                                         {/* <!-- <ul className="dropdown-menu changeType"></ul> --> */}
                                     </div>
                                 </div>

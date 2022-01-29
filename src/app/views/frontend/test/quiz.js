@@ -1,76 +1,119 @@
-// import React from "react";
-// import { useState, useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from 'react';
 
-// export default function Quiz() {
+export default function Quiz() {
 
-//     const [loading, setLoading] = useState(false);
-//   const [options, setOptions] = useState(null);
-//   const [questionCategory, setQuestionCategory] = useState("");
-//   const [questionDifficulty, setQuestionDifficulty] = useState("");
-//   const [questionType, setQuestionType] = useState("");
-// 	const [numberOfQuestions, setNumberOfQuestions] = useState(50);
-//   useEffect(() => {
-//     const apiUrl = `https://opentdb.com/api_category.php`;
-//     setLoading(true);
-//     fetch(apiUrl)
-//       .then((res) => res.json())
-//       .then((response) => {
-//         setLoading(false);
-//         setOptions(response.trivia_categories);
-//       });
-//   }, [setOptions]);
-//   const handleCategoryChange = event => {
-//     setQuestionCategory(event.target.value)
-//   }
-//   const handleDifficultyChange = event => {
-//     setQuestionDifficulty(event.target.value)
-//   }
-//   const handleTypeChange = event => {
-//     setQuestionType(event.target.value)
-//   }
+    const questions = [
+        {
+          questionText: '1.  Who is Prime Minister of India?',
+          answerOptions: [
+            { answerText: 'Vijay Rupani', isCorrect: false },
+            { answerText: 'Manmohan singh', isCorrect: false },
+            { answerText: 'Narendra Modi', isCorrect: true },
+            { answerText: 'Deep Patel', isCorrect: false },
+          ],
+        },
+        {
+          questionText: '2. Who is CEO of Tata?',
+          answerOptions: [
+            { answerText: 'Jeff Bezos', isCorrect: false },
+            { answerText: 'Ratan Tata', isCorrect: true },
+            { answerText: 'Mukesh Ambani', isCorrect: false },
+            { answerText: 'Gautam Adani', isCorrect: false },
+          ],
+        },
+        {
+          questionText: '3. who is richest person in the world?',
+          answerOptions: [
+            { answerText: 'Jeff Bezos', isCorrect: false },
+            { answerText: 'Elon Musk', isCorrect: true },
+            { answerText: 'Mukesh Ambani', isCorrect: false },
+            { answerText: 'Warren Buffett', isCorrect: false },
+          ],
+        },
+        {
+          questionText: '4. how many countries in the world?',
+          answerOptions: [
+            { answerText: '120', isCorrect: false },
+            { answerText: '183', isCorrect: false },
+            { answerText: '170', isCorrect: false },
+            { answerText: '195', isCorrect: true },
+          ],
 
-//   if (!loading) {
-//     return (
-//       <div>
-//         <div>
-//           <h2>Select Category:</h2>
-//           <select value={questionCategory} onChange={handleCategoryChange}>
-//             <option>All</option>
-//             {options &&
-//               options.map((option) => (
-//                 <option value={option.id} key={option.id}>
-//                   {option.name}
-//                 </option>
-//               ))}
-//           </select>
-//         </div>
-//         <div>
-//           <h2>Select Difficulty:</h2>
-//           <select value={questionDifficulty} onChange={handleDifficultyChange}>
-//             <option value="" key="difficulty-0">All</option>
-//             <option value="easy" key="difficulty-1">Easy</option>
-//             <option value="medium" key="difficulty-2">Medium</option>
-//             <option value="hard" key="difficulty-3">Hard</option>
-//           </select>
-//         </div>
-//         <div>
-//           <h2>Select Question Type:</h2>
-//           <select value={questionType} onChange={handleTypeChange}>
-//             <option value="" key="type-0">All</option>
-//             <option value="multiple" key="type-1">Multiple Choice</option>
-//             <option value="boolean" key="type-2">True/False</option>
-//           </select>
-//         </div>
-// 				<div>
-//           <h2>Amount of Questions:</h2>
-//           <input value={numberOfQuestions}  />
-//         </div>
-//       </div>
-//     );
-//   }
-//   return (
-//     <p>
-//       LOADING...
-//     </p>
-//   );
-// }
+          
+          
+        },
+      ]
+    
+      const [currentQuestion, setCurrentQuestion] = useState(0);
+      const [showScore, setShowScore] = useState(false);
+      const [score, setScore] = useState(0);
+      const [clicked, setclicked] = useState(false);
+
+      const handleAnswerButtonClick = (isCorrect) => {
+        if (isCorrect === true) {
+          setScore(score + 1);
+        }
+        setclicked(true);
+    } 
+     const HandleNext = () => {
+     
+     
+         setclicked(false);
+        const nextQuetions = currentQuestion + 1;
+        
+        if (nextQuetions < questions.length) {
+          setCurrentQuestion(nextQuetions);
+        }
+        else {
+          setShowScore(true)
+        }
+      }
+    
+      return (
+        <>
+          {/* <h1 className='header'>Quiz</h1> */}
+          <div className="app-wrapper">
+            {showScore}
+              <div className='score-section'>
+                You scored<br /> {score * 10} out of {questions.length / 10*100}
+              </div>
+            
+            </div>
+             
+                <>
+                  <div className='question-section'>
+                    {/* <div className='question-count'>
+                      <span>Question {currentQuestion + 1}/</span>{questions.length}
+                    </div> */}
+                    <div className='question-text'>
+                      {questions[currentQuestion].questionText}
+                    </div>
+                  </div>
+                  
+    
+                  <div className='answer-section'>
+                    {
+                      questions[currentQuestion].answerOptions.map((answerOptions) => (
+                        <button 
+                            // className={'answer-button ${
+                            //     clicked && answerOptions.isCorrect ? "correct" : ""
+                            // }'}
+                        
+                        onClick={() => handleAnswerButtonClick(answerOptions.isCorrect)}>{answerOptions.answerText}</button>
+                      ))
+                    }
+                  </div>
+
+                  <div className="submit-test">
+                    {/* {
+                      questions[currentQuestion]((showScore) => ( */}
+                      <button className="btn btn-success" onClick={HandleNext} disabled={!clicked}>Submit</button>
+                      {/* ))
+                    }  */}
+                  
+                  </div>
+                </>
+        </>
+      );
+ }

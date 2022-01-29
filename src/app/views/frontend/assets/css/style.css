@@ -7,6 +7,10 @@ body {
 .top-space {
   margin-top: 40px;
 }
+.nav-home {
+  margin-top: 15px;
+  margin-bottom: 7px;
+}
 .navbar-nav {
    align-items: center; 
 }
@@ -22,8 +26,8 @@ body {
     pointer-events: none;
     background-color: #8d33aa;
 }
-.home-searchbox {
-  margin-left: 370px;
+.home-menu {
+  justify-content: space-between;
 }
 .home-header a {
   color: #333;
@@ -50,6 +54,7 @@ body {
 }
 .home-header button {
   padding: 2px 10px 2px 10px;
+  margin-left: 10px;
 }
 .sub-maths img {
   margin-top: 45px;
@@ -228,12 +233,12 @@ body {
   font-weight: bold;
 }
 .unique-part img {
-  width: 45px;
+  width: 55px;
 }
 .unique-part >div {
   padding: 6px;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-top: 6px;
 }
 .unique-part h5 {
   display: contents;
@@ -297,12 +302,13 @@ body {
   margin: 1px;
   color: #fff;
   font-size: 20px;
- 
+  padding: 7px;
 }
-
+.count-time p {
+  display: contents;
+}
 .count-time {
-  padding-top: 10px;
-  text-align: center;
+ text-align: center;
 }
 
 
@@ -513,3 +519,42 @@ input[type=radio]:checked ~ .option {
   padding: 25px;
 }
 
+
+
+.answer-section button {
+  margin: 10px;
+  border-radius: 20px;
+  padding: 8px;
+  background: transparent;
+  border-color: #333;
+  font-weight: 500;
+}
+.answer-section {
+  margin-top: 15px;
+  margin-left: 30px;
+}
+/* .answer-section button:active {
+  background-color: #10a0b6;
+} */
+
+
+.answer-section button:hover {
+  color: #0b863c;
+}
+.submit-test button {
+  margin: 20px;
+  margin-left: 45px;
+}
+.question-section {
+  margin-top: 20px;
+  margin-left: 26px;
+}
+.score-section {
+  float: right;
+  margin: 20px;
+  font-size: 18px;
+}
+
+.question-text {
+  font-size: 22px;
+}
