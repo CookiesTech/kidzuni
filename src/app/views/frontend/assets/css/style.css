@@ -303,6 +303,7 @@ body {
   color: #fff;
   font-size: 20px;
   padding: 7px;
+  width: 82%;
 }
 .count-time p {
   display: contents;
@@ -521,40 +522,41 @@ input[type=radio]:checked ~ .option {
 
 
 
-.answer-section button {
-  margin: 10px;
-  border-radius: 20px;
-  padding: 8px;
-  background: transparent;
-  border-color: #333;
-  font-weight: 500;
+/*quiz*/
+#question {
+  padding: 25px;
+  font-size: 21px;
 }
-.answer-section {
-  margin-top: 15px;
+.scores {
+  float: right;
+  bottom: 35px;
+  right: 15px;
+  position: relative;
+}
+.scores strong {
+  background-color: #10a0b6;
+  color: #fff;
+  padding: 10px 15px 9px 15px;
+}
+.scores span {
+  border: 1px solid;
+  padding: 13px 17px 13px 17px;
+  top: 20px;
+  position: relative;
+}
+#answers-group button {
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  background-color: transparent;
+}
+#answers-group {
   margin-left: 30px;
 }
-/* .answer-section button:active {
-  background-color: #10a0b6;
+/* 
+#answers-group button:active {
+  background-color: #8d33aa;
 } */
-
-
-.answer-section button:hover {
-  color: #0b863c;
-}
-.submit-test button {
-  margin: 20px;
-  margin-left: 45px;
-}
-.question-section {
-  margin-top: 20px;
-  margin-left: 26px;
-}
-.score-section {
-  float: right;
-  margin: 20px;
-  font-size: 18px;
-}
-
-.question-text {
-  font-size: 22px;
+#answers-group button .incorrectAns {
+  background-color: red;
 }

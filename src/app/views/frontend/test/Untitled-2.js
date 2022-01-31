@@ -60,7 +60,7 @@ function Score(props){
   return(
     <div>
       <div id="score-group">
-        <div className="scores"><strong>Scores:</strong><br /><span>{props.correct * 10 } / 100</span></div>
+        <div className="scores">Score: {props.correct * 10 } / 100</div>
       </div>
     </div>
   )
@@ -69,8 +69,7 @@ function Score(props){
 function Answers(props){
   return(
     <div id="answers-group">
-      <button id={0} className="noselect correctAns incorrectAns" onClick={() => props.handleClick(0)} >{props.answersArray[0]} </button>
-	 
+      <button id={0} className="noselect" onClick={() => props.handleClick(0)} >{props.answersArray[0]} </button>
       <button id={1} className="noselect"  onClick={() => props.handleClick(1)}>{props.answersArray[1]} </button>
       <button id={2} className="noselect" onClick={() => props.handleClick(2)}>{props.answersArray[2]} </button>
       <button id={3} className="noselect" onClick={() => props.handleClick(3)}>{props.answersArray[3]} </button>
@@ -124,7 +123,7 @@ class Quiz extends React.Component{
       });
       return;
     }
-    setTimeout(this.pickQuestion, 1000);
+    setTimeout(this.pickQuestion, 300);
   }
   
   pickQuestion(){
@@ -158,7 +157,6 @@ class Quiz extends React.Component{
       return(
         <div id="outer">
           <div id="main">
-			<div id="score-group"></div>		  
           <Question question="Welcome to Trivia Game" />
             <button onClick={this.newGame}>Start New Game</button>
           <br/><br/>
@@ -166,7 +164,7 @@ class Quiz extends React.Component{
        </div>
       );
     }
-    if(this.state.gameOver){
+    else if(this.state.gameOver){
       return(
         <div id="outer">
           <div id="main">
@@ -181,9 +179,9 @@ class Quiz extends React.Component{
       return(
         <div id="outer">
           <div id="main">
-		  <Score correct={this.state.correctAns} />
           <Question question={this.state.question} />
           <Answers answersArray={this.state.answersArray} handleClick={this.handleClick} />
+          <Score correct={this.state.correctAns} />
         </div>
        </div>
       );
