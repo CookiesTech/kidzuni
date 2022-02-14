@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../home/navbar";
 import Marks from "./marks";
-import Quiz from "./quiz";
-// import SaveScore from "./score";
-// import Score from "./savescore";
+import QuizHome from "./quizhome"
+// import Quiz1 from "./Quiz1"
+// import Question from "./Question"
 import Footer from "../home/footer";
 
 export default function Test () {
@@ -12,9 +12,8 @@ export default function Test () {
             <div className="container">
                 <Navbar />
                 <Marks />
-                {/* <SaveScore /> */}
-                {/* <Score /> */}
-                <Quiz />
+                <QuizHome />
+                
             </div>
             <Footer />
         </div>

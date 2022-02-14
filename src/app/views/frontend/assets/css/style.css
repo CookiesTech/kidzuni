@@ -519,6 +519,10 @@ input[type=radio]:checked ~ .option {
   border: 1px solid #333;
   padding: 25px;
 }
+ 
+
+/*loader*/
+
 
 
 
@@ -529,20 +533,30 @@ input[type=radio]:checked ~ .option {
 }
 .scores {
   float: right;
-  bottom: 35px;
+  bottom: 44px;
   right: 15px;
   position: relative;
+  border: 1px solid #0b863c;
+  width: 100px;
+  text-align: center;
+  padding: 17px 17px 30px 17px;
 }
 .scores strong {
-  background-color: #10a0b6;
-  color: #fff;
-  padding: 10px 15px 9px 15px;
+    background-color: #10a0b6;
+    color: #fff;
+    padding: 10px 22px 10px 22px;
+    margin-left: -17px;
+    position: relative;
+    top: -8px;
 }
-.scores span {
-  border: 1px solid;
-  padding: 13px 17px 13px 17px;
-  top: 20px;
+.score-group .score-box {
+  width: 50px;
+  background-color: #e4e4e4;
+}
+.scores .score-box {
   position: relative;
+    top: 15px;
+    font-weight: bold;
 }
 #answers-group button {
   border-radius: 10px;
@@ -560,3 +574,54 @@ input[type=radio]:checked ~ .option {
 #answers-group button .incorrectAns {
   background-color: red;
 }
+
+
+
+
+/*--quiz-*/
+.quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.subtitle {
+  font-size: 25px;
+  border: 1px solid black;
+  box-shadow: 4px 4px 2px black;
+  padding: 5px 10px;
+}
+
+.quizInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  margin: 10px;
+}
+
+
+/*----Registration page----*/
+.choose-option {
+   background-color: #f5f5f5; 
+   border: 1px solid #d1d1d1; 
+   border-radius: 5px; 
+   color: #858585; 
+  display: inline-block; 
+   font-size: 18px; 
+   line-height: 15px; 
+    margin: 0 0 0 4%;
+    outline: 0;
+   overflow: visible; 
+   padding: 0.4em 2em 0.5em 2em; 
+}
+.choose-option:hover {
+  color: #fff;
+  background-color: #0b863c;
+} 
+.choose-plan button:focus {
+  background-color: #10a0b6;
+  color: #fff;
+}
+

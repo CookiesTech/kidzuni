@@ -40,7 +40,7 @@ export default function Marks() {
 
         return () => {
             //final time:
-            console.log(time);
+           
             isCancelled = true;
         };
     }, [time]);

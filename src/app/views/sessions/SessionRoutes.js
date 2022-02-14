@@ -11,6 +11,8 @@ const JwtRegister = Loadable(lazy(() => import('./register/JwtRegister')))
 const Home = Loadable(lazy(() => import('../frontend/home/Main')))
 const Standard = Loadable(lazy(() => import('../frontend/standard/index')))
 const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer'))) 
+// const Registration = Loadable(lazy(() => import('../frontend/membership/registration'))) 
+
 
 
 const sessionRoutes = [
@@ -18,7 +20,6 @@ const sessionRoutes = [
         path: '/home',
         element: <Home />,
     },
-    
     
     {
         path: 'standard-:value',
@@ -28,6 +29,10 @@ const sessionRoutes = [
         path: 'test',
         element: <Test />,
     },
+    // {
+    //     path: 'membership',
+    //     element: <Registration />,
+    // },
     {
         path: '/session/signup',
         element: <JwtRegister />,
