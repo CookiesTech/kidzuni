@@ -8,8 +8,11 @@ body {
   margin-top: 40px;
 }
 .nav-home {
-  margin-top: 15px;
-  margin-bottom: 7px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+.navbar {
+  padding: 0 !important;
 }
 .navbar-nav {
    align-items: center; 
@@ -527,7 +530,7 @@ input[type=radio]:checked ~ .option {
 
 
 /*quiz*/
-#question {
+/* #question {
   padding: 25px;
   font-size: 21px;
 }
@@ -566,14 +569,14 @@ input[type=radio]:checked ~ .option {
 }
 #answers-group {
   margin-left: 30px;
-}
+} */
 /* 
 #answers-group button:active {
   background-color: #8d33aa;
 } */
-#answers-group button .incorrectAns {
+/* #answers-group button .incorrectAns {
   background-color: red;
-}
+} */
 
 
 
@@ -608,11 +611,11 @@ input[type=radio]:checked ~ .option {
    border: 1px solid #d1d1d1; 
    border-radius: 5px; 
    color: #858585; 
-  display: inline-block; 
+   display: inline-block; 
    font-size: 18px; 
    line-height: 15px; 
-    margin: 0 0 0 4%;
-    outline: 0;
+   margin: 0 0 0 4%;
+   outline: 0;
    overflow: visible; 
    padding: 0.4em 2em 0.5em 2em; 
 }
@@ -624,4 +627,44 @@ input[type=radio]:checked ~ .option {
   background-color: #10a0b6;
   color: #fff;
 }
-
+.member-part h4 {
+  font-weight: bold;
+  color: #8d33aa;
+  margin-top: 20px;
+}
+.teaching p {
+  margin-left: 20px;
+  margin: 15px 0px 0px 15px;
+}
+.maths-price button {
+  padding: 4px;
+  border-radius: 15px;
+  width: 120px;
+  font-size: 15px;
+  margin-left: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #000;
+}
+.maths-price button:hover {
+  background-color: #10a0b6;
+  color: #fff;
+}
+.maths-price button:focus {
+  background-color: #10a0b6;
+  color: #fff;
+}
+.maths-price label {
+  margin-left: 20px;
+  color: #0b863c;
+  font-size: 18px;
+  display: inline-flex;
+}
+.teaching {
+  display: flex;
+}
+.teaching img {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}

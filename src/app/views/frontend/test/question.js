@@ -42,7 +42,7 @@ const Question = ({
       
     }
 
-    else if (selected) {
+    else if (selected) {      
       setCurrQues(currQues + 1);
      
       setSelected();
