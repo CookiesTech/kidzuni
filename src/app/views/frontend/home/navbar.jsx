@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Login from "./login"
 import "../assets/css/style.css";
 
 
@@ -39,58 +40,10 @@ export default function Navbar() {
                                         {/* <!-- <ul className="dropdown-menu changeType"></ul> --> */}
                                     </div>
                                 </div>
-                                <button className="btn btn-success home-signin" data-toggle="modal" data-target="#exampleModalCenter">Sign In</button>
-
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div className='sign-in-area'>
-                                                    <label>Username :</label>&nbsp;
-                                                    <input type='text'/>
-                                                </div>
-                                                <div className='sign-in-area'>
-                                                    <label>Password :</label>&nbsp;
-                                                    <input type='password'/>
-                                                </div>
-                                                <div className='' ><a className='nav-link' href="#" id="sign-in">forgot password</a></div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                {/* <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> */}
-                                                <button type="button" class="btn btn-primary">Sign in</button>
-                                            </div>
-                                            <div className='register-part'>
-                                                <strong> Not a Member yet?</strong>   
-                                                <Link to="/membership"><a className='nav-link'>sign in{'>'}</a></Link>
-                                                    
-                                            </div>
-
-                                            <form action="#" class="sign-in">
-                                                <label for="email-register">Email:</label>
-                                                <input type="text" id="email-register" />
-                                                <label for="password-register">Password:</label>
-                                                <input type="password" id="password-register"/>
-                                                <label for="password-confirmation">Confirm Password:</label>
-                                                <input type="password-confirmation" id="password-confirmation" />
-                                                <p class="check-mark">
-                                                    <input type="checkbox" id="accept-terms"/>
-                                                    <label for="accept-terms">I agree to the <a href="#">Terms</a></label>
-                                                </p>
-                                                <input type="submit" id="submit" value="Create Account" />
-                                            </form>  
-
-                                        </div>
-                                    </div>
-                                </div>
+                                <Login />
                             </ul>
                         </div>
-                        
+
                     </nav>
                 </div>
             </div>

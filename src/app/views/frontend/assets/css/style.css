@@ -629,7 +629,7 @@ input[type=radio]:checked ~ .option {
 }
 .member-part h4 {
   font-weight: bold;
-  color: #8d33aa;
+  color: #0b863c;
   margin-top: 20px;
 }
 .teaching p {
@@ -641,7 +641,8 @@ input[type=radio]:checked ~ .option {
   border-radius: 15px;
   width: 120px;
   font-size: 15px;
-  margin-left: 15px;
+  float: right;
+  margin-right: 15px;
   background-color: #f5f5f5;
   border: 1px solid #000;
 }
@@ -653,8 +654,7 @@ input[type=radio]:checked ~ .option {
   background-color: #10a0b6;
   color: #fff;
 }
-.maths-price label {
-  margin-left: 20px;
+.plan-heading {
   color: #0b863c;
   font-size: 18px;
   display: inline-flex;
@@ -667,4 +667,110 @@ input[type=radio]:checked ~ .option {
   padding: 5px;
   border: 1px solid #000;
   border-radius: 10px;
+}
+.info-heading {
+  font-size: 18px;
+  color: #0b863c;
+}
+.name-part {
+  display: flex;
+}
+.name-part input {
+  margin-left: 100px;
+}
+.email-part input {
+  margin-left: 105px;
+}
+.email-part {
+  display: flex;
+}
+.password-part input {
+  margin-left: 71px
+}
+.password-part {
+  display: flex;
+}
+.phonenumber-part {
+  display: flex;
+}
+.phonenumber-part input {
+  margin-left: 56px;
+}
+.children-count {
+  display: flex;
+}
+.cart_box {
+  margin-left: 7px;
+}
+.cart_box button {
+  border-radius: 5px;
+}
+.cart_box .left-btn {
+  border-right: none;
+  width: 27px;
+}
+.cart_box .right-btn {
+  border-left: none;
+  width: 27px;
+}
+.cart_box span {
+  border: 1px solid #333;
+  padding: 1px 10px 2px 10px;
+  margin: 0px 0px 0px -2px;
+}
+.register-info-detail >div {
+  padding: 10px;
+}
+.plan-sec {
+  background-color: #e4e4e4;
+  margin-top: 25px;
+  color: #333;
+  text-align: center;
+  border-radius: 10px;
+}
+.plan-selected {
+  padding: 55px;
+  margin-top: 8px;
+}
+.plan-selected >div {
+  margin-top: 15px;
+}
+.child-count {
+  font-size: 18px;
+}
+.membership-selected {
+  font-size: 18px;
+}
+.selected-amt {
+  font-size: 30px;
+}
+.join-benefit p {
+  padding: 5px 25px 5px 25px;
+}
+.submit-btn {
+  margin-top: 8px;
+}
+.submit-btn button{
+  float: right;
+}
+
+/*-----Login----*/
+.login-area {
+  padding: 30px;
+}
+.login-details li {
+  float: right;
+}
+.login-details a {
+  font-size: 13px;
+  text-decoration: none;
+}
+.login-details input {
+  display: block;
+}
+.register-part  {
+  display: flex;
+} 
+.register-part strong {
+  margin-top: 11px;
 }
