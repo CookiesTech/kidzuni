@@ -13,12 +13,28 @@ const Standard = Loadable(lazy(() => import('../frontend/standard/index')))
 const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer'))) 
 const Registration = Loadable(lazy(() => import('../frontend/membership/registration'))) 
 const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
+const Login = Loadable(lazy(() => import('../frontend/login/login')))
+const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
+const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
+
 
 
 const sessionRoutes = [
     {
         path: '/home',
         element: <Home />,
+    },
+    {
+        path: '/login',
+        element: <Login />,
+    },
+    {
+        path: '/login/forgotpassword',
+        element: <Forgotpassword />,
+    },
+    {
+        path: '/login/forgotusername',
+        element: <Forgotusername />,
     },
     
     {

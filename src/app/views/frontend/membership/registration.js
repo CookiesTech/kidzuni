@@ -159,7 +159,7 @@ export default function Registration() {
                             <div className="child-count">1 Child</div>
                             <div className="selected-amt">₹449</div>
                         </div>
-
+                        {/* <hr /> */}
                         <div className="join-benefit">
                             <h4>Benefits of Joining</h4>
                             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit dui, dictum at blandit eget,
@@ -168,7 +168,7 @@ export default function Registration() {
                     </div>
                 </div>
                 <div className="submit-btn">
-                    <button className="btn btn-primary" >
+                    <button className="kidzuni-btn" >
                         Join a Member
                     </button>
                 </div>

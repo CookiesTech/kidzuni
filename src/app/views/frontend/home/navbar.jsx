@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Login from "./login"
+
 import "../assets/css/style.css";
 
 
@@ -40,7 +40,12 @@ export default function Navbar() {
                                         {/* <!-- <ul className="dropdown-menu changeType"></ul> --> */}
                                     </div>
                                 </div>
-                                <Login />
+                                <div className='login-btn'>
+                                    <Link to={'/login'}>
+                                        <button className="kidzuni-btn home-signin" >Sign In</button>
+                                    </Link>
+                                </div>
+                                
                             </ul>
                         </div>
 
