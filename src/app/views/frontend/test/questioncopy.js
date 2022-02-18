@@ -4,14 +4,19 @@ import ErrorMessage from "./ErrorMessage";
 import "./question.css"
 import Quiztest from "./quiztest";
 
-const Question = () =>  {
+const Question = ({
+  currQues,
+  setCurrQues,
+  questions,
+  options,
+  correct,
+  setScore,
+  score,
+  setQuestions,
+}) => {
   const [selected, setSelected] = useState();
-  const [correct, setCorrect] = useState();
-  const [currQues, setCurrQues] = useState(0);
   const [error, setError] = useState(false);
 
-// let currQues=0;
-console.log(currQues);
   // let first_question="";
 
   const handleSelect = (i) => {
@@ -19,61 +24,65 @@ console.log(currQues);
     else if (selected === i && selected !== correct) return "wrong";
     // else if (i === correct) return "select";
   };
-  
-  const handleNext = () => {
-   if (selected) {
-    setCurrQues(currQues + 1);
+  console.log(Quiztest);
 
+  setQuestions(Quiztest);
+  Quiztest.map((i) => {
     
-   } else setError("Please select an option first");
-  }
-  
+  });
+
   const handleCheck = (i) => {
     setSelected(i);
-   
-     setError(false);
-   
+    if (i === correct) {
+      setScore(score + 1)
+    };
+    // setError(false);
+    console.log(i);
   };
-  
-  // const handleNext = () => {
-  //   console.log(selected);
-  //   if (currQues > 8) {
-  //     //   history.push("/result");
-      
-  //   }
+ 
 
-  //   else if (selected) {      
-  //     setCurrQues(currQues + 1);
+  const handleNext = (i) => {
+    console.log(selected);
+    if (currQues > 8) {
+      //   history.push("/result");
+      
+    }
+
+    else if (selected) {      
+      setCurrQues(currQues + 1);
      
-  //     setSelected();
-  //   } else setError("Please select an option first");
-  // };
+      setSelected();
+    } else setError("Please select an option first");
+  };
 
   //   const handleQuit = () => {
   //     setCurrQues(0);
   //     setQuestions();
-//   //   };
+  //   };
 
   return (
     <div>
       <div className="question">
-        {/* <h2>{currQues +1}</h2> */}
+        {/* <h2>Question {currQues + 1} :</h2> */}
         <div className="singleQuestion">
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-          {
-            Quiztest[currQues]?.question
-          }
+          <h4>{currQues + 1}. {questions[currQues].question}</h4>
+          <div className="options">
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {options &&
+              options.map((i) => (
+                <button className="btn btn-outline-secondary"
+                  //className={`singleOption  ${selected && handleSelect(i)}`}
+                  key={i}
+                  onClick={() => handleCheck(i)}
+                // disabled={selected} 
+                >
+                  {i}
+                </button>
+                
+              ))}
 
-         {/* <p>Options</p> */}
-        
-          { 
-            Quiztest[currQues]?.options.map((optionss, i) => (
-            <button 
-            className={`singleOption  ${selected && handleSelect(i)}`}
-            onClick={() => handleCheck(i)}>{optionss}</button>
-          )
-          )
-          }
+          </div>
+
           <div className="controls">
             {/* <Button
                     variant="contained"
@@ -94,9 +103,9 @@ console.log(currQues);
               style={{ width: 185 }}
               
               // className={`singleOption  ${selected && handleSelect(i)}`}
-              onClick={handleNext}
-            >Submit
-              {/* {currQues > 20 ? "Submit" : "Submit"} */}
+              onClick={() => handleNext()}
+            >
+              {currQues > 20 ? "Submit" : "Submit"}
             </Button>
             
           </div>
