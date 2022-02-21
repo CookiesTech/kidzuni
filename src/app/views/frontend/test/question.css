@@ -22,8 +22,8 @@
     align-items: center;
     margin-top: 25px;
   }
-  .options button {
-    margin-right: 25px;
+  .options-button {
+    display: block;
   }
   
   .singleOption {
