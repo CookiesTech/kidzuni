@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../home/navbar";
-import Marks from "./marks";
+
 import QuizHome from "./quizhome"
 // import Quiz1 from "./Quiz1"
 // import Question from "./Question"
@@ -11,9 +11,7 @@ export default function Test () {
         <div>
             <div className="container">
                 <Navbar />
-                <Marks />
                 <QuizHome />
-                
             </div>
             <Footer />
         </div>

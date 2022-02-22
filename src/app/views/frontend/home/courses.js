@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Courses() {
+
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        fetchStandard();
+    });
+    
+    const fetchStandard = async () => {
+        const { data } = await axios.get(
+          "http://feltech.in/kidzuni_backend/public/api/getAllStandard"
+        );
+        console.log(data?.data);
+
+        if(data.result) {
+            setData()
+        } else {
+            console.log('error');
+        }
+
+    };
+   
+
+   
+
     return (
         <div >
+           
             <div className="row grade-title">
                 <h3>Explore Courses</h3>
             </div>
+            
             <div className="row class-sec-part">
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                     <div className="member grade-sec">

@@ -1,10 +1,5 @@
-import { Button } from "@mui/material";
-import { useState, useEffect } from "react";
-// import {CircularProgress} from "@mui/material"
-import axios from "axios"
+import React from "react"
 import Question from "./question"
-import Quiztest from "./quiztest"
-
 
 const QuizHome = () => {
  

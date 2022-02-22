@@ -49,10 +49,8 @@ export default function Marks() {
  
     return (
         <div>
-
-            <div className="top-space"></div>
-            <div className="row quiz-title">
             
+            <div className="row quiz-title">
                 {/* <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 game-details-container">
                     <h1>Score : <span id="player-score"></span> / 10</h1>
                 </div> */}

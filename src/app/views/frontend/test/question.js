@@ -1,15 +1,13 @@
 import { Button } from "@mui/material";
 import { useState, useHistory } from "react";
+import Marks from "./time";
 import ErrorMessage from "./ErrorMessage";
 import "./question.css"
 import Quiztest from "./quiztest";
 
 const Question = () => {
   const [selected, setSelected] = useState();
-
-  const [correct, setCorrect] = useState();
   const [score, setScore] = useState(0);
-
   const [currIndex, setCurrIndex] = useState(0);
   const [error, setError] = useState(false);
 
@@ -50,24 +48,43 @@ const Question = () => {
 
   return (
     <div>
-      <div className="question">
-        <h4>score: {score}</h4>
-        <div className="singleQuestion">
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {
-            Quiztest[currIndex]?.question
-          }
+      <div className="row">
+        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+          <Marks />
+        </div>  
+          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div className="timespent-score">
+              <h5>score: {score}</h5>
+            </div>
+          </div>
+      </div>
 
+      <div className="question">
+        <div className="singleQuestion">
+          <div className="question-error-msg">
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <p>
+            {
+              Quiztest[currIndex]?.question
+            }
+          </p>
+         
+
+          <div className="select-option">
           {
             Quiztest[currIndex]?.options.map((options, i) => (
-              
-                <button
-                  className='options-button' name="options" value={options}
-                  onClick={(e) => handleCheck(e)} >{options}</button>
-             
+
+              <button
+                className='options-button' name="options" value={options}
+                onClick={(e) => handleCheck(e)} >{options}</button>
+
             )
             )
           }
+          </div>
+         
+          </div>
+          
 
           <div className="controls">
             {/* <Button

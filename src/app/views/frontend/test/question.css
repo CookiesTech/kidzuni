@@ -1,12 +1,4 @@
-.question {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
   .singleQuestion {
-    
     min-height: 260px;
     flex-direction: column;
     align-items: center;
@@ -15,25 +7,42 @@
     padding: 20px;
     margin-top: 10px;
   }
-  
-  .options {
-    width: 100%;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 25px;
+  .select-option {
+    margin: 8px;
+  }
+  .select-option button {
+    border-color: #333;
+    background-color: #fff;
   }
   .options-button {
-    display: block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  .options-button:hover {
+    background-color: #0b863c;
+    color: #fff;
+  }
+  .options-button:focus {
+    border-color: #0b863c !important;
+    border-width: 3px;
+  }
+  .question-error-msg p {
+    font-size: 20px;
   }
   
-  .singleOption {
-    width: 46%;
-    height: 50px;
-    padding: 15px 20px;
-    margin: 10px;
-    box-shadow: 0 0 2px black;
+  .timespent-score {
+    background-color: #10a0b6;
+    margin: 1px;
+    color: #fff;
+    position: relative;
+    left: -30px;
+    width: 108%;
   }
-  
+  .timespent-score h5 {
+    padding: 10px;
+    text-align: center;
+  }
   @media (max-width: 614px) {
     .singleOption {
       width: 100%;
@@ -44,6 +53,7 @@
     display: flex;
     width: 100%;
     margin-top: 30px;
+    margin-left: 15px;
   }
   
   .select {

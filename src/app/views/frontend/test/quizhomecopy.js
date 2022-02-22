@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 // import {CircularProgress} from "@mui/material"
 import axios from "axios"
 import Question from "./question"
+
 import Quiztest from "./quiztest"
 
 
@@ -31,13 +32,14 @@ const QuizHome = () => {
      );
    }, []);
    let first_question='';
-  const fetchQuestions = async (category = "", difficulty = "") => {
+  const fetchQuestions = async () => {
     const { data } = await axios.get(
-      `https://opentdb.com/api.php?amount=10${category && `&category=${category}`
-      }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
+      "http://feltech.in/kidzuni_backend/public/api/getAllStandard"
+     
     );
-    
-    
+    console.log(data);
+   
+
     setQuestions(data.results);
     data.results.map((a,i) => {
       first_question=a;
@@ -49,7 +51,7 @@ const QuizHome = () => {
     fetchQuestions();
     // history.push("/quiz");
   };
-
+ 
   
 
   const handleShuffle = (options) => {
@@ -59,6 +61,7 @@ const QuizHome = () => {
 
   return (
     <div className="content">
+      <h2>vhyjbgyku6</h2>
       <div className="settings">
         {/* <span style={{ fontSize: 30 }}>Quiz Settings</span> */}
         <div className="settings__select">
