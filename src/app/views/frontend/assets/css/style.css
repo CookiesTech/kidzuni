@@ -160,6 +160,7 @@ body {
   overflow: hidden;
   float: inline-start;
   margin-left: 5px;
+  width: 60px;
 }
 .grade-sec .section-box img {
   transition: 0.3s;
@@ -201,12 +202,13 @@ body {
 }
 .member-info {
   padding: 10px;
+  
 }
 .member-info span{
   line-height: 0px;
 }
 .subject-skills li {
-  display: block ruby;
+  list-style: none;
 }
 .subject-skills h6 {
   float: left;
@@ -217,11 +219,10 @@ body {
   margin-top: -3px;
   color: #10a0b6;
 }
-.member-info h3 {
+/* .member-info h3 {
   text-align: initial;
-}
+} */
 .section-box .class-tab-box {
-  width: 55px;
   height: 39px;
   background-color: #10a0b6;
   color: #fff;

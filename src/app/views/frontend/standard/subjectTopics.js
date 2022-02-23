@@ -1,10 +1,49 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Topics() {
+
+    const [standardid, setStandardid ] = useState();
+
+    // const arrayofobject = [{"main_topic": "numbers"}]
+
+   
+    useEffect(() => {
+        subjecttopics();
+       
+    }, []);
+
+
+    const subjecttopics = async () => { 
+        const standard = {'standard_id':6}  
+        axios.post('http://feltech.in/kidzuni_backend/public/api/getTopics', standard )
+        .then((response)  => {setStandardid({standard_id: response.data})
+
+
+        
+            console.log(response?.data);
+        });
+    }
+
+    // const subjecttopics = async (data) => {
+    //     let Url = "http://feltech.in/kidzuni_backend/public/api/getTopics";
+    
+    //     let response = await axios.post(Url, data);
+       
+        
+    //     console.log(response?.data);
+    //   };
+       
+     
     
     return (
         <div>
+             {/* {arrayofobject.map(function(d, idx){
+                 return (<h6 key={idx}>{d.main_topic}</h6>)
+             })} */}
+
             <div className="main-content">
                 <div className="row">
                     <div className="lkg-sec">
