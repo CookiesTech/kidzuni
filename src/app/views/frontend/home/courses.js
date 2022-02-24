@@ -41,6 +41,9 @@ export default function Courses() {
         catch (e) {
             console.log(e);
         }
+
+      
+          
     }
 
   

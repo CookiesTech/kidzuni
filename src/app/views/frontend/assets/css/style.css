@@ -521,7 +521,6 @@ input[type=radio]:checked ~ .option {
 .sub-list li {
   list-style: none;
   padding: 1px;
-  font-weight: bold;
   font-size: 14px;
   margin-left: 5px;
 }  

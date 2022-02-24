@@ -41,8 +41,6 @@ export default function Registration() {
     //     setCounter(counter + 1)
     // }
 
-
-
     return (
         <div>
             <div className="container">
@@ -86,7 +84,7 @@ export default function Registration() {
                                 <div className="email-part">
                                     <label>Email</label>
                                     <input
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         type="email"
                                         name="email"
                                         class="form-control"
