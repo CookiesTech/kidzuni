@@ -1,24 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 import Navbar from "../home/navbar"
 import Cart from "./cart"
 import Footer from "../home/footer"
+import { register } from "serviceWorker";
 
 export default function Registration() {
 
     const [counter, setCounter] = useState(1)
     const [cart, setcart] = useState([]);
-
-    const [input, setInput] = useState();
-    // const [data, setData] = useState({ type: "register" });
-    const inputChange = (e) => {
-        const { name, value } = e.target;
-        setInput({
-            ...input,
-            [name]: value,
-        });
-    };
-    console.log(input);
 
     // const onChange = (e) => {
     //     const { name, value } = e.target;
@@ -27,8 +19,6 @@ export default function Registration() {
     //     [name]: value,
     //     });
     // };
-
-
     // const decrement = () => {
     //     if (counter <= 1) {
     //         return;
@@ -36,10 +26,103 @@ export default function Registration() {
     //         setCounter(counter - 1);
     //     }
     // }
-
     // const increment = () => {
     //     setCounter(counter + 1)
     // }
+
+    const initialValues = { name: "", email: "", password: "", phonenumber: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+   
+    const [isSubmit, setIsSubmit] = useState(false);
+
+
+   
+    // async function membership() {
+            
+    //     let item = {username,password,email,phonenumber}
+    //     console.log(item);
+
+    //    let result=await fetch("http://feltech.in/kidzuni_backend/public/api/register",{
+    //         method:"POST",  
+    //         body:JSON.stringify(item),
+    //         headers:{
+    //             "Content-Type":'application/json',  
+    //             "Accept":'application/json'
+    //         }
+            
+    //     })
+      
+    //     result =await result.json()
+    //     localStorage.setItem("user-info",JSON.stringify(result))
+    // }
+
+
+
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
+        const data = { 
+            email: e.email,
+            name: e.name,
+            phonenumber: e.phonenumber,
+            password: e.password
+         }  
+        axios.post('http://feltech.in/kidzuni_backend/public/api/register', data)
+            .then((response) => {
+                 if(!response.ok)
+                console.log(response);
+
+                // if (response.status !== 200) {
+                //     throw Error(response);
+                // }
+                //   console.log(response);
+            });
+      };
+    
+      useEffect(() => {
+        console.log(formErrors);
+       
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+          console.log(formValues);
+        }
+      }, [formErrors]);
+
+
+      const validate = (values) => {
+        const errors = {};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.name) {
+          errors.name = "name is required!";
+        }
+        if (!values.phonenumber) {
+            errors.phonenumber = "Phonenumber is required!";
+          }
+        if (!values.email) {
+          errors.email = "Email is required!";
+        } else if (!regex.test(values.email)) {
+          errors.email = "This is not a valid email format!";
+        }
+        if (!values.password) {
+          errors.password = "Password is required";
+        } else if (values.password.length < 4) {
+          errors.password = "Password must be more than 4 characters";
+        } else if (values.password.length > 10) {
+          errors.password = "Password cannot exceed more than 10 characters";
+        }
+        
+        return errors;
+      };
+
+     
+   
 
     return (
         <div>
@@ -48,6 +131,12 @@ export default function Registration() {
                 <div className="row">
                     <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <div className="member-part">
+                            {Object.keys(formErrors).length === 0 && isSubmit ? (
+                                <div className="ui message success">Signed in successfully</div>
+                            ):(
+                                <p></p>
+                            )}
+                        <form onSubmit={handleSubmit}  autoComplete="off"> 
                             <h4>Become a Member</h4>
                             <div className="teaching">
                                 <img src="assets/frontend/images/teaching.png" alt="teach" />
@@ -57,7 +146,6 @@ export default function Registration() {
                                     cursus viverra diam.
                                 </p>
                             </div>
-
                             <hr />
                             {/* <div className="choose-plan">
                                 <label>Choose a Plan</label>&nbsp;
@@ -67,58 +155,63 @@ export default function Registration() {
                             <hr /> */}
 
                             {/* <hr /> */}
+
                             <div className="register-info-detail">
                                 <span className="info-heading">Enter Your Details</span>
+                               
                                 <div className="name-part">
                                     <label>Name</label>
                                     <input
-                                        type="name"
+                                        type="text"
                                         name="name"
                                         class="form-control"
-                                        id="name"
-                                        placeholder="Enter your Name"
-                                        onChange={inputChange}
-                                        required
+                                        placeholder="Enter your name"
+                                        value={formValues.name}
+                                        onChange={handleChange}
+                                       
                                     />
                                 </div>
+                               
                                 <div className="email-part">
                                     <label>Email</label>
                                     <input
-                                        autoComplete="off"
+                                       
                                         type="email"
                                         name="email"
                                         class="form-control"
                                         id="email"
                                         placeholder="Enter Email id"
-                                        onChange={inputChange}
+                                        value={formValues.email}
+                                        onChange={handleChange}
                                         required
                                     />
                                 </div>
+                                <p>{formErrors.email}</p>
                                 <div className="password-part">
                                     <label>Password</label>
                                     <input
                                         type="password"
                                         name="password"
                                         class="form-control"
-                                        id="password"
-                                        placeholder="Enter your password"
-                                        onChange={inputChange}
-                                        required
+                                        placeholder="Password"
+                                        value={formValues.password}
+                                        onChange={handleChange}
                                     />
                                 </div>
+                                <p>{formErrors.password}</p>
                                 <div className="phonenumber-part">
                                     <label>Phone Number</label>
                                     <input
                                         type="number"
-                                        name="phone"
+                                        name="phonenumber"
                                         class="form-control"
                                         id="phone"
                                         placeholder="Enter your Phone Number"
-                                        onChange={inputChange}
-                                        required
+                                        value={formValues.phonenumber}
+                                        onChange={handleChange}
                                     />
                                 </div>
-
+                                
                                 <hr />
                             </div>
                             <div className="children-count">
@@ -131,12 +224,12 @@ export default function Registration() {
                                         <button className="right-btn" >{'>'}</button>
                                     </div>
                                 </div>
-
                             </div>
                             <hr />
                             <div className="maths-price">
                                 <span className="plan-heading">Choose desired Subjects</span>
-                                <button type="button" className="select-option sub-input" data-value="MATH" tabindex="-1" placeholder="" id="">
+                                <button type="button" className="select-option sub-input" 
+                                    data-value="MATH" tabindex="-1" placeholder="" id="">
                                     <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div>
                                     <div className="productOption-price"><span>₹449 </span></div>
                                     <div className="productOption-term">per month</div>
@@ -147,8 +240,15 @@ export default function Registration() {
                                         <div className="productOption-term">per month</div>
                                     </button> */}
                             </div>
+                            <div className="submit-btn">
+                                <button className="kidzuni-btn">Join a Member</button>
+                            </div>
+                         </form>   
                         </div>
+                        
                     </div>
+
+                     
 
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 plan-sec">
                         <div className="plan-selected">
@@ -165,12 +265,9 @@ export default function Registration() {
                         </div>
                     </div>
                 </div>
-                <div className="submit-btn">
-                    <button className="kidzuni-btn" >
-                        Join a Member
-                    </button>
-                </div>
-
+                
+                   
+              
             </div>
             <Footer />
         </div>

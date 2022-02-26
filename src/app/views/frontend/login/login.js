@@ -44,12 +44,12 @@ export default function Login() {
     const [state, setState] = useState({})
     const { register } = useAuth()
 
-    // const handleChange = ({ target: { name, value } }) => {
-    //     setState({
-    //         ...state,
-    //         [name]: value,
-    //     })
-    // }
+    const handleChange = ({ target: { name, value } }) => {
+        setState({
+            ...state,
+            [name]: value,
+        })
+    }
 
     const handleFormSubmit = (event) => {
         try {
@@ -87,10 +87,9 @@ export default function Login() {
                                     variant="outlined"
                                     size="small"
                                     label="Username"
-
                                     type="text"
+                                    
                                     name="username"
-
                                     validators={['required']}
                                     errorMessages={['this field is required']}
                                 />
@@ -103,10 +102,9 @@ export default function Login() {
                                     label="Password"
                                     variant="outlined"
                                     size="small"
-
                                     name="password"
                                     type="password"
-
+                                  
                                     validators={['required']}
                                     errorMessages={['this field is required']}
                                 />
