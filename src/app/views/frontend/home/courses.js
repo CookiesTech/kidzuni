@@ -41,13 +41,8 @@ export default function Courses() {
         catch (e) {
             console.log(e);
         }
-
-      
-          
     }
 
-  
-       
     return (
         <div >
             <div className="row grade-title">

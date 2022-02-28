@@ -9,7 +9,7 @@ import { register } from "serviceWorker";
 
 export default function Registration() {
 
-    const [counter, setCounter] = useState(1)
+    const [counter, setCounter] = useState()
     const [cart, setcart] = useState([]);
 
     // const onChange = (e) => {
@@ -63,36 +63,43 @@ export default function Registration() {
       const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
+        console.log(name); return false;
       };
     
       const handleSubmit = async (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
-        const data = { 
-            email: e.email,
-            name: e.name,
-            phonenumber: e.phonenumber,
-            password: e.password
-         }  
-        axios.post('http://feltech.in/kidzuni_backend/public/api/register', data)
-            .then((response) => {
-                 if(!response.ok)
-                console.log(response);
+        // const data = { 
+        //     email: e.email,
+        //     name: e.name,
+        //     phonenumber: e.phonenumber,
+        //     password: e.password
+        //  }  
+        axios.post('http://feltech.in/kidzuni_backend/public/api/register', { email: e.formValues, password: e.formValues })
+        .then(response => {
+            console.log(response);
+       
+        //   setUserSession(response.data.token, response.data.user);
+        //   props.history.push('/dashboard');
+        }).catch(error => {
 
-                // if (response.status !== 200) {
-                //     throw Error(response);
-                // }
-                //   console.log(response);
-            });
+           
+      
+        // if (error.response.status === 401) setError(error.response.data.message);
+        // else setError("Something went wrong. Please try again later.");
+        });
       };
     
       useEffect(() => {
         console.log(formErrors);
+
+        
        
         if (Object.keys(formErrors).length === 0 && isSubmit) {
           console.log(formValues);
         }
+        
       }, [formErrors]);
 
 
@@ -111,7 +118,7 @@ export default function Registration() {
           errors.email = "This is not a valid email format!";
         }
         if (!values.password) {
-          errors.password = "Password is required";
+          errors.password = "Password is required!";
         } else if (values.password.length < 4) {
           errors.password = "Password must be more than 4 characters";
         } else if (values.password.length > 10) {
@@ -120,9 +127,6 @@ export default function Registration() {
         
         return errors;
       };
-
-     
-   
 
     return (
         <div>
@@ -168,15 +172,15 @@ export default function Registration() {
                                         placeholder="Enter your name"
                                         value={formValues.name}
                                         onChange={handleChange}
-                                       
-                                    />
+                                        required
+                                    />  
                                 </div>
+                                <p className="text-danger">{formErrors.name}</p>
                                
                                 <div className="email-part">
                                     <label>Email</label>
                                     <input
-                                       
-                                        type="email"
+                                       type="email"
                                         name="email"
                                         class="form-control"
                                         id="email"
@@ -185,8 +189,9 @@ export default function Registration() {
                                         onChange={handleChange}
                                         required
                                     />
-                                </div>
-                                <p>{formErrors.email}</p>
+                                  </div>
+                                  <p className="text-danger">{formErrors.email}</p>
+                               
                                 <div className="password-part">
                                     <label>Password</label>
                                     <input
@@ -196,9 +201,10 @@ export default function Registration() {
                                         placeholder="Password"
                                         value={formValues.password}
                                         onChange={handleChange}
+                                        required
                                     />
                                 </div>
-                                <p>{formErrors.password}</p>
+                                <p className="text-danger">{formErrors.password}</p>
                                 <div className="phonenumber-part">
                                     <label>Phone Number</label>
                                     <input
@@ -209,8 +215,10 @@ export default function Registration() {
                                         placeholder="Enter your Phone Number"
                                         value={formValues.phonenumber}
                                         onChange={handleChange}
+                                        required
                                     />
                                 </div>
+                                <p className="text-danger">{formErrors.phonenumber}</p>
                                 
                                 <hr />
                             </div>
@@ -220,7 +228,8 @@ export default function Registration() {
                                 <div className="cart_box">
                                     <div>
                                         <button className="left-btn" >{'<'}</button>
-                                        <span>{counter}</span>
+                                        {/* <span>{counter}</span> */}
+                                        <input type="number"></input>
                                         <button className="right-btn" >{'>'}</button>
                                     </div>
                                 </div>
