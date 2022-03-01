@@ -1,0 +1,77 @@
+
+  body {
+    background: #7979B2;
+    background: linear-gradient(to right, #49afa8, #0e4d81);
+    background: -webkit-linear-gradient(to right, #49afa8, #411e1e);
+    font-family: helvetica neue;
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+  }
+  .student-profile {
+    justify-content: center;
+    margin: auto;
+  }
+  .main {
+    background: #fff;
+    width: 350px;
+    height: 400px;
+    position: relative;
+   
+    top: 100px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 20px rgba(0,0,0,.5);
+  }
+  
+  .info {
+    text-align: center;
+    background: #fff;
+    background: linear-gradient(to left bottom, #49afa8 50%, #e8e8e8 50%);
+    background: -webkit-linear-gradient(to left bottom, #932050 50%, #e8e8e8 50%);
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .prof {
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+  }
+  
+ 
+  .body {
+    margin-top: -10px;
+    text-align: center;
+  }
+  .footer {
+    text-align: center;
+  }
+  .footer button{
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    
+  }
+ 
+  .kidzuni-outline-btn {
+   border-width: 2px;
+  border-color: #0b863c;
+  }
+  .kidzuni-outline-btn:hover {
+    color: #fff;
+    background-color: #0b863c;
+  }
+  .kidzuni-outline-btn:focus {
+    background-color: #0b863c;
+    color: #fff;
+  }
+  .user-filed label{
+    padding-right: 10px;
+  }
+  .user-filed input {
+    margin-left: 10px;
+  }
+  hr {
+    margin-bottom: 40px;
+  }
+  
+ 
+  

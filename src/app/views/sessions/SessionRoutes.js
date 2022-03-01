@@ -16,6 +16,7 @@ const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
 const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
+const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
 
 
 
@@ -53,6 +54,11 @@ const sessionRoutes = [
         path: 'membership',
         element: <Registration />,
     },
+    {
+        path: 'student-profile',
+        element: <StudentProfile />,
+    },
+
     {
         path: '/session/signup',
         element: <JwtRegister />,

@@ -30,7 +30,7 @@ export default function Login(props) {
         width: '100%',
     }))
 
-    const JWTRegister = styled(JustifyBox)(() => ({
+    const Login = styled(JustifyBox)(() => ({
         background: '#1A2038',
         minHeight: '100vh !important',
         '& .card': {
@@ -45,67 +45,69 @@ export default function Login(props) {
     const [state, setState] = useState({});
     const { register } = useAuth();
 
-    
-
-    const email = useFormInput('');
-    const password = useFormInput('');
-    const [error, setError] = useState(null);
-
+    const initialValues = { email: "", password: "" };
+    const [inputValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
   
-    // handle button click of login form
-        const handleLogin = () => {
-            setError(null);
-           
-            axios.post('http://feltech.in/kidzuni_backend/public/api/login', { email: email.value, password: password.value })
-            .then(response => {
-                console.log(response);
-           
-            //   setUserSession(response.data.token, response.data.user);
-            //   props.history.push('/dashboard');
-            }).catch(error => {
+    const inputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...inputValues, [name]: value });
+        console.log(name); return false;
+    };
 
-               
-          
-            if (error.response.status === 401) setError(error.response.data.message);
-            else setError("Something went wrong. Please try again later.");
-            });
 
-            //  if (!email) {
-            //         errors.email = "name is required!";
-            //       }
-            //       if (!password) {
-            //           errors.password = "Phonenumber is required!";
-            //         }
+    async function formSubmit(e) {
+        e.preventDefault();
+        setFormErrors(validate(inputValues));
+        setIsSubmit(true);
 
-            try {
-                register(state.email, state.username)
-                navigate('/login/forgotpassword')
-            } catch (e) {
-                console.log(e)
-            }
+
+        let data = {
+            email: inputValues.email,
+            password: inputValues.password
         }
- 
+        console.log(data);
 
-        function useFormInput (initialValue) {
-            const [value, setValue] = useState(initialValue);
-           
-            const handleChange = e => {
-              setValue(e.target.value);
-              
+        let result = await fetch("http://feltech.in/kidzuni_backend/public/api/login", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
             }
-            return {
-              value,
-              onChange: handleChange
-            }
-          }
+
+        })
+
+        result = await result.json()
+        localStorage.setItem("user-info", JSON.stringify(result))
+    }
 
 
-    
+    const validate = (values) => {
+        const errors = {};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+       
+        if (!values.email) {
+            errors.email = "Email is required!";
+        } else if (!regex.test(values.email)) {
+            errors.email = "This is not a valid email format!";
+        }
+        if (!values.password) {
+            errors.password = "Password is required!";
+        } else if (values.password.length < 4) {
+            errors.password = "Password must be more than 4 characters";
+        } else if (values.password.length > 10) {
+            errors.password = "Password cannot exceed more than 10 characters";
+        }
 
+        return errors;
+    };
+        
   
     return (
-        <JWTRegister>
-
+        <div className='login-center'>
+           
             <Card className="card">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
@@ -121,15 +123,16 @@ export default function Login(props) {
                     </Grid>
                     <Grid item lg={7} md={7} sm={7} xs={12}>
                         <Box p={4} height="100%">
-                            <ValidatorForm autoComplete="off">
+                            <form autoComplete="off" onSubmit={formSubmit} >
                                     <input
                                        type="email"
                                         name="email"
                                         class="form-control"
                                         id="email"
                                         required
-                                        value={email.value}
-                                        onChange={email.onChange}
+                                        value={inputValues.email}
+                                        onChange={inputChange}
+
                                         placeholder="Enter Email id"
                                     />
                                 <div className='login-forgot'>
@@ -141,8 +144,10 @@ export default function Login(props) {
                                         name="password"
                                         class="form-control"
                                         placeholder="Password"
+                                        value={inputValues.password}
+                                        onChange={inputChange}
+
                                         required
-                                        {...password}
                                     />
                                 <div className='login-forgot'>
                                     <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
@@ -152,7 +157,7 @@ export default function Login(props) {
                                     <strong> Not a Member yet?</strong>
                                     <Link to="/membership"><a className='nav-link'>Sign in{'>'}</a></Link>
                                 </div>
-                                {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+                               
 
                                 <FlexBox>
                                     <Button
@@ -160,17 +165,18 @@ export default function Login(props) {
                                         color="primary"
                                         variant="contained"
                                         sx={{ textTransform: 'capitalize' }}
-                                        onClick={handleLogin}
+                                       
                                     >
                                         Sign in
                                     </Button>
 
                                 </FlexBox>
-                            </ValidatorForm>
+                            </form>
                         </Box>
                     </Grid>
                 </Grid>
             </Card>
-        </JWTRegister>
+            
+        </div>
     )
 }
