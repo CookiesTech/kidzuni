@@ -2,8 +2,6 @@ import React, { createContext, useEffect, useReducer } from 'react'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios.js'
 import { MatxLoading } from 'app/components'
-import { config } from 'config'
-
 
 const initialState = {
     isAuthenticated: false,
@@ -93,10 +91,13 @@ export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const login = async (email, password) => {
-        const response = await axios.post(config.baseURL, {
-            email,
-            password,
-        })
+        const response = await axios.post(
+            'http://localhost:8000/public/api/login',
+            {
+                email,
+                password,
+            }
+        )
 
         let user = response.data.user
         let accessToken = response.data.token

@@ -7,7 +7,7 @@ import {
     // FormControlLabel,
     // Checkbox,
 } from '@mui/material'
-
+import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
@@ -20,7 +20,9 @@ import { config } from 'config'
 toast.configure()
 const StandardForm = () => {
     const standardservice = new StandardServices(config.baseURL)
-    const [inputList, setInputList] = useState([{ standard_name: '' }])
+    const [inputList, setInputList] = useState([
+        { standard_name: '', description: '' },
+    ])
 
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
@@ -31,7 +33,7 @@ const StandardForm = () => {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, { standard_name: '' }])
+        setInputList([...inputList, { standard_name: '', description: '' }])
     }
 
     const handleInputChange = (e, index) => {
@@ -77,6 +79,13 @@ const StandardForm = () => {
                                 id="outlined-name"
                                 label="Standard Name"
                                 onChange={(e) => handleInputChange(e, i)}
+                            />
+                            <TextareaAutosize
+                                name="description"
+                                aria-label="empty textarea"
+                                placeholder="Enter Standard Description"
+                                onChange={(e) => handleInputChange(e, i)}
+                                style={{ width: '396px', height: '51px' }}
                             />
                             <div className="btn-box">
                                 {inputList.length !== 1 && (

@@ -1,5 +1,5 @@
 import React from 'react'
-import SubjectForm from './StandardForm'
+import StandardForm from './StandardForm'
 import { SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
 
@@ -28,7 +28,7 @@ const AppForm = () => {
                 />
             </div> */}
             <SimpleCard title="Standard Form">
-                <SubjectForm />
+                <StandardForm />
             </SimpleCard>
             <Box py="12px" />
         </Container>
