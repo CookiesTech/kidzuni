@@ -1,16 +1,18 @@
+import useAuth from 'app/hooks/useAuth';
+import React, { useState, useHistory } from 'react';
+import { Link } from 'react-router-dom';
+import { Box, styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {toast} from 'react-toastify';
 
-import useAuth from 'app/hooks/useAuth'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Box, styled } from '@mui/system'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import "react-toastify/dist/ReactToastify.css";
 import { Span } from 'app/components/Typography'
 import { Card, Checkbox, FormControlLabel, Grid, Button } from '@mui/material'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import "../assets/css/style.css"
-
-export default function Login(props) {
+toast.configure()
+export default function Login() {
     const FlexBox = styled(Box)(() => ({
         display: 'flex',
         alignItems: 'center',
@@ -40,7 +42,6 @@ export default function Login(props) {
         },
     }))
 
-
     const navigate = useNavigate();
     const [state, setState] = useState({});
     const { register } = useAuth();
@@ -49,7 +50,9 @@ export default function Login(props) {
     const [inputValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-  
+   
+        
+        
     const inputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...inputValues, [name]: value });
@@ -61,33 +64,39 @@ export default function Login(props) {
         e.preventDefault();
         setFormErrors(validate(inputValues));
         setIsSubmit(true);
-
-
+        
         let data = {
             email: inputValues.email,
             password: inputValues.password
         }
-        console.log(data);
+        // console.log(data);
+        
+        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/login", data);
+          
+            let status = result.data.user
+            console.log(status);
 
-        let result = await fetch("http://feltech.in/kidzuni_backend/public/api/login", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
+            if (status) {
+                try {
+                    
+                  toast.success("Login Success");
+                  navigate('/home');
+                 
+                } catch (err) {
+                  console.error(err);
+                }
+              } else {
+                toast.error("Login Failed");
+              } 
 
-        })
-
-        result = await result.json()
-        localStorage.setItem("user-info", JSON.stringify(result))
+        // result = await result.json()
+        // localStorage.setItem("user-info", JSON.stringify(result))
     }
-
 
     const validate = (values) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-       
+
         if (!values.email) {
             errors.email = "Email is required!";
         } else if (!regex.test(values.email)) {
@@ -103,42 +112,40 @@ export default function Login(props) {
 
         return errors;
     };
-        
-  
+
+ 
     return (
-        <div className='login-center'>
-           
-            <Card className="card">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
-                </div>
-                <Grid container>
-                    <Grid item lg={5} md={5} sm={5} xs={12}>
-                        <ContentBox>
-                            <IMG
-                                src="/assets/images/illustrations/posting_photo.svg"
-                                alt=""
-                            />
-                        </ContentBox>
-                    </Grid>
-                    <Grid item lg={7} md={7} sm={7} xs={12}>
-                        <Box p={4} height="100%">
-                            <form autoComplete="off" onSubmit={formSubmit} >
+        <div className="login-bg-setting">
+            <div className='login-center'>
+                <Card className="card">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
+                    </div>
+                    <Grid container>
+                        <Grid item lg={5} md={5} sm={5} xs={12}>
+                            <ContentBox>
+                                <IMG
+                                    src="/assets/images/illustrations/posting_photo.svg"
+                                    alt=""
+                                />
+                            </ContentBox>
+                        </Grid>
+                        <Grid item lg={7} md={7} sm={7} xs={12}>
+                            <Box p={4} height="100%">
+                                <form autoComplete="off" onSubmit={formSubmit} >
                                     <input
-                                       type="email"
+                                        type="email"
                                         name="email"
                                         class="form-control"
                                         id="email"
                                         required
                                         value={inputValues.email}
                                         onChange={inputChange}
-
                                         placeholder="Enter Email id"
                                     />
-                                <div className='login-forgot'>
-                                    <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
-                                </div>
-
+                                    <div className='login-forgot'>
+                                        <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
+                                    </div>
                                     <input
                                         type="password"
                                         name="password"
@@ -146,37 +153,34 @@ export default function Login(props) {
                                         placeholder="Password"
                                         value={inputValues.password}
                                         onChange={inputChange}
-
                                         required
                                     />
-                                <div className='login-forgot'>
-                                    <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
-                                </div>
-
-                                <div className='register-part'>
-                                    <strong> Not a Member yet?</strong>
-                                    <Link to="/membership"><a className='nav-link'>Sign in{'>'}</a></Link>
-                                </div>
-                               
-
-                                <FlexBox>
-                                    <Button
-                                        type="submit"
-                                        color="primary"
-                                        variant="contained"
-                                        sx={{ textTransform: 'capitalize' }}
-                                       
-                                    >
-                                        Sign in
-                                    </Button>
-
-                                </FlexBox>
-                            </form>
-                        </Box>
+                                    <div className='login-forgot'>
+                                        <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
+                                    </div>
+                                    <div className='register-part'>
+                                        <strong> Not a Member yet?</strong>
+                                        <Link to="/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
+                                    </div>
+                                    <FlexBox>
+                                      
+                                            <Button
+                                                type="submit"
+                                                color="primary"
+                                                variant="contained"
+                                                sx={{ textTransform: 'capitalize' }}
+                                              
+                                            > 
+                                                Sign in
+                                            </Button>
+                                      
+                                    </FlexBox>
+                                </form>
+                            </Box>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Card>
-            
+                </Card>
+            </div>
         </div>
     )
 }

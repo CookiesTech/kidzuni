@@ -1,12 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useHistory } from "react-router-dom";
-import Navbar from "../home/navbar"
-import Cart from "./cart"
-import Footer from "../home/footer"
+import Navbar from "../home/navbar";
+import Cart from "./cart";
+import Footer from "../home/footer";
 import { register } from "serviceWorker";
 
+toast.configure();
 export default function Registration() {
 
     const [counter, setCounter] = useState()
@@ -34,6 +38,7 @@ export default function Registration() {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,27 +51,31 @@ export default function Registration() {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
-
-
-        let item = {
+        let data = {
             name: formValues.name,
             email: formValues.email,
             password: formValues.password
         }
-        console.log(item);
+        // console.log(data);
 
-        let result = await fetch("http://feltech.in/kidzuni_backend/public/api/register", {
-            method: "POST",
-            body: JSON.stringify(item),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
+        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/register", data)
+
+        let status = result.data
+
+        console.log(status);
+        if (status) {
+            try {
+                toast.success("user successfully registered");
+                  navigate('/home');
+
+            } catch (err) {
+                console.error(err);
             }
+        } else {
+            toast.error("Email Already Exists");
+        }
 
-        })
-
-        result = await result.json()
-        localStorage.setItem("user-info", JSON.stringify(result))
+        // localStorage.setItem("user-info", JSON.stringify(result))
     }
 
 

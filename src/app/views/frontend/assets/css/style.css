@@ -790,7 +790,7 @@ input[type=radio]:checked ~ .option {
   margin-top: 1px;
 }
 .modal-content {
-  width: 40%;
+    width: 40%;
     margin: 8em auto;
     position: relative;
     display: flex;
@@ -809,4 +809,25 @@ input[type=radio]:checked ~ .option {
 }
 .login-forgot {
   margin-bottom: 18px;
+}
+
+.login-center {
+  max-width: 800px;
+  margin: auto;
+}
+.login-center .card {
+  border-radius: 10px;
+}
+.login-bg-setting {
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: #1A2038;
+    min-height: 100%!important;
 }

@@ -16,8 +16,9 @@ const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
 const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
-const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
-
+// const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
+// const ParentProfile = Loadable(lazy(() => import('../frontend/profile and setting/parentprofile')))
+const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 
 
 const sessionRoutes = [
@@ -55,9 +56,17 @@ const sessionRoutes = [
         element: <Registration />,
     },
     {
-        path: 'student-profile',
-        element: <StudentProfile />,
+        path: 'test-completed',
+        element: <Success />,
     },
+    // {
+    //     path: 'student-profile',
+    //     element: <StudentProfile />,
+    // },
+    // {
+    //     path: 'parent-profile',
+    //     element: <ParentProfile />,
+    // },
 
     {
         path: '/session/signup',

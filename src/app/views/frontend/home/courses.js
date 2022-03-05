@@ -7,7 +7,6 @@ export default function Courses() {
     const [standard = [], setStandard] = useState();
     const [subject, setSubject] = useState();
    
-
     useEffect(() => {
         standardDtata();
         subjectList();
@@ -31,6 +30,8 @@ export default function Courses() {
             console.log(e);
         }
     }
+
+  
 
     const standardDtata = async () => {    //standard classes
         try {
@@ -69,7 +70,7 @@ export default function Courses() {
                                                     <h6>{subjectname.subject_name}</h6>
                                                 ))
                                             }
-                                            <Link className="nav-link" to={"/standard-Lkg"}>
+                                            <Link className="nav-link" to={`/standard-${standardname.standard_name}`}>
                                                 <a className="nav-link" href="">44 Expertise {'>'}</a>
                                             </Link>
 
@@ -77,7 +78,7 @@ export default function Courses() {
                                     </span>
 
                                     <div className="explore-detail">
-                                        <Link className="nav-link" to="/standard-Lkg">
+                                        <Link className="nav-link" to={`/standard-${standardname.standard_name}`}>
                                             <a className="nav-link" href="">Explore Details..</a>
                                         </Link>
 

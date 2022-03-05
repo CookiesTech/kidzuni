@@ -1,9 +1,12 @@
 import { Button } from "@mui/material";
-import { useState, useHistory } from "react";
+import { useState, useHistory, useEffect } from "react";
 import Marks from "./time";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ErrorMessage from "./ErrorMessage";
 import "./question.css"
 import Quiztest from "./quiztest";
+toast.configure();
 
 const Question = () => {
   const [selected, setSelected] = useState();
@@ -15,19 +18,15 @@ const Question = () => {
   //console.log(currQues);
   // let first_question="";
 
-
   const handleCheck = (e) => {  //user selected value.
-
     let value = e.target.value;
-
     if (value) {
       setSelected(value);
     }
-
   };
 
   const handleNext = () => {   //Change questions and score increase.
-
+  
     if (selected) {
       console.log(Quiztest[currIndex]?.correctAnswer);
       if (selected === Quiztest[currIndex]?.correctAnswer) {
@@ -38,14 +37,15 @@ const Question = () => {
         setCurrIndex(currIndex + 1);
         setSelected();
       }
-
     } else {    //Set Error
-      setError("Please select an option first");
+      
+      toast.error("Please select an option first");
+      
     }
-
   }
 
-
+  
+ 
   return (
     <div>
       <div className="row">
@@ -69,23 +69,18 @@ const Question = () => {
             }
           </p>
          
-
-          <div className="select-option">
-          {
-            Quiztest[currIndex]?.options.map((options, i) => (
-
-              <button
-                className='options-button' name="options" value={options}
-                onClick={(e) => handleCheck(e)} >{options}</button>
-
-            )
-            )
-          }
-          </div>
-         
+            <div className="select-option">
+              {
+                Quiztest[currIndex]?.options.map((options, i) => (
+                  <button
+                    className='options-button' name="options" value={options}
+                    onClick={(e) => handleCheck(e)} >{options}</button>
+                  )
+                )
+              }
+            </div>
           </div>
           
-
           <div className="controls">
             {/* <Button
                     variant="contained"
@@ -108,9 +103,8 @@ const Question = () => {
               // className={`singleOption  ${selected && handleSelect(i)}`}
               onClick={() => handleNext()}
             >Submit
-              {/* {currQues > 20 ? "Submit" : "Submit"} */}
+             
             </Button>
-
           </div>
         </div>
       </div>

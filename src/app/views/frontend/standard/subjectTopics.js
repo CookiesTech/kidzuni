@@ -9,16 +9,13 @@ export default function Topics() {
     const [standardid, setStandardid] = useState();
     const [topics, setTopics] = useState();
 
-
     useEffect(() => {
         subjecttopics();
     }, []);
 
-
     const subjecttopics = async () => {    //parameter pass
-        const standard = { standard_id: 6 }  
-        
-        
+        const standard = { standard_id: 6 }
+
         axios.post('http://feltech.in/kidzuni_backend/public/api/getTopics', standard)
             .then((response) => {
                 setStandardid({ standard_id: response.data })
@@ -34,7 +31,6 @@ export default function Topics() {
                 }
 
                 //   console.log(response);
-
             });
     }
 
@@ -72,7 +68,6 @@ export default function Topics() {
                         return (
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
                                 <h5>{topic.main_topic}</h5>
-
                                 <div className="sub-list">
                                     {topic.sub_topics?.map((topiclist, i) => (
                                         <Link className="nav-link" to={'/test'}>
@@ -84,9 +79,7 @@ export default function Topics() {
                         )
                     })}
                 </div>
-
                 <div className="top-space"></div>
-
             </div>
         </div>
 
