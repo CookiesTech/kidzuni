@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorMessage from "./ErrorMessage";
 import "./question.css"
+
 import Quiztest from "./quiztest";
 toast.configure();
 
@@ -13,6 +14,7 @@ const Question = () => {
   const [score, setScore] = useState(0);
   const [currIndex, setCurrIndex] = useState(0);
   const [error, setError] = useState(false);
+ 
 
   // let currQues=0;
   //console.log(currQues);
@@ -26,21 +28,20 @@ const Question = () => {
   };
 
   const handleNext = () => {   //Change questions and score increase.
-  
+   
     if (selected) {
       console.log(Quiztest[currIndex]?.correctAnswer);
       if (selected === Quiztest[currIndex]?.correctAnswer) {
         setScore(score + 1);
         setCurrIndex(currIndex + 1);
         setSelected();
+       
       } else {
         setCurrIndex(currIndex + 1);
         setSelected();
       }
     } else {    //Set Error
-      
       toast.error("Please select an option first");
-      
     }
   }
 

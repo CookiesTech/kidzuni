@@ -42,7 +42,7 @@ export default function Login() {
         },
     }))
 
-    const navigate = useNavigate();
+    const navigate = useNavigate();  // navigate page redirect
     const [state, setState] = useState({});
     const { register } = useAuth();
 
@@ -53,14 +53,14 @@ export default function Login() {
    
         
         
-    const inputChange = (e) => {
+    const inputChange = (e) => {    //input values
         const { name, value } = e.target;
         setFormValues({ ...inputValues, [name]: value });
         console.log(name); return false;
     };
 
 
-    async function formSubmit(e) {
+    async function formSubmit(e) {      //Integrate api and validate
         e.preventDefault();
         setFormErrors(validate(inputValues));
         setIsSubmit(true);
@@ -93,7 +93,7 @@ export default function Login() {
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
 
-    const validate = (values) => {
+    const validate = (values) => {   //form validation 
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 

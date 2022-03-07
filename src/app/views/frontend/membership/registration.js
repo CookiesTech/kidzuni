@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useHistory } from "react-router-dom";
 import Navbar from "../home/navbar";
@@ -55,25 +55,34 @@ export default function Registration() {
             name: formValues.name,
             email: formValues.email,
             password: formValues.password
-        }
-        // console.log(data);
+        };
+        
+        try {
+            const result = await axios.post(
+              "http://feltech.in/kidzuni_backend/public/api/register",
+              data
+            );
+            // let status = result.data;
 
-        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/register", data)
-
-        let status = result.data
-
-        console.log(status);
-        if (status) {
-            try {
+            // console.log(result);
+    
+            if (result.data) {
+              try {
+                // localStorage.setItem(
+                //   "profile",
+                //   JSON.stringify(result.data.user)
+                // );
                 toast.success("user successfully registered");
-                  navigate('/home');
-
-            } catch (err) {
+            //    navigate('/home') 
+              } catch (err) {
                 console.error(err);
+              }
+            } else {
+              alert(result.data);
             }
-        } else {
+          } catch (err) {
             toast.error("Email Already Exists");
-        }
+          }
 
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
