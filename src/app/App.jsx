@@ -7,6 +7,7 @@ import { Routes, Route, Navigate, useRoutes } from 'react-router-dom'
 import { SettingsProvider } from 'app/contexts/SettingsContext'
 import { MatxTheme } from 'app/components'
 import { AllPages } from './routes/routes'
+import ScrollToTop from "../app/views/frontend/scrollToTop"
 
 const App = () => {
     const all_pages = useRoutes(AllPages())
@@ -14,6 +15,7 @@ const App = () => {
     return (
         <Provider store={Store}>
             <SettingsProvider>
+                <ScrollToTop />
                 <MatxTheme>
                     <AuthProvider>
                         {all_pages}

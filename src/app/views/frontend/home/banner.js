@@ -9,7 +9,6 @@ export default function Banner() {
                         <div className="sub-maths">
                             <span className="curriculam-maths">
                                 <h4>Kidzuni is Personalised Learning</h4>
-
                             </span>
                             <img className="" src="assets/frontend/images/c1.png" alt="cloud" />
                         </div>
@@ -54,10 +53,10 @@ export default function Banner() {
                                         labore et dolore magna aliqua.</p>
                                 </div>
 
-                                
+
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 unique-part">
-                               
+
                                 <div className="curriculam-content">
                                     <img src="assets/frontend/images/target.png" />
                                     <h5>Curriculam Mapped Learning</h5>

@@ -2,20 +2,35 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import TopicsService from "../services/topicsservices";
+import TopicsService from "../Services/TopicsService";
 import { map } from "lodash";
 
 export default function Topics() {
 
     let topicsservice = new TopicsService();
-    const standard = window.location.pathname.split('/').pop();
+    // let standardId=window.location.pathname.split("/").pop();
 
     const [standardid, setStandardid] = useState();
     const [topics, setTopics] = useState();
 
+    // useEffect(() => {
+    //     subjecttopics();
+    // }, []);
+
+
     useEffect(() => {
-        subjecttopics();
-    }, []);
+        async function fetchMyAPI() {
+            // console.log(standardId);
+            await await topicsservice.subjecttopics()
+            .then((response) => {
+                setStandardid({ standard_id: response.data })
+                setTopics(response?.data.Topics);
+            });
+        }
+        fetchMyAPI();
+      }, []);
+    //  console.log(formData);
+
 
     const subjecttopics = async () => {    //parameter pass
         const standard = { standard_id: 6 }
@@ -25,15 +40,11 @@ export default function Topics() {
                 setStandardid({ standard_id: response.data })
 
                 setTopics(response?.data.Topics);
-
                 //  console.log(response);
-
                 // if(!response.ok) throw new Error(response);
-
                 if (response.status !== 200) {
                     throw Error(response);
                 }
-
                 //   console.log(response);
             });
     }
@@ -69,29 +80,23 @@ export default function Topics() {
                     </div>
 
                     {topics?.map((topic, k) => {
-                       
                         return (
-                            
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
                                 <h5>{topic.main_topic}</h5>
-                                    <div className="sub-list">
-                                       {topic.sub_topics?.map((topiclist, i) => (
-                                           <Link className="nav-link" to={'/test'}>
-                                               <li key={`slide-${i}`}>{topiclist?.name}</li>
-                                           </Link>
-                                       ))}
-                                    </div>
+                                <div className="sub-list">
+                                    {topic.sub_topics?.map((topiclist, i) => (
+                                        <Link className="nav-link" to={'/test'}>
+                                            <li key={`slide-${i}`}>{topiclist?.name}</li>
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
-                            
                         )
-                      
                     })}
-                   
-                    
                 </div>
                 <div className="top-space"></div>
             </div>
         </div>
 
     )
-}
+}  

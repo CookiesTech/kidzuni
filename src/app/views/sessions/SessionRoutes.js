@@ -10,8 +10,8 @@ const JwtLogin = Loadable(lazy(() => import('./login/JwtLogin')))
 const JwtRegister = Loadable(lazy(() => import('./register/JwtRegister')))
 const Home = Loadable(lazy(() => import('../frontend/home/Main')))
 const Standard = Loadable(lazy(() => import('../frontend/standard/index')))
-const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer'))) 
-const Registration = Loadable(lazy(() => import('../frontend/membership/registration'))) 
+const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer')))
+const Registration = Loadable(lazy(() => import('../frontend/membership/registration')))
 const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
@@ -19,6 +19,7 @@ const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusern
 // const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
 // const ParentProfile = Loadable(lazy(() => import('../frontend/profile and setting/parentprofile')))
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
+const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
 
 
 const sessionRoutes = [
@@ -38,7 +39,7 @@ const sessionRoutes = [
         path: '/login/forgotusername',
         element: <Forgotusername />,
     },
-    
+
     {
         path: '/cart',
         element: <Cart />,
@@ -59,6 +60,12 @@ const sessionRoutes = [
         path: 'test-completed',
         element: <Success />,
     },
+
+    {
+        path: 'home-maths',
+        element: <MathsSubject />,
+    },
+
     // {
     //     path: 'student-profile',
     //     element: <StudentProfile />,

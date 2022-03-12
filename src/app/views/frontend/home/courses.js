@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import StandardService from "../services/standardservices";
+import StandardService from "../Services/StandardService";
+import SubjectService from "../Services/SubjectService";
 import axios from "axios";
 
 export default function Courses() {
 
     let standardservice = new StandardService();
-   
+    let subjectservice = new SubjectService();
     
     const [standard = [], setStandard] = useState();
     const [subject, setSubject] = useState();
@@ -38,11 +39,11 @@ export default function Courses() {
         }
     }
 
-
+                                                
 
     const standardDtata = async () => {    //standard classes
         try {
-            const data = await axios.get("http://feltech.in/kidzuni_backend/public/api/getAllStandard");
+            const data = await subjectservice.standardDtata();
 
             setStandard(data.data.data);
         }
