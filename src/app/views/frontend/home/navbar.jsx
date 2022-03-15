@@ -12,17 +12,28 @@ export default function Navbar() {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  nav-home">
                     <nav className="navbar navbar-expand-lg home-menu">
                         <Link className="navbar-brand" to={"/home"}>
-                            <img src="assets/frontend/images/ct-logo.png" alt="logo" />
+                            <img src="../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
 
                         <div className="home-navbar">
                             <ul className="navbar-nav home-header">
-                                <div className="dropdown">
+                                <div className="dropdown category-list">
+                                    <Link className='nav-link' to={'/home/maths'}>
+                                        <a className="nav-link" href="">Learning </a>
+                                    </Link>
+                                   
+                                    <a className="nav-link" href="">Diagnostic</a>
+                                      
+                                    <a className="nav-link" href="">Analytics</a>
+                                    
+                                </div>
+
+                                 {/* <div className="dropdown">
                                     <a className="nav-link" href="">Learning</a>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to={"/standard-lkg"}>Maths</Link>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="home-searchbox">
                                     <input className="search-topics" type="search" placeholder="Search topics and skills"
@@ -42,10 +53,9 @@ export default function Navbar() {
                                 </div>
                                 <div className='login-btn'>
                                     <Link to={'/login'}>
-                                        <button className="kidzuni-btn home-signin" >Sign In</button>
+                                        <button className="kidzuni-btn home-signin">Sign In</button>
                                     </Link>
                                 </div>
-                                
                             </ul>
                         </div>
 

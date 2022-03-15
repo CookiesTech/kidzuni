@@ -39,9 +39,16 @@ body {
 .home-menu {
   justify-content: space-between;
 }
-.home-header a {
+.category-list a {
   color: #333;
   font-size: 18px;
+}
+.category-list a:focus {
+  color: #0b863c;
+  font-weight: bold;
+}
+.category-list .nav-link {
+  display: inline;
 }
 .search-topics {
   padding: 3px;
@@ -69,6 +76,9 @@ body {
 .sub-maths img {
   margin-top: 45px;
 }
+
+
+
 .home-banner {
   background-image: url("../images/d1.jpg");
   height: auto;
@@ -1165,7 +1175,7 @@ input[type=radio]:checked ~ .option {
   position: absolute;
 }
 
-@-webkit-keyframes checkmark {
+@keyframes checkmark {
   0% {
     height: 0;
     width: 0;
@@ -1228,6 +1238,20 @@ input[type=radio]:checked ~ .option {
 }
 
 
+.flex-container {
+	height: auto;
+  height: 220px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	direction: rtl;
+	font-weight: bold;
+  }
+
+.classes-maths  {
+  padding: 15px;
+}  
+  
 .courses {
   width: 100%;
   padding: 10px;
@@ -1240,9 +1264,9 @@ input[type=radio]:checked ~ .option {
 .course {
   margin-top: 20px;
   display: flex;
-  /* width: 70%; */
+  margin: auto;
   max-width: 800px;
-  height: 200px;
+  height: 150px;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -1258,8 +1282,8 @@ input[type=radio]:checked ~ .option {
   color: var(--light);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  /* align-items: flex-start;
+  justify-content: flex-start; */
   padding: 30px;
   position: absolute;
   top: 0;
@@ -1269,13 +1293,13 @@ input[type=radio]:checked ~ .option {
 }
 
 .course.maths .course-info {
-  background-color: #2cce8c;
+  background-color: #10a0b6;
 }
 
 
-.course:hover .course-info,
+.course .course-info,
 .course:focus-within .course-info {
-  width: 35%;
+  width: 30%;
 }
 
 .course-info span {
@@ -1352,7 +1376,7 @@ input[type=radio]:checked ~ .option {
   color: var(--html-color);
 }
 .continue-practice button{
-    margin-top: 66px;
+    margin-top: 40px;
     border-radius: 20px;
     background: var(--html-color);
     color: #fff;
@@ -1409,14 +1433,13 @@ input[type=radio]:checked ~ .option {
 
 
 .wave-spaces {
-  margin: 50px 0px 150px 0px;
+  margin: 50px 0px 180px 0px;
 }
 
 section{
     position: relative;
     width: 100%;
-   
-    background: linear-gradient(60deg, #e7faff 0%, rgba(0,172,193,1) 100%);
+   background: linear-gradient(60deg, #e7faff 0%, rgba(0,172,193,1) 100%);
     overflow: hidden;
 }
 section .wave{
@@ -1475,4 +1498,226 @@ section .wave.wave4{
     100%{
         background-position-x: -1000px;
     }
+}
+
+/*----Learning topics----*/
+
+.topics-maths h1 {
+  text-align: center;
+}
+.topics-maths {
+  display: flex;
+  padding: 20px;
+}
+
+.sub-topics {
+  --col-gap: 2rem;
+  --barH: 1rem;
+  --roleH: 2rem;
+  --flapH: 3rem;
+
+  width: min(60rem, 90%);
+  margin-inline: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: var(--col-gap);
+  padding-inline: calc(var(--col-gap) / 2);
+
+  justify-content: center;
+  align-items: flex-start;
+  list-style: none;
+}
+.sub-topics .topic-one{
+ 
+  display: grid;
+  grid-template:
+    "role"
+    "icon"
+    "title"
+    "descr";
+  align-items: flex-start;
+  gap: 1rem;
+  padding-block-end: calc(var(--flapH) + 1rem);
+  text-align: center;
+  background: var(--accent-color);
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.6) var(--roleH),
+    rgba(0, 0, 0, 0.4) calc(var(--roleH) + 0.5rem),
+    rgba(0, 0, 0, 0) calc(var(--roleH) + 0.5rem + 5rem)
+  );
+  clip-path: polygon(
+    calc(var(--col-gap) / -2 - 5px) 0,
+    calc(100% + var(--col-gap) / 2 + 5px) 0,
+    calc(100% + var(--col-gap) / 2 + 5px ) calc(100% - var(--flapH)),
+    50% 100%,
+    calc(var(--col-gap) / -2 - 5px) calc(100% - var(--flapH))
+  );
+}
+
+/* bar */
+.sub-topics .topic-one::before {
+  content: "";
+  grid-area: role;
+  height: var(--barH);
+  width: calc(100% + var(--col-gap));
+  margin-left: calc(var(--col-gap) / -2);
+  margin-top: calc(var(--roleH) / 2 - var(--barH) / 2);
+  background: rgb(223, 219, 219);
+  z-index: -1;
+  /* background-image: linear-gradient(
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(0, 0, 0, 0.1) 60%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.4)
+  ); */
+}
+
+/* role */
+.sub-topics .topic-one::after {
+  content: "";
+  grid-area: role;
+  background: var(--accent-color);
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(0, 0, 0, 0.1) 60%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.4)
+  );
+  height: var(--roleH);
+}
+
+.topics-maths ul li .icon,
+.sub-topics .topic-one .title,
+.sub-topics .topic-one .descr {
+  padding-inline: 1rem;
+  color: white;
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+ul li .icon {
+  font-size: 3rem;
+}
+.sub-topics .topic-one .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  width: 325px;
+}
+ 
+.sub-topics .topic-one .descr {
+  font-size: 16px;
+  display: contents;
+}
+.topic-one a {
+  display: contents;
+}
+.topic-one .descr:hover {
+  color: #000;
+}
+.credits {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+.credits a {
+  color: var(--color);
+}
+.sub-topics .topic-one {
+  background-color: #10a0b6;
+}
+.sub-topicSkills button {
+  color: #fff;
+  background-color: #0b863c;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.sub-topicSkills button:focus {
+  color: #333;
+}
+
+
+/*----Awards----*/
+
+.title h2 {
+  color: #1565C0;
+  font-weight: bold;
+}
+.knowledge-sec {
+  margin-top: 40px;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+.knowledge-sec h4 {
+  color: #15a085;
+  font-weight: 400;
+}
+
+.hr-line {
+  height: 2px;
+  margin: auto;
+  width: 85%;
+  background-color: #00C09D;
+}
+.uncover-sec h4 {
+  color: #8d33aa;
+  font-weight: 400;
+  padding: 20px;
+}
+.achievement-sec h4 {
+  color: cornflowerblue;
+  font-weight: 400;
+  padding: 20px;
+}
+
+
+
+#service .brand-pills li a {
+  font-size: 17px;
+  padding: 45px 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  background-color: #3377aa;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+#service .brand-pills li a:focus {
+  font-size: 15px;
+  padding: 45px 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  background-color: #3377aa;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+
+
+#service li.brand-nav.active a:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 55px solid transparent;
+  border-bottom: 55px solid transparent;
+  border-left: 25px solid orange;
+  position: absolute;
+  top: 50%;
+  margin-top: -55px;
+  left: 100%;
+  z-index: 2;
 }

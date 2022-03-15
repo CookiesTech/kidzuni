@@ -20,6 +20,8 @@ const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusern
 // const ParentProfile = Loadable(lazy(() => import('../frontend/profile and setting/parentprofile')))
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
+const MathsTopics = Loadable(lazy(() => import('../frontend/Learning/MathsTopics')))
+const Awards = Loadable(lazy(() => import('../frontend/Learning/Awards')))
 
 
 const sessionRoutes = [
@@ -62,8 +64,18 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home-maths',
+        path: 'home/maths',
         element: <MathsSubject />,
+    },
+
+    {
+        path: 'home/maths/topics',
+        element: <MathsTopics />,
+    },
+
+    {
+        path: 'home/awards',
+        element: <Awards />,
     },
 
     // {

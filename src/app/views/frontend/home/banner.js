@@ -3,6 +3,20 @@ import React from "react";
 export default function Banner() {
     return (
         <div>
+            {/* <div className="row">
+                <div className="category-list">
+                    <div className="learning-type">
+                        <span>Learning</span>
+                    </div>
+                    <div className="diagnostic-type">
+                        <span>Diagnostic</span>
+                    </div>
+                    <div className="analytics-type">
+                        <span>Analytics</span>
+                    </div>
+                </div>
+            </div> */}
+
             <div className="row home-banner">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                     <div className="learn-section">
