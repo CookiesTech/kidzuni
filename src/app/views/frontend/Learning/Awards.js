@@ -1,6 +1,7 @@
 import React from "react"
 import Footer from "../home/footer"
 import Navbar from "../home/navbar"
+import LearningMenu from "./LearningMenu"
 
 
 export default function Awards() {
@@ -8,17 +9,19 @@ export default function Awards() {
         <div>
             <div className="container">
                 <Navbar />
+                <LearningMenu />
 
                 <div className="top-space"></div>
                 <div className="title">
                     <h2>Kidzuni Awards</h2>
                 </div>
 
-                <div className="row top-space">
+                <div className="row top-space center-title">
+                    <h4>Knowledge isn't the only reward on Kidzuni</h4>
                     <div className="col-lg-7 col-md-7 col-xs-7 col-sm-7">
 
                         <div className="knowledge-sec">
-                            <h4>Knowledge isn't the only reward on Kidzuni</h4>
+
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type

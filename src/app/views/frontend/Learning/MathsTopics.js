@@ -7,6 +7,7 @@ import TopicsService from "../Services/TopicsService";
 import { isNull, map } from "lodash";
 import "../assets/css/style.css";
 import Footer from "../home/footer";
+import LearningMenu from "./LearningMenu";
 
 
 export default function MathsTopics() {
@@ -37,7 +38,18 @@ export default function MathsTopics() {
             <div className="container">
 
                 <Navbar />
+                <LearningMenu />
 
+                <div className="view-part">
+                    <span>View by :&nbsp;
+                        <Link className="" to={'/home/maths'}>
+                            <a className="">Years</a>
+                        </Link>&nbsp;
+                        &nbsp;
+                        <Link className="" to={'/home/maths/topics'}>
+                            <a className="">Topics</a>
+                        </Link></span>
+                </div>
                 <div className="topics-maths">
                     {
                         topics?.map((topic, i) => (

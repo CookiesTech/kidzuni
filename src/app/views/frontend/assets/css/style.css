@@ -1238,15 +1238,6 @@ input[type=radio]:checked ~ .option {
 }
 
 
-.flex-container {
-	height: auto;
-  height: 220px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-
-	direction: rtl;
-	font-weight: bold;
-  }
 
 .classes-maths  {
   padding: 15px;
@@ -1265,10 +1256,9 @@ input[type=radio]:checked ~ .option {
   margin-top: 20px;
   display: flex;
   margin: auto;
-  max-width: 800px;
-  height: 150px;
-  align-items: center;
-  justify-content: center;
+  max-width: 900px;
+  height: 115px;
+ 
   border-radius: 10px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -1284,7 +1274,7 @@ input[type=radio]:checked ~ .option {
   flex-direction: column;
   /* align-items: flex-start;
   justify-content: flex-start; */
-  padding: 30px;
+  padding: 40px;
   position: absolute;
   top: 0;
   left: 0;
@@ -1312,7 +1302,8 @@ input[type=radio]:checked ~ .option {
 
 .course-info h5 {
   font-size: 30px;
-  font-weight: 700;
+  font-weight: 600;
+  text-align: center;
 }
 
 .course-info a {
@@ -1366,7 +1357,9 @@ input[type=radio]:checked ~ .option {
   transform: translateX(0);
 }
 .details-sub {
-  margin-left: 109px;
+  position: relative;
+    left: 285px;
+    top: 15px;
 } 
 .details-sub span {
   color: #000;
@@ -1377,9 +1370,11 @@ input[type=radio]:checked ~ .option {
 }
 .continue-practice button{
     margin-top: 40px;
+    margin-top: 72px;
     border-radius: 20px;
     background: var(--html-color);
     color: #fff;
+    margin-left: 400px;
 }
 .continue-practice button:focus {
   color: #333;
@@ -1431,7 +1426,12 @@ input[type=radio]:checked ~ .option {
   text-align: center;
 }
 
-
+.view-part {
+  margin-left: 37px;
+}
+.view-part a {
+  color: #000;
+}
 .wave-spaces {
   margin: 50px 0px 180px 0px;
 }
@@ -1647,6 +1647,11 @@ ul li .icon {
   color: #1565C0;
   font-weight: bold;
 }
+.center-title h4{
+  margin: auto;
+  margin-bottom: 20px;
+  color: #00C09D;
+}
 .knowledge-sec {
   margin-top: 40px;
   margin: auto;
@@ -1675,49 +1680,72 @@ ul li .icon {
   padding: 20px;
 }
 
-
-
-#service .brand-pills li a {
-  font-size: 17px;
-  padding: 45px 15px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  border-radius: 0;
-  background-color: #3377aa;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0;
+.learning-tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    margin-bottom: 1px;
+}
+.learning-tab img {
+    width: 28px;
+    margin-left: 5px;
+}
+.learning-tab img:hover {
+  color: #00C09D;
+}
+.learning-tab border-left {
+  border-left: 1px solid #ccc;
+}
+.learning-tab a:active {
+  color:#00C09D;
+}
+.learning-tab a {
+  color: #000;
+}
+.learning-tab span:hover {
+    background-color: #f1f1f1;
+    color: #00C09D;
+}
+.learning-tab span {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 40px;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
-#service .brand-pills li a:focus {
-  font-size: 15px;
-  padding: 45px 15px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  border-radius: 0;
-  background-color: #3377aa;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0;
+/*-----Awrads Pricing-----*/
+
+*
+/* .awards-prices {
+  background: #DED7A9;
+} */
+.awards-dec
+{
+  width: 65%;
+  margin: 20px auto;
+  background: #d9d7c8;
+  border:solid 5px #0b863c;
+  padding: 10px;
+  border-radius:10px;
+  text-align: center;
+  color:black;
 }
-
-
-
-#service li.brand-nav.active a:after {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 55px solid transparent;
-  border-bottom: 55px solid transparent;
-  border-left: 25px solid orange;
-  position: absolute;
-  top: 50%;
-  margin-top: -55px;
-  left: 100%;
-  z-index: 2;
+.awards-details {
+  padding: 25px;
+}
+.awards-details tr {
+  margin: 5px;
+}
+.practice-details th {
+  font-weight: normal;
+  text-align: initial;
+}
+.practice-details td {
+    text-align: initial;
+    position: relative;
+    left: 290px;
 }
