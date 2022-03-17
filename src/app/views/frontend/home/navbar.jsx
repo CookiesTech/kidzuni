@@ -12,7 +12,7 @@ export default function Navbar() {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  nav-home">
                     <nav className="navbar navbar-expand-lg home-menu">
                         <Link className="navbar-brand" to={"/home"}>
-                            <img src="../../assets/frontend/images/ct-logo.png" alt="logo" />
+                            <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
 
                         <div className="home-navbar">
@@ -22,9 +22,7 @@ export default function Navbar() {
                                         <a className="nav-link" href="">Learning </a>
                                     </Link>
                                    
-                                    <a className="nav-link" href="">Diagnostic</a>
-                                      
-                                    <a className="nav-link" href="">Analytics</a>
+                                   <a className="nav-link" href="">Analytics</a>
                                     
                                 </div>
 

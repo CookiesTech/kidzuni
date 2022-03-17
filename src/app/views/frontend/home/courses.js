@@ -8,17 +8,17 @@ export default function Courses() {
 
     let standardservice = new StandardService();
     let subjectservice = new SubjectService();
-    
+
     const [standard = [], setStandard] = useState();
     const [subject, setSubject] = useState();
 
-   
+
     useEffect(() => {
         standardDtata();
         subjectList();
     }, []);
 
- 
+
 
     // const subjectList = async () => {
     //     const { data } = await axios.get(
@@ -39,7 +39,7 @@ export default function Courses() {
         }
     }
 
-                                                
+
 
     const standardDtata = async () => {    //standard classes
         try {

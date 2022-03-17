@@ -8,7 +8,7 @@ export default function Footer() {
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                             <div className="footer-logo">
-                                <img src="../../assets/frontend/images/ct-logo.png" />
+                                <img src="../../../assets/frontend/images/ct-logo.png" />
                                 <p>Kidzuni is an immersive learning experience that provides comprehensive,
                                     curriculum-aligned Maths content for LKG to class XII. </p>
                             </div>

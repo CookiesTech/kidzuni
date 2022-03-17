@@ -22,7 +22,8 @@ const Success = Loadable(lazy(() => import('../frontend/testcompleted/success'))
 const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
 const MathsTopics = Loadable(lazy(() => import('../frontend/Learning/MathsTopics')))
 const Awards = Loadable(lazy(() => import('../frontend/Learning/Awards')))
-const AwardsClasses = Loadable(lazy(() => import('../frontend/Learning/AwardsClasses')))
+const AwardsClasses = Loadable(lazy(() => import('../frontend/Learning/Awards/AwardsClasses')))
+const Certificates = Loadable(lazy(() => import('../frontend/Learning/Awards/Certificates')))
 
 
 const sessionRoutes = [
@@ -80,8 +81,13 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home/awards/prices',
+        path: 'home/awards/standard',
         element: <AwardsClasses />,
+    },
+
+    {
+        path: 'home/awards/standard/certificates',
+        element: <Certificates />,
     },
 
     // {
