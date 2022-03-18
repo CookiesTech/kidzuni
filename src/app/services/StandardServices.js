@@ -47,4 +47,12 @@ export default class StandardServices extends ApiService {
         }
         return response
     }
+    getStandardbycountry = async (id) => {
+        let Url = this.baseURL + 'getStandardsByCountryId'
+        let response = await this.post(Url, id)
+        if (response.status !== 200) {
+            throw Error(response)
+        }
+        return response
+    }
 }

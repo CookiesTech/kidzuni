@@ -207,6 +207,7 @@ const EditTeacher = () => {
                     value={state?.address}
                     style={{ width: '396px', height: '51px' }}
                 />
+                {state?.address}
                 {inputList.map((x, i) => {
                     return (
                         <>

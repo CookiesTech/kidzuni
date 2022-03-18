@@ -93,6 +93,7 @@ const JwtLogin = () => {
                         <ContentBox>
                             <ValidatorForm onSubmit={handleFormSubmit}>
                                 <TextValidator
+                                    fullWidth
                                     sx={{ mb: 3, width: '100%' }}
                                     variant="outlined"
                                     size="small"
@@ -108,6 +109,7 @@ const JwtLogin = () => {
                                     ]}
                                 />
                                 <TextValidator
+                                    fullWidth
                                     sx={{ mb: '12px', width: '100%' }}
                                     label="Password"
                                     variant="outlined"

@@ -14,6 +14,19 @@ export default class FileUploadService extends ApiService {
             })
             .catch((err) => console.log(err))
     }
+    uploadCountry = async (image) => {
+        const formData = new FormData()
+        formData.append('file', image)
+        formData.append('upload_preset', 'country')
+        formData.append('cloud_name', 'dsczip846')
+        const url = 'https://api.cloudinary.com/v1_1/dsczip846/image/upload'
+        return fetch(url, { method: 'post', body: formData })
+            .then((resp) => resp.json())
+            .then((data) => {
+                return data.secure_url
+            })
+            .catch((err) => console.log(err))
+    }
 
     uploadSlider = async (image) => {
         const formData = new FormData()

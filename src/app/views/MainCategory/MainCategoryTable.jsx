@@ -69,9 +69,7 @@ const MainCategoryTable = () => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
-    const editTeacher = (e, id) => {
-        navigate('/admin/edit_subject/' + id)
-    }
+
     const deleteCategory = (e, id) => {
         Swal.fire({
             title: 'Are you sure want to delete This Teacher? ',
@@ -103,6 +101,8 @@ const MainCategoryTable = () => {
                         <TableCell>S.no</TableCell>
                         <TableCell>Standard Name</TableCell>
                         <TableCell>Category Name</TableCell>
+                        <TableCell>Country Code</TableCell>
+                        <TableCell>Country Flag</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -118,18 +118,12 @@ const MainCategoryTable = () => {
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{row.standard_name}</TableCell>
                                     <TableCell>{row.name}</TableCell>
+                                    <TableCell>{row.code}</TableCell>
+                                    <TableCell>
+                                        <img src={row.image} alt="..." />
+                                    </TableCell>
 
                                     <TableCell>
-                                        {/* <IconButton>
-                                        <Icon
-                                            color="primary"
-                                            onClick={(e) =>
-                                                editTeacher(e, row.id)
-                                            }
-                                        >
-                                            edit
-                                        </Icon>
-                                    </IconButton> */}
                                         <IconButton>
                                             <Icon
                                                 color="error"
@@ -167,7 +161,7 @@ const MainCategoryTable = () => {
                 nextIconButtonProps={{
                     'aria-label': 'Next Page',
                 }}
-                onChangePage={handleChangePage}
+                onPageChange={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
         </Box>

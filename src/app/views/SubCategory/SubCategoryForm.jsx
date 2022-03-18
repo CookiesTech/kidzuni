@@ -16,32 +16,65 @@ import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Toast from 'app/components/Toast/Toast'
 import React, { useState, useEffect } from 'react'
 import MainCategoryServices from 'app/services/MainCategoryServices'
 import SubCategoryServices from 'app/services/SubCategoryServices'
+import CountryServices from 'app/services/CountryServices'
+import StandardServices from 'app/services/StandardServices'
 import { useNavigate } from 'react-router-dom'
 import { config } from 'config'
 toast.configure()
 const SubCategoryForm = () => {
     const maincategoryservices = new MainCategoryServices(config.baseURL)
     const subcategoryservices = new SubCategoryServices(config.baseURL)
+    const standardservice = new StandardServices(config.baseURL)
+    const countryservices = new CountryServices(config.baseURL)
     const [inputList, setInputList] = useState([{ category_name: '' }])
     const [formData = [], setFormData] = useState()
     const [mc_id, setmc_id] = useState({})
+    const [standard = [], setStandard] = useState()
+    const [country = [], setCountry] = useState()
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetchData()
+        fetchCountryData()
         // eslint-disable-next-line no-use-before-define
     }, [])
-
-    const fetchData = async () => {
-        await maincategoryservices.getAll().then((res) => {
+    const handleCountryChange = (e) => {
+        fetchStandardData(e.target.value)
+    }
+    const handleStandardChange = (e) => {
+        fetchMainCategoryData(e.target.value)
+    }
+    const handleCategoryChange = (e) => {
+        const { name, value } = e.target
+        setmc_id({ [name]: value })
+    }
+    const fetchCountryData = async () => {
+        await countryservices.getAll().then((res) => {
             if (res?.data?.status) {
-                setFormData(res?.data?.data)
+                setCountry(res?.data?.data)
             }
         })
+    }
+
+    const fetchStandardData = async (id) => {
+        await standardservice
+            .getStandardbycountry({ country_code: id })
+            .then((res) => {
+                if (res?.data?.status) {
+                    setStandard(res?.data?.data)
+                }
+            })
+    }
+    const fetchMainCategoryData = async (id) => {
+        await maincategoryservices
+            .getMainCategoryByStandardId({ standard_id: id })
+            .then((res) => {
+                if (res?.data?.status) {
+                    setFormData(res?.data?.data)
+                }
+            })
     }
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
@@ -65,11 +98,6 @@ const SubCategoryForm = () => {
         setInputList(list)
     }
 
-    const handleStandardChange = (e) => {
-        const { name, value } = e.target
-        setmc_id({ [name]: value })
-    }
-
     const handleSubmit = async (event) => {
         event.persist()
 
@@ -80,10 +108,10 @@ const SubCategoryForm = () => {
             })
             .then((res) => {
                 if (res.data.status === true) {
-                    Toast('success', res.data.message)
+                    toast.success(res.data.message)
                     navigate('/admin/subcategoryList')
                 } else {
-                    Toast('error', res.data.message)
+                    toast.error(res.data.message)
                 }
                 setInputList([{ category_name: '' }])
             })
@@ -99,13 +127,45 @@ const SubCategoryForm = () => {
                 autoComplete="off"
             >
                 <FormControl fullWidth>
+                    <InputLabel>Country</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="country"
+                        name="country"
+                        onChange={handleCountryChange}
+                    >
+                        {country.map((x, i) => {
+                            return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth>
+                    <InputLabel>Standard</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="standard"
+                        name="standard"
+                        onChange={handleStandardChange}
+                    >
+                        {standard.map((x, i) => {
+                            return (
+                                <MenuItem value={x?.id}>
+                                    {x?.standard_name}
+                                </MenuItem>
+                            )
+                        })}
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth>
                     <InputLabel>MainCategory</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         label="mc_id"
                         name="mc_id"
-                        onChange={handleStandardChange}
+                        onChange={handleCategoryChange}
                     >
                         {formData.map((x, i) => {
                             return <MenuItem value={x?.id}>{x?.name}</MenuItem>
@@ -146,7 +206,7 @@ const SubCategoryForm = () => {
 
             <Button color="primary" variant="contained" onClick={handleSubmit}>
                 <Icon>send</Icon>
-                <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Submit</Span>
+                <Span sx={{ pl: 1, textTransform: 'capitalize' }}>Save</Span>
             </Button>
         </div>
     )

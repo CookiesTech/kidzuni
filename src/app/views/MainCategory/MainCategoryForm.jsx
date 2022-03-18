@@ -20,29 +20,33 @@ import Toast from 'app/components/Toast/Toast'
 import React, { useState, useEffect } from 'react'
 import MainCategoryServices from 'app/services/MainCategoryServices'
 import StandardServices from 'app/services/StandardServices'
+import CountryServices from 'app/services/CountryServices'
 import { useNavigate } from 'react-router-dom'
 import { config } from 'config'
 toast.configure()
 const MainCategoryForm = () => {
     const maincategoryservices = new MainCategoryServices(config.baseURL)
     const standardservice = new StandardServices(config.baseURL)
+    const countryservices = new CountryServices(config.baseURL)
     const [inputList, setInputList] = useState([{ category_name: '' }])
     const [formData = [], setFormData] = useState()
     const [standard, setStandard] = useState({})
+    const [country = [], setCountry] = useState()
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetchData()
+        fetchCountryData()
         // eslint-disable-next-line no-use-before-define
     }, [])
 
-    const fetchData = async () => {
-        await standardservice.getAll().then((res) => {
-            if (res?.data?.status) {
-                setFormData(res?.data?.data)
+    const fetchCountryData = async () => {
+        await countryservices.getAll().then((res) => {
+            if (res.data.status) {
+                setCountry(res?.data.data)
             }
         })
     }
+
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
         const list = [...inputList]
@@ -69,7 +73,19 @@ const MainCategoryForm = () => {
         const { name, value } = e.target
         setStandard({ [name]: value })
     }
+    const handlecountryChange = (e) => {
+        fetchStandardData(e.target.value)
+    }
 
+    const fetchStandardData = async (id) => {
+        await standardservice
+            .getStandardbycountry({ country_code: id })
+            .then((res) => {
+                if (res.data.status) {
+                    setFormData(res.data.data)
+                }
+            })
+    }
     const handleSubmit = async (event) => {
         event.persist()
 
@@ -79,7 +95,7 @@ const MainCategoryForm = () => {
                 standard: standard,
             })
             .then((res) => {
-                if (res.data.status === true) {
+                if (res.data.status) {
                     Toast('success', res.data.message)
                     navigate('/admin/maincategoryList')
                 } else {
@@ -98,6 +114,23 @@ const MainCategoryForm = () => {
                 noValidate
                 autoComplete="off"
             >
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                        Country
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="country"
+                        name="country"
+                        onChange={handlecountryChange}
+                    >
+                        {country.map((x, i) => {
+                            return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
                         Standard

@@ -1,5 +1,5 @@
 import React from 'react'
-import SubjectForm from './SubjectForm'
+import CountryForm from './CountryForm'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
 
@@ -27,8 +27,8 @@ const AppForm = () => {
                     ]}
                 />
             </div> */}
-            <SimpleCard title="Subject Form">
-                <SubjectForm />
+            <SimpleCard title="Country Form">
+                <CountryForm />
             </SimpleCard>
             <Box py="12px" />
         </Container>

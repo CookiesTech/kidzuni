@@ -1,5 +1,5 @@
 import React from 'react'
-import SubjectForm from './SubjectForm'
+import CountriesTable from './CountriesTable'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
 
@@ -16,23 +16,24 @@ const Container = styled('div')(({ theme }) => ({
     },
 }))
 
-const AppForm = () => {
+const AppTable = () => {
     return (
         <Container>
             {/* <div className="breadcrumb">
                 <Breadcrumb
                     routeSegments={[
                         { name: 'Material', path: '/material' },
-                        { name: 'Form' },
+                        { name: 'Table' },
                     ]}
                 />
             </div> */}
-            <SimpleCard title="Subject Form">
-                <SubjectForm />
-            </SimpleCard>
+
             <Box py="12px" />
+            <SimpleCard title="Countries Master">
+                <CountriesTable />
+            </SimpleCard>
         </Container>
     )
 }
 
-export default AppForm
+export default AppTable

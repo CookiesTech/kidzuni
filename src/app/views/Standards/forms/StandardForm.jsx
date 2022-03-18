@@ -6,24 +6,54 @@ import {
     // RadioGroup,
     // FormControlLabel,
     // Checkbox,
+    CircularProgress,
 } from '@mui/material'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Box from '@mui/material/Box'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+//import { Box, styled } from '@mui/material/Box'
+import { Box, styled } from '@mui/system'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Toast from 'app/components/Toast/Toast'
-import React, { useState } from 'react'
+import { toast } from 'react-toastify'
+import React, { useState, useEffect } from 'react'
 import StandardServices from 'app/services/StandardServices'
+import CountryServices from 'app/services/CountryServices'
 import { config } from 'config'
+import { useNavigate } from 'react-router-dom'
 toast.configure()
+const StyledProgress = styled(CircularProgress)(() => ({
+    position: 'absolute',
+    top: '6px',
+    left: '25px',
+}))
 const StandardForm = () => {
+    const [loading, setLoading] = useState(true)
     const standardservice = new StandardServices(config.baseURL)
+    const countryservice = new CountryServices(config.baseURL)
+    const navigate = useNavigate()
     const [inputList, setInputList] = useState([
         { standard_name: '', description: '' },
     ])
+    const [country_code, setCounteryCode] = useState()
 
+    const [country = [], setCountry] = useState()
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    const fetchData = async () => {
+        await countryservice.getAll().then((res) => {
+            if (res.data.status) {
+                setCountry(res.data.data)
+                setLoading(false)
+            }
+        })
+    }
     // handle click event of the Remove button
     const handleRemoveClick = (index) => {
         const list = [...inputList]
@@ -34,6 +64,11 @@ const StandardForm = () => {
     // handle click event of the Add button
     const handleAddClick = () => {
         setInputList([...inputList, { standard_name: '', description: '' }])
+    }
+
+    const handleCodeChange = (e) => {
+        const { name, value } = e.target
+        setCounteryCode({ [name]: value })
     }
 
     const handleInputChange = (e, index) => {
@@ -51,14 +86,16 @@ const StandardForm = () => {
         await standardservice
             .create({
                 data: inputList,
+                code: country_code,
             })
             .then((res) => {
-                if (res.data.status === true) {
-                    Toast('success', res.data.message)
+                if (res.data.status) {
+                    toast.success(res.data.message)
+                    navigate('/admin/standardsList')
                 } else {
-                    Toast('error', res.data.message)
+                    toast.success(res.data.message)
                 }
-                setInputList([{ standard_name: '' }])
+                setInputList([{ standard_name: '', description: '' }])
             })
     }
 
@@ -71,6 +108,23 @@ const StandardForm = () => {
                 noValidate
                 autoComplete="off"
             >
+                {loading && (
+                    <StyledProgress size={54} className="buttonProgress" />
+                )}
+                <InputLabel>Country Code</InputLabel>
+                <FormControl fullWidth>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        name="country_code"
+                        onChange={handleCodeChange}
+                    >
+                        {country.map((x, i) => {
+                            return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+                <br />
                 {inputList.map((x, i) => {
                     return (
                         <>

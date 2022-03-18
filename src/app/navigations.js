@@ -31,6 +31,23 @@ export const navigations = [
     },
 
     {
+        name: 'Countries Master',
+        icon: 'favorite',
+        children: [
+            {
+                name: 'Countries List',
+                iconText: 'SI',
+                path: '/admin/countriesList',
+            },
+            {
+                name: 'Add Country',
+                iconText: 'SU',
+                path: '/admin/add_Country',
+            },
+        ],
+    },
+
+    {
         name: 'Subject Master',
         icon: 'trending_up',
         children: [

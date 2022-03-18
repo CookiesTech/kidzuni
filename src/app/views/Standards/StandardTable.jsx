@@ -96,6 +96,8 @@ const StandardTable = () => {
                     <TableRow>
                         <TableCell>S.no</TableCell>
                         <TableCell>Standard Name</TableCell>
+                        <TableCell>Country Name</TableCell>
+                        <TableCell>Country Flag</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -110,8 +112,13 @@ const StandardTable = () => {
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell align="left">
                                     {row.standard_name}
+                                </TableCell>{' '}
+                                <TableCell align="left">
+                                    {row.country_code}
                                 </TableCell>
-
+                                <TableCell align="left">
+                                    <img src={row.image} alt="..." />
+                                </TableCell>
                                 <TableCell>
                                     {/* <IconButton>
                                         <Icon
@@ -152,7 +159,7 @@ const StandardTable = () => {
                 nextIconButtonProps={{
                     'aria-label': 'Next Page',
                 }}
-                onChangePage={handleChangePage}
+                onPageChange={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
         </Box>

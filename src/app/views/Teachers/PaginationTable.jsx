@@ -9,14 +9,14 @@ import {
     TablePagination,
     CircularProgress,
 } from '@mui/material'
-
 import React, { useState, useEffect } from 'react'
 import { Box, styled, useTheme } from '@mui/system'
-
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { config } from 'config'
+import { toast } from 'react-toastify'
 import TeacherServices from 'app/services/TeacherServices'
+toast.configure()
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
     '& thead': {
@@ -104,7 +104,6 @@ const PaginationTable = (props) => {
                         Swal.fire('Deleted!', res.data.message, 'success')
                         fetchData()
                     } else {
-                        console.log(res)
                         Swal.fire('Cancelled!', +res.message, 'error')
                     }
                 })
@@ -116,6 +115,7 @@ const PaginationTable = (props) => {
             <StyledTable>
                 <TableHead>
                     <TableRow>
+                        <TableCell>S.No</TableCell>
                         <TableCell>First Name</TableCell>
                         <TableCell>Last Name</TableCell>
                         <TableCell>Qualification</TableCell>
@@ -132,6 +132,7 @@ const PaginationTable = (props) => {
                         )
                         .map((data, index) => (
                             <TableRow key={index}>
+                                <TableCell>{index + 1}</TableCell>
                                 <TableCell align="left">
                                     {data?.first_name}
                                 </TableCell>
@@ -179,7 +180,7 @@ const PaginationTable = (props) => {
                         ))}
                 </TableBody>
                 {loading && (
-                    <StyledProgress size={24} className="buttonProgress" />
+                    <StyledProgress size={44} className="buttonProgress" />
                 )}
             </StyledTable>
 

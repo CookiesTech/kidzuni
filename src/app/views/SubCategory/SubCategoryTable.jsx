@@ -51,7 +51,7 @@ const SubCategoryTable = () => {
     const [rowsPerPage, setRowsPerPage] = React.useState(5)
     const [page, setPage] = React.useState(0)
 
-    const handleChangePage = (newPage) => {
+    const handleChangePage = (event, newPage) => {
         setPage(newPage)
     }
 
@@ -91,6 +91,8 @@ const SubCategoryTable = () => {
                         <TableCell>S.no</TableCell>
                         <TableCell>MainCategory Name</TableCell>
                         <TableCell>Category Name</TableCell>
+                        <TableCell>Standard</TableCell>
+                        <TableCell>Country</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -105,7 +107,17 @@ const SubCategoryTable = () => {
                                 <TableRow key={index}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{row.mcname}</TableCell>
-                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell>
+                                        {row.name.substr(0, 20)}
+                                    </TableCell>
+                                    <TableCell>{row.standard_name}</TableCell>
+                                    <TableCell>
+                                        <img
+                                            src={row.image}
+                                            alt="..."
+                                            width={50}
+                                        />
+                                    </TableCell>
 
                                     <TableCell>
                                         {/* <IconButton>
@@ -152,7 +164,7 @@ const SubCategoryTable = () => {
                 nextIconButtonProps={{
                     'aria-label': 'Next Page',
                 }}
-                onChangePage={handleChangePage}
+                onPageChange={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
         </Box>

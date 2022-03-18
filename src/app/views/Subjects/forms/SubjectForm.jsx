@@ -73,12 +73,14 @@ const SubjectForm = () => {
                     return (
                         <div key={`check-${i}`}>
                             <TextField
+                                fullWidth
                                 name="subject_name"
                                 id="outlined-uncontrolled"
                                 label="Subject Name"
                                 onChange={(e) => handleInputChange(e, i)}
                             />
-
+                            <br />
+                            <br />
                             <div className="btn-box">
                                 {inputList.length !== 1 && (
                                     <button

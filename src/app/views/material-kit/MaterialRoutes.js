@@ -1,8 +1,6 @@
 import React, { lazy } from 'react'
 import Loadable from 'app/components/Loadable/Loadable'
 
-
-
 const AppTable = Loadable(lazy(() => import('./tables/AppTable')))
 const AppForm = Loadable(lazy(() => import('./forms/AppForm')))
 const AppButton = Loadable(lazy(() => import('./buttons/AppButton')))
@@ -17,6 +15,9 @@ const SubjectsTable = Loadable(lazy(() => import('../Subjects/AppTable')))
 const EditSubject = Loadable(
     lazy(() => import('../Subjects/forms/EditSubject'))
 )
+
+const CountryForm = Loadable(lazy(() => import('../Countries/forms/AppForm')))
+const CountriesTable = Loadable(lazy(() => import('../Countries/AppTable')))
 
 const StandardForm = Loadable(lazy(() => import('../Standards/forms/AppForm')))
 const StandardTable = Loadable(lazy(() => import('../Standards/AppTable')))
@@ -65,6 +66,15 @@ const materialRoutes = [
     {
         path: '/admin/add_subject',
         element: <SubjectForm />,
+    },
+
+    {
+        path: '/admin/countriesList',
+        element: <CountriesTable />,
+    },
+    {
+        path: '/admin/add_Country',
+        element: <CountryForm />,
     },
 
     {

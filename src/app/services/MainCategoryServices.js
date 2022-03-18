@@ -47,4 +47,13 @@ export default class MainCategoryServices extends ApiService {
         }
         return response
     }
+    getMainCategoryByStandardId = async (id) => {
+        let Url = this.baseURL + 'getMainCategoryByStandardId'
+        let response = await this.post(Url, id)
+
+        if (response.status !== 200) {
+            throw Error(response)
+        }
+        return response
+    }
 }
