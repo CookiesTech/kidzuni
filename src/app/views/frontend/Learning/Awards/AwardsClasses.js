@@ -4,34 +4,26 @@ import { Link } from "react-router-dom";
 import "../../assets/css/style.css";
 import Footer from "../../home/footer";
 import LearningMenu from "../LearningMenu";
-import SubjectService from "../../Services/SubjectService";
 import StandardService from "../../Services/StandardService";
 import { Subject } from "@mui/icons-material";
+import StandardClass from "../Classes"
+
 
 
 export default function AwardsClasses() {
 
-    let subjectservice = new SubjectService();
+
     let standardservice = new StandardService();
 
-    const [standard = [], setStandard] = useState();
+
     const [subject, setSubject] = useState();
 
     useEffect(() => {
-        standardDtata();
+
         subjectList();
     }, []);
 
-    const standardDtata = async () => {    //standard classes
-        try {
-            const data = await subjectservice.standardDtata();
 
-            setStandard(data.data.data);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
 
     const subjectList = async () => {   //subject lists
         try {
@@ -71,15 +63,10 @@ export default function AwardsClasses() {
 
                     </div>
                 </div>
-                <div className="row  sub-bg-color">
-                    <div className="class-year">
-                        {
-                            standard?.map((standradname, i) => (
-                                <span><a href="">Class {standradname.standard_name} | </a></span>
-                            ))
-                        }
-                    </div>
 
+
+                <div className="row">
+                    <StandardClass />
                 </div>
 
                 <div className="row">

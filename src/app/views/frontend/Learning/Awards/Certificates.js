@@ -67,80 +67,28 @@ export default function Certificates() {
                 <Navbar />
                 <LearningMenu />
 
-                <div className="row">
-                    <div className="awards-prices">
-                        {
-                            subject?.map((subjectname, m) => (
-                                <div className="subject-tab">
-                                    <span><a href="">{subjectname.subject_name}|</a></span>
-                                    &nbsp;<span><a href="">English |</a></span>
-                                    &nbsp;<span>
-                                        <Link className="" to={"certificates"}>
-                                            <a href="">Certificates</a>
-                                        </Link>
-                                    </span>
-
-                                </div>
-                            ))
-                        }
-
-                    </div>
-                </div>
-                <div className="row  sub-bg-color">
-                    <div className="class-year">
-                        {
-                            standard?.map((standradname, i) => (
-                                <span><a href="">Class {standradname.standard_name} | </a></span>
-                            ))
-                        }
-                    </div>
-
-                </div>
 
                 {topics?.map((topic, k) => {
-
-
                     return (
-                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
+                        <div className="row  top-space" key={`main-${k}`}>
+                            <ol class="ol-cards">
+                                <li className="sub-list">
+                                    <div class="icon"><i class="fa-brands fa-codepen"></i></div>
 
-                            <div className="sub-list">
-                                {topic.sub_topics?.map((topiclist, i) => (
-                                    <Link className="nav-link" to={'/test'}>
-                                        <li key={`slide-${i}`}>{topiclist?.name}</li>
-                                    </Link>
-                                ))}
-                            </div>
+                                    <div class="title"><span>You Have Achieved</span></div>
+                                    {topic.sub_topics?.map((topiclist, i) => (
+
+                                        <div class="descr sub-title" key={`slide-${i}`}><span>{topiclist?.name} | </span></div>
+                                    ))}
+
+                                    <div className="view-certificate">
+                                        <button className="">View Certificate</button>
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
                     )
                 })}
-
-
-                <div className="row  top-space">
-
-                    <ol class="ol-cards">
-
-                        <li >
-                            <div class="icon"><i class="fa-brands fa-codepen"></i></div>
-                            <div class="title">You Have Achieved</div>
-                            <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Aperiam voluptatum doloribus ea harum numquam iste non pariatur placeat cum maiores!</div>
-                            <div className="view-certificate">
-                                <button className="">View Certificate</button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon"><i class="fa-brands fa-html5"></i></div>
-                            <div class="title">Lorem Ipsum</div>
-                            <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatum doloribus ea harum numquam iste non pariatur placeat cum maiores!</div>
-                        </li>
-                        <li >
-                            <div class="icon"><i class="fa-brands fa-css3"></i></div>
-                            <div class="title">Lorem Ipsum</div>
-                            <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatum doloribus ea harum numquam iste non pariatur placeat cum maiores!</div>
-                        </li>
-                    </ol>
-                </div>
-
             </div>
             <Footer />
         </div>
