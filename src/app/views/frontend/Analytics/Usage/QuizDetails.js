@@ -33,29 +33,25 @@ const Heading = styled('h6')(({ theme }) => ({
     margin: 0,
     marginTop: '4px',
     fontWeight: '500',
-    fontSize: '14px',
-    color: theme.palette.primary.main,
+    fontSize: '20px',
+    color: 'black',
 }))
 
 const QuizDetails = () => {
     return (
         <Grid container spacing={3} sx={{ mb: '24px' }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
                 <StyledCard elevation={4}>
                     <ContentBox>
                         <Icon className="icon">palette</Icon>
                         <Box ml="12px">
 
                             <Heading>Answered</Heading>
-                            <Small>250</Small>&nbsp;
-                            <Small>Questions</Small>
+                            <Small sx={{ fontSize: 22 }}>250</Small>&nbsp;
+                            <Small sx={{ fontSize: 13 }}>QUESTIONS</Small>
                         </Box>
                     </ContentBox>
-                    <Tooltip title="View Details" placement="top">
-                        <IconButton>
-                            <Icon>arrow_right_alt</Icon>
-                        </IconButton>
-                    </Tooltip>
+
                 </StyledCard>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -64,41 +60,35 @@ const QuizDetails = () => {
                         <Icon className="icon">attach_money</Icon>
                         <Box ml="12px">
 
-                            <Heading>Spent</Heading>
-                            <Small sx={{ lineHeight: 1 }}>
+                            <Heading >Spent</Heading>
+                            <Small
+                                sx={{ fontSize: 22 }}>
                                 3hr 15min
-                            </Small>
-                            <Small sx={{ lineHeight: 1 }}>&nbsp;
-                                Practising
+                            </Small>&nbsp;
+                            <Small sx={{ fontSize: 13 }}>
+                                PRACTISING
                             </Small>
                         </Box>
                     </ContentBox>
-                    <Tooltip title="View Details" placement="top">
-                        <IconButton>
-                            <Icon>arrow_right_alt</Icon>
-                        </IconButton>
-                    </Tooltip>
+
                 </StyledCard>
             </Grid>
-            <Grid item xs={12} md={6}>
-                <StyledCard elevation={6}>
+            <Grid item xs={12} md={4}>
+                <StyledCard elevation={4}>
                     <ContentBox>
                         <Icon className="icon">store</Icon>
                         <Box ml="12px">
 
                             <Heading>Made Progress In</Heading>
-                            <Small>8 &nbsp; Skills</Small>
+                            <Small sx={{ fontSize: 22 }}>14</Small>&nbsp;
+                            <Small sx={{ fontSize: 13 }}>SKILLS</Small>
                         </Box>
                     </ContentBox>
-                    <Tooltip title="View Details" placement="top">
-                        <IconButton>
-                            <Icon>arrow_right_alt</Icon>
-                        </IconButton>
-                    </Tooltip>
+
                 </StyledCard>
             </Grid>
 
-        </Grid>
+        </Grid >
     )
 }
 

@@ -1980,8 +1980,12 @@ ul li .icon {
   margin-left: 14px;
   padding: 2px;
 }
+.usage-detail span {
+  color: #fff;
+}
 .usage-detail select {
   margin: 1px;
+  font-size: 13px;
   background-color: #f1eeee;
 }
 
@@ -1990,3 +1994,48 @@ ul li .icon {
   font-weight: bold;
   margin-left: 20px;
 }
+
+/*----Analytics-Progress-----*/
+.kidz-progress-details {
+  background-color: #10a0b6;
+ margin: 10px 10px 0px 10px;
+  color: #fff;
+  padding: 10px;
+}
+ .kidz-details {
+   font-size: .9em;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 25%);
+   overflow: hidden;
+   margin: 0px 10px 10px 10px;
+   
+ }
+
+ .kidz-details > div >div {
+   padding: 9px;
+   margin: 1px;
+ }
+
+ .progress-title {
+   margin-left: 24px; 
+ }
+
+ .progress-title h3{
+    font-weight: 300;
+ }
+
+
+.kidz-progress-level progress {
+    height: 25px;
+    width: 100%;
+    vertical-align: middle;
+    margin-bottom: -13px;
+}
+.kidz-progress-level {
+  padding: 8px !important;
+}
+
+
+/*---Analytics-QUestionsLog--*/
+
+
+

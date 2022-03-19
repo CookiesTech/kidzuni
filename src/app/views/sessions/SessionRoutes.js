@@ -25,8 +25,9 @@ const MathsTopics = Loadable(lazy(() => import('../frontend/Learning/MathsTopics
 const Awards = Loadable(lazy(() => import('../frontend/Learning/Awards')))
 const AwardsClasses = Loadable(lazy(() => import('../frontend/Learning/Awards/AwardsClasses')))
 const Certificates = Loadable(lazy(() => import('../frontend/Learning/Awards/Certificates')))
-const Usage = Loadable(lazy(() => import('../frontend/Analytics/Usage')))
-
+const Usage = Loadable(lazy(() => import('../frontend/Analytics/Usage/Usage')))
+const QuestionsLog = Loadable(lazy(() => import('../frontend/Analytics/QuestionsLog/QuestionsLog')))
+const Progress = Loadable(lazy(() => import('../frontend/Analytics/Progress/Progress')))
 
 const sessionRoutes = [
     {
@@ -100,6 +101,15 @@ const sessionRoutes = [
     {
         path: 'home/analytics/usage',
         element: <Usage />,
+    },
+    {
+        path: 'home/analytics/questions-log',
+        element: <QuestionsLog />,
+    },
+
+    {
+        path: 'home/analytics/progress',
+        element: <Progress />,
     },
 
     // {

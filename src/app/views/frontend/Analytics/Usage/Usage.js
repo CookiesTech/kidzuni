@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import Navbar from "../home/navbar";
-import Footer from "../home/footer";
-import AnalyticsMenu from "./AnalyticsMenus";
+import Navbar from "../../home/navbar";
+import Footer from "../../home/footer";
+import AnalyticsMenu from "../AnalyticsMenus";
 
 
 import { Grid, Card } from '@mui/material';
 
-import DoughnutChart from '../../dashboard/shared/Doughnut';
+import PieChart from './PieChart';
 // import UpgradeCard from '../../dashboard/shared/UpgradeCard';
 import { styled, useTheme } from '@mui/system';
 import QuizDetails from './QuizDetails';
@@ -49,20 +49,29 @@ const Analytics = () => {
 
                 <div className="row usage-select-sec">
                     <div className="usage-detail" >
+                        <span>Subjects :</span>&nbsp;
                         <select>
-                            <option>Subjects </option>
+                            <option>All Subjects</option>
                             <option> Maths </option>
                             <option> English </option>
-                        </select>
+                        </select>&nbsp;
 
+                        <span>Standard :</span>&nbsp;
                         <select>
-                            <option>Standard </option>
+                            <option>All Standard</option>
                             <option> Class I </option>
                             <option> Class II </option>
                             <option> Class III </option>
                             <option> Class IV </option>
                             <option> Class V </option>
                             <option> Class VI </option>
+                        </select>&nbsp;
+
+                        <span>Date Range :</span>&nbsp;
+                        <select>
+                            <option>This Month</option>
+                            <option> Yesterday </option>
+                            <option> Last Week </option>
                         </select>
                     </div>
                 </div>
@@ -83,9 +92,9 @@ const Analytics = () => {
 
                             <Grid item lg={12} md={12} sm={12} xs={12}>
                                 <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                                    <Title>Traffic Sources</Title>
+                                    <Title>PRACTICE </Title>
                                     <SubTitle>Last 30 days</SubTitle>
-                                    <DoughnutChart
+                                    <PieChart
                                         height="300px"
                                         color={[
                                             palette.primary.dark,
