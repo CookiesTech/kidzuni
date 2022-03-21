@@ -30,7 +30,7 @@ export default function StandardClass() {
                 <div className="class-year">
                     {
                         standard?.map((standradname, i) => (
-                            <span><a href="">Class {standradname.standard_name} | </a></span>
+                            <span><a href="">{standradname.standard_name} | </a></span>
                         ))
                     }
                 </div>

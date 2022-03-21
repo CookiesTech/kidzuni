@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useState, useHistory, useEffect } from "react";
 import Marks from "./time";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorMessage from "./ErrorMessage";
@@ -14,7 +15,7 @@ const Question = () => {
   const [score, setScore] = useState(0);
   const [currIndex, setCurrIndex] = useState(0);
   const [error, setError] = useState(false);
- 
+
 
   // let currQues=0;
   //console.log(currQues);
@@ -28,14 +29,18 @@ const Question = () => {
   };
 
   const handleNext = () => {   //Change questions and score increase.
-   
+
     if (selected) {
       console.log(Quiztest[currIndex]?.correctAnswer);
+      console.log(Quiztest[currIndex]);
+      if (selected === Quiztest[currIndex]?.wronganswer) {
+        toast.error("bkhbygbjmgh");
+      }
       if (selected === Quiztest[currIndex]?.correctAnswer) {
         setScore(score + 1);
         setCurrIndex(currIndex + 1);
         setSelected();
-       
+
       } else {
         setCurrIndex(currIndex + 1);
         setSelected();
@@ -43,45 +48,48 @@ const Question = () => {
     } else {    //Set Error
       toast.error("Please select an option first");
     }
+
+
+
   }
 
-  
- 
+
+
   return (
     <div>
-      <div className="row">
+      <div className="row top-space">
         <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12">
           <Marks />
-        </div>  
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <div className="timespent-score">
-              <h5>score: {score}</h5>
-            </div>
+        </div>
+        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <div className="timespent-score">
+            <h5>score: {score}</h5>
           </div>
+        </div>
       </div>
 
       <div className="question">
         <div className="singleQuestion">
           <div className="question-error-msg">
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <p>
-            {
-              Quiztest[currIndex]?.question
-            }
-          </p>
-         
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            <p>
+              {
+                Quiztest[currIndex]?.question
+              }
+            </p>
+
             <div className="select-option">
               {
                 Quiztest[currIndex]?.options.map((options, i) => (
                   <button
                     className='options-button' name="options" value={options}
                     onClick={(e) => handleCheck(e)} >{options}</button>
-                  )
+                )
                 )
               }
             </div>
           </div>
-          
+
           <div className="controls">
             {/* <Button
                     variant="contained"
@@ -95,6 +103,7 @@ const Question = () => {
                 </Button> */}
             {/* <h2>{score}:</h2> */}
 
+            {/* <Link className="" to="/test-completed"> */}
             <Button
               variant="contained"
               color="success"
@@ -104,8 +113,10 @@ const Question = () => {
               // className={`singleOption  ${selected && handleSelect(i)}`}
               onClick={() => handleNext()}
             >Submit
-             
+
             </Button>
+            {/* </Link> */}
+
           </div>
         </div>
       </div>

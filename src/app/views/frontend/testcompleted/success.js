@@ -3,6 +3,8 @@ import Navbar from "../home/navbar";
 import { Link } from "react-router-dom";
 import Footer from "../home/footer";
 import "../assets/css/style.css";
+import NavbarMenus from "../home/NavbarMenus";
+import LearningMenu from "../Learning/LearningMenu";
 
 export default function Success() {
     return (
@@ -10,8 +12,15 @@ export default function Success() {
             <div className="container">
                 <Navbar />
             </div>
+            <NavbarMenus />
+            <div className="container">
+                <LearningMenu />
+
+
+            </div>
 
             <div className="success">
+
                 <div class="planet-cont">
                     <div class="planet"></div>
                     <div class="rings"></div>
@@ -19,6 +28,13 @@ export default function Success() {
                 <div className="test-completed">
                     <div className="congarts">
                         <h1>Congratulations!</h1>
+                    </div>
+                    <div className="test-complete-class">
+                        <Link className="" to={'/home/maths'}>
+                            <span>Year-1 {'>'}</span> &nbsp;
+                        </Link>
+
+                        <span> Sub-Topic(cout 1 to 3)</span>
                     </div>
 
                     <div class="checkmark-circle">
@@ -55,7 +71,7 @@ export default function Success() {
 
 
                 <div class="star"></div>
-                <div class="star a"></div>
+                <div class="star k"></div>
                 {/* <div class="star b"></div> */}
                 {/* <div class="star c"></div>
                 <div class="star d"></div>

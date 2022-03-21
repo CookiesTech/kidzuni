@@ -64,27 +64,32 @@ export default function Courses() {
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                 <div className="member grade-sec">
                                     <div className="section-box">
-                                        <div className="class-tab-box"><span>{standardname.standard_name}</span></div>
+                                        <div className="class-tab-box"><span></span></div>
                                     </div>
                                     <div class="member-info">
-                                        <h3>Class {standardname.standard_name}</h3>
+                                        <h3>{standardname.standard_name}</h3>
 
                                         <p>{standardname.description}</p>
                                         <hr />
 
                                         {subject ? (
-                                            <div className="nkjh">
+                                            <div className="">
                                                 <span className="subject-skills">
                                                     <li>
-                                                        {
-                                                            subject?.map((subjectname, i) => (
-                                                                <h6>{subjectname.subject_name}</h6>
-                                                            ))
-                                                        }
-                                                        <Link className="nav-link" to={"/standard-Lkg"}>
-                                                            <a className="nav-link" href="">44 Expertise {'>'}</a>
-                                                        </Link>
+                                                        <div className="">
+                                                            {
+                                                                subject?.map((subjectname, i) => (
+                                                                    <h6>{subjectname.subject_name}</h6>
+                                                                ))
+                                                            }
+                                                            <Link className="nav-link" to={"/standard-Lkg"}>
+                                                                <span className="nav-link" href="">44 Expertise {'>'}</span>
+                                                            </Link>
+                                                        </div>
+
+
                                                     </li>
+
 
                                                 </span>
                                                 <div className="explore-detail">
@@ -102,10 +107,14 @@ export default function Courses() {
                             </div>
                         ))
                     }
+
                 </div>
+
             ) : (
                 <h4>Data Not Found</h4>
             )}
+
+
         </div>
     )
 }

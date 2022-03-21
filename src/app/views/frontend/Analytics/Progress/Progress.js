@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
+import NavbarMenus from "../../home/NavbarMenus"
 import Navbar from "../../home/navbar";
 import AnalyticsMenu from "../AnalyticsMenus";
 
@@ -9,6 +10,9 @@ export default function Progress() {
         <div>
             <div className="container">
                 <Navbar />
+            </div>
+            <NavbarMenus />
+            <div className="container">
                 <AnalyticsMenu />
 
                 <div className="row usage-select-sec">

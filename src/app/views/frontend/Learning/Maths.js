@@ -8,6 +8,7 @@ import SubjectService from "../Services/SubjectService";
 import TopicsService from "../Services/TopicsService";
 import Footer from "../home/footer";
 import { map } from "lodash";
+import NavbarMenus from "../home/NavbarMenus";
 
 
 export default function MathsSubject() {
@@ -73,6 +74,10 @@ export default function MathsSubject() {
         <div>
             <div className="container">
                 <Navbar />
+            </div>
+            <NavbarMenus />
+
+            <div className="container">
                 <LearningMenu />
             </div>
 
@@ -100,7 +105,7 @@ export default function MathsSubject() {
                                     <div class="course maths">
                                         <div class="course-info">
                                             {/* <span>Course</span> */}
-                                            <h5>Class {standardname.standard_name}</h5>
+                                            <h5>{standardname.standard_name}</h5>
                                         </div>
 
                                         <div className="details-sub">
@@ -114,7 +119,9 @@ export default function MathsSubject() {
                                             }
                                         </div>
                                         <div className="continue-practice">
-                                            <button class="skill-btn">See all 44 Skills</button>
+                                            <Link className="" to={"standard-LKG"}>
+                                                < button class="skill-btn">See all 44 Skills</button>
+                                            </Link>
                                         </div>
                                     </div>
 
@@ -123,7 +130,7 @@ export default function MathsSubject() {
                         }
                     </div>
                 </div>
-            </section>
+            </section >
 
             <Footer />
         </div >

@@ -87,7 +87,7 @@ const PieChart = ({ height, color = [] }) => {
                         value: 20,
                         name: 'Un Answered',
                     },
-                    { value: 15, name: 'Wrong Answered' },
+                    { value: 15, name: 'Covered Topics' },
                 ],
                 itemStyle: {
                     emphasis: {

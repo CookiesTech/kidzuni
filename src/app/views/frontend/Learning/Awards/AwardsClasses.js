@@ -7,6 +7,7 @@ import LearningMenu from "../LearningMenu";
 import StandardService from "../../Services/StandardService";
 import { Subject } from "@mui/icons-material";
 import StandardClass from "../Classes"
+import NavbarMenus from "../../home/NavbarMenus";
 
 
 
@@ -42,6 +43,11 @@ export default function AwardsClasses() {
         <div>
             <div className="container">
                 <Navbar />
+
+            </div>
+
+            <NavbarMenus />
+            <div className="container">
                 <LearningMenu />
 
                 <div className="row">
@@ -50,7 +56,7 @@ export default function AwardsClasses() {
                             subject?.map((subjectname, m) => (
                                 <div className="subject-tab">
                                     <span><a href="">{subjectname.subject_name}|</a></span>
-                                    &nbsp;<span><a href="">English |</a></span>
+                                    {/* &nbsp;<span><a href="">English |</a></span> */}
                                     &nbsp;<span>
                                         <Link className="" to={"certificates"}>
                                             <a href="">Certificates</a>
@@ -69,7 +75,7 @@ export default function AwardsClasses() {
                     <StandardClass />
                 </div>
 
-                <div className="row">
+                <div className="row awards-bg-img">
                     <div class="awards-dec">
                         <h4>Awards!</h4>
                         <div className="awards-details">
@@ -105,14 +111,14 @@ export default function AwardsClasses() {
                     </div>
                 </div>
                 <div className="award-btn">
-                    <Link className="" to={"/standard"}>
+                    <Link className="" to={"/home/maths"}>
                         <button className="kidzuni-btn home-signin">Practise more</button>
                     </Link>
 
                 </div>
-
-
             </div>
+
+
 
 
             <Footer />

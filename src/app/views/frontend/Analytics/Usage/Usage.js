@@ -2,14 +2,13 @@ import React, { Fragment } from 'react';
 import Navbar from "../../home/navbar";
 import Footer from "../../home/footer";
 import AnalyticsMenu from "../AnalyticsMenus";
-
-
 import { Grid, Card } from '@mui/material';
 
 import PieChart from './PieChart';
 // import UpgradeCard from '../../dashboard/shared/UpgradeCard';
 import { styled, useTheme } from '@mui/system';
 import QuizDetails from './QuizDetails';
+import NavbarMenus from '../../home/NavbarMenus';
 
 
 const ContentBox = styled('div')(({ theme }) => ({
@@ -45,6 +44,10 @@ const Analytics = () => {
         <div>
             <div className='container'>
                 <Navbar />
+            </div>
+
+            <NavbarMenus />
+            <div className='container'>
                 <AnalyticsMenu />
 
                 <div className="row usage-select-sec">

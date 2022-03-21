@@ -7,6 +7,7 @@ import LearningMenu from "../LearningMenu";
 import SubjectService from "../../Services/SubjectService";
 import StandardService from "../../Services/StandardService";
 import TopicsService from "../../Services/TopicsService";
+import NavbarMenus from "../../home/NavbarMenus";
 
 export default function Certificates() {
 
@@ -65,6 +66,9 @@ export default function Certificates() {
         <div>
             <div className="container">
                 <Navbar />
+            </div>
+            <NavbarMenus />
+            <div className="container">
                 <LearningMenu />
 
 
