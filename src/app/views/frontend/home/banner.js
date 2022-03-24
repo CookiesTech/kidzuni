@@ -40,9 +40,16 @@ export default function Banner() {
                             <img className="" src="assets/frontend/images/c1.png" alt="cloud" />
                         </div>
                     </div>
+
                 </div>
 
-                <button className="btn btn-success member-btn">Become a Member!</button>
+                <button className="btn btn-success member-btn">
+                    <Link className="" to={'/home/membership'}>
+                        Become a Member!
+                    </Link>
+                </button>
+
+
             </div>
 
             <div className="row top-space unique-title">

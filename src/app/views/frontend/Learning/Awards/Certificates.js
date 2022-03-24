@@ -77,12 +77,12 @@ export default function Certificates() {
                         <div className="row  top-space" key={`main-${k}`}>
                             <ol class="ol-cards">
                                 <li className="sub-list">
-                                    <div class="icon"><i class="fa-brands fa-codepen"></i></div>
+                                    <div class="icon"><img src="../../../assets/frontend/images/award-star.png" /></div>
 
                                     <div class="title"><span>You Have Achieved</span></div>
                                     {topic.sub_topics?.map((topiclist, i) => (
 
-                                        <div class="descr sub-title" key={`slide-${i}`}><span>{topiclist?.name} | </span></div>
+                                        <div class="descr sub-title" key={`slide-${i}`}><p><span>{topiclist?.name} |&nbsp;</span></p></div>
                                     ))}
 
                                     <div className="view-certificate">

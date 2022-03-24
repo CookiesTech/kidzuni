@@ -119,7 +119,11 @@ body {
 }
 .home-banner button {
   margin: auto;
-  display: none;
+  padding: 2px 5px 2px 5px;
+  position: relative;
+}
+.home-banner button a {
+  color: #fff;
 }
 .curriculam-maths {
   position: absolute;
@@ -163,7 +167,7 @@ body {
   border-radius: 5px 5px 0 0;
   padding: 0 0 42px;
   margin-bottom: 0px;
-  margin-left: 0;
+  margin-left: 0px;
   margin-right: auto;
 }
 .grade-sec .section-box {
@@ -537,7 +541,10 @@ input[type=radio]:checked ~ .option {
   font-size: 14px;
   margin-left: 5px;
 }  
-
+.sub-list .icon img {
+  height: 40px;
+  width: 30px;
+}
 .main-content {
   border: 1px solid #333;
   padding: 25px;
@@ -1737,16 +1744,18 @@ ul li .icon {
 /*-----Awrads standrad-----*/
 
 
-.awards-dec
-{
-  width: 65%;
-  margin: 20px auto;
-  /* background: #d9d7c8; */
-  border:solid 5px #0b863c;
-  padding: 10px;
-  border-radius:10px;
-  text-align: center;
-  color:black;
+.awards-dec {
+    width: 50%;
+    margin: 20px 0px 20px 140px;
+    border: solid 5px #0b863c;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+.awards-dec h4 {
+  margin-top: 30px;
 }
 .awards-details {
   padding: 25px;
@@ -1758,6 +1767,7 @@ ul li .icon {
   font-weight: normal;
   text-align: initial;
   display: inherit;
+  font-weight: bold;
 }
 .awards-details a {
     text-align: initial;
@@ -1798,13 +1808,21 @@ ul li .icon {
 }
 .sub-bg-color {
   background-color: #10a0b6;
+  margin: 10px 0px 10px 0px;
+}
+.awards-prices {
+  margin: 10px 0px 10px 90px;
+}
+.subject-tab {
+  display: contents;
+}
+.subject-tab li {
+  display: contents;
 }
 
-.subject-tab {
-  margin: 14px 0px 14px 90px;
-}
 .award-btn {
   float: right;
+  margin: 28px 20px 0px 0px;
 }
 
 /*-----certificate----*/
@@ -1839,10 +1857,10 @@ ul li .icon {
   align-items: center;
   padding: var(--colGapSize) var(--flapWidth) var(--colGapSize) 0;
   border-radius: 1rem 5rem 5rem 1rem;
-  
+  height: 127px;
   counter-increment: ol-cards-count;
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
-  box-shadow: inset 2px 1px 17px 0px #dfd8d8, inset -1px -1px 1px rgb(255 251 251 / 25%);
+ box-shadow: inset 2px 1px 17px 0px #a9a4a4, inset -1px -1px 1px rgb(255 251 251 / 25%);
 }
 
 .ol-cards > li > .icon {
@@ -1857,6 +1875,7 @@ ul li .icon {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   position: relative;
   display: grid;
+  height: 124px;
   place-items: center;
 }
 .ol-cards > li > .icon::before {
@@ -1894,14 +1913,14 @@ ul li .icon {
    top: -20px;
 }
 
-.ol-cards > li > .descr {
- display: contents;
+.ol-cards > li > .descr p {
+  margin-left: 72px;
+ 
 }
-
 .ol-cards > li > .descr span {
-  margin-left: 70px;
+  float: left;
+  margin-top: -23px;
 }
-
  .ol-cards {
   --accent-color: #4CBEB8;
  }
@@ -1911,7 +1930,7 @@ ul li .icon {
     float: right;
     right: 69px;
     border-radius: 8px;
-    color: #fff;
+    color: #000;
     border-color: #333;
     background-color: #4CBEB8;
 }
@@ -2132,3 +2151,11 @@ ul li .icon {
   left: 66%;
 }
 
+
+
+.awards-bg-img {
+  background-image: url(../images/bg-2.jpg);
+  background-size: cover;
+  height: 420px;
+ 
+}

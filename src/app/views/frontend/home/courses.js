@@ -15,7 +15,7 @@ export default function Courses() {
 
     useEffect(() => {
         standardDtata();
-        subjectList();
+
     }, []);
 
 
@@ -26,18 +26,6 @@ export default function Courses() {
     //     );
     //     console.log(data);
     // };
-
-    const subjectList = async () => {   //subject lists
-        try {
-            const data = await standardservice.subjectList();
-
-            console.log(data);
-            setSubject(data.data.data);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
 
 
 
@@ -51,6 +39,9 @@ export default function Courses() {
             console.log(e);
         }
     }
+
+
+
 
     return (
         <div >
@@ -69,39 +60,33 @@ export default function Courses() {
                                     <div class="member-info">
                                         <h3>{standardname.standard_name}</h3>
 
-                                        <p>{standardname.description}</p>
+                                        {/* <p>{standardname.description}</p> */}
                                         <hr />
 
-                                        {subject ? (
-                                            <div className="">
-                                                <span className="subject-skills">
-                                                    <li>
-                                                        <div className="">
-                                                            {
-                                                                subject?.map((subjectname, i) => (
-                                                                    <h6>{subjectname.subject_name}</h6>
-                                                                ))
-                                                            }
-                                                            <Link className="nav-link" to={"/standard-Lkg"}>
-                                                                <span className="nav-link" href="">44 Expertise {'>'}</span>
-                                                            </Link>
-                                                        </div>
+
+                                        <div className="">
+                                            <span className="subject-skills">
+                                                <li>
+                                                    <div className="">
+
+                                                        <Link className="nav-link" to={"/standard-Lkg"}>
+                                                            <span className="nav-link" href="">44 Expertise {'>'}</span>
+                                                        </Link>
+                                                    </div>
 
 
-                                                    </li>
+                                                </li>
 
 
-                                                </span>
-                                                <div className="explore-detail">
+                                            </span>
+                                            <div className="explore-detail">
 
-                                                    <Link className="nav-link" to="/standard-Lkg">
-                                                        <a className="nav-link" href="">Explore Details..</a>
-                                                    </Link>
-                                                </div>
+                                                <Link className="nav-link" to="/standard-Lkg">
+                                                    <a className="nav-link" href="">Explore Details..</a>
+                                                </Link>
                                             </div>
-                                        ) : (
-                                            <h5>No Topics Found</h5>
-                                        )}
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

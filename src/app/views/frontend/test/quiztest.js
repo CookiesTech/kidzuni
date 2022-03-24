@@ -10,7 +10,7 @@ const Quiztest = [
         option: "5 days",
         option: "7 days",
         correctAnswer: "7 days",
-        wronganswer: ["10 days", "14 days", "5 days"],
+
     },
 
     {
@@ -21,7 +21,8 @@ const Quiztest = [
         option: "11 players",
         option: "9 players",
         option: "12 players",
-        correctAnswer: "11 players"
+        correctAnswer: "11 players",
+
     },
 
     {
@@ -32,18 +33,20 @@ const Quiztest = [
         option: "Barack Obama",
         option: "Abraham Lincoln",
         option: "George Washington",
-        correctAnswer: "George Washington"
+        correctAnswer: "George Washington",
+
     },
 
     {
         id: 4,
-        question: "4. 30 days has ______ ?",
+        question: "4. 30 days has __ ?",
         options: ["January", "December", "June", "August"],
         option: "January",
         option: "December",
         option: "June",
         option: "August",
-        correctAnswer: "June"
+        correctAnswer: "June",
+
     },
 
     {
@@ -54,7 +57,8 @@ const Quiztest = [
         option: "38 hours",
         option: "48 hours",
         option: "24 hours",
-        correctAnswer: "24 hours"
+        correctAnswer: "24 hours",
+
     },
 
     {
@@ -65,18 +69,20 @@ const Quiztest = [
         option: "Long River",
         option: "River Niger",
         option: "Lake Chad",
-        correctAnswer: "River Nile"
+        correctAnswer: "River Nile",
+
     },
 
     {
         id: 7,
-        question: "7. _____ is the hottest Continent on Earth ?",
+        question: "7. ___ is the hottest Continent on Earth ?",
         options: ["Oceania", "Antarctica", "Africa", "North America"],
         option: "Oceania",
         option: "Antarctica",
         option: "Africa",
         option: "North America",
-        correctAnswer: "Africa"
+        correctAnswer: "Africa",
+
     },
 
     {
@@ -87,7 +93,8 @@ const Quiztest = [
         option: "Canada",
         option: "Africa",
         option: "Egypt",
-        correctAnswer: "Russia"
+        correctAnswer: "Russia",
+
     },
 ];
 export default Quiztest;

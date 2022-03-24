@@ -7,8 +7,10 @@ export default function LearningMenu() {
         <div>
             <div className="">
                 <div class="learning-tab top-space">
-                    <span class="tablinks active" >Recommendations
-                        <img className="img-fluid" src="../../../assets/frontend/images/recommended.png" alt="" /></span>
+                    <Link className="" to={'/home/learning/recommendation'}>
+                        <span class="tablinks active" >Recommendations
+                            <img className="img-fluid" src="../../../assets/frontend/images/recommended.png" alt="" /></span>
+                    </Link>
                     <Link className="" to={'/home/maths'}>
                         <span class="border-left">Maths
                             <img src="../../../assets/frontend/images/math-book.png" alt="" /></span>

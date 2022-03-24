@@ -16,8 +16,8 @@ const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
 const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
-// const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
-// const ParentProfile = Loadable(lazy(() => import('../frontend/profile and setting/parentprofile')))
+const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
+
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
 const Recommendation = Loadable(lazy(() => import('../frontend/Learning/Recommendations')))
@@ -60,7 +60,7 @@ const sessionRoutes = [
         element: <Test />,
     },
     {
-        path: 'membership',
+        path: 'home/membership',
         element: <Registration />,
     },
     {
@@ -112,14 +112,10 @@ const sessionRoutes = [
         element: <Progress />,
     },
 
-    // {
-    //     path: 'student-profile',
-    //     element: <StudentProfile />,
-    // },
-    // {
-    //     path: 'parent-profile',
-    //     element: <ParentProfile />,
-    // },
+    {
+        path: '/profile-setting',
+        element: <StudentProfile />,
+    },
 
     {
         path: '/session/signup',

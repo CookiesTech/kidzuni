@@ -1,41 +1,132 @@
 import React from "react";
+import Footer from "../home/footer";
+import Navbar from "../home/navbar";
+import NavbarMenus from "../home/NavbarMenus";
+import KidzDetailAdd from "./KidzDetailsAdd";
 import "./student-profile.css";
+import { Small } from 'app/components/Typography'
+import { Grid, Tabs, Tab, AppBar } from "@mui/material";
+
 
 export default function StudentProfile() {
+    const [value, setValue] = React.useState(0)
+    const handleTabs = (e, val) => {
+
+        setValue(val)
+
+    }
+
+
     return (
         <div>
-            <div className="profile-center">
-                <h2>Profile and Settings</h2>
-                <div className="row student-profile">
-                    <div className="main">
-                        <div className="info">
-                            <div className="avatar">
-                                <img src="assets/frontend/images/user-blue.png" className="prof rounded-circle img-fluid" />
-                                <div class="avatar_upload" >
-                                    <label class="upload_label">Upload
-                                        <input type="file" id="upload" />
-                                    </label>
+            <div className="container">
+                <Navbar />
+            </div>
+            <NavbarMenus />
+            <div className="container">
+                <div className="top-space profile-setting">
+                    <Grid container spacing={3} sx={{ mb: '24px' }}>
+                        <Grid item xs={12} md={12}>
+
+                            <Tabs value={value} onChange={handleTabs}>
+
+                                <Tab className="block-display" label="Membership Details" />
+                                <Tab className="block-display" label="Profile Setting" />
+                                <Tab className="block-display" label="Student Profile" />
+                            </Tabs>
+
+                            <div className="descr-border-details">
+                                <div className="content">
+                                    <TabPanel value={value} index={0} >
+                                        <div className="member-profile-set">
+                                            <h4>Membership Information</h4>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                <span>xxx</span>
+                                            </div>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>Password</Small>
+                                                <span>1234</span>
+                                            </div>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>Subject</Small>
+                                                <span>Maths</span>
+                                            </div>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>children</Small>
+                                                <span>1 Child</span>
+                                            </div>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>Plan</Small>
+                                                <span>Monthly</span>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel value={value} index={1}>
+                                        <div className="member-profile-set">
+                                            <h4>Parent Setting</h4>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                <input
+                                                    type="userName"
+                                                    name="userName"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>Password</Small>
+                                                <input
+                                                    type="password"
+                                                    name="password"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <KidzDetailAdd />
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel value={value} index={2}>
+                                        <p>bdhjvjmhydvdrfbhfvgbytf</p>
+                                    </TabPanel>
                                 </div>
                             </div>
-                            <div className="user-name">Student</div>
-                        </div>
-                        <div className="profile-info">
-                            <div className="user-filed">
-                                <label>First Name</label>  &nbsp;
-                                <input type="text" required />
-                            </div>
-                            <div className="user-filed">
-                                <label>Secret Word</label>
-                                <input type="password" required />
-                            </div>
-                        </div>
-                        <div className="profile-setting-btn">
-                            <button className="kidzuni-outline-btn">Submit</button>
-                            <button className="kidzuni-outline-btn">Cancel</button>
-                        </div>
-                    </div>
+
+                        </Grid>
+
+
+                    </Grid>
+
                 </div>
+
+
+
             </div>
+            <Footer />
         </div>
     )
+
+    function TabPanel(props) {
+        const { children, value, index } = props;
+        return (
+            <div>
+                {
+                    value === index && (
+                        <h4>{children}</h4>
+
+
+                    )
+                }
+            </div>
+        )
+    }
 }

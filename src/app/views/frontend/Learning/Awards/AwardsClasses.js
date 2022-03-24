@@ -55,11 +55,11 @@ export default function AwardsClasses() {
                         {
                             subject?.map((subjectname, m) => (
                                 <div className="subject-tab">
-                                    <span><a href="">{subjectname.subject_name}|</a></span>
-                                    {/* &nbsp;<span><a href="">English |</a></span> */}
-                                    &nbsp;<span>
+                                    <span><li><a href="">{subjectname.subject_name}&nbsp;</a></li>
+
+
                                         <Link className="" to={"certificates"}>
-                                            <a href="">Certificates</a>
+                                            <a href="">Certificates | </a>
                                         </Link>
                                     </span>
 
@@ -68,57 +68,55 @@ export default function AwardsClasses() {
                         }
 
                     </div>
+
+
+                    <div className="row">
+                        <StandardClass />
+                    </div>
                 </div>
+            </div>
+            <div className="row awards-bg-img">
+                <div class="awards-dec">
+                    <h4>Awards!</h4>
+                    <div className="awards-details">
+                        <div class="practice-details">
+                            <h6 class="details-label">You've Earned</h6>
+                        </div>
+                        <span><a href="">98 Medals</a></span>
+                        <div class="practice-details">
+                            <h6 class="details-label">You've Mastered</h6>
+                            <span><a href="">154 Skills</a></span>
+                        </div>
 
+                        <div class="practice-details">
+                            <h6 class="details-label">You've Answered</h6>
+                            <span><a href="">2335 Questions</a></span>
+                        </div>
+                        <div class="practice-details">
+                            <h6 class="details-label">You've Practised for</h6>
+                            <span><a href="">hr</a></span>
+                        </div>
 
-                <div className="row">
-                    <StandardClass />
-                </div>
+                        <div class="practice-details">
+                            <h6 class="details-label">Till Your next win</h6>
+                            <span><a href="">77 Questions & 4 Skills</a></span>
+                        </div>
 
-                <div className="row awards-bg-img">
-                    <div class="awards-dec">
-                        <h4>Awards!</h4>
-                        <div className="awards-details">
-                            <div class="practice-details">
-                                <h6 class="details-label">You've Earned</h6>
-                            </div>
-                            <span><a href="">98 Medals</a></span>
-                            <div class="practice-details">
-                                <h6 class="details-label">You've Mastered</h6>
-                                <span><a href="">154 Skills</a></span>
-                            </div>
-
-                            <div class="practice-details">
-                                <h6 class="details-label">You've Answered</h6>
-                                <span><a href="">2335 Questions</a></span>
-                            </div>
-                            <div class="practice-details">
-                                <h6 class="details-label">You've Practised for</h6>
-                                <span><a href="">hr</a></span>
-                            </div>
-
-                            <div class="practice-details">
-                                <h6 class="details-label">Till Your next win</h6>
-                                <span><a href="">77 Questions & 4 Skills</a></span>
-                            </div>
-
-                            {/* <tr class="practice-statistics-row">
+                        {/* <tr class="practice-statistics-row">
                                 <th class="stat-label">You've earned</th>
                                 <span class="stat-content medal-content">236 medals</span>
                             </tr> */}
-                        </div>
-
                     </div>
-                </div>
-                <div className="award-btn">
-                    <Link className="" to={"/home/maths"}>
-                        <button className="kidzuni-btn home-signin">Practise more</button>
-                    </Link>
+
+                    <div className="award-btn">
+                        <Link className="" to={"/home/maths"}>
+                            <button className="kidzuni-btn home-signin">Practise more</button>
+                        </Link>
+                    </div>
 
                 </div>
+                <div className="top-space"></div>
             </div>
-
-
 
 
             <Footer />

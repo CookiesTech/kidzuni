@@ -1,176 +1,60 @@
 
-  body {
-    background: #7979B2;
-    background: linear-gradient(to right, #49afa8, #0e4d81);
-    background: -webkit-linear-gradient(to right, #49afa8, #411e1e);
-    font-family: helvetica neue;
-    font-family: "Poppins", sans-serif;
-    overflow-x: hidden;
-  }
-  .profile-center h2{
-    text-align: center;
-    color: #fff;
-    position: relative;
-    top: 85px
-  }
-  .student-profile {
-    justify-content: center;
-    margin: auto;
-  }
-  .main {
-    background: #fff;
-    width: 350px;
-    height: 400px;
-    position: relative;
-    top: 100px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 20px rgba(0,0,0,.5);
-  }
-  
-  .info {
-    text-align: center;
-    height: 195px;
-    background: #fff;
-    background: linear-gradient(to left bottom, #49afa8 50%, #e8e8e8 50%);
-    background: -webkit-linear-gradient(to left bottom, #932050 50%, #e8e8e8 50%);
-    border-radius: 15px 15px 0 0;
-  }
-  
-  .user-name {
-    margin-top: 25px;
-    font-size: 20px
-  }
-  .profile-info {
-    margin-top: 35px;
-    text-align: center;
-  }
-  .profile-setting-btn {
-    text-align: center;
-  }
-  .profile-setting-btn button{
-    margin: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-  }
-  .kidzuni-outline-btn {
-   border-width: 2px;
-   border-color: #0b863c;
-  }
-  .kidzuni-outline-btn:hover {
-    color: #fff;
-    background-color: #0b863c;
-  }
-  .kidzuni-outline-btn:focus {
-    background-color: #0b863c;
-    color: #fff;
-  }
-  .user-filed label{
-    width: 170px;
-  }
-  .user-filed input {
-    margin-left: 10px;
-  }
-  hr {
-    margin-bottom: 40px;
-  }
-  
-  
-  .avatar:hover .avatar_upload, .avatar--hover .avatar_upload {
-    opacity: 1;
-  }
-  .avatar:hover .upload_label, .avatar--hover .upload_label {
-    display: block;
-  }
-  .avatar_upload{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    height: 100%;
-    background: #25cfe3;
-    background: rgba(44,205, 251, 0.6);
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 500ms;
-  }
-  .upload_label {
-    color: #111;
-    text-transform: uppercase;
-    font-size: 14px;
-    cursor: pointer;
-    white-space: nowrap;
-    padding: 4px;
-    border-radius: 3px;
-    min-width: 60px;
-    width: 100%;
-    max-width: 80px;
-    margin: auto;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    background: #fff;
-    animation: popDown 300ms 1 forwards;
-    transform: translateY(-10px);
-    opacity: 0;
-    display: none;
-    transition: background 200ms, color 200ms;
-  }
-  @keyframes popDown {
-    100%{
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  .upload_label:hover{
-    color: #fff;
-    background: #222;
-  }
-  #upload{
-    width: 100%;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    display: block;
-    padding: 0;
-    text-align: center;
-  }
- 
-  .avatar{
-    width: 140px;
-    height: 140px;
-    border-radius: 100%;
-    top: 20px;
-    border: 2px solid #fff;
-    margin: 10px auto;
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
-    margin-top: 0px;
-    transform: translateZ(0);
-    transition: border-color 200ms;
-  }
+.profile-setting {
+  border: 2px solid #837f7f;
+  border-radius: 10px;
+  box-shadow: inset 2px 1px 17px 0px #bebcbc, inset -1px -1px 1px rgb(248 247 247 / 25%);
+}
+.member-profile-set {
+  border: 2px solid;
+  width: 60%;
+  border-radius: 5px;
+  margin: auto;
+}
+.member-profile-info {
+  padding: 10px 25px 10px 25px;
+}
+.member-profile-set h4 {
+  border-bottom: 1px solid;
+  padding: 15px;
+  background: linear-gradient(90deg,#0b756c,#2a6d80);
+  color: #fff;
+}
+.member-profile-info span {
+  float: right;
+  font-size: 18px;
+  padding-top: 5px;
+}
+.parent-edit-part input {
+  width: 70%;
+    float: right;
+}
+.parent-edit-part {
+   padding: 10px 25px 25px 25px;
+}
 
-  /*------Parent profile------*/
-  .parent-setting {
-    background: #fff;
-    width: 550px;
-    height: 400px;
-    position: relative;
-    top: 100px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 20px rgba(0,0,0,.5);
-  }
-  .profile-parent {
-    padding: 30px;
-  }
-  .scroll {
-    margin:4px, 4px;
-    padding:4px;
-    height: 180px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align:justify;
-  }
- 
+/*---Add-Remove--*/
+
+.kidz-add input {
+    padding: 5px;
+    margin: 0px 0px 0px 62px;
+    float: right;
+    width: 300px;
+    font-size: 15px;
+}
+.kidz-add-btn button{
+ padding: 5px 15px 5px 15px;
+    margin: 20px;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 8px;
+    background-color: #0b756c;
+}
+
+.kidz-input-deteil {
+  padding: 10px 20px 10px 20px;
+}
+.upload-deteil {
+  margin: 0px 22px 5px 22px;
+  border-radius: 5px;
+  background-color: #e4e4e4;
+}

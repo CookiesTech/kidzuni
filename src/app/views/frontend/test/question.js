@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Hidden } from "@mui/material";
 import { useState, useHistory, useEffect } from "react";
 import Marks from "./time";
 import { Link } from "react-router-dom";
@@ -14,14 +14,17 @@ const Question = () => {
   const [selected, setSelected] = useState();
   const [score, setScore] = useState(0);
   const [currIndex, setCurrIndex] = useState(0);
-  const [error, setError] = useState(false);
-
+  const [question, setQuestion] = useState();
+  const [error, setError] = useState();
+  const [show, setShow] = useState();
 
   // let currQues=0;
   //console.log(currQues);
   // let first_question="";
 
+
   const handleCheck = (e) => {  //user selected value.
+
     let value = e.target.value;
     if (value) {
       setSelected(value);
@@ -32,28 +35,30 @@ const Question = () => {
 
     if (selected) {
       console.log(Quiztest[currIndex]?.correctAnswer);
-      console.log(Quiztest[currIndex]);
-      if (selected === Quiztest[currIndex]?.wronganswer) {
-        toast.error("bkhbygbjmgh");
-      }
+
+      // console.log(Quiztest[currIndex]?.question);
+      // console.log(error);
+
       if (selected === Quiztest[currIndex]?.correctAnswer) {
+        setError(true);
+        setError(false);
         setScore(score + 1);
         setCurrIndex(currIndex + 1);
         setSelected();
 
       } else {
+
+        setError("🦄 Sorry Incorrect Answer"); // Incorrect Answer
         setCurrIndex(currIndex + 1);
         setSelected();
       }
-    } else {    //Set Error
-      toast.error("Please select an option first");
     }
 
+    else {    //Set Error option not selected 
 
-
+      toast.error("Please select an option first");
+    }
   }
-
-
 
   return (
     <div>
@@ -71,7 +76,7 @@ const Question = () => {
       <div className="question">
         <div className="singleQuestion">
           <div className="question-error-msg">
-            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {error && <div className=""><ErrorMessage>{error}</ErrorMessage></div>}
             <p>
               {
                 Quiztest[currIndex]?.question

@@ -56,33 +56,33 @@ export default function Registration() {
             email: formValues.email,
             password: formValues.password
         };
-        
+
         try {
             const result = await axios.post(
-              "http://feltech.in/kidzuni_backend/public/api/register",
-              data
+                "http://feltech.in/kidzuni_backend/public/api/register",
+                data
             );
             // let status = result.data;
 
             // console.log(result);
-    
+
             if (result.data) {
-              try {
-                // localStorage.setItem(
-                //   "profile",
-                //   JSON.stringify(result.data.user)
-                // );
-                toast.success("user successfully registered");
-            //    navigate('/home') 
-              } catch (err) {
-                console.error(err);
-              }
+                try {
+                    // localStorage.setItem(
+                    //   "profile",
+                    //   JSON.stringify(result.data.user)
+                    // );
+                    toast.success("user successfully registered");
+                    //    navigate('/home') 
+                } catch (err) {
+                    console.error(err);
+                }
             } else {
-              alert(result.data);
+                alert(result.data);
             }
-          } catch (err) {
+        } catch (err) {
             toast.error("Email Already Exists");
-          }
+        }
 
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
@@ -138,7 +138,7 @@ export default function Registration() {
                             <form onSubmit={handleSubmit} autoComplete="off">
                                 <h4>Become a Member</h4>
                                 <div className="teaching">
-                                    <img src="assets/frontend/images/teaching.png" alt="teach" />
+                                    <img src="../../../assets/frontend/images/teaching.png" alt="teach" />
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit dui, dictum at blandit eget,
                                         vulputate sed nisi. Sed auctor volutpat turpis, eu egestas ligula. Cras justo ligula, consectetur,
@@ -245,7 +245,10 @@ export default function Registration() {
                                     </button> */}
                                 </div>
                                 <div className="submit-btn">
+                                    {/* <Link className="" to={"/home"}> */}
                                     <button className="kidzuni-btn">Join a Member</button>
+                                    {/* </Link> */}
+
                                 </div>
                             </form>
                         </div>
