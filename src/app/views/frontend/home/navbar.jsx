@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CounrtyService from "../Services/CountryService"
+import CounrtyService from "../Services/CountryService";
+import CountryDropdown from 'country-dropdown-with-flags-for-react';
+
 import "../assets/css/style.css";
 
 
 export default function Navbar() {
 
-    let counrtyservice = new CounrtyService();
+    // let counrtyservice = new CounrtyService();
 
-    const [country=[], setCountry] = useState();
+    // const [country = [], setCountry] = useState();
 
-     useEffect(() => {
-        CountryData();
+    // useEffect(() => {
+    //     CountryData();
 
-    }, []);
+    // }, []);
 
 
-    const CountryData = async () => {    //standard classes
-        try {
-            const data = await counrtyservice.CountryData();
-           
-            setCountry(data.data.data);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
+    // const CountryData = async () => {    //standard classes
+    //     try {
+    //         const data = await counrtyservice.CountryData();
+
+    //         setCountry(data.data.data);
+    //     }
+    //     catch (e) {
+    //         console.log(e);
+    //     }
+    // }
 
     return (
         <div>
@@ -36,45 +38,28 @@ export default function Navbar() {
                             <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://res.cloudinary.com/dsczip846/image/upload/v1647502976/Kidzuni/coutry/s232ygndbasqflycbak2.jpg" />
-                                    3456
-                                <span class="glyphicon glyphicon-chevron-down"></span>
-                            </button>
-                            
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header">Member name (you)</li>
-                                <li>
-                                    <a href="" title="Select this card"><img src="https://res.cloudinary.com/dsczip846/image/upload/v1647502976/Kidzuni/country/s232ygndbasqflycbak2.jpg" /> 3456</a>
-                                </li>
-                            
-                            </ul>
-                        </div>
-
-                        <select title="Select your spell" class="selectpicker">
-                            <option>Select...</option>
-                            <option data-icon="glyphicon glyphicon-eye-open" data-subtext="petrification">Eye of Medusa</option>
-                            <option data-icon="glyphicon glyphicon-fire" data-subtext="area damage">Rain of Fire</option>
-                        </select>
+                        <CountryDropdown id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us', 'in', 's']} value="" handleChange={e => console.log(e.target.value)}></CountryDropdown>
 
                         <div className="home-navbar">
                             <ul className="navbar-nav home-header">
-                                    <div className='country-list'>
-                                        <select>
-                                            {
-                                            country?.map((countryname, k) => (
-                                               
-                                                    
-                                                    <option>{countryname.code}</option>
-
-                                                 
-                                                ))
-                                            }
-                                        </select>
+                                <div className='country-list'>
+                                    <div>
+                                        <div class="img-change" id="imgoutput">
+                                            <img
+                                                id="dynamic_flag"
+                                                src="https://res.cloudinary.com/dsczip846/image/upload/v1647502976/Kidzuni/country/s232ygndbasqflycbak2.jpg"
+                                            />
+                                        </div>
                                     </div>
-                                
-                                
+                                    {/* <select>
+                                        {
+                                            country?.map((countryname, k) => (
+                                                <option>{countryname.code}</option>
+                                            ))
+                                        }
+                                    </select> */}
+                                </div>
+
                                 <div className='login-btn'>
                                     <Link to={'/login'}>
                                         <button className="kidzuni-btn home-signin">Sign In</button>
@@ -87,8 +72,8 @@ export default function Navbar() {
                 </div>
             </div>
 
-            
-            
+
+
         </div>
     )
 }

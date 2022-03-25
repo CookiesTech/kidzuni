@@ -12,13 +12,12 @@ export default function Courses() {
     const [standard = [], setStandard] = useState();
     const [subject, setSubject] = useState();
 
+    let str = ""
 
     useEffect(() => {
         standardDtata();
-
+        subjectList();
     }, []);
-
-
 
     // const subjectList = async () => {
     //     const { data } = await axios.get(
@@ -27,27 +26,37 @@ export default function Courses() {
     //     console.log(data);
     // };
 
-
-
-    const standardDtata = async () => {    //standard classes
+    const subjectList = async () => {    //subject List
         try {
-            const data = await subjectservice.standardDtata();
-
-            setStandard(data.data.data);
+            const data = await standardservice.subjectList();
+            setSubject(data.data.data);
         }
         catch (e) {
             console.log(e);
         }
     }
 
+    const standardDtata = async () => {    //standard classes
+        try {
+            const data = await subjectservice.standardDtata();
+            setStandard(data.data.data);
+            // console.log(data.data.data);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 
-
+    var myStr = "Hello World";
+    var subStr = myStr.substr(0, 4);
 
     return (
-        <div >
+        <div>
             <div className="row grade-title">
                 <h3>Explore Courses</h3>
             </div>
+            <p><strong>Old String : </strong>{myStr}</p>
+            <p><strong>New String : </strong>{subStr}</p>
             {standard.length > 0 ? (
                 <div className="row class-sec-part">
                     {
@@ -59,47 +68,47 @@ export default function Courses() {
                                     </div>
                                     <div class="member-info">
                                         <h3>{standardname.standard_name}</h3>
+                                        <p>{standardname.description}</p>
 
-                                        {/* <p>{standardname.description}</p> */}
                                         <hr />
 
+                                        {subject ? (
+                                            <div className="">
+                                                <span className="subject-skills">
+                                                    <li>
+                                                        <div className="">
+                                                            {
+                                                                subject?.map((subjectname, i) => (
+                                                                    <div>
+                                                                        <h6>{subjectname.subject_name}</h6>
+                                                                        <Link className="nav-link" to={"/standard-Lkg"}>
+                                                                            <span className="nav-link" href="">{subjectname.skills_count} Expertise {'>'}</span>
+                                                                        </Link>
+                                                                    </div>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                    </li>
+                                                </span>
+                                                <div className="explore-detail">
 
-                                        <div className="">
-                                            <span className="subject-skills">
-                                                <li>
-                                                    <div className="">
-
-                                                        <Link className="nav-link" to={"/standard-Lkg"}>
-                                                            <span className="nav-link" href="">44 Expertise {'>'}</span>
-                                                        </Link>
-                                                    </div>
-
-
-                                                </li>
-
-
-                                            </span>
-                                            <div className="explore-detail">
-
-                                                <Link className="nav-link" to="/standard-Lkg">
-                                                    <a className="nav-link" href="">Explore Details..</a>
-                                                </Link>
+                                                    <Link className="nav-link" to="/standard-Lkg">
+                                                        <a className="nav-link" href="">Explore Details..</a>
+                                                    </Link>
+                                                </div>
                                             </div>
-                                        </div>
-
+                                        ) : (
+                                            <h5>No Topics Found</h5>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         ))
                     }
-
                 </div>
-
             ) : (
                 <h4>Data Not Found</h4>
             )}
-
-
         </div>
     )
 }

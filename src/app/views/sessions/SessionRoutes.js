@@ -17,7 +17,7 @@ const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
 const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
 const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
-
+// const Country = Loadable(lazy(() => import('../frontend/home/Flag')))
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
 const Recommendation = Loadable(lazy(() => import('../frontend/Learning/Recommendations')))
@@ -46,6 +46,11 @@ const sessionRoutes = [
         path: '/login/forgotusername',
         element: <Forgotusername />,
     },
+
+    // {
+    //     path: '/flag',
+    //     element: <Country />,
+    // },
 
     {
         path: '/cart',

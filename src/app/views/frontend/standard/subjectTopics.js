@@ -13,35 +13,31 @@ export default function Topics() {
     const [standardid, setStandardid] = useState();
     const [topics, setTopics] = useState();
 
-    // useEffect(() => {
-    //     subjecttopics();
-    // }, []);
-
-
     useEffect(() => {
         async function fetchMyAPI() {
             // console.log(standardId);
             await await topicsservice.subjecttopics()
-            .then((response) => {
-                setStandardid({ standard_id: response.data })
-                setTopics(response?.data.Topics);
-            });
+                .then((response) => {
+                    setStandardid({ standard_id: response.data })
+                    setTopics(response?.data.Topics);
+                });
         }
         fetchMyAPI();
-      }, []);
-    //  console.log(formData);
+    }, []);
+
 
 
     const subjecttopics = async () => {    //parameter pass
-        const standard = { standard_id: 6 }
 
-        axios.post('http://feltech.in/kidzuni_backend/public/api/getTopics', standard)
+        axios.post('http://feltech.in/kidzuni_backend/public/api/getTopics')
             .then((response) => {
                 setStandardid({ standard_id: response.data })
 
+
                 setTopics(response?.data.Topics);
-                //  console.log(response);
+
                 // if(!response.ok) throw new Error(response);
+
                 if (response.status !== 200) {
                     throw Error(response);
                 }
@@ -97,6 +93,6 @@ export default function Topics() {
                 <div className="top-space"></div>
             </div>
         </div>
-
     )
-}  
+}
+

@@ -1,21 +1,11 @@
 import ApiService from "./ApiService";
 
 export default class SubjectService extends ApiService {
-  // subjectList = async () => {   //subject lists
-  //     try {
-  //         const data = await axios.get("http://feltech.in/kidzuni_backend/public/api/getAllSubjects");
 
-  //         // console.log(data.data.data);
-  //         setSubject(data.data.data);
-  //     }
-  //     catch (e) {
-  //         console.log(e);
-  //     }
-  // }
 
   standardDtata = async () => {
 
-    const country = { country_code: 3 }
+    const country = { country_code: 6 } //parametter
 
     let Url = `http://feltech.in/kidzuni_backend/public/api/getAllStandard`;
 
