@@ -21,12 +21,11 @@ export default function Registration() {
     const [data, setData] = useState();
     const [packageprice, setPackagePrice] = useState();
 
-    const [packagefor, setPackageFor] = useState();
-    const [type, setType] = useState();
+    const [packagefor, setPackageFor] = useState('parent');
+    const [type, setType] = useState('monthly');
 
     useEffect(() => {
         getallpackage();
-        console.log(formErrors);
 
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues);
@@ -35,11 +34,12 @@ export default function Registration() {
     }, [formErrors]);
     const getallpackage = async () => {    //subject List
         try {
-
-            const data = await packageservice.getallpackage();
+            let data1 = { package_for: packagefor, type: type }
+            const data = await packageservice.getallpackage(data1);
 
             setPackagePrice(data.data.data);
-            setInputValue(data.data.data.price);
+
+            setInputValue(data.data.data[0].price);
         }
         catch (e) {
             console.log(e);
@@ -55,7 +55,6 @@ export default function Registration() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
-        console.log(name); return false;
     };
 
 
@@ -73,18 +72,6 @@ export default function Registration() {
 
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
-
-
-    useEffect(() => {
-        getallpackage();
-        console.log(formErrors);
-
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(formValues);
-        }
-
-    }, [formErrors]);
-
 
     const validate = (values) => {
         const errors = {};
@@ -111,24 +98,41 @@ export default function Registration() {
         return errors;
     };
 
-    const handleChildrenCount = (e) => {
+    const handleChildrenCount = (e, index) => {
         let count = parseInt(e.target.value);
-        let previous_price = packageprice.price;
+
+        let previous_price = packageprice[index].price;
         if (count > 1) {
-            let additional_price = parseInt(packageprice.additional_price);
+            let additional_price = parseInt(packageprice[index].additional_price);
             count = parseInt(count - 1);
             let newPrice = parseInt(count * additional_price);
             var n1 = parseInt(previous_price);
             var n2 = parseInt(newPrice);
             var ans = n1 + n2;
-            console.log(ans);
+
             setInputValue(ans);
         }
         else {
             setInputValue();
         }
+    }
 
+    const handleTypeChange = async (e) => {
 
+        let data1 = { package_for: packagefor, type: e.target.value }
+
+        const data = await packageservice.getallpackage(data1);
+
+        if (data.data.status) {
+            setPackagePrice(data.data.data);
+            setType(e.target.value)
+            setInputValue(data.data.data[0].price);
+        }
+
+    }
+
+    const handlePackageChange = (e) => {
+        setPackageFor(e.target.value)
     }
     return (
         <div>
@@ -153,62 +157,61 @@ export default function Registration() {
                                     </p>
                                 </div>
                                 <hr />
-                                {/* <div className="choose-plan">
-                                <label>Choose a Plan</label>&nbsp;
-                                <button className="choose-option">Month</button>
-                                <button className="choose-option">Annual</button>
-                            </div>
-                            <hr /> */}
-
-                                {/* <hr /> */}
 
                                 <div className="register-info-detail">
                                     <span className="info-heading">Enter Your Details</span>
-                                    rrr
 
                                     <div className="plan-part">
                                         <span className="plan-heading">Package For</span>
-                                        <button type="button" className="select-option sub-input">
+                                        <button type="button" name="package_for" value="parent" className="select-option sub-input" onClick={handlePackageChange}>
                                             Parent
                                         </button>
-                                        <button type="button" className="select-option sub-input">
+                                        <button type="button" name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
                                             School
                                         </button>
                                     </div>
 
                                     <div className="plan-part">
                                         <span className="plan-heading">Choose a Type</span>
-                                        <button type="button" className="select-option sub-input">
+                                        <button type="button" name="type" value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
                                             Monthly
                                         </button>
-                                        <button type="button" className="select-option sub-input">
+                                        <button type="button" name="type" value="annual" className="select-option sub-input" onClick={handleTypeChange}>
                                             Annual
                                         </button>
                                     </div>
 
-                                    <div className="children-count">
-                                        <span className="plan-heading">Choose a number<br /> of Children</span>&nbsp;
-                                        {/* <Cart /> */}
-                                        <div className="cart_box">
+                                    {
+                                        packageprice?.map((packagedetail, i) => (
                                             <div>
-                                                <button type="button" className="left-btn" >{'<'}</button>
-                                                {/* <span>{counter}</span> */}
-                                                <input type="number" name="count" onChange={handleChildrenCount}></input>
-                                                <button type="button" className="right-btn" >{'>'}</button>
+                                                <div className="children-count">
+                                                    <span className="plan-heading">Choose a number<br /> of Children</span>&nbsp;
+                                                    {/* <Cart /> */}
+                                                    <div className="cart_box">
+                                                        <div>
+                                                            <button type="button" className="left-btn" >{'<'}</button>
+                                                            {/* <span>{counter}</span> */}
+                                                            <input type="number" name="count" onChange={(e) => handleChildrenCount(e, i)}></input>
+                                                            <button type="button" className="right-btn" >{'>'}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div className="maths-price">
+                                                    <span className="plan-heading">Choose desired Subjects</span>
+                                                    <button type="button" className="select-option sub-input"
+                                                        data-value="MATH" tabindex="-1" placeholder="" id="">
+                                                        <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div>
+                                                        <div className="productOption-price"><span>₹{inputValue} </span></div>
+                                                        <div className="productOption-term">per month</div>
+                                                    </button>
+                                                    adiitional price per kid:₹{packagedetail.additional_price}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="maths-price">
-                                        <span className="plan-heading">Choose desired Subjects</span>
-                                        <button type="button" className="select-option sub-input"
-                                            data-value="MATH" tabindex="-1" placeholder="" id="">
-                                            <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div>
-                                            <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                            <div className="productOption-term">per month</div>
-                                        </button>
-                                        adiitional price per kid:₹{packageprice?.additional_price}
-                                    </div>
+                                        ))
+                                    }
+
+
 
                                     <div className="name-part">
                                         <label>Name</label>
@@ -288,7 +291,7 @@ export default function Registration() {
                             <h4>Purchase Summary</h4>
                             <div className="membership-selected">Monthly Membership</div>
                             <div className="child-count">1 Child</div>
-                            <div className="selected-amt">₹449</div>
+                            <div className="selected-amt">₹{inputValue}</div>
                         </div>
                         {/* <hr /> */}
                         <div className="join-benefit">
