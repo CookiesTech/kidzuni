@@ -21,6 +21,7 @@ import MainCategoryServices from 'app/services/MainCategoryServices'
 import SubCategoryServices from 'app/services/SubCategoryServices'
 import CountryServices from 'app/services/CountryServices'
 import StandardServices from 'app/services/StandardServices'
+import SubjectServices from 'app/services/SubjectServices'
 import { useNavigate } from 'react-router-dom'
 import { config } from 'config'
 toast.configure()
@@ -29,17 +30,32 @@ const SubCategoryForm = () => {
     const subcategoryservices = new SubCategoryServices(config.baseURL)
     const standardservice = new StandardServices(config.baseURL)
     const countryservices = new CountryServices(config.baseURL)
+    const subjectservices = new SubjectServices(config.baseURL)
     const [inputList, setInputList] = useState([{ category_name: '' }])
     const [formData = [], setFormData] = useState()
     const [mc_id, setmc_id] = useState({})
+    const [sub_id, setsub_id] = useState({})
     const [standard = [], setStandard] = useState()
     const [country = [], setCountry] = useState()
+    const [subjects = [], setSubjects] = useState()
     const navigate = useNavigate()
 
     useEffect(() => {
         fetchCountryData()
+        fetchSubjectData()
         // eslint-disable-next-line no-use-before-define
     }, [])
+
+    const handleSubjectChange = (e) => {
+        setsub_id(e.target.value)
+    }
+    const fetchSubjectData = async () => {
+        await subjectservices.getAll().then((res) => {
+            if (res?.data?.status) {
+                setSubjects(res?.data?.data)
+            }
+        })
+    }
     const handleCountryChange = (e) => {
         fetchStandardData(e.target.value)
     }
@@ -47,8 +63,7 @@ const SubCategoryForm = () => {
         fetchMainCategoryData(e.target.value)
     }
     const handleCategoryChange = (e) => {
-        const { name, value } = e.target
-        setmc_id({ [name]: value })
+        setmc_id(e.target.value)
     }
     const fetchCountryData = async () => {
         await countryservices.getAll().then((res) => {
@@ -105,6 +120,7 @@ const SubCategoryForm = () => {
             .create({
                 data: inputList,
                 mc_id: mc_id,
+                subject_id: sub_id,
             })
             .then((res) => {
                 if (res.data.status === true) {
@@ -169,6 +185,25 @@ const SubCategoryForm = () => {
                     >
                         {formData.map((x, i) => {
                             return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
+                    <InputLabel>Subjects</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="subject_id"
+                        name="subject_id"
+                        onChange={handleSubjectChange}
+                    >
+                        {subjects.map((x, i) => {
+                            return (
+                                <MenuItem value={x?.id}>
+                                    {x?.subject_name}
+                                </MenuItem>
+                            )
                         })}
                     </Select>
                 </FormControl>

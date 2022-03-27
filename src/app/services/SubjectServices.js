@@ -31,7 +31,7 @@ export default class SubjectServices extends ApiService {
 
     getAll = async () => {
         let Url = this.baseURL + 'getAllSubjects'
-        let response = await this.get(Url)
+        let response = await this.post(Url)
         if (response.status !== 200) {
             throw Error(response)
         }

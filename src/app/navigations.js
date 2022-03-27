@@ -10,6 +10,22 @@ export const navigations = [
         icon: 'dashboard',
     },
     {
+        name: 'Package Master',
+        icon: 'favorite',
+        children: [
+            {
+                name: 'Packages List',
+                iconText: 'SI',
+                path: '/admin/packagesList',
+            },
+            {
+                name: 'Add Package',
+                iconText: 'SU',
+                path: '/admin/add_package',
+            },
+        ],
+    },
+    {
         label: 'PAGES',
         type: 'label',
     },

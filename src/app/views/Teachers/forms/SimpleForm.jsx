@@ -5,11 +5,15 @@ import {
     // Radio,
     // RadioGroup,
     FormControlLabel,
+    CircularProgress,
     Checkbox,
 } from '@mui/material'
-
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Box from '@mui/material/Box'
+import { Box, styled } from '@mui/system'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import React, { useState, useEffect } from 'react'
@@ -17,15 +21,21 @@ import FileUploadService from 'app/services/FileUploadService'
 import TeacherServices from 'app/services/TeacherServices'
 import SubjectServices from 'app/services/SubjectServices'
 import StandardServices from 'app/services/StandardServices'
+import CountryServices from 'app/services/CountryServices'
 import { SimpleCard } from 'app/components'
 import { config } from 'config'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 toast.configure()
-
+const StyledProgress = styled(CircularProgress)(() => ({
+    position: 'absolute',
+    top: '700px',
+    left: '250px',
+}))
 const SimpleForm = () => {
     const navigate = useNavigate()
     const fileuploadservice = new FileUploadService()
+    const countryservices = new CountryServices(config.baseURL)
     const teacherservice = new TeacherServices(config.baseURL)
     const subjectservices = new SubjectServices(config.baseURL)
     const standardservices = new StandardServices(config.baseURL)
@@ -33,31 +43,48 @@ const SimpleForm = () => {
     const [inputList, setInputList] = useState([
         { document_name: '', image: '' },
     ])
-
+    const [loading, setLoading] = useState(true)
     const [state, setState] = useState({})
     const [mapStandard, setmapStandard] = useState([])
     const [subject, setSubject] = useState([{ subject_name: [] }])
     const [standard, setStandard] = useState([{ standard_name: '' }])
+    const [country = [], setCountry] = useState()
     useEffect(() => {
-        const fetchSubjects = async () => {
-            await subjectservices.getAll().then((res) => {
-                if (res?.data?.status) {
-                    setSubject(res?.data?.data)
-                }
-            })
-        }
-
-        const fetchStandards = async () => {
-            await standardservices.getAll().then((res) => {
-                if (res?.data?.status) {
-                    setStandard(res?.data?.data)
-                }
-            })
-        }
         fetchSubjects()
-        fetchStandards()
+        fetchCountryData()
     }, [])
 
+    const fetchCountryData = async () => {
+        await countryservices.getAll().then((res) => {
+            if (res.data.status) {
+                setLoading(false)
+                setCountry(res?.data.data)
+            }
+        })
+    }
+    const fetchSubjects = async () => {
+        await subjectservices.getAll().then((res) => {
+            if (res?.data?.status) {
+                setSubject(res?.data?.data)
+            }
+        })
+    }
+
+    const handlecountryChange = (e) => {
+        setLoading(true)
+        fetchStandardData(e.target.value)
+    }
+
+    const fetchStandardData = async (id) => {
+        await standardservices
+            .getStandardbycountry({ country_code: id })
+            .then((res) => {
+                if (res.data.status) {
+                    setLoading(false)
+                    setStandard(res.data.data)
+                }
+            })
+    }
     const handleChange = (event) => {
         event.persist()
         setState({
@@ -260,6 +287,22 @@ const SimpleForm = () => {
                     </>
                 )
             })}
+            <br />
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Country</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="country"
+                    name="country"
+                    onChange={handlecountryChange}
+                >
+                    {country.map((x, i) => {
+                        return <MenuItem value={x?.id}>{x?.name}</MenuItem>
+                    })}
+                </Select>
+            </FormControl>
+            {loading && <StyledProgress size={44} className="buttonProgress" />}
             <SimpleCard>
                 {standard.map((y, i) => {
                     return (

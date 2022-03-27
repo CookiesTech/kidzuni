@@ -28,6 +28,9 @@ const MainCategoryTable = Loadable(
 const SubCategoryForm = Loadable(lazy(() => import('../SubCategory/AppForm')))
 const SubCategoryTable = Loadable(lazy(() => import('../SubCategory/AppTable')))
 
+const PackageForm = Loadable(lazy(() => import('../PackageManager/AppForm')))
+const PackageTable = Loadable(lazy(() => import('../PackageManager/AppTable')))
+
 const QuestionTable = Loadable(lazy(() => import('../Questions/AppTable')))
 //  dca9ff93a7e6e7f259b3d99470ec1020942bb26
 const AppIcon = Loadable(lazy(() => import('./icons/AppIcon')))
@@ -47,6 +50,14 @@ const AppExpansionPanel = Loadable(
 )
 
 const materialRoutes = [
+    {
+        path: '/admin/add_package',
+        element: <PackageForm />,
+    },
+    {
+        path: '/admin/packagesList',
+        element: <PackageTable />,
+    },
     {
         path: '/admin/add_teacher',
         element: <TeacherForm />,

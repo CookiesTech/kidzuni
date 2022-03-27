@@ -27,8 +27,8 @@ import { useNavigate } from 'react-router-dom'
 toast.configure()
 const StyledProgress = styled(CircularProgress)(() => ({
     position: 'absolute',
-    top: '6px',
-    left: '25px',
+    top: '80px',
+    left: '425px',
 }))
 const StandardForm = () => {
     const [loading, setLoading] = useState(true)

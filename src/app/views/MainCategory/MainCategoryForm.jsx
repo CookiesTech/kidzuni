@@ -6,12 +6,13 @@ import {
     // RadioGroup,
     // FormControlLabel,
     // Checkbox,
+    CircularProgress,
 } from '@mui/material'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import Box from '@mui/material/Box'
+import { Box, styled, useTheme } from '@mui/system'
 import TextField from '@mui/material/TextField'
 import { Span } from 'app/components/Typography'
 import { toast } from 'react-toastify'
@@ -24,13 +25,20 @@ import CountryServices from 'app/services/CountryServices'
 import { useNavigate } from 'react-router-dom'
 import { config } from 'config'
 toast.configure()
+const StyledProgress = styled(CircularProgress)(() => ({
+    position: 'absolute',
+    top: '80px',
+    left: '470px',
+}))
 const MainCategoryForm = () => {
+    const [loading, setLoading] = useState(true)
     const maincategoryservices = new MainCategoryServices(config.baseURL)
     const standardservice = new StandardServices(config.baseURL)
     const countryservices = new CountryServices(config.baseURL)
     const [inputList, setInputList] = useState([{ category_name: '' }])
     const [formData = [], setFormData] = useState()
     const [standard, setStandard] = useState({})
+    const [countrycode, setcountrycode] = useState({})
     const [country = [], setCountry] = useState()
     const navigate = useNavigate()
 
@@ -42,6 +50,7 @@ const MainCategoryForm = () => {
     const fetchCountryData = async () => {
         await countryservices.getAll().then((res) => {
             if (res.data.status) {
+                setLoading(false)
                 setCountry(res?.data.data)
             }
         })
@@ -70,10 +79,11 @@ const MainCategoryForm = () => {
     }
 
     const handleStandardChange = (e) => {
-        const { name, value } = e.target
-        setStandard({ [name]: value })
+        setStandard(e.target.value)
     }
     const handlecountryChange = (e) => {
+        setLoading(true)
+        setcountrycode(e.target.value)
         fetchStandardData(e.target.value)
     }
 
@@ -82,6 +92,7 @@ const MainCategoryForm = () => {
             .getStandardbycountry({ country_code: id })
             .then((res) => {
                 if (res.data.status) {
+                    setLoading(false)
                     setFormData(res.data.data)
                 }
             })
@@ -93,6 +104,7 @@ const MainCategoryForm = () => {
             .create({
                 data: inputList,
                 standard: standard,
+                country_code: countrycode,
             })
             .then((res) => {
                 if (res.data.status) {
@@ -130,7 +142,9 @@ const MainCategoryForm = () => {
                         })}
                     </Select>
                 </FormControl>
-
+                {loading && (
+                    <StyledProgress size={54} className="buttonProgress" />
+                )}
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
                         Standard
