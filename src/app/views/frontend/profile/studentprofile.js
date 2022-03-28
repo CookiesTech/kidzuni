@@ -96,7 +96,37 @@ export default function StudentProfile() {
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={value} index={2}>
-                                        <p>bdhjvjmhydvdrfbhfvgbytf</p>
+                                        <div className="member-profile-set">
+                                            <h4>Kidz Setting</h4>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                <input
+                                                    type="userName"
+                                                    name="userName"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>Password</Small>
+                                                <input
+                                                    type="password"
+                                                    name="password"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="parent-edit-part">
+                                                <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    class="form-control"
+                                                    required
+                                                />
+                                            </div>
+
+                                        </div>
                                     </TabPanel>
                                 </div>
                             </div>

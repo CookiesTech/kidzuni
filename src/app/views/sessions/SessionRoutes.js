@@ -12,11 +12,10 @@ const Home = Loadable(lazy(() => import('../frontend/home/Main')))
 const Standard = Loadable(lazy(() => import('../frontend/standard/index')))
 const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer')))
 const Registration = Loadable(lazy(() => import('../frontend/membership/registration')))
-const Cart = Loadable(lazy(() => import('../frontend/membership/cart')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
 const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
-const StudentProfile = Loadable(lazy(() => import('../frontend/profile and setting/studentprofile')))
+const StudentProfile = Loadable(lazy(() => import('../frontend/profile/studentprofile')))
 // const Country = Loadable(lazy(() => import('../frontend/home/Flag')))
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 const MathsSubject = Loadable(lazy(() => import('../frontend/Learning/Maths')))
@@ -35,7 +34,7 @@ const sessionRoutes = [
         element: <Home />,
     },
     {
-        path: '/login',
+        path: '/user/login',
         element: <Login />,
     },
     {
@@ -51,11 +50,6 @@ const sessionRoutes = [
     //     path: '/flag',
     //     element: <Country />,
     // },
-
-    {
-        path: '/cart',
-        element: <Cart />,
-    },
     {
         path: 'standard-:value',
         element: <Standard />,

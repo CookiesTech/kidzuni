@@ -4,23 +4,15 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useHistory } from "react-router-dom";
 import Navbar from "../home/navbar";
-import Cart from "./cart";
 import Footer from "../home/footer";
-import { register } from "serviceWorker";
 import PackageService from "../Services/PackageService"
 
 toast.configure();
 export default function Registration() {
-
     let packageservice = new PackageService();
     const [inputValue, setInputValue] = React.useState("");
-    const [counter, setCounter] = useState(0)
-    const [cart, setcart] = useState([]);
-    const [data, setData] = useState();
     const [packageprice, setPackagePrice] = useState();
-
     const [packagefor, setPackageFor] = useState('parent');
     const [type, setType] = useState('monthly');
 
@@ -57,7 +49,6 @@ export default function Registration() {
         setFormValues({ ...formValues, [name]: value });
     };
 
-
     async function handleSubmit(e) {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -65,10 +56,24 @@ export default function Registration() {
         let data = {
             name: formValues.name,
             email: formValues.email,
-            password: formValues.password
+            password: formValues.password,
+            no_of_children: 1,
+            type: "monthly",
+            package_for: "parent",
+            price: inputValue,
         };
 
+        const result = await axios.post(
+            "http://feltech.in/kidzuni_backend/public/api/register",
+            data
+        );
 
+        if (result.data.status) {
+            toast.success("user successfully registered");
+            navigate('/user/login')
+        } else {
+            toast.error(result.data.message.email);
+        }
 
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
@@ -142,7 +147,7 @@ export default function Registration() {
                     <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <div className="member-part">
                             {Object.keys(formErrors).length === 0 && isSubmit ? (
-                                <div className="ui message success">Signed in successfully</div>
+                                <div className="">Signed in successfully</div>
                             ) : (
                                 <p></p>
                             )}
@@ -191,7 +196,7 @@ export default function Registration() {
                                                         <div>
                                                             <button type="button" className="left-btn" >{'<'}</button>
                                                             {/* <span>{counter}</span> */}
-                                                            <input type="number" name="count" onChange={(e) => handleChildrenCount(e, i)}></input>
+                                                            <input type="number" name="count" onChange={(e) => handleChildrenCount(e, i)} required></input>
                                                             <button type="button" className="right-btn" >{'>'}</button>
                                                         </div>
                                                     </div>

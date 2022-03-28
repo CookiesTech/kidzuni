@@ -6,8 +6,6 @@ export default class PackageService extends ApiService {
 
     getallpackage = async (data) => {
 
-
-
         let Url = "http://feltech.in/kidzuni_backend/public/api/getPackage";
 
         let response = await this.post(Url, data);
@@ -16,7 +14,4 @@ export default class PackageService extends ApiService {
         }
         return response;
     };
-
-
-
 }  

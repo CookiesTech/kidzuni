@@ -1,15 +1,12 @@
-import useAuth from 'app/hooks/useAuth';
 import React, { useState, useHistory } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {toast} from 'react-toastify';
-
+import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { Span } from 'app/components/Typography'
-import { Card, Checkbox, FormControlLabel, Grid, Button } from '@mui/material'
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
+import { Card, Grid, Button } from '@mui/material'
+
 import "../assets/css/style.css"
 toast.configure()
 export default function Login() {
@@ -42,61 +39,53 @@ export default function Login() {
         },
     }))
 
-    const navigate = useNavigate();  // navigate page redirect
-    const [state, setState] = useState({});
-    const { register } = useAuth();
-
+    const navigate = useNavigate();
     const initialValues = { email: "", password: "" };
     const [inputValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-   
-        
-        
-    const inputChange = (e) => {    //input values
+
+    const inputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...inputValues, [name]: value });
-        console.log(name); return false;
+        // console.log(name); return false;
     };
 
-
-    async function formSubmit(e) {      //Integrate api and validate
+    async function formSubmit(e) {
         e.preventDefault();
         setFormErrors(validate(inputValues));
         setIsSubmit(true);
-        
+
         let data = {
             email: inputValues.email,
             password: inputValues.password
         }
-        // console.log(data);
-        
         let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/login", data);
-          
-            let status = result.data.user
-            console.log(status);
 
-            if (status) {
-                try {
-                    
-                  toast.success("Login Success");
-                  navigate('/home');
-                 
-                } catch (err) {
-                  console.error(err);
-                }
-              } else {
-                toast.error("Login Failed");
-              } 
+        if (result.data.status) {
 
-        // result = await result.json()
-        // localStorage.setItem("user-info", JSON.stringify(result))
+            toast.success("Login Success");
+            localStorage.setItem("user-info", JSON.stringify(result.data.user))
+            localStorage.setItem("token", JSON.stringify(result.data.token))
+            if (result.data.user.role == 3) {
+
+                localStorage.setItem("kidzcout", result.data.kids_data.length)
+            }
+            // navigate('/home')
+        } else {
+            toast.error("Login Failed");
+        }
+
+        // localStorage.setItem('login', JSON.stringify({
+        //     login: true,
+        //     token: result.token,
+        // }))
+
     }
 
-    const validate = (values) => {   //form validation 
+    const validate = (values) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
         if (!values.email) {
             errors.email = "Email is required!";
         } else if (!regex.test(values.email)) {
@@ -109,11 +98,9 @@ export default function Login() {
         } else if (values.password.length > 10) {
             errors.password = "Password cannot exceed more than 10 characters";
         }
-
         return errors;
     };
 
- 
     return (
         <div className="login-bg-setting">
             <div className='login-center'>
@@ -163,17 +150,17 @@ export default function Login() {
                                         <Link to="/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
                                     </div>
                                     <FlexBox>
-                                      
-                                            <Button
-                                                type="submit"
-                                                color="primary"
-                                                variant="contained"
-                                                sx={{ textTransform: 'capitalize' }}
-                                              
-                                            > 
-                                                Sign in
-                                            </Button>
-                                      
+
+                                        <Button
+                                            type="submit"
+                                            color="primary"
+                                            variant="contained"
+                                            sx={{ textTransform: 'capitalize' }}
+
+                                        >
+                                            Sign in
+                                        </Button>
+
                                     </FlexBox>
                                 </form>
                             </Box>
@@ -183,4 +170,4 @@ export default function Login() {
             </div>
         </div>
     )
-}
+} 

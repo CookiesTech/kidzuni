@@ -47,16 +47,16 @@ export default function Courses() {
         }
     }
 
-    var myStr = "Hello World";
-    var subStr = myStr.substr(0, 4);
+    // var myStr = "Hello World";
+    // var subStr = myStr.substr(0, 4);
 
     return (
         <div>
             <div className="row grade-title">
                 <h3>Explore Courses</h3>
             </div>
-            <p><strong>Old String : </strong>{myStr}</p>
-            <p><strong>New String : </strong>{subStr}</p>
+            {/* <p><strong>Old String : </strong>{myStr}</p>
+            <p><strong>New String : </strong>{subStr}</p> */}
             {standard.length > 0 ? (
                 <div className="row class-sec-part">
                     {
