@@ -71,7 +71,7 @@ export default function Login() {
 
                 localStorage.setItem("kidzcout", result.data.kids_data.length)
             }
-            // navigate('/home')
+            navigate('/home')
         } else {
             toast.error("Login Failed");
         }
@@ -147,7 +147,7 @@ export default function Login() {
                                     </div>
                                     <div className='register-part'>
                                         <strong> Not a Member yet?</strong>
-                                        <Link to="/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
+                                        <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
                                     </div>
                                     <FlexBox>
 

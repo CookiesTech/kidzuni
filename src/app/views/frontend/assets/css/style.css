@@ -31,7 +31,9 @@ body {
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
-
+.login-after li::marker {
+  text-decoration: none;
+}
 .dropdown>.dropdown-toggle:active {
     pointer-events: none;
     background-color: #8d33aa;

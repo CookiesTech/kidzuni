@@ -12,7 +12,7 @@ export default function Courses() {
     const [standard = [], setStandard] = useState();
     const [subject, setSubject] = useState();
 
-    let str = ""
+
 
     useEffect(() => {
         standardDtata();

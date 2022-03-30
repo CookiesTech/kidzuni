@@ -8,34 +8,35 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Small } from 'app/components/Typography'
-import axios from "axios";
 import { toast } from "react-toastify";
 import "./student-profile.css";
+import ParentService from "../Services/ParentService";
 toast.configure();
 export default function KidzDetailAdd() {
-
-
+    const [kiddata, setkiddata] = useState([]);
+    const parentservice = new ParentService();
     const [inputList, setInputList] = useState([{ userName: "", email: "", password: "" }]);
-    const [kidzaddinfo, setKidzaddinfo] = useState()
+
     let data = JSON.parse(localStorage.getItem('user-info'));
     let actual_count = parseInt(data.no_of_children);
     let filled_count = parseInt(localStorage.getItem('kidzcout'));
     let balance = actual_count - filled_count;
 
-    async function handleSubmit(e) {
+    console.log(balance);
+
+
+
+    const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJ1c2VyX2lkIjo0MywiaWF0IjoxNjQ4NjM4MDIwLCJleHAiOjE2NTY0MTQwMjAsInJvbGUiOiIzIn0.vT8WUm9O9EJW936WJnCjcx-ksLkdJUlOyQgTj_E6fVQ'
+    let addkid = [{ name: "kid1", email: "kid11@gmail.com" }, { name: "kid2", email: "kid22@gmail.com" }];
+    let kidinfo = { data: addkid };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        let kidz = {
-            name: "Kid1", email: "kid1@gmail.com", password: "12345678"
-        };
-
-        const result = await axios.post(
-            "http://feltech.in/kidzuni_backend/public/api/add_kids", kidz
-        );
-        // let status = result;
-
-        console.log(result);
-        // localStorage.setItem("token", JSON.stringify(result.data.user))
+        parentservice.add_kids(kidinfo).then((res) => {
+        })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 
     // handle input change
@@ -84,60 +85,60 @@ export default function KidzDetailAdd() {
                             <div className="kidz-detail">
                                 {inputList.map((x, i) => {
                                     return (
-                                        <form onSubmit={handleSubmit} autoComplete="off">
-                                            <div className="kidz-add">
-                                                <div className="kidz-input-deteil">
-                                                    <Small sx={{ fontSize: 16 }}>UserName</Small>
-                                                    <input
-                                                        name="userName"
-                                                        placeholder="Enter User Name"
-                                                        class="form-control"
-                                                        required
-                                                        value={x.userName}
-                                                        onChange={e => handleInputChange(e, i)}
-                                                    />
+                                        <div>
+                                            <form autoComplete="off">
+                                                <div className="kidz-add">
+                                                    <div className="kidz-input-deteil">
+                                                        <Small sx={{ fontSize: 16 }}>UserName</Small>
+                                                        <input
+                                                            name="userName"
+                                                            placeholder="Enter User Name"
+                                                            class="form-control"
+                                                            required
+                                                            value={x.userName}
+                                                            onChange={e => handleInputChange(e, i)}
+                                                        />
+                                                    </div>
+                                                    <div className="kidz-input-deteil">
+                                                        <Small sx={{ fontSize: 16 }}>Email</Small>
+                                                        <input
+                                                            className="ml10"
+                                                            name="email"
+                                                            autoComplete="off"
+                                                            class="form-control"
+                                                            required
+                                                            placeholder="Enter your Email"
+                                                            value={x.email}
+                                                            onChange={e => handleInputChange(e, i)}
+                                                        />
+                                                    </div>
+                                                    <div className="kidz-input-deteil">
+                                                        <Small sx={{ fontSize: 16 }}>password</Small>
+                                                        <input
+                                                            className="ml10"
+                                                            name="password"
+                                                            autoComplete="off"
+                                                            type="password"
+                                                            class="form-control"
+                                                            required
+                                                            placeholder="Enter your password"
+                                                            value={x.password}
+                                                            onChange={e => handleInputChange(e, i)}
+                                                        />
+                                                    </div>
 
+                                                    <div className="kidz-add-btn">
+                                                        {inputList.length !== 1 && <button
+                                                            onClick={() => handleRemoveClick(i)}>Remove</button>}
+                                                        {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
+                                                    </div>
                                                 </div>
-                                                <div className="kidz-input-deteil">
-                                                    <Small sx={{ fontSize: 16 }}>Email</Small>
-                                                    <input
-                                                        className="ml10"
-                                                        name="email"
-                                                        autoComplete="off"
-                                                        class="form-control"
-                                                        required
-                                                        placeholder="Enter your Email"
-                                                        value={x.email}
-                                                        onChange={e => handleInputChange(e, i)}
-                                                    />
-                                                </div>
-                                                <div className="kidz-input-deteil">
-                                                    <Small sx={{ fontSize: 16 }}>Password</Small>
-                                                    <input
-                                                        className="ml10"
-                                                        name="password"
-                                                        type="password"
-                                                        class="form-control"
-                                                        required
-                                                        placeholder="Enter your Password"
-                                                        value={x.password}
-                                                        onChange={e => handleInputChange(e, i)}
-                                                    />
-                                                </div>
-                                                <div className="kidz-add-btn">
-                                                    {inputList.length !== 1 && <button
-                                                        onClick={() => handleRemoveClick(i)}>Remove</button>}
-                                                    {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
-                                                </div>
-                                            </div>
-
-                                            <div className="kidz-submit-btn"><button>Submit</button></div>
-                                        </form>
+                                            </form>
+                                            <button onSubmit={handleSubmit}>Submit</button>
+                                        </div>
 
                                     );
                                 })}
-
-
                             </div>
                         </ListItemButton>
                     </List>

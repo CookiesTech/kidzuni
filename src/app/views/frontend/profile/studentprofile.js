@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../home/footer";
 import Navbar from "../home/navbar";
 import NavbarMenus from "../home/NavbarMenus";
@@ -9,11 +9,11 @@ import { Grid, Tabs, Tab, AppBar } from "@mui/material";
 
 
 export default function StudentProfile() {
+    let loginInfo = JSON.parse(localStorage?.getItem?.("user-info"));
+
     const [value, setValue] = React.useState(0)
     const handleTabs = (e, val) => {
-
         setValue(val)
-
     }
 
 
@@ -42,23 +42,25 @@ export default function StudentProfile() {
                                             <h4>Membership Information</h4>
                                             <div className="member-profile-info">
                                                 <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                <span>xxx</span>
+                                                <span>{loginInfo.name}</span>
+
                                             </div>
                                             <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                <span>1234</span>
+                                                <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                <span>{loginInfo.email}</span>
                                             </div>
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>Subject</Small>
-                                                <span>Maths</span>
-                                            </div>
+
                                             <div className="member-profile-info">
                                                 <Small sx={{ fontSize: 18 }}>children</Small>
-                                                <span>1 Child</span>
+                                                <span>{loginInfo.no_of_children}</span>
                                             </div>
                                             <div className="member-profile-info">
                                                 <Small sx={{ fontSize: 18 }}>Plan</Small>
-                                                <span>Monthly</span>
+                                                <span>{loginInfo.subscription_type}</span>
+                                            </div>
+                                            <div className="member-profile-info">
+                                                <Small sx={{ fontSize: 18 }}>Purchased Date</Small>
+                                                <span>{loginInfo.purchaed_date}</span>
                                             </div>
                                         </div>
                                     </TabPanel>
@@ -92,54 +94,23 @@ export default function StudentProfile() {
                                                     required
                                                 />
                                             </div>
-                                            <KidzDetailAdd />
+
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={value} index={2}>
                                         <div className="member-profile-set">
                                             <h4>Kidz Setting</h4>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                <input
-                                                    type="userName"
-                                                    name="userName"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                <input
-                                                    type="password"
-                                                    name="password"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
+
+                                            <KidzDetailAdd />
+
 
                                         </div>
                                     </TabPanel>
                                 </div>
                             </div>
-
                         </Grid>
-
-
                     </Grid>
-
                 </div>
-
-
-
             </div>
             <Footer />
         </div>
@@ -152,8 +123,6 @@ export default function StudentProfile() {
                 {
                     value === index && (
                         <h4>{children}</h4>
-
-
                     )
                 }
             </div>
