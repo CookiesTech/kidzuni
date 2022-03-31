@@ -19,7 +19,7 @@ export default function Banner() {
             </div> */}
 
             <div className="row home-banner">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div className="learn-section">
                         <div className="sub-maths">
                             <span className="curriculam-maths">
@@ -29,7 +29,7 @@ export default function Banner() {
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 hide-div">
                     <div className="sub-section">
                         <div className="sub-maths">
                             <span className="curriculam-maths">

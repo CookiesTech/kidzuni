@@ -31,10 +31,37 @@ body {
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
-.login-after li::marker {
-  text-decoration: none;
+.home-dropdownshow {
+  left: 82% !important;
+}
+.logout-btn {
+  padding-left: 39px;
+}
+
+.menu-bar-sec {
+  margin-top: 10px;
+    background-color: #763cff;
+    padding: 10px 0px 10px 107px;
+    margin-bottom: 2px;
+    justify-content: space-between;
+}
+.menu-bar-sec a {
+   color: #fff !important;
+}
+.home-searchbox i {
+  position: relative;
+  left: 66%;
+}
+.home-searchbox {
+  position: relative;
+  left: 31.5rem;
+}
+.user-show a {
+  color: #000;
+  font-size: 17px;
 }
 .dropdown>.dropdown-toggle:active {
+  
     pointer-events: none;
     background-color: #8d33aa;
 }
@@ -52,6 +79,7 @@ body {
 .category-list .nav-link {
   display: inline;
 }
+
 .search-topics {
   
   background-clip: padding-box;
@@ -2136,22 +2164,7 @@ ul li .icon {
   font-weight: bold;
 }
 
-/*---Navbar-chnges---*/
 
-.menu-bar-sec {
-  margin-top: 10px;
-    background-color: #763cff;
-    padding: 10px 0px 10px 107px;
-    margin-bottom: 2px;
-    justify-content: space-between;
-}
-.menu-bar-sec a {
-   color: #fff;
-}
-.home-searchbox i {
-  position: relative;
-  left: 66%;
-}
 
 
 

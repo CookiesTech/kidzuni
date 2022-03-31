@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+
+body {
+  overflow-x: hidden !important;
+}
+
+/*-------Home page-------*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+.navbar-brand img {
+    width: 140px;
+    height: auto;
+}
+.login-after {
+    position: absolute;
+    left: 159px;
+}
+.user-show a {
+   font-size: 14px;
+}
+.home-dropdownshow {
+    left: 0 !important;
+}
+.menu-bar-sec button {
+    margin-left: 200px;
+}
+.navbar-light .navbar-toggler {
+    background-color: #fff !important;
+    padding: 0px 5px 0px 5px;
+}
+.category-list .nav-link {
+    position: relative;
+    right: 52px;
+    padding: 0px 0px 8px 15px;
+    display: grid;
+}
+.home-searchbox {
+   left: -5rem;
+}
+.home-searchbox i {
+    top: 27px;
+}
+.learn-section img {
+ width: 415px;
+ margin-left: 20px;
+}
+.learn-section {
+    position: relative;
+    top: -55px;
+    left: 6px;
+}
+.sub-section {
+   margin-top: -12rem;
+}
+.home-banner button {
+    position: relative;
+   
+}
+.home-banner {
+    padding: 30px;
+    background-color: #fff !important;
+}
+.sub-section img {
+    width: 415px;
+    margin-top: 83px;
+    margin-left: 25px
+}
+}
