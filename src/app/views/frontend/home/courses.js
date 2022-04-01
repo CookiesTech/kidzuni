@@ -47,31 +47,25 @@ export default function Courses() {
         }
     }
 
-    // var myStr = "Hello World";
-    // var subStr = myStr.substr(0, 4);
-
     return (
         <div>
             <div className="row grade-title">
                 <h3>Explore Courses</h3>
             </div>
-            {/* <p><strong>Old String : </strong>{myStr}</p>
-            <p><strong>New String : </strong>{subStr}</p> */}
+
             {standard.length > 0 ? (
                 <div className="row class-sec-part">
                     {
                         standard?.map((standardname, i) => (
-                            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-4">
                                 <div className="member grade-sec">
                                     <div className="section-box">
                                         <div className="class-tab-box"><span></span></div>
                                     </div>
                                     <div class="member-info">
                                         <h3>{standardname.standard_name}</h3>
-                                        <p>{standardname.description}</p>
-
+                                        <p>{standardname.description.substring(0, 90)}...</p>
                                         <hr />
-
                                         {subject ? (
                                             <div className="">
                                                 <span className="subject-skills">
@@ -91,7 +85,6 @@ export default function Courses() {
                                                     </li>
                                                 </span>
                                                 <div className="explore-detail">
-
                                                     <Link className="nav-link" to="/standard-Lkg">
                                                         <a className="nav-link" href="">Explore Details..</a>
                                                     </Link>

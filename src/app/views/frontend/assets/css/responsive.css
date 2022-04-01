@@ -1,68 +1,305 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
 
-body {
-  overflow-x: hidden !important;
-}
 
 /*-------Home page-------*/
 
 @media (min-width: 320px) and (max-width: 480px) {
-.navbar-brand img {
-    width: 140px;
-    height: auto;
+
+    body,
+    html {
+        overflow-x: hidden !important;
+    }
+
+    .nav-home {
+        margin: 20px 0px -48px 0px;
+    }
+
+    .navbar-brand img {
+        width: 104px;
+        height: auto;
+    }
+
+    .home-menu {
+        margin-bottom: 40px;
+    }
+
+    .login-after {
+        top: -40px;
+        position: relative;
+        left: 134px !important;
+    }
+
+    .user-show a {
+        font-size: 14px;
+    }
+
+    .home-dropdownshow {
+        left: 0 !important;
+        width: -webkit-fill-available;
+    }
+
+    .menu-bar-sec button {
+        margin-left: 200px;
+    }
+
+    .menu-bar-sec {
+        padding: 10px 0px 10px 80px;
+    }
+
+    .navbar-light .navbar-toggler {
+        background-color: #fff !important;
+        padding: 0px 5px 0px 5px;
+    }
+
+    .category-list .nav-link {
+        position: relative;
+        right: 43px;
+        padding: 0px 0px 8px 15px;
+        display: grid;
+    }
+
+    .home-searchbox {
+        left: -3.5rem;
+    }
+
+    .search-topics {
+        width: 262px;
+    }
+
+    .home-searchbox i {
+        top: 27px;
+        left: 238px;
+    }
+
+    .learn-section img {
+        width: 300px;
+        margin-left: 20px;
+    }
+
+    .learn-section {
+        position: relative;
+        top: -55px;
+        left: 6px;
+    }
+
+    .sub-section {
+        margin-top: -12rem;
+    }
+
+    .curriculam-maths {
+        margin-top: 70px;
+    }
+
+    .curriculam-maths h4 {
+        font-size: 18px;
+        margin-left: 14px;
+    }
+
+    .home-banner button {
+        position: relative;
+    }
+
+    .sub-maths span {
+        margin-top: 82px;
+    }
+
+    .home-banner {
+        padding: 30px;
+        background-color: #fff !important;
+    }
+
+    .sub-section img {
+        width: 300px;
+        margin-top: 113px;
+        margin-left: 25px
+    }
+
+    .text-space-top {
+        margin-top: 115px !important;
+    }
+
+    .top-space {
+        margin-top: 0px;
+    }
+
+    .member {
+        width: 283px;
+    }
+
+    .grade-title h3 {
+        top: 30px;
+        font-size: 22px;
+    }
+
+    .subject-skills h6 {
+        margin-left: 19px;
+    }
+
+    .unique-title h3 {
+        font-size: 20px;
+    }
+
+    .unique-part img {
+        width: 38px
+    }
+
+    .unique-part h5 {
+        font-size: 16px;
+    }
+
+    .unique-part p {
+        text-align: justify;
+        word-spacing: -2px;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer img {
+        width: 174px;
+    }
+
+    .foot-text>div {
+        padding: 0px;
+    }
+
+    .foot-submenu h6 {
+        font-size: 17px
+    }
+
+    .footer-logo img {
+        text-align: center;
+    }
+
+    .foot-submenu p {
+        font-size: 15px;
+    }
+
+    .copyright {
+        padding: 15px 0px 0px 0px;
+        font-size: 13px;
+    }
+
+    /*-----Topics and Subtopics--------*/
+
+    .lkg-title h2 {
+        font-size: 22px;
+    }
+
+
+
 }
-.login-after {
-    position: absolute;
-    left: 159px;
-}
-.user-show a {
-   font-size: 14px;
-}
-.home-dropdownshow {
-    left: 0 !important;
-}
-.menu-bar-sec button {
-    margin-left: 200px;
-}
-.navbar-light .navbar-toggler {
-    background-color: #fff !important;
-    padding: 0px 5px 0px 5px;
-}
-.category-list .nav-link {
-    position: relative;
-    right: 52px;
-    padding: 0px 0px 8px 15px;
-    display: grid;
-}
-.home-searchbox {
-   left: -5rem;
-}
-.home-searchbox i {
-    top: 27px;
-}
-.learn-section img {
- width: 415px;
- margin-left: 20px;
-}
-.learn-section {
-    position: relative;
-    top: -55px;
-    left: 6px;
-}
-.sub-section {
-   margin-top: -12rem;
-}
-.home-banner button {
-    position: relative;
-   
-}
-.home-banner {
-    padding: 30px;
-    background-color: #fff !important;
-}
-.sub-section img {
-    width: 415px;
-    margin-top: 83px;
-    margin-left: 25px
-}
+
+/*-----Homepage-tab-----*/
+
+@media (min-width: 768px) and (max-width: 1080px) {
+
+    body,
+    html {
+        overflow-x: hidden;
+    }
+
+    .home-dropdownshow {
+        left: 0px !important;
+    }
+
+    .login-after {
+        position: relative;
+        left: 30px;
+    }
+
+    .navbar-toggler {
+        position: relative;
+        right: 45px;
+        background-color: #fff;
+    }
+
+    .navbar-collapse {
+        margin-top: 30px;
+        position: relative;
+        right: 78px;
+    }
+
+    .home-searchbox {
+        left: 19.5rem;
+        top: -1.5rem;
+    }
+
+    .home-searchbox i {
+        left: 59%;
+    }
+
+    .learn-section img {
+        width: 345px;
+        margin-bottom: 19px;
+    }
+
+    .sub-section img {
+        width: 345px;
+        margin-top: 40px;
+        margin-left: 104px;
+    }
+
+    .curriculam-maths {
+        margin-top: 45px;
+        font-size: 15px;
+        margin-left: 93px;
+    }
+
+    .learn-section span h4 {
+        margin-top: 58px !important;
+        font-size: 20px;
+        margin-right: 100px;
+    }
+
+    .curriculam-maths h4 {
+        font-size: 20px;
+    }
+
+    .member-btn {
+        margin-right: 30px !important;
+    }
+
+    .grade-sec {
+        margin-left: 18px
+    }
+
+    .unique-success {
+        display: none;
+    }
+
+    .unique-title h3 {
+        font-size: 22px;
+    }
+
+    .unique-part h5 {
+        font-size: 17px;
+    }
+
+    .footer {
+        padding: 25px;
+    }
+
+    .footer-logo {
+        text-align: center;
+    }
+
+    .footer img {
+        width: 175px;
+    }
+
+    .foot-submenu h6 {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .foot-submenu p {
+        font-size: 15px;
+    }
+
+    .copyright {
+        padding: 20px 0px 0px 0px;
+        font-size: 17px;
+    }
 }

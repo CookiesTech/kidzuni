@@ -14,6 +14,7 @@ export default function Topics() {
     const [topics, setTopics] = useState();
 
     useEffect(() => {
+
         async function fetchMyAPI() {
             // console.log(standardId);
             await await topicsservice.subjecttopics()
@@ -47,22 +48,6 @@ export default function Topics() {
 
     return (
         <div>
-            {/*           
-                {topics?.map((topic,k) => {
-                    return(
-                        <div key={`main-${k}`}>{topic.main_topic}
-                            <ul>
-                                
-                                {topic.sub_topics?.map((topiclist,i)  => (
-                                    
-                                    <li key={`slide-${i}`}>{topiclist?.name}</li>
-                                  
-                                ))}
-                            </ul>
-                        </div>
-                    )
-                })}     */}
-
             <div className="main-content">
                 <div className="row">
                     <div className="lkg-sec">
@@ -75,7 +60,9 @@ export default function Topics() {
                         <hr />
                     </div>
 
+
                     {topics?.map((topic, k) => {
+
                         return (
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
                                 <h5>{topic.main_topic}</h5>

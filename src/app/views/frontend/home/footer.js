@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="">
                 <div className="footer">
                     <div className="row">
-                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                        <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 ">
                             <div className="footer-logo">
                                 <img src="../../../assets/frontend/images/ct-logo.png" />
                                 <p>Kidzuni is an immersive learning experience that provides comprehensive,
@@ -14,7 +14,7 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 foot-text">
+                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12  foot-text">
                             <div className="foot-submenu">
                                 <h6>What We Offer</h6>
                                 <p>Membership</p>
@@ -22,8 +22,16 @@ export default function Footer() {
                                 <p>Curriculam</p>
                             </div>
                         </div>
+                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12  foot-text">
+                            <div className="foot-submenu about">
+                                <h6>About</h6>
+                                <p>Company</p>
+                                <p>Careers</p>
+                                <p>Terms of Service</p>
+                            </div>
+                        </div>
 
-                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 foot-text">
+                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12  foot-text">
                             <div className="foot-submenu source">
                                 <h6>Resources</h6>
                                 <p>Help Center</p>
@@ -35,15 +43,6 @@ export default function Footer() {
                                 <i className="fa fa-instagram"></i>
                                 <i className="fa fa-twitter"></i>
                                 <i className="fa fa-youtube"></i>
-                            </div>
-                        </div>
-
-                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 foot-text">
-                            <div className="foot-submenu about">
-                                <h6>About</h6>
-                                <p>Company</p>
-                                <p>Careers</p>
-                                <p>Terms of Service</p>
                             </div>
                         </div>
                     </div>

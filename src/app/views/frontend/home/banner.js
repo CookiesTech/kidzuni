@@ -4,19 +4,6 @@ import { Link } from "react-router-dom";
 export default function Banner() {
     return (
         <div>
-            {/* <div className="row">
-                <div className="category-list">
-                    <div className="learning-type">
-                        <span>Learning</span>
-                    </div>
-                    <div className="diagnostic-type">
-                        <span>Diagnostic</span>
-                    </div>
-                    <div className="analytics-type">
-                        <span>Analytics</span>
-                    </div>
-                </div>
-            </div> */}
 
             <div className="row home-banner">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -32,7 +19,7 @@ export default function Banner() {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 hide-div">
                     <div className="sub-section">
                         <div className="sub-maths">
-                            <span className="curriculam-maths">
+                            <span className="curriculam-maths text-space-top">
                                 <h4>Comperhensive Curriculam</h4>
                                 <a>Maths</a>
                                 <i className="fa fa-chevron-down"></i>
@@ -58,7 +45,7 @@ export default function Banner() {
 
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                    <div className="col-xl-8 col-lg-8 col-md-12 col-sm-8">
                         <div className="row">
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 unique-part">
                                 <div className="practice-content">
@@ -95,7 +82,7 @@ export default function Banner() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 ">
                         <div className="unique-success">
                             <img className="img-fluid" src="assets/frontend/images/success-concept-1.jpg" />
                         </div>
