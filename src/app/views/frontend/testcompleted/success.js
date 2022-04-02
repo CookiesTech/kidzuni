@@ -15,9 +15,9 @@ export default function Success() {
             <NavbarMenus />
             <div className="container">
                 <LearningMenu />
-
-
             </div>
+
+
 
             <div className="success">
 

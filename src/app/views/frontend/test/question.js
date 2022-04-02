@@ -63,10 +63,10 @@ const Question = () => {
   return (
     <div>
       <div className="row top-space">
-        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-6">
           <Marks />
         </div>
-        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
           <div className="timespent-score">
             <h5>score: {score}</h5>
           </div>
@@ -113,6 +113,7 @@ const Question = () => {
               variant="contained"
               color="success"
               size="large"
+              className="test-complete-submit"
               style={{ width: 185 }}
 
               // className={`singleOption  ${selected && handleSelect(i)}`}

@@ -606,6 +606,11 @@ input[type=radio]:checked~.option {
   text-align: center;
 }
 
+.lkg-tab .break-point {
+  display: contents;
+}
+
+
 .lkg-tab a:visited {
   color: #000;
 }

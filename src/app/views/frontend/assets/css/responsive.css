@@ -187,13 +187,100 @@
         font-size: 22px;
     }
 
+    .lkg-tab .break-point {
+        width: 75px !important;
+        display: initial !important;
+    }
 
+    .cloud-as {
+        margin-left: 8px;
+    }
 
+    /*---Test-page----*/
+    .count-time {
+        font-size: 16px;
+    }
+
+    .timespent-score h5 {
+        font-size: 16px;
+    }
+
+    .select-option button {
+        font-size: 14px;
+    }
+
+    .timespent-score {
+        left: 0px !important;
+        width: 99% !important;
+    }
+
+    .question-error-msg p {
+        font-size: 17px;
+    }
+
+    .options-button {
+        display: block;
+        margin-bottom: 10px !important;
+    }
+
+    .test-complete-submit {
+        width: 104px !important;
+    }
+
+    .question-error-msg p {
+        font-size: 17px !important;
+    }
+
+    /*------Test-completed-----*/
+    .learning-tab span {
+        padding: 1px 0px 0px 5px;
+        float: initial;
+    }
+
+    .planet-cont {
+        display: none;
+    }
+
+    .test-completed {
+        bottom: 0px;
+        top: 25px;
+    }
+
+    .congarts h1 {
+        font-size: 32px;
+        text-shadow: -2px -2px #1565c0,
+            -3px -3px #1565c0,
+            -4px -4px white;
+    }
+
+    .test-complete-class {
+        font-size: 15px;
+    }
+
+    .checkmark-circle {
+        width: 106px;
+    }
+
+    .test-completed h4 {
+        font-size: 19px;
+    }
+
+    .checkmark-circle .checkmark:after {
+        height: 64px !important;
+        width: 36px !important;
+        left: 3px;
+        top: 44px;
+    }
+
+    .checkmark-circle .background {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 /*-----Homepage-tab-----*/
 
-@media (min-width: 768px) and (max-width: 1080px) {
+@media (min-width: 768px) and (max-width: 991px) {
 
     body,
     html {
@@ -301,5 +388,19 @@
     .copyright {
         padding: 20px 0px 0px 0px;
         font-size: 17px;
+    }
+
+    /*-----Topics-page----*/
+    .lkg-tab span {
+        top: 39px;
+        font-size: 16px;
+    }
+
+    .lkg-tab img {
+        width: 45px;
+    }
+
+    .lkg-tab a {
+        padding: 3px;
     }
 }
