@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Card, Grid, Button } from '@mui/material'
 
 import "../assets/css/style.css"
+import Navbar from '../home/navbar';
+import Footer from '../home/footer';
 toast.configure()
 export default function Login() {
     const FlexBox = styled(Box)(() => ({
@@ -102,72 +104,79 @@ export default function Login() {
     };
 
     return (
-        <div className="login-bg-setting">
-            <div className='login-center'>
-                <Card className="card">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
-                    </div>
-                    <Grid container>
-                        <Grid item lg={5} md={5} sm={5} xs={12}>
-                            <ContentBox>
-                                <IMG
-                                    src="/assets/images/illustrations/posting_photo.svg"
-                                    alt=""
-                                />
-                            </ContentBox>
-                        </Grid>
-                        <Grid item lg={7} md={7} sm={7} xs={12}>
-                            <Box p={4} height="100%">
-                                <form autoComplete="off" onSubmit={formSubmit} >
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        class="form-control"
-                                        id="email"
-                                        required
-                                        value={inputValues.email}
-                                        onChange={inputChange}
-                                        placeholder="Enter Email id"
-                                    />
-                                    <div className='login-forgot'>
-                                        <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
-                                    </div>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        class="form-control"
-                                        placeholder="Password"
-                                        value={inputValues.password}
-                                        onChange={inputChange}
-                                        required
-                                    />
-                                    <div className='login-forgot'>
-                                        <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
-                                    </div>
-                                    <div className='register-part'>
-                                        <strong> Not a Member yet?</strong>
-                                        <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
-                                    </div>
-                                    <FlexBox>
-
-                                        <Button
-                                            type="submit"
-                                            color="primary"
-                                            variant="contained"
-                                            sx={{ textTransform: 'capitalize' }}
-
-                                        >
-                                            Sign in
-                                        </Button>
-
-                                    </FlexBox>
-                                </form>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Card>
+        <div>
+            <div className='container'>
+                <Navbar />
             </div>
+            <div className="login-bg-setting">
+                <div className='login-center'>
+                    <Card className="card">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Sign in to Kidzuni</h5>
+                        </div>
+                        <Grid container>
+                            <Grid item lg={5} md={5} sm={5} xs={12}>
+                                <ContentBox>
+                                    <IMG
+                                        src="/assets/images/illustrations/posting_photo.svg"
+                                        alt=""
+                                    />
+                                </ContentBox>
+                            </Grid>
+                            <Grid item lg={7} md={7} sm={7} xs={12}>
+                                <Box p={4} height="100%">
+                                    <form autoComplete="off" onSubmit={formSubmit} >
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            class="form-control"
+                                            id="email"
+                                            required
+                                            value={inputValues.email}
+                                            onChange={inputChange}
+                                            placeholder="Enter Email id"
+                                        />
+                                        <div className='login-forgot'>
+                                            <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
+                                        </div>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            class="form-control"
+                                            placeholder="Password"
+                                            value={inputValues.password}
+                                            onChange={inputChange}
+                                            required
+                                        />
+                                        <div className='login-forgot'>
+                                            <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
+                                        </div>
+                                        <div className='register-part'>
+                                            <strong> Not a Member yet?</strong>
+                                            <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
+                                        </div>
+                                        <FlexBox>
+
+                                            <Button
+                                                type="submit"
+                                                color="primary"
+                                                variant="contained"
+                                                sx={{ textTransform: 'capitalize' }}
+
+                                            >
+                                                Sign in
+                                            </Button>
+
+                                        </FlexBox>
+                                    </form>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </div>
+            </div>
+            <Footer />
         </div>
+
     )
 } 

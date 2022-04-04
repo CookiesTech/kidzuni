@@ -1,28 +1,28 @@
 import React from "react";
 import "../assets/css/style.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function LearningMenu() {
     return (
         <div>
             <div className="">
                 <div class="learning-tab top-space">
-                    <Link className="" to={'/home/learning/recommendation'}>
-                        <span class="tablinks active" >Recommendations
+                    <NavLink activeClassName="active" to={'/home/learning/recommendation'}>
+                        <span class="" >Recommendations
                             <img className="img-fluid" src="../../../assets/frontend/images/recommended.png" alt="" /></span>
-                    </Link>
-                    <Link className="" to={'/home/maths'}>
+                    </NavLink>
+                    <NavLink activeClassName="active" to={'/home/maths'}>
                         <span class="border-left">Maths
                             <img src="../../../assets/frontend/images/math-book.png" alt="" /></span>
-                    </Link>
+                    </NavLink>
 
                     <span class="border-left">English
                         <img src="../../../assets/frontend/images/english.png" alt="" /></span>
 
-                    <Link className="" to={'/home/awards/standard'}>
+                    <NavLink activeClassName="active" to={'/home/awards/standard'}>
                         <span class="border-left">Awards
                             <img src="../../../assets/frontend/images/award.png" alt="" /></span>
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
         </div>

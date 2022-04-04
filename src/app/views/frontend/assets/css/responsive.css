@@ -235,6 +235,13 @@
     .learning-tab span {
         padding: 1px 0px 0px 5px;
         float: initial;
+        font-size: 15px;
+    }
+
+    .learning-tab img {
+        width: 17px;
+        margin-left: 4px;
+        margin-right: 4px;
     }
 
     .planet-cont {
@@ -257,24 +264,213 @@
         font-size: 15px;
     }
 
+    .test-completed {
+        top: 60px;
+    }
+
+    .success {
+        height: 510px;
+    }
+
     .checkmark-circle {
-        width: 106px;
+        width: 90px;
+        top: 15px;
+    }
+
+    .score-board a {
+        font-size: 14px;
     }
 
     .test-completed h4 {
         font-size: 19px;
     }
 
+    .score-board span img {
+        width: 45px;
+    }
+
+    .score-board span {
+        margin: 0px 10px;
+    }
+
+    .score-board p {
+        font-size: 14px;
+    }
+
     .checkmark-circle .checkmark:after {
-        height: 64px !important;
-        width: 36px !important;
-        left: 3px;
-        top: 44px;
+        height: 54px !important;
+        width: 30px !important;
+        left: 5px;
+        top: 40px;
     }
 
     .checkmark-circle .background {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
+    }
+
+    /*----Recommendation--*/
+    .recommendation-text h4 {
+        font-size: 20px;
+    }
+
+    .recommendation-text p {
+        font-size: 13px;
+    }
+
+    .class-year {
+        padding: 10px !important;
+        margin: 0px !important;
+    }
+
+    .class-year span {
+        font-size: 13px;
+    }
+
+    .recommendation-text {
+        padding: 25px 25px 0px 25px;
+    }
+
+    .question-screen span {
+        margin: 10px;
+        font-size: 13px;
+    }
+
+    .question-screen {
+        padding: 7px;
+        margin: 5px;
+    }
+
+    .question-screen button {
+        margin-right: 10px;
+        margin-top: -3px;
+        font-size: 13px;
+    }
+
+    .view-part {
+        margin: 15px 0px 0px 0px;
+    }
+
+    .course .course-info,
+    .course:focus-within .course-info {
+        width: 9px !important;
+    }
+
+    .course-info {
+        height: 100%;
+        padding: 0px;
+    }
+
+    .course h6 {
+        display: block ruby;
+        margin: 8px 0px 0px 13px;
+    }
+
+    .course-info h5 {
+        display: none;
+    }
+
+    .continue-practice button {
+        margin-top: 85px;
+        margin-left: 66px;
+        font-size: 10px;
+    }
+
+    /*----Awards-page----*/
+    .awards-dec {
+        width: 85%;
+        margin: 20px 0px 20px 26px;
+        border: solid 2px #0b863c;
+        padding: 0px;
+    }
+
+    .sub-bg-color {
+        margin: 0px 12px 15px 12px;
+    }
+
+    .awards-details {
+        padding: 6px;
+        margin-top: 23px;
+    }
+
+    .practice-details h6 {
+        font-size: 12px;
+    }
+
+    .awards-details a {
+        font-size: 12px;
+        top: -26px;
+    }
+
+    .award-btn {
+        margin: 29px 20px 0px 170px;
+        font-size: 12px;
+    }
+
+    .awards-bg-img {
+        height: 338px;
+    }
+
+    .awards-prices {
+        margin: 10px 0px 10px 20px;
+        font-size: 13px;
+    }
+
+    /*----Analytics-page-----*/
+    .analytics-tab span {
+        font-size: 14px;
+        padding: 1px 0px 0px 5px !important;
+    }
+
+    .analytics-tab img {
+        margin: 8px 6px 10px 4px;
+        width: 20px;
+    }
+
+    .analytics-tab {
+        margin-top: 15px !important;
+    }
+
+    .usage-detail {
+        font-size: 13px;
+    }
+
+    .usage-detail select {
+        width: 73px;
+    }
+
+    .usage-select-sec {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .usage-title h3 {
+        margin-left: 17px;
+        font-size: 20px;
+    }
+
+    .css-1qhmto6 {
+        margin-left: -4px;
+        font-size: 6px;
+    }
+
+    .css-1wwkj73 {
+        font-size: 15px;
+    }
+
+    .css-157bw1e small {
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    /*----Progress-page-----*/
+    .progress-title h3 {
+        font-size: 18px;
+    }
+
+    /*----Question-page----*/
+    .select-option button {
+        display: initial;
     }
 }
 
@@ -402,5 +598,182 @@
 
     .lkg-tab a {
         padding: 3px;
+    }
+
+
+    /*----Test-completed-----*/
+    .learning-tab span {
+        padding: 14px 26px;
+    }
+
+    .congarts h1 {
+        margin-left: 40px;
+        font-size: 38px;
+    }
+
+    .test-complete-class {
+        margin-left: 37px;
+        font-size: 16px;
+    }
+
+    .checkmark-circle .background {
+        width: 80px;
+        height: 80px;
+    }
+
+    .checkmark-circle .checkmark:after {
+        height: 60px !important;
+        width: 34px !important;
+        left: 6px;
+        top: 45px;
+    }
+
+    .checkmark-circle {
+        width: 70px;
+    }
+
+    .test-completed h4 {
+        margin-left: 13px;
+        font-size: 20px;
+    }
+
+    /*---Recommendation----*/
+    .recommendation-text {
+        padding: 35px 35px 10px 35px;
+    }
+
+    .question-screen {
+        padding: 6px;
+    }
+
+    /*-----Maths-topics----*/
+    .course-info {
+        position: initial !important;
+    }
+
+    .course h6 {
+        display: none;
+    }
+
+    .course-info h5 {
+        font-size: 20px;
+        display: block ruby;
+        margin: auto;
+    }
+
+    .continue-practice button {
+        margin-left: 335px;
+        font-size: 13px;
+    }
+
+    .course .course-info,
+    .course:focus-within .course-info {
+        width: 130px !important;
+    }
+
+    .course-info {
+        height: 100%;
+    }
+
+    .course-info h5 {
+        margin-left: -13px !important;
+    }
+
+    .continue-practice button {
+        margin-top: 81px;
+    }
+
+    /*------Awards----*/
+    .awards-prices {
+        margin: 10px 0px 10px 41px;
+        font-size: 15px;
+    }
+
+    .class-year {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .awards-dec {
+        margin: 15px 0px 15px 65px;
+        border: solid 3px #0b863c;
+
+    }
+
+    .awards-dec h4 {
+        margin: 20px 0px 15px 0px;
+    }
+
+    .awards-bg-img {
+        height: auto;
+    }
+
+    .awards-details a {
+        top: -27px;
+    }
+
+    .awards-details {
+        padding: 1px;
+        font-size: 14px;
+    }
+
+    .practice-details h6 {
+        font-size: 14px;
+    }
+
+    .award-btn {
+        margin: 28px 20px 0px 242px;
+        font-size: 14px;
+    }
+
+    .sub-bg-color {
+        margin: 10px 0px 10px 14px;
+    }
+
+    /*---Analytics-page----*/
+    .analytics-tab span {
+        padding: 14px 61px;
+    }
+
+    .usage-title h3 {
+        font-size: 22px;
+    }
+
+    /*---Progress----*/
+    .kidz-details>div>div {
+        padding: 7px !important;
+        font-size: 13px;
+    }
+
+    .kidz-progress-level progress {
+        margin-top: -13px;
+    }
+
+    .progress-title h3 {
+        font-size: 24px;
+    }
+
+    .kidz-progress-details {
+        padding: 7px;
+        font-size: 13px;
+    }
+
+    .tabs-block>div>div>div {
+        width: 363px;
+        float: left;
+        margin-left: 20px;
+    }
+
+    .css-jpln7h-MuiTabs-scroller {
+        position: initial;
+    }
+
+    .question-error-msg p {
+        font-size: 17px !important;
+    }
+
+    .options-button {
+        padding: 4px;
+        font-size: 11px;
     }
 }

@@ -55,18 +55,13 @@ export default function AwardsClasses() {
                         {
                             subject?.map((subjectname, m) => (
                                 <div className="subject-tab">
-                                    <span><li><a href="">{subjectname.subject_name}&nbsp;</a></li>
-
-
-                                        <Link className="" to={"certificates"}>
-                                            <a href="">Certificates | </a>
-                                        </Link>
-                                    </span>
-
+                                    <span><li><a href="">{subjectname.subject_name}&nbsp;|&nbsp;</a></li> </span>
                                 </div>
                             ))
                         }
-
+                        <Link className="" to={"certificates"}>
+                            <a href="">Certificates</a>
+                        </Link>
                     </div>
 
 

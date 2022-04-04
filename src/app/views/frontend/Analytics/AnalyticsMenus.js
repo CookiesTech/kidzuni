@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 export default function AnalyticsMenu() {
@@ -7,18 +7,18 @@ export default function AnalyticsMenu() {
         <div>
             <div className="">
                 <div class="analytics-tab top-space">
-                    <Link className="" to={'/home/analytics/usage'}>
-                        <span class="tablinks active" >Usage
+                    <NavLink activeClassName="active" to={'/home/analytics/usage'}>
+                        <span class="" >Usage
                             <img className="img-fluid" src="../../../assets/frontend/images/usage.png" alt="" /></span>
-                    </Link>
-                    <Link className="" to={'/home/analytics/progress'}>
+                    </NavLink>
+                    <NavLink activeClassName="active" to={'/home/analytics/progress'}>
                         <span class="border-left">Progress
                             <img src="../../../assets/frontend/images/progress.png" alt="" /></span>
-                    </Link>
-                    <Link className="" to={'/home/analytics/questions-log'}>
+                    </NavLink>
+                    <NavLink activeClassName="active" to={'/home/analytics/questions-log'}>
                         <span class="border-left">Questions
                             <img src="../../../assets/frontend/images/question.png" alt="" /></span>
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
         </div>

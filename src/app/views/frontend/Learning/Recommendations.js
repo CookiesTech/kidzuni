@@ -1,6 +1,8 @@
 import React from "react"
 import Footer from "../home/footer"
 import Navbar from "../home/navbar"
+import { Link } from "react-router-dom"
+import NavbarMenus from "../home/NavbarMenus"
 import StandardClass from "./Classes"
 import LearningMenu from "./LearningMenu"
 
@@ -10,8 +12,10 @@ export default function Recommendation() {
         <div>
             <div className="container">
                 <Navbar />
+            </div>
+            <NavbarMenus />
+            <div className="container">
                 <LearningMenu />
-
                 <div className="row">
                     <div className="recommendation-text">
                         <h4>Recommendations</h4>
@@ -33,7 +37,9 @@ export default function Recommendation() {
                             <div className="question-screen">
                                 <img className="img-fluid" src="../../../assets/frontend/images/background-schools.jpg" alt="" />
                                 <span>Numbers and Count</span>
-                                <button className="">try this..</button>
+                                <Link className="" to={"/test"}>
+                                    <button className="">try this..</button>
+                                </Link>
                             </div>
                         </a>
 
@@ -43,7 +49,9 @@ export default function Recommendation() {
                             <div className="question-screen">
                                 <img className="img-fluid" src="../../../assets/frontend/images/certificate.jpg" alt="" />
                                 <span>Count one to three</span>
-                                <button className="">try this..</button>
+                                <Link className="" to={"/test"}>
+                                    <button className="">try this..</button>
+                                </Link>
                             </div>
                         </a>
                     </div>

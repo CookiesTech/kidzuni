@@ -3,11 +3,11 @@ import Navbar from "../home/navbar";
 import LearningMenu from "./LearningMenu";
 import "../assets/css/style.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import SubjectService from "../Services/SubjectService";
 import TopicsService from "../Services/TopicsService";
 import Footer from "../home/footer";
-import { map } from "lodash";
+import "../assets/css/style.css"
 import NavbarMenus from "../home/NavbarMenus";
 
 
@@ -90,13 +90,13 @@ export default function MathsSubject() {
                 <div className="container">
                     <div className="view-part">
                         <span>View by :&nbsp;
-                            <Link className="" to={'/home/maths'}>
+                            <NavLink activeClassName="active" to={"/home/maths"}>
                                 <a className="">Years</a>
-                            </Link>&nbsp;
+                            </NavLink>&nbsp;
                             &nbsp;
-                            <Link className="" to={'/home/maths/topics'}>
+                            <NavLink activeClassName="active" exact to={'/home/maths/topics'}>
                                 <a className="">Topics</a>
-                            </Link></span>
+                            </NavLink></span>
                     </div>
                     <div className="wave-spaces">
                         {
@@ -107,7 +107,7 @@ export default function MathsSubject() {
                                             {/* <span>Course</span> */}
                                             <h5>{standardname.standard_name}</h5>
                                         </div>
-
+                                        <h6>{standardname.standard_name}</h6>
                                         <div className="details-sub">
 
                                             {

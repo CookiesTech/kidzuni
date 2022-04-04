@@ -78,13 +78,11 @@ const QuizDetails = () => {
                     <ContentBox>
                         <Icon className="icon">store</Icon>
                         <Box ml="12px">
-
                             <Heading>Made Progress In</Heading>
                             <Small sx={{ fontSize: 22 }}>14</Small>&nbsp;
                             <Small sx={{ fontSize: 13 }}>SKILLS</Small>
                         </Box>
                     </ContentBox>
-
                 </StyledCard>
             </Grid>
 

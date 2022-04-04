@@ -1008,6 +1008,7 @@ input[type=radio]:checked~.option {
 .login-center {
   max-width: 800px;
   margin: auto;
+  padding: 35px;
 }
 
 .login-center .card {
@@ -1662,9 +1663,9 @@ input[type=radio]:checked~.option {
   margin: 15px 0px 0px 76px;
 }
 
-.view-part a {
-  color: #000;
+.view-part span {
   padding: 0px 0px 0px 10px;
+
 }
 
 .wave-spaces {
@@ -1972,7 +1973,7 @@ ul li .icon {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 79px;
+  padding: 14px 77px;
   transition: 0.3s;
   font-size: 17px;
 }
@@ -2410,13 +2411,15 @@ ul li .icon {
   font-weight: bold;
 }
 
-
-
-
-
 .awards-bg-img {
   background-image: url(../images/bg-2.jpg);
   background-size: cover;
   height: 420px;
 
+}
+
+/*------Tabactive----*/
+.active {
+  color: #763cff !important;
+  font-weight: bold !important;
 }

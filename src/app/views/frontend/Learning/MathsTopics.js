@@ -1,10 +1,8 @@
 import React from "react";
 import Navbar from "../home/navbar";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import TopicsService from "../Services/TopicsService";
-import { isNull, map } from "lodash";
 import "../assets/css/style.css";
 import Footer from "../home/footer";
 import LearningMenu from "./LearningMenu";
@@ -42,13 +40,13 @@ export default function MathsTopics() {
 
                 <div className="view-part">
                     <span>View by :&nbsp;
-                        <Link className="" to={'/home/maths'}>
+                        <NavLink to={'/home/maths'}>
                             <a className="">Years</a>
-                        </Link>&nbsp;
+                        </NavLink>&nbsp;
                         &nbsp;
-                        <Link className="" to={'/home/maths/topics'}>
+                        <NavLink to={'/home/maths/topics'}>
                             <a className="">Topics</a>
-                        </Link></span>
+                        </NavLink></span>
                 </div>
                 <div className="topics-maths">
                     {
@@ -86,8 +84,8 @@ export default function MathsTopics() {
                                     <h4>Data Not Found</h4>
                                 )}
 
-
-                                {/* <li className="topic-two">
+                                {/* 
+                                <li className="topic-two">
                                     <div class="icon"><i class="fa-brands fa-html5"></i></div>
                                     <div class="title">n,j</div>
                                     <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
