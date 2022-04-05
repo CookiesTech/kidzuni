@@ -10,6 +10,7 @@ import { Grid, Tabs, Tab, AppBar } from "@mui/material";
 
 export default function StudentProfile() {
     let loginInfo = JSON.parse(localStorage?.getItem?.("user-info"));
+    let kidsinfo = JSON.parse(localStorage?.getItem?.('kidz_info'));
 
     const [value, setValue] = React.useState(0)
     const handleTabs = (e, val) => {
@@ -31,15 +32,15 @@ export default function StudentProfile() {
                             <Tabs value={value} onChange={handleTabs}>
 
                                 <Tab className="block-display" label="Membership Details" />
-                                <Tab className="block-display" label="Profile Setting" />
-                                <Tab className="block-display" label="Student Profile" />
+                                <Tab className="block-display" label="Kidz Profiles" />
+                                <Tab className="block-display" label="Add Kidz" />
                             </Tabs>
 
                             <div className="descr-border-details">
                                 <div className="content">
                                     <TabPanel value={value} index={0} >
                                         <div className="member-profile-set">
-                                            <h4>Membership Information</h4>
+                                            <h4>Parent Membership Information</h4>
                                             <div className="member-profile-info">
                                                 <Small sx={{ fontSize: 18 }}>UserName</Small>
                                                 <span>{loginInfo.name}</span>
@@ -65,41 +66,48 @@ export default function StudentProfile() {
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={value} index={1}>
-                                        <div className="member-profile-set">
-                                            <h4>Parent Setting</h4>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                <input
-                                                    type="userName"
-                                                    name="userName"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                <input
-                                                    type="password"
-                                                    name="password"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="parent-edit-part">
-                                                <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    class="form-control"
-                                                    required
-                                                />
-                                            </div>
+                                        {
+                                            kidsinfo.map((data, i) => (
 
-                                        </div>
+                                                <div className="member-profile-set">
+                                                    <h4>Kidz Details -{'>'} {data.name}</h4>
+                                                    <div className="parent-edit-part">
+                                                        <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                        <input
+                                                            type="userName"
+                                                            name="userName"
+                                                            class="form-control"
+                                                            value={data.name}
+                                                            required
+                                                        />
+                                                    </div>
+                                                    {/* <div className="parent-edit-part">
+                                                        <Small sx={{ fontSize: 18 }}>Password</Small>
+                                                        <input
+                                                            type="password"
+                                                            name="password"
+                                                            class="form-control"
+                                                            value={data.password}
+                                                            required
+                                                        />
+                                                    </div> */}
+                                                    <div className="parent-edit-part">
+                                                        <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                        <input
+                                                            type="email"
+                                                            name="email"
+                                                            class="form-control"
+                                                            value={data.email}
+                                                            required
+                                                        />
+                                                    </div>
+
+                                                </div>
+                                            ))
+                                        }
                                     </TabPanel>
                                     <TabPanel value={value} index={2}>
                                         <div className="member-profile-set">
-                                            <h4>Kidz Setting</h4>
 
                                             <KidzDetailAdd />
 

@@ -4,35 +4,40 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import Icon from '@mui/material/Icon';
+import { green } from '@mui/material/colors';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Small } from 'app/components/Typography'
 import { toast } from "react-toastify";
 import "./student-profile.css";
+import 'react-toastify/dist/ReactToastify.css'
 import ParentService from "../Services/ParentService";
+import { useNavigate } from 'react-router-dom';
 toast.configure();
 export default function KidzDetailAdd() {
-    const [kiddata, setkiddata] = useState([]);
-    const parentservice = new ParentService();
-    const [inputList, setInputList] = useState([{ userName: "", email: "", password: "" }]);
+    const navigate = useNavigate();
 
-    let data = JSON.parse(localStorage.getItem('user-info'));
+    const parentservice = new ParentService();
+    const [inputList, setInputList] = useState([{ name: "", email: "", password: "" }]);
+
+    let data = JSON.parse(localStorage?.getItem?.('user-info'));
     let actual_count = parseInt(data.no_of_children);
-    let filled_count = parseInt(localStorage.getItem('kidzcout'));
+    let filled_count = parseInt(localStorage?.getItem?.('kidz_cout'));
     let balance = actual_count - filled_count;
 
-    console.log(balance);
-
-
-
-    const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJ1c2VyX2lkIjo0MywiaWF0IjoxNjQ4NjM4MDIwLCJleHAiOjE2NTY0MTQwMjAsInJvbGUiOiIzIn0.vT8WUm9O9EJW936WJnCjcx-ksLkdJUlOyQgTj_E6fVQ'
-    let addkid = [{ name: "kid1", email: "kid11@gmail.com" }, { name: "kid2", email: "kid22@gmail.com" }];
-    let kidinfo = { data: addkid };
+    let kidinfo = { data: inputList };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         parentservice.add_kids(kidinfo).then((res) => {
+            if (res.data.status) {
+                localStorage.setItem('kidz_cout', res?.data?.filled_count)
+                toast.success(res.data.message)
+                navigate('/profile-setting')
+            } else {
+                toast.error(res.data.message)
+            }
         })
             .catch((error) => {
                 console.error(error)
@@ -56,7 +61,12 @@ export default function KidzDetailAdd() {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setInputList([...inputList, { userName: "", email: "", password: "" }]);
+        if (inputList.length + 1 < balance) {
+            setInputList([...inputList, { name: "", email: "", password: "" }]);
+        } else {
+            toast.error('you have reached the maximum limit')
+        }
+
     };
 
     const [open, setOpen] = React.useState(false); //collapse tab open
@@ -72,7 +82,8 @@ export default function KidzDetailAdd() {
                 <div className="upload-deteil">
                     <ListItemButton onClick={handleClick}>
                         <ListItemIcon>
-                            <InboxIcon />
+
+                            <Icon >add_circle</Icon>
                         </ListItemIcon>
                         <ListItemText primary="Add Your Kidz Details" />
                         {open ? <ExpandLess /> : <ExpandMore />}
@@ -91,11 +102,11 @@ export default function KidzDetailAdd() {
                                                     <div className="kidz-input-deteil">
                                                         <Small sx={{ fontSize: 16 }}>UserName</Small>
                                                         <input
-                                                            name="userName"
+                                                            name="name"
                                                             placeholder="Enter User Name"
                                                             class="form-control"
                                                             required
-                                                            value={x.userName}
+                                                            value={x.name}
                                                             onChange={e => handleInputChange(e, i)}
                                                         />
                                                     </div>
@@ -134,7 +145,7 @@ export default function KidzDetailAdd() {
                                                     </div>
                                                 </div>
                                             </form>
-                                            <button onSubmit={handleSubmit}>Submit</button>
+                                            <button onClick={handleSubmit}>Submit</button>
                                         </div>
 
                                     );

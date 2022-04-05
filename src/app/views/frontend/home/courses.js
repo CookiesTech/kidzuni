@@ -1,82 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StandardService from "../Services/StandardService";
-import SubjectService from "../Services/SubjectService";
-import axios from "axios";
 
 export default function Courses() {
 
     let standardservice = new StandardService();
-    let subjectservice = new SubjectService();
 
-    const [standard = [], setStandard] = useState();
-    const [subject, setSubject] = useState();
-
-
-
+    const [formdata = [], setformdata] = useState();
     useEffect(() => {
-        standardDtata();
-        subjectList();
+        fetchData();
     }, []);
 
-    // const subjectList = async () => {
-    //     const { data } = await axios.get(
-    //       "http://feltech.in/kidzuni_backend/public/api/getAllSubjects"
-    //     );
-    //     console.log(data);
-    // };
 
-    const subjectList = async () => {    //subject List
+    const fetchData = async () => {
         try {
-            const data = await standardservice.subjectList();
-            setSubject(data.data.data);
+            const data = await standardservice.getstandardandSubjectData();
+            setformdata(data.data.data.standards);
         }
         catch (e) {
             console.log(e);
         }
     }
-
-    const standardDtata = async () => {    //standard classes
-        try {
-            const data = await subjectservice.standardDtata();
-            setStandard(data.data.data);
-            // console.log(data.data.data);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
-
     return (
         <div>
             <div className="row grade-title">
                 <h3>Explore Courses</h3>
             </div>
 
-            {standard.length > 0 ? (
+            {formdata.length > 0 ? (
                 <div className="row class-sec-part">
                     {
-                        standard?.map((standardname, i) => (
-                            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-4">
+                        formdata?.map((data, i) => (
+
+                            < div className="col-xl-4 col-lg-4 col-md-6 col-sm-4" >
+
                                 <div className="member grade-sec">
                                     <div className="section-box">
                                         <div className="class-tab-box"><span></span></div>
                                     </div>
                                     <div class="member-info">
-                                        <h3>{standardname.standard_name}</h3>
-                                        <p>{standardname.description.substring(0, 90)}...</p>
+                                        <h3>{data?.standard_name}</h3>
+                                        <p>{data?.description.substring(0, 90)}...</p>
                                         <hr />
-                                        {subject ? (
+                                        {data?.subjects ? (
                                             <div className="">
                                                 <span className="subject-skills">
                                                     <li>
                                                         <div className="">
                                                             {
-                                                                subject?.map((subjectname, i) => (
+                                                                data?.subjects.map((subjectname, i) => (
                                                                     <div>
                                                                         <h6>{subjectname.subject_name}</h6>
                                                                         <Link className="nav-link" to={"/standard-Lkg"}>
-                                                                            <span className="nav-link" href="">{subjectname.skills_count} Expertise {'>'}</span>
+                                                                            <span className="nav-link" href="">{subjectname.count} Expertise {'>'}</span>
                                                                         </Link>
                                                                     </div>
                                                                 ))
@@ -86,7 +62,7 @@ export default function Courses() {
                                                 </span>
                                                 <div className="explore-detail">
                                                     <Link className="nav-link" to="/standard-Lkg">
-                                                        <a className="nav-link" href="">Explore Details..</a>
+                                                        <a className="nav-link" href="#!">Explore Details..</a>
                                                     </Link>
                                                 </div>
                                             </div>
@@ -101,7 +77,8 @@ export default function Courses() {
                 </div>
             ) : (
                 <h4>Data Not Found</h4>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }

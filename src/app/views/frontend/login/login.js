@@ -66,21 +66,15 @@ export default function Login() {
 
             toast.success("Login Success");
             localStorage.setItem("user-info", JSON.stringify(result.data.user))
-            localStorage.setItem("token", JSON.stringify(result.data.token))
-            if (result.data.user.role == 3) {
-
-                localStorage.setItem("kidzcout", result.data.kids_data.length)
+            localStorage.setItem("token", result.data.token)
+            if (parseInt(result?.data?.user?.role) === 3) {
+                localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
+                localStorage.setItem("kidz_cout", JSON.stringify(result.data.kids_data.length))
             }
             navigate('/home')
         } else {
             toast.error("Login Failed");
         }
-
-        // localStorage.setItem('login', JSON.stringify({
-        //     login: true,
-        //     token: result.token,
-        // }))
-
     }
 
     const validate = (values) => {
@@ -131,7 +125,7 @@ export default function Login() {
                                         placeholder="Enter Email id"
                                     />
                                     <div className='login-forgot'>
-                                        <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
+                                        <a href="#!" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
                                     </div>
                                     <input
                                         type="password"
@@ -143,11 +137,11 @@ export default function Login() {
                                         required
                                     />
                                     <div className='login-forgot'>
-                                        <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
+                                        <a href="#!" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
                                     </div>
                                     <div className='register-part'>
                                         <strong> Not a Member yet?</strong>
-                                        <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
+                                        <Link to="/home/membership"><a className='nav-link' href="#!">Sign up{'>'}</a></Link>
                                     </div>
                                     <FlexBox>
 

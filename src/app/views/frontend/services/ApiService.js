@@ -2,7 +2,7 @@ import axios from "axios";
 //import PersistentStorage from "../shared/PersistentStorage";
 
 class ApiService {
-  baseURL = "http://feltech.in/kidzuni_backend/public/api/";
+
   headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -76,7 +76,8 @@ class ApiService {
   }
 
   setAuthorizationToken() {
-    this.setHeader("Authorization", 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJ1c2VyX2lkIjo0MywiaWF0IjoxNjQ4NjM4MDIwLCJleHAiOjE2NTY0MTQwMjAsInJvbGUiOiIzIn0.vT8WUm9O9EJW936WJnCjcx-ksLkdJUlOyQgTj_E6fVQ');
+    let token = localStorage.getItem('token');
+    this.setHeader("Authorization", token);
   }
 
   generateCancelToken() {
