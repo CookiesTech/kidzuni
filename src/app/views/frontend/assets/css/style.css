@@ -212,9 +212,7 @@ body {
   font-weight: bold;
 }
 
-/* .class-sec-part {
-  margin-bottom: -120px;
-} */
+
 .intro-member {
   max-width: 1100px;
   display: flex;
@@ -290,6 +288,10 @@ body {
 .grade-sec .member-info p {
   padding: 0 20px;
   text-align: start;
+}
+
+.subject-info {
+  height: 81px;
 }
 
 .member-info {
@@ -818,9 +820,39 @@ input[type=radio]:checked~.option {
   color: #fff;
 }
 
+.maths-price {
+  margin-top: 18px;
+}
+
 .maths-price button:focus {
   border-color: #000;
   color: #000;
+}
+
+.plan-part button {
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #10a0b6;
+  color: #fff;
+  border-color: #10a0b6;
+}
+
+.plan-part button:focus {
+  color: #333;
+  font-weight: bold;
+}
+
+.type-part button {
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #10a0b6;
+  color: #fff;
+  border-color: #10a0b6;
+}
+
+.type-part button:focus {
+  color: #333;
+  font-weight: bold;
 }
 
 .plan-heading {
@@ -857,6 +889,13 @@ input[type=radio]:checked~.option {
   margin-left: 105px;
 }
 
+.country-part input {
+  margin-left: 150px;
+  width: 79%;
+  margin-bottom: 20px;
+  margin-top: -31px;
+}
+
 .email-part {
   display: flex;
 }
@@ -867,6 +906,7 @@ input[type=radio]:checked~.option {
 
 .password-part {
   display: flex;
+  margin-top: 18px;
 }
 
 .phonenumber-part {
@@ -879,6 +919,21 @@ input[type=radio]:checked~.option {
 
 .children-count {
   display: flex;
+}
+
+.school-count {
+  margin-left: 15px;
+}
+
+.school-count button {
+  border-radius: 5px;
+  background-color: #10a0b6;
+  color: #fff;
+  border-color: #10a0b6;
+}
+
+.school-count button:focus {
+  color: #333;
 }
 
 .cart_box {

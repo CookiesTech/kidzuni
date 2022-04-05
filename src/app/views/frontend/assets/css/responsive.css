@@ -24,9 +24,8 @@
     }
 
     .login-after {
-        top: -40px;
         position: relative;
-        left: 134px !important;
+        left: 22px !important;
     }
 
     .user-show a {
@@ -53,13 +52,17 @@
 
     .category-list .nav-link {
         position: relative;
-        right: 43px;
+        right: 29px;
         padding: 0px 0px 8px 15px;
         display: grid;
     }
 
+    .category-list {
+        margin-top: 12px;
+    }
+
     .home-searchbox {
-        left: -3.5rem;
+        left: -2.5rem;
     }
 
     .search-topics {
@@ -67,8 +70,8 @@
     }
 
     .home-searchbox i {
+        left: 240px;
         top: 27px;
-        left: 238px;
     }
 
     .learn-section img {
@@ -124,6 +127,11 @@
 
     .member {
         width: 283px;
+        margin: auto;
+    }
+
+    .grade-sec .section-box {
+        margin-top: 45px;
     }
 
     .grade-title h3 {
@@ -472,6 +480,211 @@
     .select-option button {
         display: initial;
     }
+
+    /*-------Registration-page-------*/
+    .teaching img {
+        display: none;
+    }
+
+    .member-part h4 {
+        font-size: 20px;
+        margin-left: 6px;
+    }
+
+    .teaching p {
+        font-size: 13px;
+        margin: 0px 0px 0px 15px;
+    }
+
+    .plan-heading {
+        font-size: 14px;
+    }
+
+    .plan-part button {
+        font-size: 14px;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .type-part button {
+        font-size: 14px;
+        margin: 7px;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .cart_box {
+        margin-left: 3px;
+    }
+
+    .cart_box input {
+        width: 80px;
+    }
+
+    .maths-price button {
+        width: 95px;
+        font-size: 11px;
+        margin-right: 5px !important;
+    }
+
+    .addtional-amount {
+        font-size: 11px !important;
+        top: 26px;
+        position: relative;
+    }
+
+    .reg-detail-part label {
+        display: none;
+    }
+
+    .reg-detail-part>div input {
+        margin-left: 0px !important;
+    }
+
+    .country-part input {
+        width: 100%;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .submit-btn button {
+        font-size: 12px;
+    }
+
+    .plan-selected {
+        padding: 16px;
+    }
+
+    .plan-selected h4 {
+        font-size: 20px;
+    }
+
+    .plan-selected>div {
+        font-size: 17px;
+    }
+
+    .join-benefit h4 {
+        font-size: 20px;
+    }
+
+    .join-benefit p {
+        padding: 5px 30px 5px 30px;
+        font-size: 13px;
+    }
+
+    /*----Profile---*/
+    .member-profile-set {
+        width: initial !important;
+        border: none !important;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .member-profile-set h4 {
+        font-size: 16px;
+        border-radius: 5px;
+    }
+
+    .member-profile-info {
+        padding: 10px 3px 10px 3px !important;
+    }
+
+    .member-profile-info span {
+        font-size: 13px !important;
+        padding-top: 10px !important;
+    }
+
+    .member-profile-info small {
+        font-size: 14px;
+    }
+
+    .profile-setting button {
+        width: 50px !important;
+        font-size: 13px;
+    }
+
+    .profile-setting {
+        margin-top: 40px;
+    }
+
+    .parent-edit-part input {
+        width: 100% !important;
+    }
+
+    .parent-edit-part {
+        padding: 10px 10px 13px 10px !important;
+    }
+
+    .parent-edit-part small {
+        font-size: 15px;
+    }
+
+    .kidz-input-deteil small {
+        display: none;
+    }
+
+    .kidz-input-deteil {
+        padding: 10px 0px 10px 0px !important;
+    }
+
+    .kidz-add input {
+        width: 250px !important;
+        margin-left: -24px !important;
+        margin-top: 15px !important;
+    }
+
+    .upload-deteil {
+        margin: 0px !important;
+    }
+
+    .kidz-add-btn button {
+        padding: 5px 15px 5px 7px !important;
+        margin: 10px 0px 10px 0px !important;
+    }
+
+    .kidz-detail .kidz-add-submit {
+        border-radius: 5px;
+        padding: 5px;
+        width: 27% !important;
+    }
+
+    /*----Login---*/
+    .login-bg-setting {
+        margin-top: 35px;
+    }
+
+    .login-center {
+        padding: 10px;
+    }
+
+    .login-forgot a {
+        font-size: 14px;
+    }
+
+    .register-part strong {
+        font-size: 13px;
+        position: relative;
+        top: 30px;
+    }
+
+    .register-part {
+        display: initial !important;
+        margin-top: 40px !important;
+    }
+
+    .css-yeouz0 button {
+        margin-top: 40px !important;
+    }
+
+    .register-part a {
+        float: right;
+        text-decoration: underline;
+        margin-top: 13px;
+    }
+
+    .forgot-uname {
+        margin-top: 40px;
+    }
 }
 
 /*-----Homepage-tab-----*/
@@ -494,7 +707,8 @@
 
     .navbar-toggler {
         position: relative;
-        right: 45px;
+        padding: 5px 10px 5px 10px;
+        left: 37rem;
         background-color: #fff;
     }
 
@@ -542,6 +756,10 @@
 
     .member-btn {
         margin-right: 30px !important;
+    }
+
+    .grade-sec .section-box {
+        margin-top: 45px;
     }
 
     .grade-sec {
@@ -775,5 +993,97 @@
     .options-button {
         padding: 4px;
         font-size: 11px;
+    }
+
+    /*---Registration----*/
+    .cart_box input {
+        width: 90px;
+    }
+
+    .plan-heading {
+        font-size: 15px;
+    }
+
+    .maths-price button {
+        width: 100px;
+        display: block;
+        font-size: 12px;
+    }
+
+    .maths-price .addtional-amount {
+        position: relative;
+        top: -50px;
+        left: 150px;
+    }
+
+    .member-part h4 {
+        font-size: 19px;
+    }
+
+    .teaching img {
+        width: 87px;
+        height: 93px;
+        margin: auto;
+    }
+
+    .teaching p {
+        font-size: 15px;
+    }
+
+    .plan-selected h4 {
+        font-size: 17px;
+    }
+
+    .plan-selected {
+        padding: 20px !important;
+    }
+
+    .membership-selected {
+        font-size: 15px;
+    }
+
+    .country-part input {
+        width: 65%;
+    }
+
+    .selected-amt {
+        font-size: 22px;
+    }
+
+    .join-benefit h4 {
+        font-size: 17px;
+    }
+
+    .join-benefit p {
+        padding: 5px 9px 5px 9px;
+        font-size: 14px;
+    }
+
+    .phonenumber-part input {
+        margin-left: 72px;
+    }
+
+    .password-part {
+        margin-top: 16px !important;
+    }
+
+    /*----profile----*/
+    .member-profile-set {
+        width: 90%;
+    }
+
+    .kidz-detail .kidz-add-submit {
+        border-radius: 5px;
+        font-size: 17px;
+        margin-left: 18px;
+    }
+
+    .member-profile-set h4 {
+        font-size: 18px;
+    }
+
+    /*---Login---*/
+    .register-part {
+        display: inline-flex !important;
     }
 }

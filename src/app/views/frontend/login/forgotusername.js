@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { Span } from 'app/components/Typography'
 import { Card, Checkbox, FormControlLabel, Grid, Button } from '@mui/material'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
+import Navbar from '../home/navbar'
+import Footer from '../home/footer'
 
 export default function Login() {
     const FlexBox = styled(Box)(() => ({
@@ -62,63 +64,73 @@ export default function Login() {
     let { username, email } = state
 
     return (
-        <JWTRegister>
+        <div>
+            <div className='container'>
+                <Navbar />
+            </div>
+            <div className='forgot-uname'>
+                <JWTRegister>
 
-            <Card className="card">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Sign in Kidzuni</h5>
-                </div>
-                <Grid container>
-                    <Grid item lg={5} md={5} sm={5} xs={12}>
-                        <ContentBox>
-                            <IMG
-                                src="/assets/images/illustrations/posting_photo.svg"
-                                alt=""
-                            />
-                        </ContentBox>
-                    </Grid>
-                    <Grid item lg={7} md={7} sm={7} xs={12}>
-                        <Box p={4} height="100%">
-                            <ValidatorForm onSubmit={handleFormSubmit}>
-                                <h5>Request Username</h5>
-                                <TextValidator
-                                    sx={{ mb: 3, width: '100%' }}
-                                    variant="outlined"
-                                    label="Email"
+                    <Card className="card">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Sign in Kidzuni</h5>
+                        </div>
+                        <Grid container>
+                            <Grid item lg={5} md={5} sm={5} xs={12}>
+                                <ContentBox>
+                                    <IMG
+                                        src="/assets/images/illustrations/posting_photo.svg"
+                                        alt=""
+                                    />
+                                </ContentBox>
+                            </Grid>
+                            <Grid item lg={7} md={7} sm={7} xs={12}>
+                                <Box p={4} height="100%">
+                                    <ValidatorForm onSubmit={handleFormSubmit}>
+                                        <h5>Request Username</h5>
+                                        <TextValidator
+                                            sx={{ mb: 3, width: '100%' }}
+                                            variant="outlined"
+                                            label="Email"
 
-                                    type="email"
-                                    name="email"
-                                    size="small"
+                                            type="email"
+                                            name="email"
+                                            size="small"
 
-                                    validators={['required', 'isEmail']}
-                                    errorMessages={[
-                                        'this field is required',
-                                        'email is not valid',
-                                    ]}
-                                />
-                                <FlexBox>
+                                            validators={['required', 'isEmail']}
+                                            errorMessages={[
+                                                'this field is required',
+                                                'email is not valid',
+                                            ]}
+                                        />
+                                        <FlexBox>
 
-                                    <Button
-                                        sx={{ textTransform: 'capitalize' }}
-                                        onClick={() => navigate("/login")}
-                                    >
-                                        Sign in
-                                    </Button>
+                                            <Button
+                                                sx={{ textTransform: 'capitalize' }}
+                                                onClick={() => navigate("/login")}
+                                            >
+                                                Sign in
+                                            </Button>
 
-                                    <Button
-                                        type="submit"
-                                        color="primary"
-                                        variant="contained"
-                                        sx={{ textTransform: 'capitalize' }}
-                                    >
-                                        Submit
-                                    </Button>
-                                </FlexBox>
-                            </ValidatorForm>
-                        </Box>
-                    </Grid>
-                </Grid>
-            </Card>
-        </JWTRegister>
+                                            <Button
+                                                type="submit"
+                                                color="primary"
+                                                variant="contained"
+                                                sx={{ textTransform: 'capitalize' }}
+                                            >
+                                                Submit
+                                            </Button>
+                                        </FlexBox>
+                                    </ValidatorForm>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </JWTRegister>
+            </div>
+
+            <Footer />
+        </div>
+
     )
 }

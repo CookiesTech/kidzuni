@@ -70,7 +70,7 @@ export default function Login() {
             localStorage.setItem("user-info", JSON.stringify(result.data.user))
             localStorage.setItem("token", JSON.stringify(result.data.token))
             if (result.data.user.role == 3) {
-
+                localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
                 localStorage.setItem("kidzcout", result.data.kids_data.length)
             }
             navigate('/home')
