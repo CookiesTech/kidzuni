@@ -102,7 +102,7 @@ export default function Classes() {
                                 <span>II</span>
                             </Link>
                         </MenuItem>
-                        <MenuItem value={30}>
+                        <MenuItem value={40}>
                             <Link className="nav-link" to="/standard-III">
                                 <span>III</span>
                             </Link>

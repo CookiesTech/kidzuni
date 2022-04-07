@@ -52,7 +52,7 @@ export default function Courses() {
                                                                 data?.subjects.map((subjectname, i) => (
                                                                     <div>
                                                                         <h6>{subjectname.subject_name}</h6>
-                                                                        <Link className="nav-link" to={"/standard-Lkg"}>
+                                                                        <Link className="nav-link" to={"/standard-:class"}>
                                                                             <span className="nav-link" href="">{subjectname.count} Expertise {'>'}</span>
                                                                         </Link>
                                                                     </div>

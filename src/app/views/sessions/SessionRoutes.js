@@ -51,7 +51,7 @@ const sessionRoutes = [
     //     element: <Country />,
     // },
     {
-        path: 'standard-:value',
+        path: 'standard-:class',
         element: <Standard />,
     },
     {

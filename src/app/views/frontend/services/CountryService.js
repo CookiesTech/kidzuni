@@ -2,11 +2,11 @@ import ApiService from "./ApiService";
 
 export default class CounrtyService extends ApiService {
 
-    CountryData = async () => {
-        let Url = 'http://feltech.in/kidzuni_backend/public/api/getAllCountry';
+    countrylistdata = async () => {
 
-        let response = await this.get(Url);
-        // console.log(data);
+        let Url = this.baseURL + 'country list';
+        let response = await this.get(Url,);
+        console.log(response);
 
         if (response.status !== 200) {
             throw Error(response);

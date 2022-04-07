@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../assets/css/style.css";
 import "../assets/css/responsive.css";
 import { useNavigate } from 'react-router-dom';
+import CounrtyService from '../Services/CountryService';
+import { config } from 'app/config';
 import { toast } from "react-toastify";
 toast.configure()
 
 export default function Navbar() {
+    let counrtyservice = new CounrtyService(config.baseURL);
+
     let login = JSON.parse(localStorage?.getItem?.("user-info"));
 
     const Logout = () => {
@@ -14,6 +18,25 @@ export default function Navbar() {
         toast.success("Successfully Logged Out");
         navigate(`/home`);
     };
+
+
+    const [counrtyinfo, setCountryinfo] = useState();
+
+    useEffect(() => {
+        countrydata();
+    }, []);
+
+    const countrydata = async () => {
+        try {
+            const data = await counrtyservice.countrylistdata();
+            setCountryinfo(data.data);
+            console.log(data);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
 
     const navigate = useNavigate();
     return (
@@ -30,7 +53,6 @@ export default function Navbar() {
                                 <div className="nav-item  user-show">
                                     <a
                                         className="nav-link dropdown-toggle-profile"
-
                                         id="navbarDropdown"
                                         role="button"
                                         data-toggle="dropdown"

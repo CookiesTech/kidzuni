@@ -1,50 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { config } from "app/config";
 import TopicsService from "../Services/TopicsService";
-import { map } from "lodash";
-
 export default function Topics() {
-
-    let topicsservice = new TopicsService();
-    // let standardId=window.location.pathname.split("/").pop();
-
-    const [standardid, setStandardid] = useState();
+    let topicsservice = new TopicsService(config.baseURL);
     const [topics, setTopics] = useState();
 
     useEffect(() => {
 
         async function fetchMyAPI() {
-            // console.log(standardId);
             await await topicsservice.subjecttopics()
                 .then((response) => {
-                    setStandardid({ standard_id: response.data })
-                    setTopics(response?.data.Topics);
+                    setTopics(response?.data.data.Topics);
                 });
         }
         fetchMyAPI();
     }, []);
-
-
-
-    const subjecttopics = async () => {    //parameter pass
-
-        axios.post('http://feltech.in/kidzuni_backend/public/api/getTopics')
-            .then((response) => {
-                setStandardid({ standard_id: response.data })
-
-
-                setTopics(response?.data.Topics);
-
-                // if(!response.ok) throw new Error(response);
-
-                if (response.status !== 200) {
-                    throw Error(response);
-                }
-                //   console.log(response);
-            });
-    }
 
     return (
         <div>
@@ -62,7 +34,6 @@ export default function Topics() {
 
 
                     {topics?.map((topic, k) => {
-
                         return (
                             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
                                 <h5>{topic.main_topic}</h5>
@@ -82,4 +53,3 @@ export default function Topics() {
         </div>
     )
 }
-
