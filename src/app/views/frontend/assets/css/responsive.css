@@ -28,6 +28,10 @@
         left: 22px !important;
     }
 
+    .login-after .dropdown-toggle-profile {
+        padding: 0.9rem 0.9rem;
+    }
+
     .user-show a {
         font-size: 14px;
     }
@@ -200,6 +204,14 @@
         display: initial !important;
     }
 
+    .lkg-tab {
+        margin-top: 30px;
+    }
+
+    .lkg-tab a {
+        margin-top: -45px;
+    }
+
     .cloud-as {
         margin-left: 8px;
     }
@@ -214,16 +226,12 @@
     }
 
     .select-option button {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .timespent-score {
         left: 0px !important;
         width: 99% !important;
-    }
-
-    .question-error-msg p {
-        font-size: 17px;
     }
 
     .options-button {
@@ -236,20 +244,61 @@
     }
 
     .question-error-msg p {
-        font-size: 17px !important;
+        font-size: 14px !important;
+    }
+
+    .tabs-block {
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+
+    .content .select-option {
+        padding: 0px 0px 14px 5px;
     }
 
     /*------Test-completed-----*/
     .learning-tab span {
-        padding: 1px 0px 0px 5px;
+        padding: 1px 0px 0px 1px;
         float: initial;
-        font-size: 15px;
+        font-size: 10px;
+    }
+
+    section {
+        margin-top: 20px;
     }
 
     .learning-tab img {
-        width: 17px;
-        margin-left: 4px;
+        width: 10px;
         margin-right: 4px;
+    }
+
+    .lkg-tab {
+        display: none;
+    }
+
+    .select-class {
+        display: initial !important;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        left: 150px !important;
+    }
+
+    .select-class label {
+        font-size: 16px;
+        font-weight: bold;
+        display: contents;
+    }
+
+    .select-class .MuiOutlinedInput-root {
+        width: 100px;
+        height: 37px;
+        margin-left: 7px;
+    }
+
+    .select-class .MuiPaper-elevation {
+        position: relative;
+        top: 80% !important;
     }
 
     .planet-cont {
@@ -441,10 +490,16 @@
 
     .usage-detail {
         font-size: 13px;
+        margin: auto;
+    }
+
+    .usage-detail span {
+        display: none;
     }
 
     .usage-detail select {
-        width: 73px;
+        width: 92px;
+        font-size: 11px;
     }
 
     .usage-select-sec {
@@ -684,6 +739,27 @@
 
     .forgot-uname {
         margin-top: 40px;
+    }
+
+    /*----Progress-page---*/
+    .kidz-progress-details .table td,
+    .table th {
+        vertical-align: baseline;
+        padding: 7px;
+        font-size: 10px;
+    }
+
+    .kidz-progress-details table th {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    .kidz-progress-details {
+        margin: auto;
+    }
+
+    .kidz-progress-details table tr {
+        text-align: center;
     }
 }
 

@@ -46,97 +46,71 @@ export default function Progress() {
 
                 <div className="row top-space">
                     <div className="progress-title">
-                        <h3>Progress Imporvement</h3>
+                        <h3>PROGRESS IMPROVEMENT</h3>
                     </div>
                 </div>
 
                 <div className="row  kidz-progress-details">
-                    <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                        <div className="progress-improvement">
-                            Skill
-                        </div>
-                    </div>
-
-                    <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-                        Time Spent
-                    </div>
-
-                    <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-                        Questions
-                    </div>
-
-                    <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                        Scores Improvement
-                    </div>
-
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Skills</th>
+                            <th scope="col">Time Spent</th>
+                            <th scope="col">Questions</th>
+                            <th scope="col">Score Imporvement</th>
+                        </tr>
+                        <tr class="">
+                            <td> <Link className="" to={'/home/analytics/questions-log'}> A 1.1 Numbers and Counts</Link></td>
+                            <td>15 min</td>
+                            <td>90</td>
+                            <td>
+                                <div className="kidz-progress-level">
+                                    <progress max="100" value="95"></progress>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>A 1.1 Numbers and Counts</td>
+                            <td>20 min</td>
+                            <td>85</td>
+                            <td>
+                                <div className="kidz-progress-level">
+                                    <progress max="100" value="85"></progress>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td>A 1.1 Numbers and Counts</td>
+                            <td>22 min</td>
+                            <td>92</td>
+                            <td>
+                                <div className="kidz-progress-level">
+                                    <progress max="100" value="80"></progress>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>A 1.1 Numbers and Counts</td>
+                            <td>25 min</td>
+                            <td>82</td>
+                            <td>
+                                <div className="kidz-progress-level">
+                                    <progress max="100" value="83"></progress>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td>A 1.1 Numbers and Counts</td>
+                            <td>25 min</td>
+                            <td>92</td>
+                            <td>
+                                <div className="kidz-progress-level">
+                                    <progress max="100" value="93"></progress>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-
-                <div className="row kidz-details">
-                    <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                        <div className="subtopic-lits-progress">
-                            <Link className="" to={'/home/analytics/questions-log'}>
-                                A 1.1 Numbers and Counts
-                            </Link>
-                        </div>
-                        <div className="subtopic-lits-progress">
-                            A 1.1 Numbers and Counts
-                        </div>
-                        <div className="subtopic-lits-progress">
-                            A 1.1 Numbers and Counts
-                        </div>
-                        <div className="subtopic-lits-progress">
-                            A 1.1 Numbers and Counts
-                        </div>
-
-                    </div>
-
-                    <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-                        <div className="kidz-spenttime">
-                            15 min
-                        </div>
-                        <div className="kidz-spenttime">
-                            15 min
-                        </div>
-                        <div className="kidz-spenttime">
-                            15 min
-                        </div>
-                        <div className="kidz-spenttime">
-                            15 min
-                        </div>
-
-                    </div>
-
-                    <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-                        <div className="kidz-attend-question">
-                            94
-                        </div>
-                        <div className="kidz-attend-question">
-                            94
-                        </div>
-                        <div className="kidz-attend-question">
-                            94
-                        </div>
-                        <div className="kidz-attend-question">
-                            94
-                        </div>
-                    </div>
-
-                    <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                        <div className="kidz-progress-level">
-                            <progress max="100" value="95"></progress>
-                        </div>
-                        <div className="kidz-progress-level">
-                            <progress max="100" value="75"></progress>
-                        </div>
-                        <div className="kidz-progress-level">
-                            <progress max="100" value="48"></progress>
-                        </div>
-                        <div className="kidz-progress-level">
-                            <progress max="100" value="52"></progress>
-                        </div>
-                    </div>
-                </div>
 
 
             </div>

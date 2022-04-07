@@ -603,6 +603,10 @@ input[type=radio]:checked~.option {
   display: flex;
 }
 
+.select-class {
+  display: none;
+}
+
 .lkg-tab a {
   padding: 5px;
   text-align: center;
@@ -2354,11 +2358,21 @@ ul li .icon {
 }
 
 /*----Analytics-Progress-----*/
-.kidz-progress-details {
+.kidz-progress-details table {
+  border: 1px solid #333;
+}
+
+.kidz-progress-details table th {
   background-color: #10a0b6;
-  margin: 10px 10px 0px 10px;
   color: #fff;
-  padding: 10px;
+  padding: 13px;
+  font-size: 17px;
+}
+
+.kidz-progress-details .table td,
+.table th {
+  padding: 6px 20px 6px 20px;
+  vertical-align: baseline;
 }
 
 .kidz-details {
@@ -2384,10 +2398,9 @@ ul li .icon {
 
 
 .kidz-progress-level progress {
-  height: 25px;
+  height: 20px;
   width: 100%;
   vertical-align: middle;
-  margin-bottom: -13px;
 }
 
 .kidz-progress-level {
