@@ -28,7 +28,7 @@ export default function Navbar() {
                         {login ? (
                             <div className='login-after'>
                                 <div className="nav-item  user-show">
-                                    <a
+                                    <a href="#!"
                                         className="nav-link dropdown-toggle-profile"
 
                                         id="navbarDropdown"
@@ -37,7 +37,7 @@ export default function Navbar() {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {login?.role == 3 ? (
+                                        {login?.role === 3 ? (
                                             <span>Welcome, Parent</span>
                                         ) : (
                                             <span>Welcome, Student</span>

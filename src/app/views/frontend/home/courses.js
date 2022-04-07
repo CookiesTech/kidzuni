@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StandardService from "../Services/StandardService";
 
+import { config } from 'config'
 export default function Courses() {
 
-    let standardservice = new StandardService();
+    let standardservice = new StandardService(config.baseURL);
 
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
