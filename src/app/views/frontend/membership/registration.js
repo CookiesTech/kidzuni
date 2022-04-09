@@ -330,6 +330,7 @@ export default function Registration() {
                                                 required
                                             />
                                         </div>
+
                                         <div className="phonenumber-part">
                                             <label>Phone Number</label>
                                             <input

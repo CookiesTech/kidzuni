@@ -68,15 +68,19 @@ export default function Login() {
 
             toast.success("Login Success");
             localStorage.setItem("user-info", JSON.stringify(result.data.user))
-            localStorage.setItem("token", JSON.stringify(result.data.token))
-            if (result.data.user.role == 3) {
+            localStorage.setItem("token", result.data.token)
+
+            if (parseInt(result?.data?.user?.role) === 3) {
                 localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
-                localStorage.setItem("kidzcout", result.data.kids_data.length)
+                localStorage.setItem("kidz_cout", JSON.stringify(result.data.kids_data.length))
+                console.log(result.data.kids_data);
             }
             navigate('/home')
+
         } else {
             toast.error("Login Failed");
         }
+
 
         // localStorage.setItem('login', JSON.stringify({
         //     login: true,

@@ -12,6 +12,7 @@ export default function StudentProfile() {
     let loginInfo = JSON.parse(localStorage?.getItem?.("user-info"));
     let kidsinfo = JSON.parse(localStorage?.getItem?.('kidz_info'));
 
+    // console.log(kidsinfo);
 
     const [value, setValue] = React.useState(0)
     const handleTabs = (e, val) => {
@@ -30,58 +31,70 @@ export default function StudentProfile() {
                         <Grid item xs={12} md={12}>
 
                             <Tabs value={value} onChange={handleTabs}>
-
                                 <Tab className="block-display" label="Membership Details" />
-                                <Tab className="block-display" label="Kidz Profiles" />
                                 <Tab className="block-display" label="Add Kidz" />
+                                <Tab className="block-display" label="Kidz Profiles" />
                             </Tabs>
 
                             <div className="descr-border-details">
                                 <div className="content">
-                                    <TabPanel value={value} index={0} >
-                                        <div className="member-profile-set">
-                                            <h4>Parent Membership Information</h4>
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                <span>{loginInfo.name}</span>
-
-                                            </div>
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                <span>{loginInfo.email}</span>
-                                            </div>
-
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>children</Small>
-                                                <span>{loginInfo.no_of_children}</span>
-                                            </div>
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>Plan</Small>
-                                                <span>{loginInfo.subscription_type}</span>
-                                            </div>
-                                            <div className="member-profile-info">
-                                                <Small sx={{ fontSize: 18 }}>Purchased Date</Small>
-                                                <span>{loginInfo.purchaed_date}</span>
-                                            </div>
-                                        </div>
-                                    </TabPanel>
-                                    <TabPanel value={value} index={1}>
-                                        {
-                                            kidsinfo.map((data, i) => (
-
+                                    {loginInfo?.role == 3 ? (
+                                        <>
+                                            <TabPanel value={value} index={0} >
                                                 <div className="member-profile-set">
-                                                    <h4>Kidz Details -{'>'} {data.name}</h4>
-                                                    <div className="parent-edit-part">
+                                                    <h4>Parent Membership Information</h4>
+                                                    <div className="member-profile-info">
                                                         <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                        <input
-                                                            type="userName"
-                                                            name="userName"
-                                                            class="form-control"
-                                                            value={data.name}
-                                                            required
-                                                        />
+                                                        <span>{loginInfo.name}</span>
+
                                                     </div>
-                                                    {/* <div className="parent-edit-part">
+                                                    <div className="member-profile-info">
+                                                        <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                        <span>{loginInfo.email}</span>
+                                                    </div>
+
+                                                    <div className="member-profile-info">
+                                                        <Small sx={{ fontSize: 18 }}>children</Small>
+                                                        <span>{loginInfo.no_of_children}</span>
+                                                    </div>
+                                                    <div className="member-profile-info">
+                                                        <Small sx={{ fontSize: 18 }}>Plan</Small>
+                                                        <span>{loginInfo.subscription_type}</span>
+                                                    </div>
+                                                    <div className="member-profile-info">
+                                                        <Small sx={{ fontSize: 18 }}>Purchased Date</Small>
+                                                        <span>{loginInfo.purchaed_date}</span>
+                                                    </div>
+                                                </div>
+                                            </TabPanel>
+
+                                            <TabPanel value={value} index={1}>
+                                                <div className="member-profile-set">
+
+                                                    <KidzDetailAdd />
+
+                                                </div>
+                                            </TabPanel>
+                                        </>
+                                    ) : (
+                                        <TabPanel value={value} index={2}>
+
+                                            {/* {
+                                                kidsinfo.map((data, i) => (
+
+                                                    <div className="member-profile-set">
+                                                        <h4>Kidz Details -{'>'} {data.name}</h4>
+                                                        <div className="parent-edit-part">
+                                                            <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                            <input
+                                                                type="userName"
+                                                                name="userName"
+                                                                class="form-control"
+                                                                value={data.name}
+                                                                required
+                                                            />
+                                                        </div> */}
+                                            {/* <div className="parent-edit-part">
                                                         <Small sx={{ fontSize: 18 }}>Password</Small>
                                                         <input
                                                             type="password"
@@ -91,29 +104,23 @@ export default function StudentProfile() {
                                                             required
                                                         />
                                                     </div> */}
-                                                    <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                        <input
-                                                            type="email"
-                                                            name="email"
-                                                            class="form-control"
-                                                            value={data.email}
-                                                            required
-                                                        />
+                                            {/* <div className="parent-edit-part">
+                                                            <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                            <input
+                                                                type="email"
+                                                                name="email"
+                                                                class="form-control"
+                                                                value={data.email}
+                                                                required
+                                                            />
+                                                        </div>
+
                                                     </div>
-
-                                                </div>
-                                            ))
-                                        }
-                                    </TabPanel>
-                                    <TabPanel value={value} index={2}>
-                                        <div className="member-profile-set">
-
-                                            <KidzDetailAdd />
-
-
-                                        </div>
-                                    </TabPanel>
+                                                ))
+                                            } */}
+                                            <p>Kidz Info</p>
+                                        </TabPanel>
+                                    )}
                                 </div>
                             </div>
                         </Grid>

@@ -38,6 +38,22 @@ body {
   display: block;
 }
 
+.drop-flag img {
+  width: 25px;
+  height: 25px;
+  margin: 5px 5px 0px 0px;
+}
+
+
+.coutry-drop-select select {
+  padding: 5px;
+}
+
+.change-country {
+  display: flex;
+  margin-left: 575px;
+}
+
 .home-dropdownshow {
   left: 82% !important;
 }
