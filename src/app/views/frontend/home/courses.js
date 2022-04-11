@@ -2,25 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StandardService from "../Services/StandardService";
 import { config } from '../../../config'
-export default function Courses() {
-
-    let standardservice = new StandardService(config.baseURL);
-
+export default function Courses(props) {
+    console.log(props);
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [props]);
 
 
 
     const fetchData = async () => {
-        try {
-            const data = await standardservice.getstandardandSubjectData();
-            setformdata(data.data.data.standards);
-        }
-        catch (e) {
-            console.log(e);
-        }
+        setformdata(props.data);
     }
     return (
         <div>
@@ -43,7 +35,7 @@ export default function Courses() {
                                         <h3>{data?.standard_name}</h3>
                                         <p>{data?.description.substring(0, 90)}...</p>
                                         <hr />
-                                        {data?.subjects ? (
+                                        {/* {data?.subjects ? (
                                             <div className="">
                                                 <span className="subject-skills">
                                                     <li>
@@ -69,7 +61,7 @@ export default function Courses() {
                                             </div>
                                         ) : (
                                             <h5>No Topics Found</h5>
-                                        )}
+                                        )} */}
                                     </div>
                                 </div>
                             </div>
