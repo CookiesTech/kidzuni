@@ -13,8 +13,8 @@ const Standard = Loadable(lazy(() => import('../frontend/standard/index')))
 const Test = Loadable(lazy(() => import('../frontend/test/QuestionAnswer')))
 const Registration = Loadable(lazy(() => import('../frontend/membership/registration')))
 const Login = Loadable(lazy(() => import('../frontend/login/login')))
+const Passwordupdate = Loadable(lazy(() => import('../frontend/login/updatepassword')))
 const Forgotpassword = Loadable(lazy(() => import('../frontend/login/forgotpassword')))
-const Forgotusername = Loadable(lazy(() => import('../frontend/login/forgotusername')))
 const StudentProfile = Loadable(lazy(() => import('../frontend/profile/studentprofile')))
 // const Country = Loadable(lazy(() => import('../frontend/home/Flag')))
 const Success = Loadable(lazy(() => import('../frontend/testcompleted/success')))
@@ -42,20 +42,16 @@ const sessionRoutes = [
         element: <Forgotpassword />,
     },
     {
-        path: '/login/forgotusername',
-        element: <Forgotusername />,
+        path: '/login/updatepassword',
+        element: <Passwordupdate />,
     },
 
-    // {
-    //     path: '/flag',
-    //     element: <Country />,
-    // },
     {
-        path: 'standard-:class',
+        path: '/standard-:class',
         element: <Standard />,
     },
     {
-        path: 'test',
+        path: '/test',
         element: <Test />,
     },
     {

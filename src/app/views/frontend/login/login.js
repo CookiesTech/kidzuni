@@ -70,6 +70,7 @@ export default function Login() {
             localStorage.setItem("user-info", JSON.stringify(result.data.user))
             localStorage.setItem("token", result.data.token)
 
+
             if (parseInt(result?.data?.user?.role) === 3) {
                 localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
                 localStorage.setItem("kidz_cout", JSON.stringify(result.data.kids_data.length))
@@ -140,8 +141,12 @@ export default function Login() {
                                             onChange={inputChange}
                                             placeholder="Enter Email id"
                                         />
+                                        {/* <div className='login-forgot'>
+                                            <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot Username?</a>
+                                        </div> */}
+
                                         <div className='login-forgot'>
-                                            <a href="" onClick={() => navigate("/login/forgotusername")}>Forgot Username?</a>
+                                            <Link className="" to="/login/forgotpassword">Forgot Username?</Link>
                                         </div>
                                         <input
                                             type="password"
@@ -152,25 +157,26 @@ export default function Login() {
                                             onChange={inputChange}
                                             required
                                         />
+                                        {/* <div className='login-forgot'>
+                                            <a href="" onClick={() => navigate("/login/updatepassword")}>Forgot password?</a>
+                                        </div> */}
                                         <div className='login-forgot'>
-                                            <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot password?</a>
+                                            <Link to="/login/updatepassword">Forgot Password?</Link>
                                         </div>
+
                                         <div className='register-part'>
                                             <strong> Not a Member yet?</strong>
                                             <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
                                         </div>
                                         <FlexBox>
-
                                             <Button
                                                 type="submit"
                                                 color="primary"
                                                 variant="contained"
                                                 sx={{ textTransform: 'capitalize' }}
-
                                             >
                                                 Sign in
                                             </Button>
-
                                         </FlexBox>
                                     </form>
                                 </Box>

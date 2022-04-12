@@ -1,60 +1,76 @@
-
 .profile-setting {
   border: 2px solid #837f7f;
   border-radius: 10px;
   box-shadow: inset 2px 1px 17px 0px #bebcbc, inset -1px -1px 1px rgb(248 247 247 / 25%);
 }
+
 .member-profile-set {
   border: 2px solid;
   width: 60%;
   border-radius: 5px;
   margin: auto;
+  margin-bottom: 20px;
 }
+
 .member-profile-info {
   padding: 10px 25px 10px 25px;
 }
+
 .member-profile-set h4 {
   border-bottom: 1px solid;
   padding: 15px;
-  background: linear-gradient(90deg,#0b756c,#2a6d80);
+  background: linear-gradient(90deg, #0b756c, #2a6d80);
   color: #fff;
 }
+
 .member-profile-info span {
   float: right;
   font-size: 18px;
   padding-top: 5px;
 }
+
 .parent-edit-part input {
   width: 70%;
-    float: right;
+  float: right;
 }
+
 .parent-edit-part {
-   padding: 10px 25px 25px 25px;
+  padding: 10px 25px 25px 25px;
 }
 
 /*---Add-Remove--*/
 
 .kidz-add input {
-    padding: 5px;
-    margin: 0px 0px 0px 62px;
-    float: right;
-    width: 300px;
-    font-size: 15px;
+  padding: 5px;
+  margin: 0px 0px 0px 62px;
+  float: right;
+  width: 300px;
+  font-size: 15px;
 }
-.kidz-add-btn button{
- padding: 5px 15px 5px 15px;
-    margin: 20px;
-    font-size: 15px;
-    color: #fff;
-    border-radius: 8px;
-    background-color: #0b756c;
+
+.kidz-add-btn button {
+  padding: 5px 15px 5px 15px;
+  margin: 20px;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 8px;
+  background-color: #0b756c;
 }
 
 .kidz-input-deteil {
   padding: 10px 20px 10px 20px;
 }
+
 .upload-deteil {
   margin: 0px 22px 5px 22px;
   border-radius: 5px;
   background-color: #e4e4e4;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .kid-parent-set {
+    height: 225px;
+    border: 2px solid !important;
+    margin-bottom: 20px;
+  }
 }

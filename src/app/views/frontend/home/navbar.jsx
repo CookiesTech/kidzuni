@@ -4,19 +4,13 @@ import "../assets/css/style.css";
 import "../assets/css/responsive.css";
 import { useNavigate } from 'react-router-dom';
 import CounrtyService from '../Services/CountryService';
-import StandardService from "../Services/StandardService";
 import { config } from 'app/config';
 import { toast } from "react-toastify";
 toast.configure()
 
-export default function Navbar() {
+export default function Navbar(props) {
     let counrtyservice = new CounrtyService(config.baseURL);
-    let standardservice = new StandardService(config.baseURL);
-
-
-
     let login = JSON.parse(localStorage?.getItem?.("user-info"));
-
     const Logout = () => {
         localStorage.clear();
         toast.success("Successfully Logged Out");
@@ -25,7 +19,7 @@ export default function Navbar() {
 
     const [counrtyinfo, setCountryinfo] = useState([]);
     const [countryimage, setCountryimage] = useState();
-
+    const [countrycode, setcountrycode] = useState(3);
 
     useEffect(() => {
         countrydata();
@@ -35,43 +29,19 @@ export default function Navbar() {
         try {
             const data = await counrtyservice.countrylistdata();
             setCountryinfo(data.data.data);
-            console.log(data.data.data);
+            //console.log(data.data.data);
+            setCountryimage(data.data.data[0].image)
         }
         catch (e) {
             console.log(e);
         }
     }
 
-    // const fetchData = async () => {
-    //     try {
-    //         const data = await standardservice.getstandardandSubjectData();
-    //         setformdata(data.data.data.standards);
-    //     }
-    //     catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // const handlecountry = (event) => {
-    //     const getcountryimage = event.target.value;
-    //     const data = await standardservice.getstandardandSubjectData(getcountryimage);
-    //     // setCountryimage(getcountryimage);
-
-    // }
-
     const handlecountry = async (event) => {
-
-        const getcountryimage = event.target.value;
-
-        const data = await standardservice.getstandardandSubjectData(getcountryimage);
-
-        // if (data.data.status) {
-        setCountryimage(getcountryimage);
-        console.log(data.data);
-        // }
-
+        const index = event.target.value;
+        setCountryimage(counrtyinfo[index].image);
+        props.onchange(counrtyinfo[index].id)
     }
-
 
     const navigate = useNavigate();
     return (
@@ -82,25 +52,20 @@ export default function Navbar() {
                         <Link className="navbar-brand" to={"/home"}>
                             <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
-
                         <div className="change-country">
                             <div className='drop-flag'>
                                 <img src={countryimage} alt="flag" />
                             </div>
-
                             <div className="coutry-drop-select">
-
                                 <select name="country" className='form-control' onChange={(e) => handlecountry(e)}>
-                                    {/* <option>country</option> */}
                                     {
                                         counrtyinfo.map((countrylist, i) => (
-                                            <option key={countrylist.image} value={countrylist.image}>{countrylist.code}</option>
+                                            <option key={countrylist.image} value={i}>{countrylist.code}</option>
                                         ))
                                     }
                                 </select>
                             </div>
                         </div>
-
 
                         {login ? (
                             <div className='login-after'>
@@ -140,7 +105,6 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             </div>
-
                         ) : (
                             <div className='login-btn'>
                                 <Link to={'/user/login'}>

@@ -2,26 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StandardService from "../Services/StandardService";
 import { config } from '../../../config'
-export default function Courses() {
+export default function Courses(props) {
 
-    let standardservice = new StandardService(config.baseURL);
-
+    console.log(props);
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [props]);
 
 
 
     const fetchData = async () => {
-        try {
-            const data = await standardservice.getstandardandSubjectData();
-            setformdata(data.data.data.standards);
-        }
-        catch (e) {
-            console.log(e);
-        }
+        setformdata(props.data);
+
     }
+
     return (
         <div>
             <div className="row grade-title">
@@ -43,16 +38,16 @@ export default function Courses() {
                                         <h3>{data?.standard_name}</h3>
                                         <p>{data?.description.substring(0, 90)}...</p>
                                         <hr />
-                                        {data?.subjects ? (
+                                        {data?.subjects?.subjects ? (
                                             <div className="">
                                                 <span className="subject-skills">
                                                     <li>
                                                         <div className="subject-info">
                                                             {
-                                                                data?.subjects.map((subjectname, i) => (
+                                                                data?.subjects?.subjects?.map((subjectname, i) => (
                                                                     <div>
                                                                         <h6>{subjectname.subject_name}</h6>
-                                                                        <Link className="nav-link" to={"/standard-:class"}>
+                                                                        <Link className="nav-link" to={"/standard-" + data.standard_name}>
                                                                             <span className="nav-link" href="">{subjectname.count} Expertise {'>'}</span>
                                                                         </Link>
                                                                     </div>
@@ -62,13 +57,13 @@ export default function Courses() {
                                                     </li>
                                                 </span>
                                                 <div className="explore-detail">
-                                                    <Link className="nav-link" to="/standard-Lkg">
+                                                    <Link className="nav-link" to={`/standard-${data?.standard_name}`}>
                                                         <a className="nav-link" href="#!">Explore Details..</a>
                                                     </Link>
                                                 </div>
                                             </div>
                                         ) : (
-                                            <h5>No Topics Found</h5>
+                                            <h6>No Topics Found</h6>
                                         )}
                                     </div>
                                 </div>
