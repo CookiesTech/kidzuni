@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import StandardService from "../Services/StandardService";
-import { config } from '../../../config'
 export default function Courses(props) {
-    console.log(props);
+    //console.log(props);
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
         fetchData();
