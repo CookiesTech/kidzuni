@@ -40,12 +40,15 @@ export default function Login() {
         },
     }))
 
-    const initialValues = { email: "" };
+    const initialValues = { email: "", password: "", id: "" };
     const [inputValues, setFormValues] = useState(initialValues);
     const [state, setState] = useState()
     const [forgotdetail, setForgotdetail] = useState();
-    const { register } = useAuth()
     const navigate = useNavigate()
+    const [showUpdate, setShowUpdate] = useState(false)
+    const [showForgot, setShowForgot] = useState(true);
+
+    const [updatedetail, setUpdatedetail] = useState();
 
     // const handleChange = (val) => {
     //     setState(val.target.value)
@@ -65,10 +68,22 @@ export default function Login() {
         console.log(result.data.data);
 
         if (result.data.status) {
-            navigate('/login/updatepassword')
+            setShowUpdate(true);
+            setShowForgot(false);
         } else {
             toast.error("Email Not Found");
         }
+        localStorage.setItem("forgot-info", JSON.stringify(result.data))
+    }
+
+
+
+    async function updateFormsubmit(e) {
+        e.preventDefault();
+        let update = { password: inputValues.password, id: inputValues.id }
+        let upresult = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update)
+        setUpdatedetail(upresult.data)
+
     }
 
     return (
@@ -91,16 +106,64 @@ export default function Login() {
                                     />
                                 </ContentBox>
                             </Grid>
-                            <Grid item lg={7} md={7} sm={7} xs={12}>
-                                <Box p={4} height="100%">
-                                    <form autoComplete='off' onSubmit={handleFormSubmit}>
-                                        <h5>Enter New Password</h5>
+                            {showForgot &&
+                                <Grid item lg={7} md={7} sm={7} xs={12}>
+                                    <Box p={4} height="100%">
+                                        <form autoComplete='off' onSubmit={handleFormSubmit}>
+                                            <h5>Enter New Password</h5>
+                                            <input
+                                                type="text"
+                                                name="email"
+                                                class="form-control"
+                                                placeholder="Enter Email id"
+                                                value={inputValues.email}
+                                                onChange={inputChange}
+                                                required
+                                            />
+
+                                            <FlexBox>
+                                                <Button
+                                                    sx={{ textTransform: 'capitalize' }}
+                                                    onClick={() => navigate("/user/login")}
+                                                >
+                                                    Sign in
+                                                </Button>
+
+                                                <Button
+                                                    type="submit"
+                                                    color="primary"
+                                                    variant="contained"
+                                                    sx={{ textTransform: 'capitalize' }}
+                                                >
+                                                    Submit
+                                                </Button>
+                                            </FlexBox>
+                                        </form>
+                                    </Box>
+                                </Grid>
+                            }
+
+                            {showUpdate &&
+                                <Grid item lg={7} md={7} sm={7} xs={12}>
+                                    <form onSubmit={updateFormsubmit}>
+                                        <h5>Reset Your Password</h5>
                                         <input
-                                            type="email"
-                                            name="email"
+                                            type="password"
+                                            name="password"
+                                            variant="outlined"
                                             class="form-control"
-                                            placeholder="Enter Email id"
-                                            value={inputValues.email}
+                                            placeholder="Enter password"
+                                            value={inputValues.password}
+                                            onChange={inputChange}
+                                            required
+                                        />
+                                        <input
+                                            type="number"
+                                            name="id"
+                                            variant="outlined"
+                                            class="form-control"
+                                            placeholder="Enter Your id"
+                                            value={inputValues.id}
                                             onChange={inputChange}
                                             required
                                         />
@@ -123,8 +186,8 @@ export default function Login() {
                                             </Button>
                                         </FlexBox>
                                     </form>
-                                </Box>
-                            </Grid>
+                                </Grid>
+                            }
                         </Grid>
                     </Card>
                 </JWTRegister>
