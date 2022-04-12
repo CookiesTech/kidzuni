@@ -168,6 +168,7 @@ export default function StudentProfile() {
                                                 <Tab className="block-display" label="Kidz Setting" />
                                             </Tabs>
                                             <TabPanel value={value} index={0}>
+
                                                 {
                                                     kidsinfo.map((data, i) => (
 

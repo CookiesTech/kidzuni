@@ -6,6 +6,7 @@ import { Card, Grid, Button } from '@mui/material'
 import Navbar from '../home/navbar'
 import Footer from '../home/footer'
 import axios from "axios"
+import "../assets/css/style.css"
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 toast.configure()
@@ -30,16 +31,6 @@ export default function Login() {
         width: '100%',
     }))
 
-    const JWTRegister = styled(JustifyBox)(() => ({
-        background: '#1A2038',
-        minHeight: '100vh !important',
-        '& .card': {
-            maxWidth: 800,
-            borderRadius: 12,
-            margin: '1rem',
-        },
-    }))
-
     const initialValues = { email: "", password: "", id: "" };
     const [inputValues, setFormValues] = useState(initialValues);
     const [state, setState] = useState()
@@ -58,6 +49,7 @@ export default function Login() {
     const inputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ inputValues, [name]: value });
+        console.log(value);
     }
 
     async function handleFormSubmit(e) {
@@ -77,12 +69,21 @@ export default function Login() {
     }
 
 
+    // let updateinfo = JSON.parse(localStorage?.getItem?.('forgot-info'));
+    // console.log(updateinfo);
 
     async function updateFormsubmit(e) {
+
         e.preventDefault();
         let update = { password: inputValues.password, id: inputValues.id }
+        console.log(update);
         let upresult = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update)
         setUpdatedetail(upresult.data)
+        // if (upresult.data.status) {
+        //     toast.success("jhgk")
+        // } else {
+        //     toast.error("invalid");
+        // }
 
     }
 
@@ -92,7 +93,7 @@ export default function Login() {
                 <Navbar />
             </div>
             <div className='forgot-uname'>
-                <JWTRegister>
+                <div className='forgot-bg-color'>
                     <Card className="card">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Sign in Kidzuni</h5>
@@ -190,7 +191,7 @@ export default function Login() {
                             }
                         </Grid>
                     </Card>
-                </JWTRegister>
+                </div>
             </div>
             <Footer />
         </div>
