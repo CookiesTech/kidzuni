@@ -1,16 +1,17 @@
-
 import useAuth from 'app/hooks/useAuth'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Box, styled } from '@mui/system'
 import { useNavigate } from 'react-router-dom'
-import { Span } from 'app/components/Typography'
-import { Card, Checkbox, FormControlLabel, Grid, Button } from '@mui/material'
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
-import Footer from '../home/footer'
+import { Card, Grid, Button } from '@mui/material'
 import Navbar from '../home/navbar'
-
+import Footer from '../home/footer'
+import axios from "axios"
+import "../assets/css/style.css"
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+toast.configure()
 export default function Login() {
+
     const FlexBox = styled(Box)(() => ({
         display: 'flex',
         alignItems: 'center',
@@ -30,38 +31,61 @@ export default function Login() {
         width: '100%',
     }))
 
-    const JWTRegister = styled(JustifyBox)(() => ({
-        background: '#1A2038',
-        minHeight: '100vh !important',
-        '& .card': {
-            maxWidth: 800,
-            borderRadius: 12,
-            margin: '1rem',
-        },
-    }))
-
-
+    const initialValues = { email: "", password: "", id: "" };
+    const [inputValues, setFormValues] = useState(initialValues);
+    const [state, setState] = useState()
+    const [forgotdetail, setForgotdetail] = useState();
     const navigate = useNavigate()
-    const [state, setState] = useState({})
-    const { register } = useAuth()
+    const [showUpdate, setShowUpdate] = useState(false)
+    const [showForgot, setShowForgot] = useState(true);
 
-    const handleChange = ({ target: { name, value } }) => {
-        setState({
-            ...state,
-            [name]: value,
-        })
+    const [updatedetail, setUpdatedetail] = useState();
+
+    // const handleChange = (val) => {
+    //     setState(val.target.value)
+    //     console.log(val.target.value);
+    // }
+
+    const inputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ inputValues, [name]: value });
+        console.log(value);
     }
 
-    const handleFormSubmit = (event) => {
-        try {
-            register(state.email, state.username)
-            navigate('/forgotpassword')
-        } catch (e) {
-            console.log(e)
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        let data = { email: inputValues.email, }
+        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/forgot_password", data);
+        setForgotdetail(result.data.data)
+        console.log(result.data.data);
+
+        if (result.data.status) {
+            setShowUpdate(true);
+            setShowForgot(false);
+        } else {
+            toast.error("Email Not Found");
         }
+        localStorage.setItem("forgot-info", JSON.stringify(result.data))
     }
 
-    let { username, email } = state
+
+    // let updateinfo = JSON.parse(localStorage?.getItem?.('forgot-info'));
+    // console.log(updateinfo);
+
+    async function updateFormsubmit(e) {
+
+        e.preventDefault();
+        let update = { password: inputValues.password, id: inputValues.id }
+        console.log(update);
+        let upresult = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update)
+        setUpdatedetail(upresult.data)
+        // if (upresult.data.status) {
+        //     toast.success("jhgk")
+        // } else {
+        //     toast.error("invalid");
+        // }
+
+    }
 
     return (
         <div>
@@ -69,8 +93,7 @@ export default function Login() {
                 <Navbar />
             </div>
             <div className='forgot-uname'>
-                <JWTRegister>
-
+                <div className='forgot-bg-color'>
                     <Card className="card">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Sign in Kidzuni</h5>
@@ -84,42 +107,72 @@ export default function Login() {
                                     />
                                 </ContentBox>
                             </Grid>
-                            <Grid item lg={7} md={7} sm={7} xs={12}>
-                                <Box p={4} height="100%">
-                                    <ValidatorForm onSubmit={handleFormSubmit}>
+                            {showForgot &&
+                                <Grid item lg={7} md={7} sm={7} xs={12}>
+                                    <Box p={4} height="100%">
+                                        <form autoComplete='off' onSubmit={handleFormSubmit}>
+                                            <h5>Enter New Password</h5>
+                                            <input
+                                                type="text"
+                                                name="email"
+                                                class="form-control"
+                                                placeholder="Enter Email id"
+                                                value={inputValues.email}
+                                                onChange={inputChange}
+                                                required
+                                            />
+
+                                            <FlexBox>
+                                                <Button
+                                                    sx={{ textTransform: 'capitalize' }}
+                                                    onClick={() => navigate("/user/login")}
+                                                >
+                                                    Sign in
+                                                </Button>
+
+                                                <Button
+                                                    type="submit"
+                                                    color="primary"
+                                                    variant="contained"
+                                                    sx={{ textTransform: 'capitalize' }}
+                                                >
+                                                    Submit
+                                                </Button>
+                                            </FlexBox>
+                                        </form>
+                                    </Box>
+                                </Grid>
+                            }
+
+                            {showUpdate &&
+                                <Grid item lg={7} md={7} sm={7} xs={12}>
+                                    <form onSubmit={updateFormsubmit}>
                                         <h5>Reset Your Password</h5>
-                                        <TextValidator
-                                            sx={{ mb: 3, width: '100%' }}
+                                        <input
+                                            type="password"
+                                            name="password"
                                             variant="outlined"
-                                            size="small"
-                                            label="Username"
-
-                                            type="text"
-                                            name="username"
-
-                                            validators={['required']}
-                                            errorMessages={['this field is required']}
+                                            class="form-control"
+                                            placeholder="Enter password"
+                                            value={inputValues.password}
+                                            onChange={inputChange}
+                                            required
+                                        />
+                                        <input
+                                            type="number"
+                                            name="id"
+                                            variant="outlined"
+                                            class="form-control"
+                                            placeholder="Enter Your id"
+                                            value={inputValues.id}
+                                            onChange={inputChange}
+                                            required
                                         />
 
-                                        <TextValidator
-                                            sx={{ mb: 3, width: '100%' }}
-                                            variant="outlined"
-                                            label="Email"
-
-                                            type="email"
-                                            name="email"
-                                            size="small"
-
-                                            validators={['required', 'isEmail']}
-                                            errorMessages={[
-                                                'this field is required',
-                                                'email is not valid',
-                                            ]}
-                                        />
                                         <FlexBox>
                                             <Button
                                                 sx={{ textTransform: 'capitalize' }}
-                                                onClick={() => navigate("/login")}
+                                                onClick={() => navigate("/user/login")}
                                             >
                                                 Sign in
                                             </Button>
@@ -133,16 +186,14 @@ export default function Login() {
                                                 Submit
                                             </Button>
                                         </FlexBox>
-                                    </ValidatorForm>
-                                </Box>
-                            </Grid>
+                                    </form>
+                                </Grid>
+                            }
                         </Grid>
                     </Card>
-                </JWTRegister>
+                </div>
             </div>
-
             <Footer />
         </div>
-
     )
 }

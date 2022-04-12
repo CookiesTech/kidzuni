@@ -43,7 +43,6 @@ export default function Navbar(props) {
         props.onchange(counrtyinfo[index].id)
     }
 
-
     const navigate = useNavigate();
     return (
         <div>
@@ -53,16 +52,16 @@ export default function Navbar(props) {
                         <Link className="navbar-brand" to={"/home"}>
                             <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
-
                         <div className="change-country">
                             <div className='drop-flag'>
                                 <img src={countryimage} alt="flag" />
                             </div>
-
                             <div className="coutry-drop-select">
-
                                 <select name="country" className='form-control' onChange={(e) => handlecountry(e)}>
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
                                     {
                                         counrtyinfo.map((countrylist, i) => (
                                             <option key={countrylist.image} value={i}>{countrylist.code}</option>
@@ -71,7 +70,6 @@ export default function Navbar(props) {
                                 </select>
                             </div>
                         </div>
-
 
                         {login ? (
                             <div className='login-after'>
@@ -111,7 +109,6 @@ export default function Navbar(props) {
                                     </div>
                                 </div>
                             </div>
-
                         ) : (
                             <div className='login-btn'>
                                 <Link to={'/user/login'}>

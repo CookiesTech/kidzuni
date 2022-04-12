@@ -1,14 +1,15 @@
-
 import useAuth from 'app/hooks/useAuth'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Box, styled } from '@mui/system'
 import { useNavigate } from 'react-router-dom'
-import { Span } from 'app/components/Typography'
-import { Card, Checkbox, FormControlLabel, Grid, Button } from '@mui/material'
+import axios from 'axios'
+import { Card, Grid, Button } from '@mui/material'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
-import Navbar from '../home/navbar'
 import Footer from '../home/footer'
+import Navbar from '../home/navbar'
+import "react-toastify/dist/ReactToastify.css";
+toast.configure()
 
 export default function Login() {
     const FlexBox = styled(Box)(() => ({
@@ -42,26 +43,28 @@ export default function Login() {
 
 
     const navigate = useNavigate()
+    const initialValues = { password: "", id: "" };
+    const [inputValues, setFormValues] = useState(initialValues);
+    const [updatedetail, setUpdatedetail] = useState();
     const [state, setState] = useState({})
     const { register } = useAuth()
 
-    const handleChange = ({ target: { name, value } }) => {
-        setState({
-            ...state,
-            [name]: value,
-        })
+
+    const inputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ inputValues, [name]: value });
+
     }
 
-    const handleFormSubmit = (event) => {
-        try {
-            register(state.email, state.username)
-            navigate('/forgotpassword')
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        let update = { email: inputValues.email, id: inputValues.id }
+        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update);
+        setUpdatedetail(result.data.data)
+        console.log(result.data.data);
 
-    let { username, email } = state
+
+    }
 
     return (
         <div>
@@ -87,27 +90,32 @@ export default function Login() {
                             <Grid item lg={7} md={7} sm={7} xs={12}>
                                 <Box p={4} height="100%">
                                     <ValidatorForm onSubmit={handleFormSubmit}>
-                                        <h5>Request Username</h5>
-                                        <TextValidator
-                                            sx={{ mb: 3, width: '100%' }}
+                                        <h5>Reset Your Password</h5>
+                                        <input
+                                            type="password"
+                                            name="password"
                                             variant="outlined"
-                                            label="Email"
-
-                                            type="email"
-                                            name="email"
-                                            size="small"
-
-                                            validators={['required', 'isEmail']}
-                                            errorMessages={[
-                                                'this field is required',
-                                                'email is not valid',
-                                            ]}
+                                            class="form-control"
+                                            placeholder="Enter password"
+                                            value={inputValues.password}
+                                            onChange={inputChange}
+                                            required
                                         />
-                                        <FlexBox>
+                                        <input
+                                            type="number"
+                                            name="id"
+                                            variant="outlined"
+                                            class="form-control"
+                                            placeholder="Enter Your id"
+                                            value={inputValues.id}
+                                            onChange={inputChange}
+                                            required
+                                        />
 
+                                        <FlexBox>
                                             <Button
                                                 sx={{ textTransform: 'capitalize' }}
-                                                onClick={() => navigate("/login")}
+                                                onClick={() => navigate("/user/login")}
                                             >
                                                 Sign in
                                             </Button>
