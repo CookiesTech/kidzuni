@@ -58,10 +58,6 @@ export default function Navbar(props) {
                             </div>
                             <div className="coutry-drop-select">
                                 <select name="country" className='form-control' onChange={(e) => handlecountry(e)}>
-<<<<<<< HEAD
-
-=======
->>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
                                     {
                                         counrtyinfo.map((countrylist, i) => (
                                             <option key={countrylist.image} value={i}>{countrylist.code}</option>

@@ -31,60 +31,44 @@ export default function Login() {
         width: '100%',
     }))
 
-    const initialValues = { email: "", password: "", id: "" };
-    const [inputValues, setFormValues] = useState(initialValues);
-    const [state, setState] = useState()
-    const [forgotdetail, setForgotdetail] = useState();
+    const [inputValues, setFormValues] = useState();
     const navigate = useNavigate()
     const [showUpdate, setShowUpdate] = useState(false)
     const [showForgot, setShowForgot] = useState(true);
-
-    const [updatedetail, setUpdatedetail] = useState();
-
-    // const handleChange = (val) => {
-    //     setState(val.target.value)
-    //     console.log(val.target.value);
-    // }
+    const [userid, setUserid] = useState();
 
     const inputChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ inputValues, [name]: value });
-        console.log(value);
+        setFormValues(e.target.value);
     }
-
+    const inputChangePassword = (e) => {
+        setFormValues(e.target.value);
+    }
     async function handleFormSubmit(e) {
         e.preventDefault();
-        let data = { email: inputValues.email, }
+        let data = { email: inputValues }
         let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/forgot_password", data);
-        setForgotdetail(result.data.data)
-        console.log(result.data.data);
 
         if (result.data.status) {
+            setUserid(result.data.data.id);
             setShowUpdate(true);
             setShowForgot(false);
         } else {
             toast.error("Email Not Found");
         }
-        localStorage.setItem("forgot-info", JSON.stringify(result.data))
+
     }
 
-
-    // let updateinfo = JSON.parse(localStorage?.getItem?.('forgot-info'));
-    // console.log(updateinfo);
-
     async function updateFormsubmit(e) {
-
         e.preventDefault();
-        let update = { password: inputValues.password, id: inputValues.id }
-        console.log(update);
-        let upresult = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update)
-        setUpdatedetail(upresult.data)
-        // if (upresult.data.status) {
-        //     toast.success("jhgk")
-        // } else {
-        //     toast.error("invalid");
-        // }
+        let update = { password: inputValues, id: userid }
+        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/update_password", update)
 
+        if (result.data.status) {
+            toast.success(result.data.message);
+            navigate("/user/login")
+        } else {
+            toast.error(result.data.message);
+        }
     }
 
     return (
@@ -111,13 +95,12 @@ export default function Login() {
                                 <Grid item lg={7} md={7} sm={7} xs={12}>
                                     <Box p={4} height="100%">
                                         <form autoComplete='off' onSubmit={handleFormSubmit}>
-                                            <h5>Enter New Password</h5>
+                                            <h5>Enter Your Email</h5>
                                             <input
                                                 type="text"
                                                 name="email"
                                                 class="form-control"
                                                 placeholder="Enter Email id"
-                                                value={inputValues.email}
                                                 onChange={inputChange}
                                                 required
                                             />
@@ -147,27 +130,17 @@ export default function Login() {
                             {showUpdate &&
                                 <Grid item lg={7} md={7} sm={7} xs={12}>
                                     <form onSubmit={updateFormsubmit}>
-                                        <h5>Reset Your Password</h5>
+                                        <h5>Enter New Password</h5>
                                         <input
                                             type="password"
                                             name="password"
                                             variant="outlined"
                                             class="form-control"
                                             placeholder="Enter password"
-                                            value={inputValues.password}
-                                            onChange={inputChange}
+                                            onChange={inputChangePassword}
                                             required
                                         />
-                                        <input
-                                            type="number"
-                                            name="id"
-                                            variant="outlined"
-                                            class="form-control"
-                                            placeholder="Enter Your id"
-                                            value={inputValues.id}
-                                            onChange={inputChange}
-                                            required
-                                        />
+
 
                                         <FlexBox>
                                             <Button

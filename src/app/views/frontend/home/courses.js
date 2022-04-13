@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-export default function Courses(props) {
-    //console.log(props);
-=======
 import { Link } from "react-router-dom";
-import StandardService from "../Services/StandardService";
-import { config } from '../../../config'
 export default function Courses(props) {
-
-    console.log(props);
->>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
         fetchData();
@@ -19,10 +10,6 @@ export default function Courses(props) {
 
     const fetchData = async () => {
         setformdata(props.data);
-<<<<<<< HEAD
-=======
-
->>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
     }
 
     return (
@@ -46,11 +33,7 @@ export default function Courses(props) {
                                         <h3>{data?.standard_name}</h3>
                                         <p>{data?.description.substring(0, 90)}...</p>
                                         <hr />
-<<<<<<< HEAD
-                                        {/* {data?.subjects ? (
-=======
                                         {data?.subjects?.subjects ? (
->>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
                                             <div className="">
                                                 <span className="subject-skills">
                                                     <li>
@@ -75,19 +58,14 @@ export default function Courses(props) {
                                                 </div>
                                             </div>
                                         ) : (
-<<<<<<< HEAD
-                                            <h5>No Topics Found</h5>
-                                        )} */}
-=======
                                             <h6>No Topics Found</h6>
                                         )}
->>>>>>> fb545099792ff2d12b04c2dcb78154208481ec68
-                                    </div>
-                                </div>
-                            </div>
+                                    </div >
+                                </div >
+                            </div >
                         ))
                     }
-                </div>
+                </div >
             ) : (
                 <h4>Data Not Found</h4>
             )

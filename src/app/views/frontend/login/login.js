@@ -141,13 +141,7 @@ export default function Login() {
                                             onChange={inputChange}
                                             placeholder="Enter Email id"
                                         />
-                                        {/* <div className='login-forgot'>
-                                            <a href="" onClick={() => navigate("/login/forgotpassword")}>Forgot Username?</a>
-                                        </div> */}
 
-                                        <div className='login-forgot'>
-                                            <Link className="" to="/login/forgotpassword">Forgot Username?</Link>
-                                        </div>
                                         <input
                                             type="password"
                                             name="password"
@@ -157,16 +151,13 @@ export default function Login() {
                                             onChange={inputChange}
                                             required
                                         />
-                                        {/* <div className='login-forgot'>
-                                            <a href="" onClick={() => navigate("/login/updatepassword")}>Forgot password?</a>
-                                        </div> */}
                                         <div className='login-forgot'>
-                                            <Link to="/login/updatepassword">Forgot Password?</Link>
+                                            <Link className="" to="/login/forgotpassword">Forgot Password?</Link>
                                         </div>
 
                                         <div className='register-part'>
                                             <strong> Not a Member yet?</strong>
-                                            <Link to="/home/membership"><a className='nav-link'>Sign up{'>'}</a></Link>
+                                            <Link to="/home/membership"><a className='nav-link' href="#!">Sign up{'>'}</a></Link>
                                         </div>
                                         <FlexBox>
                                             <Button
