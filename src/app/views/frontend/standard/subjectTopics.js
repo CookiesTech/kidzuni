@@ -5,14 +5,18 @@ import { config } from "app/config";
 import TopicsService from "../Services/TopicsService";
 export default function Topics() {
     let topicsservice = new TopicsService(config.baseURL);
-    const [topics, setTopics] = useState();
-
+    const [topics = [], setTopics] = useState();
+    const id = window.location.pathname.split("-").pop();
+    let member_info = JSON.parse(localStorage?.getItem?.('user-info'));
     useEffect(() => {
-
         async function fetchMyAPI() {
-            await await topicsservice.subjecttopics()
+            let data = { standard_id: id, student_id: member_info?.id, country_code: member_info?.country_code };
+            await topicsservice.subjecttopics(data)
                 .then((response) => {
-                    setTopics(response?.data.data.Topics);
+                    if (response?.data.status) {
+
+                        setTopics(response?.data.data.Topics);
+                    }
                 });
         }
         fetchMyAPI();
@@ -33,23 +37,41 @@ export default function Topics() {
                     </div>
 
 
-                    {topics?.map((topic, k) => {
-                        return (
-                            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
-                                <h5>{topic.main_topic}</h5>
-                                <div className="sub-list">
-                                    {topic.sub_topics?.map((topiclist, i) => (
-                                        <Link className="nav-link" to={'/test'}>
-                                            <li key={`slide-${i}`}>{topiclist?.name}</li>
-                                        </Link>
-                                    ))}
+                    {topics.length > 0 && member_info !== 'null' ? (
+
+                        topics?.map((topic, k) => {
+                            return (
+                                <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 topics-types" key={`main-${k}`}>
+                                    <h5>{topic.main_topic}</h5>
+                                    <div className="sub-list">
+                                        {topic.sub_topics?.map((topiclist, i) => (
+                                            <>
+                                                {
+                                                    member_info?.role === 3 || member_info === 'null' ? (
+
+                                                        <li key={`slide-${i}`}>{topiclist?.name}</li>
+                                                    ) : (
+                                                        <Link className="nav-link" to={'/test-' + topiclist.id}>
+                                                            <li key={`slide-${i}`}>{topiclist?.name} -({topiclist?.score > 0 ? (<>{topiclist?.score} <img src="assets/frontend/images/medal.svg" alt="..." width={10} /></>) : (<>{topiclist?.score}</>)})</li>
+                                                        </Link>
+
+                                                    )}
+                                            </>
+
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })
+
+                    ) : (
+                        <p>No Topics Found</p>
+                    )
+                    }
+
                 </div>
                 <div className="top-space"></div>
             </div>
-        </div>
+        </div >
     )
 }

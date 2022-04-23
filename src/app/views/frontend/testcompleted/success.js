@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../home/navbar";
 import { Link } from "react-router-dom";
 import Footer from "../home/footer";
 import "../assets/css/style.css";
 import NavbarMenus from "../home/NavbarMenus";
 import LearningMenu from "../Learning/LearningMenu";
-
+import QuizTestService from "../Services/QuizTestService";
+import { config } from "app/config";
 export default function Success() {
+    const [results, setResults] = useState();
+    let quizservice = new QuizTestService(config.baseURL)
+    useEffect(() => {
+        fetchResults();
+    }, []);
+
+    const fetchResults = async () => {
+        const id = window.location.pathname.split("-").pop();
+        let data = { subcategory_id: id };
+        await quizservice.fetchResults(data).then((res) => {
+            if (res.data.status) {
+                setResults(res.data.data);
+            }
+        });
+    }
     return (
         <div>
             <div className="container">

@@ -2,11 +2,8 @@ import React, { Fragment } from 'react';
 import Navbar from "../../home/navbar";
 import Footer from "../../home/footer";
 import AnalyticsMenu from "../AnalyticsMenus";
-import { Grid, Card } from '@mui/material';
-
-import PieChart from './PieChart';
-// import UpgradeCard from '../../dashboard/shared/UpgradeCard';
-import { styled, useTheme } from '@mui/system';
+import { Grid } from '@mui/material';
+import { styled } from '@mui/system';
 import QuizDetails from './QuizDetails';
 import NavbarMenus from '../../home/NavbarMenus';
 
@@ -18,27 +15,7 @@ const ContentBox = styled('div')(({ theme }) => ({
     },
 }))
 
-const Title = styled('span')(() => ({
-    fontSize: '1rem',
-    fontWeight: '500',
-    textTransform: 'capitalize',
-}))
-
-const SubTitle = styled('span')(({ theme }) => ({
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary,
-}))
-
-const H4 = styled('h4')(({ theme }) => ({
-    fontSize: '1rem',
-    fontWeight: '500',
-    marginBottom: '16px',
-    textTransform: 'capitalize',
-    color: theme.palette.text.secondary,
-}))
-
 const Analytics = () => {
-    const { palette } = useTheme()
 
     return (
         <div>
@@ -93,21 +70,7 @@ const Analytics = () => {
 
                             </Grid>
 
-                            <Grid item lg={12} md={12} sm={12} xs={12}>
-                                <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                                    <Title>PRACTICE </Title>
-                                    <SubTitle>Last 30 days</SubTitle>
-                                    <PieChart
-                                        height="300px"
-                                        color={[
-                                            palette.primary.dark,
-                                            palette.primary.main,
-                                            palette.primary.light,
-                                        ]}
-                                    />
-                                </Card>
 
-                            </Grid>
                         </Grid>
                     </ContentBox>
                 </Fragment>

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 toast.configure()
 
 export default function Navbar(props) {
+    const navigate = useNavigate();
     let counrtyservice = new CounrtyService(config.baseURL);
     let login = JSON.parse(localStorage?.getItem?.("user-info"));
     const Logout = () => {
@@ -43,7 +44,7 @@ export default function Navbar(props) {
         props.onchange(counrtyinfo[index].id)
     }
 
-    const navigate = useNavigate();
+
     return (
         <div>
             <div className="row">
@@ -52,25 +53,11 @@ export default function Navbar(props) {
                         <Link className="navbar-brand" to={"/home"}>
                             <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
-                        <div className="change-country">
-                            <div className='drop-flag'>
-                                <img src={countryimage} alt="flag" />
-                            </div>
-                            <div className="coutry-drop-select">
-                                <select name="country" className='form-control' onChange={(e) => handlecountry(e)}>
-                                    {
-                                        counrtyinfo.map((countrylist, i) => (
-                                            <option key={countrylist.image} value={i}>{countrylist.code}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div>
 
                         {login ? (
                             <div className='login-after'>
                                 <div className="nav-item  user-show">
-                                    <a
+                                    <a href="#!"
                                         className="nav-link dropdown-toggle-profile"
                                         id="navbarDropdown"
                                         role="button"
@@ -78,7 +65,7 @@ export default function Navbar(props) {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {login?.role == 3 ? (
+                                        {login?.role === 3 ? (
                                             <span>Welcome, Parent</span>
                                         ) : (
                                             <span>Welcome, Student</span>
@@ -88,29 +75,46 @@ export default function Navbar(props) {
                                         className="dropdown-menu home-dropdownshow"
                                         aria-labelledby="navbarDropdown"
                                     >
-                                        <a className="dropdown-item" href="">
+                                        <a className="dropdown-item" href="#!">
                                             <Link className="nav-link " to="/profile-setting">
                                                 profile setting
                                             </Link>
                                         </a>
-                                        <a className="dropdown-item" href="">
+                                        <a className="dropdown-item" href="#!">
                                             <Link className="nav-link " to="/profile-setting">
                                                 Membership
                                             </Link>
                                         </a>
 
-                                        <a className="dropdown-item logout-btn" href="" onClick={Logout}>
+                                        <a className="dropdown-item logout-btn" href="#!" onClick={Logout}>
                                             Logout
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         ) : (
-                            <div className='login-btn'>
-                                <Link to={'/user/login'}>
-                                    <button className="kidzuni-btn home-signin">Sign In</button>
-                                </Link>
-                            </div>
+                            <>
+                                <div className="change-country">
+                                    <div className='drop-flag'>
+                                        <img src={countryimage} alt="flag" />
+                                    </div>
+                                    <div className="coutry-drop-select">
+                                        <select name="country" className='form-control' onChange={(e) => handlecountry(e)}>
+                                            {
+                                                counrtyinfo.map((countrylist, i) => (
+                                                    <option key={countrylist.image} value={i}>{countrylist.code}</option>
+                                                ))
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className='login-btn'>
+                                    <Link to={'/user/login'}>
+                                        <button className="kidzuni-btn home-signin">Sign In</button>
+                                    </Link>
+                                </div>
+
+                            </>
                         )}
                     </nav>
                 </div>

@@ -76,7 +76,7 @@ class ApiService {
   }
 
   setAuthorizationToken() {
-    this.setHeader("Authorization", 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJ1c2VyX2lkIjo0MywiaWF0IjoxNjQ4NjM4MDIwLCJleHAiOjE2NTY0MTQwMjAsInJvbGUiOiIzIn0.vT8WUm9O9EJW936WJnCjcx-ksLkdJUlOyQgTj_E6fVQ');
+    this.setHeader("Authorization", localStorage.getItem('token'));
   }
 
   generateCancelToken() {

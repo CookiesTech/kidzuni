@@ -42,7 +42,7 @@ export default function Courses(props) {
                                                                 data?.subjects?.subjects?.map((subjectname, i) => (
                                                                     <div>
                                                                         <h6>{subjectname.subject_name}</h6>
-                                                                        <Link className="nav-link" to={"/standard-" + data.standard_name}>
+                                                                        <Link className="nav-link" to={"/standard-" + data.id}>
                                                                             <span className="nav-link" href="">{subjectname.count} Expertise {'>'}</span>
                                                                         </Link>
                                                                     </div>

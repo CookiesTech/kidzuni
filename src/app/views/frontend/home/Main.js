@@ -31,8 +31,8 @@ export default function Home() {
         setCountryCode(e)
         try {
             const data = await standardservice.getstandardandSubjectData(e);
-            console.log(data.data.data);
-            setformData(data?.data?.data.standards);
+
+            setformData(data?.data?.data?.standards);
         }
         catch (e) {
             console.log(e);

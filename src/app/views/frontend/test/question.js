@@ -1,29 +1,59 @@
-import { Button, Hidden } from "@mui/material";
-import { useState, useHistory, useEffect } from "react";
-import Marks from "./time";
-import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ErrorMessage from "./ErrorMessage";
 import "./question.css"
-
-import Quiztest from "./quiztest";
+import { Helmet } from 'react-helmet';
+import QuizTestService from "../Services/QuizTestService";
+import { config } from "app/config";
+import { useStopwatch } from 'react-timer-hook';
+import ErrorMessage from "./ErrorMessage";
+import { useNavigate } from 'react-router-dom';
 toast.configure();
 
 const Question = () => {
+  const navigate = useNavigate();
+  let quizservice = new QuizTestService(config.baseURL)
+  const [questions = [], setQuestions] = useState();
   const [selected, setSelected] = useState();
   const [score, setScore] = useState(0);
   const [currIndex, setCurrIndex] = useState(0);
-  const [question, setQuestion] = useState();
-  const [error, setError] = useState();
-  const [show, setShow] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [showresult, setshowresult] = useState(false);
 
-  // let currQues=0;
-  //console.log(currQues);
-  // let first_question="";
+  const {
+    seconds,
+    minutes,
+    hours,
+  } = useStopwatch({ autoStart: true });
 
+  const id = window.location.pathname.split("-").pop();
 
-  const handleCheck = (e) => {  //user selected value.
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  const fetchQuestions = async () => {
+    try {
+      const data = { subcategory_id: 1 };
+      const res = await quizservice.getQuestions(data);
+
+      if (res.data.status) {
+        setQuestions(res.data.data);
+        setScore(res.data.score);
+
+      }
+      else {
+
+      }
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+  }
+  const handleCheck = (e) => {
 
     let value = e.target.value;
     if (value) {
@@ -31,103 +61,219 @@ const Question = () => {
     }
   };
 
-  const handleNext = () => {   //Change questions and score increase.
+
+  const handleNext = async () => {
+    let time = `${hours} : ${minutes} : ${seconds}`;
 
     if (selected) {
-      console.log(Quiztest[currIndex]?.correctAnswer);
 
-      // console.log(Quiztest[currIndex]?.question);
-      // console.log(error);
+      if (selected === questions[currIndex]?.answer) {
 
-      if (selected === Quiztest[currIndex]?.correctAnswer) {
-        setError(true);
-        setError(false);
-        setScore(score + 1);
-        setCurrIndex(currIndex + 1);
         setSelected();
+        var n1 = parseInt(score);
+        var n2 = parseInt(1);
+        var newscore = n1 + n2;
+        //have to store the data for every question 
+        let data = {
+          question_id: questions[currIndex].id, correct_answer: questions[currIndex]?.answer
+          , student_answer: selected, subcategory_id: id, score: parseInt(newscore), time: time
+        }
+        await quizservice.create(data).then((res) => {
+          setScore(parseInt(res.data.score));
+          setCurrIndex(currIndex + 1);
+        });
 
-      } else {
+      }//student answer is wrong
+      else {
+        setLoading(true);
+        setError('Wrong Answer')
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        //have to store the data for every question 
+        let data = {
+          question_id: questions[currIndex].id, correct_answer: questions[currIndex]?.answer
+          , student_answer: selected, subcategory_id: id, score: parseInt(score), time: time
+        }
 
-        setError("🦄 Sorry Incorrect Answer"); // Incorrect Answer
-        setCurrIndex(currIndex + 1);
+        await quizservice.create(data).then((res) => {
+          setScore(parseInt(res.data.score));
+          setCurrIndex(currIndex + 1);
+        });
         setSelected();
       }
     }
 
-    else {    //Set Error option not selected 
-
-      toast.error("Please select an option first");
+    else {
+      setLoading(true);
+      setError('Please select an option first')
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      //toast.error("Please select an option first");
     }
   }
 
+  const completeTest = () => {
+    setshowresult(true);
+    setTimeout(() => {
+      setshowresult(false);
+      navigate('/analytics/usage');
+    }, 10000);
+    // navigate('/test_completed-' + id);
+  }
+  console.log(questions.length);
   return (
-    <div>
-      <div className="row top-space">
-        <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-6">
-          <Marks />
-        </div>
-        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
-          <div className="timespent-score">
-            <h5>score: {score}</h5>
+    <div className="main">
+      {
+        showresult === false ? (
+
+          <>
+            <div>
+              <Helmet>
+                <title>KidzUni | Quiz Test</title>
+              </Helmet>
+
+              {questions.length > 0 ? (
+                <>
+                  <div className="row top-space">
+
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
+                      <div className="timespent-score">
+                        <h5>score: {score}</h5>
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
+                      <div className="timespent-score">
+                        <h5>Time Spent: <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="question">
+                    <div className="singleQuestion">
+                      <div className="question-error-msg">
+
+                        <p>
+                          {questions[currIndex]?.question_text}
+                        </p>
+                        {loading ? (
+                          <ErrorMessage>{error}</ErrorMessage>
+                        ) : (
+                          <div>
+
+                          </div>
+                        )}
+                        <div className="controls">
+                          {questions.length > currIndex ? (
+                            <p>
+
+                              <button
+                                className='options-button' name="options" value={questions[currIndex]?.option1}
+                                onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option1}</button>
+                              <button
+                                className='options-button' name="options" value={questions[currIndex]?.option2}
+                                onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option2}</button>
+
+                            </p>
+                          ) : (
+
+
+                            <Button
+                              variant="contained"
+                              color="success"
+                              size="large"
+                              className="test-complete-submit"
+                              style={{ width: 185 }}
+                              onClick={completeTest}
+                            >Complete
+                            </Button>
+
+
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="controls">
+                        {questions.length > currIndex ? (
+                          <Button
+                            variant="contained"
+                            color="success"
+                            size="large"
+                            className="test-complete-submit"
+                            style={{ width: 185 }}
+                            onClick={() => handleNext()}
+                          >Submit
+                          </Button>
+                        ) : (
+                          <></>
+                        )}
+
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (<p>No New Question Found for You !.. </p>)}
+            </div>
+
+          </>
+        ) : (<div className="success">
+
+          <div className="planet-cont">
+            <div className="planet"></div>
+            <div className="rings"></div>
           </div>
-        </div>
-      </div>
+          <div className="test-completed">
+            <div className="congarts">
+              <h1>Congratulations!</h1>
+            </div>
+            {/* <div className="test-complete-className">
 
-      <div className="question">
-        <div className="singleQuestion">
-          <div className="question-error-msg">
-            {error && <div className=""><ErrorMessage>{error}</ErrorMessage></div>}
-            <p>
-              {
-                Quiztest[currIndex]?.question
-              }
-            </p>
 
-            <div className="select-option">
-              {
-                Quiztest[currIndex]?.options.map((options, i) => (
-                  <button
-                    className='options-button' name="options" value={options}
-                    onClick={(e) => handleCheck(e)} >{options}</button>
-                )
-                )
-              }
+              <span> Sub-Topic(cout 1 to 3)</span>
+            </div> */}
+
+            <div className="checkmark-circle">
+              <div className="background"></div>
+              <div className="checkmark draw"></div>
+            </div>
+            <h4>You Have Successfully Completed.</h4>
+
+            <div className="score-board">
+              <span>
+                <img src=" assets/frontend/images/credit-score.png" alt="score" />
+                <p>Smart scroe</p>
+              </span>
+              <span>
+                <img src=" assets/frontend/images/time-spent.png" alt="time" />
+                <p>Time Spent</p>
+              </span>
+              <span>
+                <img src=" assets/frontend/images/target.png" alt="question" />
+                <p>Questions</p>
+              </span>
+
             </div>
           </div>
 
-          <div className="controls">
-            {/* <Button
-                    variant="contained"
-                    color="secondary"
-                    size="large"
-                    style={{ width: 185 }}
-                    href="/"
-                    onClick={() => handleQuit()}
-                >
-                    Quit
-                </Button> */}
-            {/* <h2>{score}:</h2> */}
-
-            {/* <Link className="" to="/test-completed"> */}
-            <Button
-              variant="contained"
-              color="success"
-              size="large"
-              className="test-complete-submit"
-              style={{ width: 185 }}
-
-              // className={`singleOption  ${selected && handleSelect(i)}`}
-              onClick={() => handleNext()}
-            >Submit
-
-            </Button>
-            {/* </Link> */}
-
+          <div className="yellow-planet">
+            <div className="planet-cont bottom">
+              <div className="planet bottom"></div>
+              <div className="rings bottom"></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
 
+
+          <div className="star"></div>
+          <div className="star k"></div>
+
+
+          <div className="rocket-cont">
+            <div className="rocket-top"></div>
+            <div className="rocket-bottom"></div>
+            <div className="flame"></div>
+          </div>
+        </div>)}
+    </div>
   );
 };
 

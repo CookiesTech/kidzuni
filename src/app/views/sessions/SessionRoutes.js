@@ -28,7 +28,13 @@ const Usage = Loadable(lazy(() => import('../frontend/Analytics/Usage/Usage')))
 const QuestionsLog = Loadable(lazy(() => import('../frontend/Analytics/QuestionsLog/QuestionsLog')))
 const Progress = Loadable(lazy(() => import('../frontend/Analytics/Progress/Progress')))
 
+const TestCompleted = Loadable(lazy(() => import('../frontend/testcompleted/success')))
+
 const sessionRoutes = [
+    {
+        path: '/test_completed-:value',
+        element: <TestCompleted />,
+    },
     {
         path: '/home',
         element: <Home />,
@@ -51,7 +57,7 @@ const sessionRoutes = [
         element: <Standard />,
     },
     {
-        path: '/test',
+        path: '/test-:value',
         element: <Test />,
     },
     {
@@ -79,26 +85,26 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home/awards',
+        path: 'awards',
         element: <Awards />,
     },
 
     {
-        path: 'home/awards/standard',
+        path: 'awards/standard',
         element: <AwardsClasses />,
     },
 
     {
-        path: 'home/awards/standard/certificates',
+        path: 'awards/standard/certificates',
         element: <Certificates />,
     },
 
     {
-        path: 'home/analytics/usage',
+        path: 'analytics/usage',
         element: <Usage />,
     },
     {
-        path: 'home/analytics/questions-log',
+        path: 'analytics/questions-log',
         element: <QuestionsLog />,
     },
 

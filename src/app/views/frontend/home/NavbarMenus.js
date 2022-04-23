@@ -11,11 +11,11 @@ export default function NavbarMenus() {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="dropdown category-list">
-                            <Link className='nav-link' to={'/home/maths'}>
-                                <a className="nav-link" href="">Learning </a>
+                            <Link className='nav-link' to={'/learning/maths'}>
+                                <a className="nav-link" href="#!">Learning </a>
                             </Link>
-                            <Link className='nav-link' to={'/home/analytics/usage'}>
-                                <a className="nav-link" href="">Analytics</a>
+                            <Link className='nav-link' to={'/analytics/usage'}>
+                                <a className="nav-link" href="#!">Analytics</a>
                             </Link>
                         </div>
                         <div className="home-searchbox">
