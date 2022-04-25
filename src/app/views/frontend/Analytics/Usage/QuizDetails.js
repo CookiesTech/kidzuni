@@ -59,6 +59,7 @@ const QuizDetails = () => {
     const fetchUsage = async () => {
         await analysticsservice.getAnalystics().then((res) => {
             if (res.data.status) {
+
                 SetFormData(res.data.data);
             }
         })
