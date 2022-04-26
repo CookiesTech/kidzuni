@@ -7,15 +7,15 @@ export default function AnalyticsMenu() {
         <div>
             <div className="">
                 <div class="analytics-tab top-space">
-                    <NavLink activeClassName="active" to={'/home/analytics/usage'}>
+                    <NavLink activeClassName="active" to={'/analytics/usage'}>
                         <span class="" >Usage
                             <img className="img-fluid" src="../../../assets/frontend/images/usage.png" alt="" /></span>
                     </NavLink>
-                    <NavLink activeClassName="active" to={'/home/analytics/progress'}>
+                    <NavLink activeClassName="active" to={'/analytics/progress'}>
                         <span class="border-left">Progress
                             <img src="../../../assets/frontend/images/progress.png" alt="" /></span>
                     </NavLink>
-                    <NavLink activeClassName="active" to={'/home/analytics/questions-log'}>
+                    <NavLink activeClassName="active" to={'/analytics/questions-log'}>
                         <span class="border-left">Questions
                             <img src="../../../assets/frontend/images/question.png" alt="" /></span>
                     </NavLink>

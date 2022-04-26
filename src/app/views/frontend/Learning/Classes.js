@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import SubjectService from "../Services/SubjectService"
-
+import SubjectService from "../Services/SubjectService";
+import { config } from "app/config";
 export default function StandardClass() {
-
-    let subjectservice = new SubjectService();
+    let subjectservice = new SubjectService(config.baseURL);
 
     const [standard = [], setStandard] = useState();
 
-
     useEffect(() => {
         standardDtata();
-
     }, []);
 
     const standardDtata = async () => {    //standard classes
+
         try {
             const data = await subjectservice.standardDtata();
-
             setStandard(data.data.data);
         }
         catch (e) {

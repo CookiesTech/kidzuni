@@ -1,13 +1,17 @@
 import React from "react";
 import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
-import NavbarMenus from "../../home/NavbarMenus"
+import NavbarMenus from "../../home/NavbarMenus";
+import { Helmet } from "react-helmet";
 import Navbar from "../../home/navbar";
 import AnalyticsMenu from "../AnalyticsMenus";
 
 export default function Progress() {
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Analytics Progress</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>
@@ -59,7 +63,7 @@ export default function Progress() {
                             <th scope="col">Score Imporvement</th>
                         </tr>
                         <tr class="">
-                            <td> <Link className="" to={'/home/analytics/questions-log'}> A 1.1 Numbers and Counts</Link></td>
+                            <td> <Link className="" to={'/analytics/questions-log'}> A 1.1 Numbers and Counts</Link></td>
                             <td>15 min</td>
                             <td>90</td>
                             <td>

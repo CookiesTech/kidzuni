@@ -2,7 +2,7 @@ import ApiService from "./ApiService";
 
 export default class AnalyticsService extends ApiService {
 
-    create = async (data) => {
+    getAnalystics = async (data) => {
         //let Url = 'http://localhost:8000/public/api/insert_quiztestdata';
         let Url = this.baseURL + 'insert_quiztestdata';
         let response = await this.post(Url, data);

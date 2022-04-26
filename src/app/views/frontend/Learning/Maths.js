@@ -7,6 +7,7 @@ import { NavLink, Link } from "react-router-dom";
 import SubjectService from "../Services/SubjectService";
 import TopicsService from "../Services/TopicsService";
 import Footer from "../home/footer";
+import Helmet from "react-helmet"
 import "../assets/css/style.css"
 import NavbarMenus from "../home/NavbarMenus";
 
@@ -72,6 +73,9 @@ export default function MathsSubject() {
 
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Learning Maths</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>

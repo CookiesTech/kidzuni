@@ -11,7 +11,7 @@ export default function NavbarMenus() {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="dropdown category-list">
-                            <Link className='nav-link' to={'/learning/maths'}>
+                            <Link className='nav-link' to={'/learning/recommendation'}>
                                 <a className="nav-link" href="#!">Learning </a>
                             </Link>
                             <Link className='nav-link' to={'/analytics/usage'}>

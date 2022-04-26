@@ -70,7 +70,7 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home/learning/recommendation',
+        path: '/learning/recommendation',
         element: <Recommendation />,
     },
 
@@ -109,7 +109,7 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home/analytics/progress',
+        path: '/analytics/progress',
         element: <Progress />,
     },
 

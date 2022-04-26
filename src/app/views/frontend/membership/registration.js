@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../home/navbar";
+import Helmet from "react-helmet";
 import Footer from "../home/footer";
 import PackageService from "../Services/PackageService"
 import NavbarMenus from "../home/NavbarMenus";
@@ -176,6 +177,9 @@ export default function Registration() {
     }
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Registration</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>

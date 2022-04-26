@@ -4,6 +4,7 @@ import { Box, styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Helmet from "react-helmet"
 import "react-toastify/dist/ReactToastify.css";
 import { Card, Grid, Button } from '@mui/material'
 
@@ -110,6 +111,9 @@ export default function Login() {
 
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Login</title>
+            </Helmet>
             <div className='container'>
                 <Navbar />
             </div>

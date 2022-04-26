@@ -1,8 +1,11 @@
 import Navbar from "./navbar";
 import Banner from "./banner";
+
+import { Link, animateScroll as scroll } from "react-scroll";
 import Courses from "./courses";
 import NavbarMenus from "./NavbarMenus";
 import Footer from "./footer";
+import Helmet from "react-helmet"
 import StandardService from "../Services/StandardService";
 import { config } from 'app/config';
 import { useState, useEffect } from "react";
@@ -39,12 +42,25 @@ export default function Home() {
     }
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Home</title>
+            </Helmet>
             <div className="container">
-                <Navbar onchange={handleChangeCountry} />
+
+                <Link
+                    activeClass="active"
+                    to="section1"
+                    spy={true}
+                    smooth={true}
+                    offset={70}
+                    duration={500}
+                >
+
+                    <Navbar onchange={handleChangeCountry} /> </Link>
             </div>
             <NavbarMenus />
             <Banner />
-            <div className="container">
+            <div className="container" id="section1" >
                 <Courses data={formData} />
             </div>
             <Footer />
