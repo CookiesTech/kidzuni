@@ -14,7 +14,6 @@ toast.configure();
 export default function Registration() {
     let packageservice = new PackageService();
     const [inputValue, setInputValue] = React.useState("");
-    const [packageprice, setPackagePrice] = useState();
     const [schoolPackage = [], setschoolPackage] = useState();
     const [packagefor, setPackageFor] = useState('parent');
     const [type, setType] = useState('monthly');
@@ -22,7 +21,7 @@ export default function Registration() {
     const [showParent, setShowParent] = useState(true)
 
     useEffect(() => {
-        getallpackage();
+        getMonthlyParentPackage();
         getSchoolStudentCount();
 
 
@@ -46,12 +45,13 @@ export default function Registration() {
         }
     }
 
-    const getallpackage = async () => {    //subject List
+    const getMonthlyParentPackage = async () => {
         try {
+
             let data1 = { package_for: packagefor, type: type }
             const data = await packageservice.getallpackage(data1);
-
-            setPackagePrice(data.data.data);
+            setAdditionalPrice(data.data.data[0].additional_price);
+            //setPackagePrice(data.data.data);
 
             setInputValue(data.data.data[0].price);
         }
@@ -64,7 +64,9 @@ export default function Registration() {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const [additional_price, setAdditionalPrice] = useState(0);
     const navigate = useNavigate();
+    const [child_count, setChildCount] = useState(1)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -127,16 +129,18 @@ export default function Registration() {
     };
 
     const handleChildrenCountParent = (e, index) => {
+        e.preventDefault();
         let count = parseInt(e.target.value);
-        let previous_price = packageprice[index].price;
+        let previous_price = inputValue;
         if (count > 1) {
-            let additional_price = parseInt(packageprice[index].additional_price);
+
+            //let additional_price = parseInt(packageprice[index].additional_price);
             count = parseInt(count - 1);
             let newPrice = parseInt(count * additional_price);
             var n1 = parseInt(previous_price);
             var n2 = parseInt(newPrice);
             var ans = n1 + n2;
-
+            setChildCount(e.target.value);
             setInputValue(ans);
         }
         else {
@@ -151,28 +155,40 @@ export default function Registration() {
         const data = await packageservice.getallpackage(data1);
 
         if (data.data.status) {
-            setPackagePrice(data.data.data);
+            if (packagefor === 'parent') {
+                setAdditionalPrice(data.data.data[0].additional_price)
+            }
+            //setPackagePrice(data.data.data);
+            setChildCount()
             setType(e.target.value)
-            setInputValue(data.data.data[0].price);
+            setInputValue(0);
         }
 
     }
 
     const handlePackageChange = (e) => {
         if (e.target.value === 'school') {
-            setInputValue(schoolPackage[0].price)
-            setShowSchool(true)
+            setPackageFor('school')
+            setInputValue(0)
+            setChildCount(0);
+            setType('')
             setShowParent(false)
-        } else {
-            setInputValue(packageprice[0].price)
+            setShowSchool(true)
+
+        } else if (e.target.value === 'parent') {
+            setPackageFor('parent')
+            setPackageFor(e.target.value)
+            setInputValue(0)
+            setAdditionalPrice(0)
             setShowSchool(false)
             setShowParent(true)
         }
-        setPackageFor(e.target.value)
+
     }
     const handleChildrensCountSchool = (e) => {
-        e.preventDefault();
 
+        e.preventDefault();
+        setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
         setInputValue(schoolPackage[e.target.value].price)
     }
     return (
@@ -206,57 +222,60 @@ export default function Registration() {
                                 <hr />
 
                                 <div className="register-info-detail">
-                                    <span className="info-heading">Enter Your Details</span>
+                                    <span className="info-heading">Select Your Plan Details</span><hr />
                                     <div className="plan-part">
                                         <span className="plan-heading">Package For</span>
-                                        <button type="button" name="package_for" value="parent" className="select-option sub-input" onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor == 'parent' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
                                             Parent
                                         </button>
-                                        <button type="button" name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor == 'school' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
                                             School
                                         </button>
                                     </div>
 
                                     <div className="type-part">
                                         <span className="plan-heading">Choose a Type</span>
-                                        <button type="button" name="type" value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type == 'monthly' ? { color: '#000' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
                                             Monthly
                                         </button>
-                                        <button type="button" name="type" value="annual" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type == 'annual' ? { color: '#000' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
                                             Annual
                                         </button>
                                     </div>
 
-                                    {showParent &&
-                                        packageprice?.map((packagedetail, i) => (
+                                    {
+                                        showParent && packagefor === 'parent' ? (
+
                                             <div>
                                                 <div className="children-count">
                                                     <span className="plan-heading">Choose a number<br /> of Children</span>&nbsp;
 
                                                     <div className="cart_box">
                                                         <div>
-                                                            <input type="number" name="count" onChange={(e) => handleChildrenCountParent(e, i)}></input>
+                                                            <input type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}></input>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <div className="maths-price">
-                                                    <span className="plan-heading">Choose desired Subjects</span>
-                                                    <button type="button" className="select-option sub-input"
-                                                        data-value="MATH" tabindex="-1" placeholder="" id="">
-                                                        {/* <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div> */}
-                                                        <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                                        <div className="productOption-term">per month</div>
-                                                    </button>
-                                                    <span className="addtional-amount">adiitional price per kid:₹{packagedetail.additional_price}</span>
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
 
-                                    {
-                                        showschool && (
+                                                    <button type="button" className="select-option sub-input">
+                                                        <div className="productOption-price"><span>₹{inputValue} </span></div>
+                                                        <div className="productOption-term">{type}</div>
+                                                    </button>
+                                                    <span className="addtional-amount">additional price per kid:₹{additional_price}</span>
+                                                </div>
+                                                {/* {packageprice?.map((packagedetail, i) => (
+                                                    <div className="maths-price">
+                                                       
+                                                        <button type="button" className="select-option sub-input">
+                                                            <div className="productOption-price"><span>₹{inputValue} </span></div>
+                                                            <div className="productOption-term">{type}</div>
+                                                        </button>
+                                                        <span className="addtional-amount">additional price per kid:₹{packagedetail.additional_price}</span>
+                                                    </div>
+                                                ))} */}
+                                            </div>
+                                        ) : (
                                             <>
                                                 <div className="plan-heading sch-count">Choose a number<br /> of Children</div>
                                                 {
@@ -267,24 +286,26 @@ export default function Registration() {
                                                     ))
                                                 }
                                                 <div className="maths-price">
-                                                    <span className="plan-heading">Choose desired Subjects</span>
-                                                    <button type="button" className="select-option sub-input"
-                                                        data-value="MATH" tabindex="-1" placeholder="" id="">
+                                                    {/* <span className="plan-heading">Choose desired Subjects</span> */}
+                                                    <button type="button" className="select-option sub-input">
                                                         {/* <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div> */}
                                                         <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                                        <div className="productOption-term">per month</div>
+                                                        <div className="productOption-term">{type}</div>
                                                     </button>
                                                 </div>
-                                            </>
-                                        )}
+                                            </>)
+                                    }
+
+
                                     <hr />
+                                    <span className="info-heading">Enter Your Details</span>
                                     <div className="reg-detail-part">
                                         <div className="name-part">
                                             <label>Name</label>
                                             <input
                                                 type="text"
                                                 name="name"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter your name"
                                                 value={formValues.name}
                                                 onChange={handleChange}
@@ -298,7 +319,7 @@ export default function Registration() {
                                             <input
                                                 type="email"
                                                 name="email"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="email"
                                                 placeholder="Enter Email id"
                                                 value={formValues.email}
@@ -313,7 +334,7 @@ export default function Registration() {
                                             <input
                                                 type="password"
                                                 name="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Password"
                                                 value={formValues.password}
                                                 onChange={handleChange}
@@ -326,7 +347,7 @@ export default function Registration() {
                                             <input
                                                 type="countrycode"
                                                 name="countrycode"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="countrycode"
                                                 placeholder="Enter your Countrycode"
                                                 value={formValues.countrycode}
@@ -340,7 +361,7 @@ export default function Registration() {
                                             <input
                                                 type="number"
                                                 name="phonenumber"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="phone"
                                                 placeholder="Enter your Phone Number"
                                                 value={formValues.phonenumber}
@@ -371,11 +392,11 @@ export default function Registration() {
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 plan-sec">
                         <div className="plan-selected">
                             <h4>Purchase Summary</h4>
-                            <div className="membership-selected">Monthly Membership</div>
-                            <div className="child-count">1 Child</div>
+                            <p>For-<b>{packagefor}</b></p>
+                            <div className="membership-selected"><b>{type}</b> Membership</div>
+                            <div className="child-count">{child_count} Child</div>
                             <div className="selected-amt">₹{inputValue}</div>
                         </div>
-                        {/* <hr /> */}
                         <div className="join-benefit">
                             <h4>Benefits of Joining</h4>
                             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit dui, dictum at blandit eget,

@@ -13,7 +13,9 @@ export default function StandardClass() {
     const standardDtata = async () => {    //standard classes
 
         try {
-            const data = await subjectservice.standardDtata();
+            let userData = JSON.parse(localStorage?.getItem?.('user-info'));
+            let postData = { country_code: userData?.country_code };
+            const data = await subjectservice.standardDtata(postData);
             setStandard(data.data.data);
         }
         catch (e) {

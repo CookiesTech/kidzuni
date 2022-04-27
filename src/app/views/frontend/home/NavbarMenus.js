@@ -5,11 +5,11 @@ export default function NavbarMenus() {
     return (
         <div>
             <div className='row menu-bar-sec'>
-                <div class="navbar navbar-expand-lg navbar-light ">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                <div className="navbar navbar-expand-lg navbar-light ">
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="dropdown category-list">
                             <Link className='nav-link' to={'/learning/recommendation'}>
                                 <a className="nav-link" href="#!">Learning </a>
