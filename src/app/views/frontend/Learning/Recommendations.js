@@ -3,6 +3,7 @@ import Footer from "../home/footer"
 import Navbar from "../home/navbar"
 import { Link } from "react-router-dom"
 import NavbarMenus from "../home/NavbarMenus"
+import Helmet from "react-helmet"
 import StandardClass from "./Classes"
 import LearningMenu from "./LearningMenu"
 
@@ -10,6 +11,9 @@ import LearningMenu from "./LearningMenu"
 export default function Recommendation() {
     return (
         <div>
+            <Helmet>
+                <title>KidzUni  | Learning Recommendation</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>

@@ -42,6 +42,7 @@ export default function Navbar(props) {
         const index = event.target.value;
         setCountryimage(counrtyinfo[index].image);
         props.onchange(counrtyinfo[index].id)
+
     }
 
 
@@ -65,7 +66,7 @@ export default function Navbar(props) {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {login?.role === 3 ? (
+                                        {login?.role == 3 ? (
                                             <span>Welcome, Parent</span>
                                         ) : (
                                             <span>Welcome, Student</span>

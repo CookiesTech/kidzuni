@@ -1,5 +1,7 @@
 import Navbar from "./navbar";
 import Banner from "./banner";
+
+import { Link, animateScroll as scroll } from "react-scroll";
 import Courses from "./courses";
 import NavbarMenus from "./NavbarMenus";
 import Footer from "./footer";
@@ -32,7 +34,6 @@ export default function Home() {
         setCountryCode(e)
         try {
             const data = await standardservice.getstandardandSubjectData(e);
-
             setformData(data?.data?.data?.standards);
         }
         catch (e) {
@@ -45,11 +46,22 @@ export default function Home() {
                 <title>KidzUni | Home</title>
             </Helmet>
             <div className="container">
-                <Navbar onchange={handleChangeCountry} />
+
+                {/* <Link
+                    activeClass="active"
+                    to="section1"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={5000}
+                > */}
+
+                <Navbar className="page-scroll" href="#section1" onchange={handleChangeCountry} />
+                {/* </Link> */}
             </div>
             <NavbarMenus />
             <Banner />
-            <div className="container">
+            <div className="container" id="section1" >
                 <Courses data={formData} />
             </div>
             <Footer />

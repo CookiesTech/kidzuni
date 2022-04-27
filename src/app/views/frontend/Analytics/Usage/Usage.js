@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Navbar from "../../home/navbar";
 import Footer from "../../home/footer";
 import AnalyticsMenu from "../AnalyticsMenus";
@@ -6,7 +6,11 @@ import { Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import QuizDetails from './QuizDetails';
 import NavbarMenus from '../../home/NavbarMenus';
-
+import { Helmet } from 'react-helmet';
+import SubjectlistService from '../../Services/SubjectlistService';
+import { config } from "app/config";
+import SubjectService from '../../Services/SubjectService';
+import UsageService from "../../Services/UsageService"
 
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -15,10 +19,42 @@ const ContentBox = styled('div')(({ theme }) => ({
     },
 }))
 
-const Analytics = () => {
+const Analytics = (props) => {
+    let subjectlistservice = new SubjectlistService(config.baseURL)
+    let subjectservice = new SubjectService(config.baseURL)
+
+    let countrycode = JSON.parse(localStorage?.getItem?.("user-info"));
+    console.log(countrycode);
+
+    const [subjectdata, setSubjectdata] = useState();
+
+    const [standraddata, setStandraddata] = useState();
+    const [usagedata, setUsagedata] = useState();
+    const [change, setChange] = useState();
+
+    useEffect(() => {
+        subjectlistinfo();
+
+    }, [])
+
+    const subjectlistinfo = async () => {
+        // console.log("bhgvhjmfguyt");
+        try {
+            const res = await subjectlistservice.subjectlistdata();
+            setSubjectdata(res.data);
+            console.log("hdvjhgfy");
+
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Analytics Usage</title>
+            </Helmet>
             <div className='container'>
                 <Navbar />
             </div>
@@ -26,14 +62,16 @@ const Analytics = () => {
             <NavbarMenus />
             <div className='container'>
                 <AnalyticsMenu />
-
                 <div className="row usage-select-sec">
                     <div className="usage-detail" >
                         <span>Subjects :</span>&nbsp;
                         <select>
-                            <option>All Subjects</option>
-                            <option> Maths </option>
-                            <option> English </option>
+                            {/* {
+                                subjectdata?.map((data, m) => (
+                                    <option key={m}>{data}</option>
+
+                                ))
+                            } */}
                         </select>&nbsp;
 
                         <span>Standard :</span>&nbsp;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Footer from "../../home/footer"
 import Navbar from "../../home/navbar";
+import { Helmet } from "react-helmet";
 import NavbarMenus from "../../home/NavbarMenus"
 import "../../test/question.css"
 import { Grid, Tabs, Tab, AppBar } from "@mui/material";
@@ -33,6 +34,9 @@ export default function QuestionsLog() {
 
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Analytics Questions</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>

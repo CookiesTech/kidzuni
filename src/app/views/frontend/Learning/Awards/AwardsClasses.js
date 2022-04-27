@@ -4,32 +4,30 @@ import { Link } from "react-router-dom";
 import "../../assets/css/style.css";
 import Footer from "../../home/footer";
 import LearningMenu from "../LearningMenu";
-import StandardService from "../../Services/StandardService";
+import SubjectlistService from "../../Services/SubjectlistService";
+import Helmet from "react-helmet"
 import StandardClass from "../Classes"
+import { config } from "app/config"
 import NavbarMenus from "../../home/NavbarMenus";
-import { config } from "app/config";
-
 
 export default function AwardsClasses() {
-
-
-    let standardservice = new StandardService(config.baseURL);
-
+    let subjectlistservice = new SubjectlistService(config.baseURL);
 
     const [subject, setSubject] = useState();
 
     useEffect(() => {
-
         subjectList();
     }, []);
 
 
+    let certificate_info = JSON.parse(localStorage?.getItem?.('user-info'));
+    console.log(certificate_info);
 
     const subjectList = async () => {   //subject lists
         try {
-            const data = await standardservice.subjectList();
+            const data = await subjectlistservice.subjectlistdata();
 
-            console.log(data);
+            // console.log(data);
             setSubject(data.data.data);
         }
         catch (e) {
@@ -37,12 +35,13 @@ export default function AwardsClasses() {
         }
     }
 
-
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Learning Awards</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
-
             </div>
 
             <NavbarMenus />
@@ -58,11 +57,11 @@ export default function AwardsClasses() {
                                 </div>
                             ))
                         }
+
                         <Link className="" to={"certificates"}>
                             <a href="">Certificates</a>
                         </Link>
                     </div>
-
 
                     <div className="row">
                         <StandardClass />
@@ -107,12 +106,9 @@ export default function AwardsClasses() {
                             <button className="kidzuni-btn home-signin">Practise more</button>
                         </Link>
                     </div>
-
                 </div>
                 <div className="top-space"></div>
             </div>
-
-
             <Footer />
         </div >
     )

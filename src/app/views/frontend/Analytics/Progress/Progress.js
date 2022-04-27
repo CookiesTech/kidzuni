@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
-import NavbarMenus from "../../home/NavbarMenus"
+import NavbarMenus from "../../home/NavbarMenus";
+import { Helmet } from "react-helmet";
 import Navbar from "../../home/navbar";
 import AnalyticsMenu from "../AnalyticsMenus";
 import AnalyticsService from '../../Services/AnalyticsService'
@@ -22,6 +23,9 @@ export default function Progress() {
     }
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Analytics Progress</title>
+            </Helmet>
             <div className="container">
                 <Navbar />
             </div>
