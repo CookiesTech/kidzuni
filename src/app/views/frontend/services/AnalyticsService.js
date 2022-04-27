@@ -2,9 +2,9 @@ import ApiService from "./ApiService";
 
 export default class AnalyticsService extends ApiService {
 
-    create = async (data) => {
+    getAnalystics = async (data) => {
         //let Url = 'http://localhost:8000/public/api/insert_quiztestdata';
-        let Url = this.baseURL + 'insert_quiztestdata';
+        let Url = this.baseURL + 'getAnalytics';
         let response = await this.post(Url, data);
 
         if (response.status !== 200) {
@@ -13,9 +13,9 @@ export default class AnalyticsService extends ApiService {
         return response;
     };
 
-    getQuestions = async (data) => {
+    getProgress = async (data) => {
         //let Url = 'http://localhost:8000/public/api/getQuestionsByID';
-        let Url = this.baseURL + 'getQuestionsByID';
+        let Url = this.baseURL + 'analysticsProgress';
         let response = await this.post(Url, data);
         if (response.status !== 200) {
             throw Error(response);
@@ -23,10 +23,20 @@ export default class AnalyticsService extends ApiService {
         return response;
     };
 
-    fetchResults = async (data) => {
+    fetchQuestionLog = async (data) => {
         //let Url = 'http://localhost:8000/public/api/getQuestionsByID';
-        let Url = this.baseURL + 'getTestResults';
+        let Url = this.baseURL + 'getQuestionLog';
         let response = await this.post(Url, data);
+        if (response.status !== 200) {
+            throw Error(response);
+        }
+        return response;
+    };
+
+    fetchAnalysticsSubjects = async () => {
+        //let Url = 'http://localhost:8000/public/api/getQuestionsByID';
+        let Url = this.baseURL + 'fetchAnalysticsSubjects';
+        let response = await this.get(Url);
         if (response.status !== 200) {
             throw Error(response);
         }

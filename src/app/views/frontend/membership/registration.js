@@ -8,7 +8,7 @@ import Navbar from "../home/navbar";
 import Footer from "../home/footer";
 import PackageService from "../Services/PackageService"
 import NavbarMenus from "../home/NavbarMenus";
-
+import { config } from 'app/config';
 toast.configure();
 export default function Registration() {
     let packageservice = new PackageService();
@@ -78,7 +78,7 @@ export default function Registration() {
             name: formValues.name,
             email: formValues.email,
             password: formValues.password,
-            countrycode: formValues.countrycode,
+            country_code: formValues.countrycode,
             no_of_children: 1,
             type: "monthly",
             package_for: "parent",
@@ -86,7 +86,7 @@ export default function Registration() {
         };
 
         const result = await axios.post(
-            "http://feltech.in/kidzuni_backend/public/api/register",
+            config.baseURL + "register",
             data
         );
 

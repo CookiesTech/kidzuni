@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Card, Grid, Button } from '@mui/material'
-
+import { config } from 'app/config';
 import "../assets/css/style.css"
 import Navbar from '../home/navbar';
 import Footer from '../home/footer';
@@ -62,7 +62,7 @@ export default function Login() {
             email: inputValues.email,
             password: inputValues.password
         }
-        let result = await axios.post("http://feltech.in/kidzuni_backend/public/api/login", data);
+        let result = await axios.post(config.baseURL + "login", data);
 
         if (result.data.status) {
 

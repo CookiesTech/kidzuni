@@ -5,16 +5,15 @@ import "../../assets/css/style.css";
 import Footer from "../../home/footer";
 import LearningMenu from "../LearningMenu";
 import StandardService from "../../Services/StandardService";
-import { Subject } from "@mui/icons-material";
 import StandardClass from "../Classes"
 import NavbarMenus from "../../home/NavbarMenus";
-
+import { config } from "app/config";
 
 
 export default function AwardsClasses() {
 
 
-    let standardservice = new StandardService();
+    let standardservice = new StandardService(config.baseURL);
 
 
     const [subject, setSubject] = useState();

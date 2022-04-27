@@ -2,9 +2,9 @@ import React from 'react'
 import { useTheme } from '@mui/system'
 import ReactEcharts from 'echarts-for-react'
 
-const PieChart = ({ height, color = [] }) => {
+const PieChart = ({ height, color = [], graph_value = [] }) => {
     const theme = useTheme()
-
+    console.log(graph_value[0]);
     const option = {
         legend: {
             show: true,
@@ -80,14 +80,14 @@ const PieChart = ({ height, color = [] }) => {
                 },
                 data: [
                     {
-                        value: 65,
+                        value: graph_value[0].ans,
                         name: 'Correct Answered',
                     },
                     {
-                        value: 20,
+                        value: graph_value[0].wrong,
                         name: 'Un Answered',
                     },
-                    { value: 15, name: 'Covered Topics' },
+                    { value: graph_value[0].skills, name: 'Covered Topics' },
                 ],
                 itemStyle: {
                     emphasis: {

@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../home/footer";
 import { Link } from "react-router-dom";
 import NavbarMenus from "../../home/NavbarMenus"
 import Navbar from "../../home/navbar";
 import AnalyticsMenu from "../AnalyticsMenus";
+import AnalyticsService from '../../Services/AnalyticsService'
+import { config } from 'app/config';
 
 export default function Progress() {
+    let analysticsservice = new AnalyticsService(config.baseURL);
+    const [formData = [], SetFormData] = useState();
+    useEffect(() => {
+        fetchProgress();
+    }, []);
+    const fetchProgress = async () => {
+        await analysticsservice.getProgress().then((res) => {
+            if (res.data.status) {
+                SetFormData(res.data.data);
+            }
+        })
+    }
     return (
         <div>
             <div className="container">
@@ -58,56 +72,26 @@ export default function Progress() {
                             <th scope="col">Questions</th>
                             <th scope="col">Score Imporvement</th>
                         </tr>
-                        <tr class="">
-                            <td> <Link className="" to={'/home/analytics/questions-log'}> A 1.1 Numbers and Counts</Link></td>
-                            <td>15 min</td>
-                            <td>90</td>
-                            <td>
-                                <div className="kidz-progress-level">
-                                    <progress max="100" value="95"></progress>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A 1.1 Numbers and Counts</td>
-                            <td>20 min</td>
-                            <td>85</td>
-                            <td>
-                                <div className="kidz-progress-level">
-                                    <progress max="100" value="85"></progress>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>A 1.1 Numbers and Counts</td>
-                            <td>22 min</td>
-                            <td>92</td>
-                            <td>
-                                <div className="kidz-progress-level">
-                                    <progress max="100" value="80"></progress>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>A 1.1 Numbers and Counts</td>
-                            <td>25 min</td>
-                            <td>82</td>
-                            <td>
-                                <div className="kidz-progress-level">
-                                    <progress max="100" value="83"></progress>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>A 1.1 Numbers and Counts</td>
-                            <td>25 min</td>
-                            <td>92</td>
-                            <td>
-                                <div className="kidz-progress-level">
-                                    <progress max="100" value="93"></progress>
-                                </div>
-                            </td>
-                        </tr>
+                        {
+                            formData.length > 0 ? (
+                                formData.map((data, i) => (
+                                    <tr class={`key-${i}`}>
+
+                                        <td> <Link className="" to={'/analytics/questions-log-' + data?.subcategory_id}> {data?.name}</Link></td>
+                                        <td>{data?.time_spent}</td>
+                                        <td>{data?.total_attn}</td>
+                                        <td>
+                                            <div className="kidz-progress-level">
+                                                <progress max="100" value={data?.score}></progress>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                ))
+                            ) : (<p align="center">No Data Found!</p>)
+                        }
+
+
                     </table>
                 </div>
 
@@ -115,6 +99,6 @@ export default function Progress() {
 
             </div>
             <Footer />
-        </div>
+        </div >
     )
 }

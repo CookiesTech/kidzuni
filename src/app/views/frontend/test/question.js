@@ -76,7 +76,7 @@ const Question = () => {
         //have to store the data for every question 
         let data = {
           question_id: questions[currIndex].id, correct_answer: questions[currIndex]?.answer
-          , student_answer: selected, subcategory_id: id, score: parseInt(newscore), time: time
+          , student_answer: selected, subcategory_id: id, score: parseInt(newscore), time: time, standard_id: questions[currIndex]?.standard_id, subject_id: questions[currIndex]?.subject_id
         }
         await quizservice.create(data).then((res) => {
           setScore(parseInt(res.data.score));
@@ -93,7 +93,7 @@ const Question = () => {
         //have to store the data for every question 
         let data = {
           question_id: questions[currIndex].id, correct_answer: questions[currIndex]?.answer
-          , student_answer: selected, subcategory_id: id, score: parseInt(score), time: time
+          , student_answer: selected, subcategory_id: id, score: parseInt(score), time: time, standard_id: questions[currIndex]?.standard_id, subject_id: questions[currIndex]?.subject_id
         }
 
         await quizservice.create(data).then((res) => {

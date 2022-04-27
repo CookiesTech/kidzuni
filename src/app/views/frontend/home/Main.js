@@ -6,6 +6,7 @@ import Footer from "./footer";
 import StandardService from "../Services/StandardService";
 import { config } from 'app/config';
 import { useState, useEffect } from "react";
+import { Helmet } from 'react-helmet';
 export default function Home() {
     let standardservice = new StandardService(config.baseURL);
     const [countrycode, setCountryCode] = useState(3);
@@ -40,6 +41,9 @@ export default function Home() {
     }
     return (
         <div>
+            <Helmet>
+                <title>KidzUni | Home</title>
+            </Helmet>
             <div className="container">
                 <Navbar onchange={handleChangeCountry} />
             </div>

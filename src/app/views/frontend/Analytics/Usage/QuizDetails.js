@@ -63,6 +63,7 @@ const QuizDetails = () => {
             }
         })
     }
+
     return (
         <Grid container spacing={3} sx={{ mb: '24px' }}>
             <Grid item xs={12} md={4}>
@@ -72,7 +73,7 @@ const QuizDetails = () => {
                         <Box ml="12px">
 
                             <Heading>Answered</Heading>
-                            <Small sx={{ fontSize: 22 }}>250</Small>&nbsp;
+                            <Small sx={{ fontSize: 22 }}>{formData?.correctAnswer_sum}</Small>&nbsp;
                             <Small sx={{ fontSize: 13 }}>QUESTIONS</Small>
                         </Box>
                     </ContentBox>
@@ -88,7 +89,7 @@ const QuizDetails = () => {
                             <Heading >Spent</Heading>
                             <Small
                                 sx={{ fontSize: 22 }}>
-                                3hr 15min
+                                {formData?.total_time}
                             </Small>&nbsp;
                             <Small sx={{ fontSize: 13 }}>
                                 PRACTISING
@@ -104,7 +105,7 @@ const QuizDetails = () => {
                         <Icon className="icon">store</Icon>
                         <Box ml="12px">
                             <Heading>Made Progress In</Heading>
-                            <Small sx={{ fontSize: 22 }}>14</Small>&nbsp;
+                            <Small sx={{ fontSize: 22 }}>{formData?.topicsCount}</Small>&nbsp;
                             <Small sx={{ fontSize: 13 }}>SKILLS</Small>
                         </Box>
                     </ContentBox>
@@ -121,6 +122,12 @@ const QuizDetails = () => {
                             palette.primary.main,
                             palette.primary.light,
                         ]}
+                        graph_value={[{
+                            ans: formData?.correctAnswer_sum,
+                            wrong: formData?.wrongAnswer_sum,
+                            skills: formData?.topicsCount,
+                        }]}
+
                     />
                 </Card>
 

@@ -2360,7 +2360,7 @@ ul li .icon {
   cursor: pointer;
   padding: 14px 132px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .usage-select-sec {
@@ -2486,7 +2486,7 @@ ul li .icon {
 }
 
 .flex-container {
-  height: 100px;
+  height: 370px;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-left: 40px;

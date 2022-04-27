@@ -7,7 +7,7 @@ export default function LearningMenu() {
         <div>
             <div className="">
                 <div class="learning-tab top-space">
-                    <NavLink activeClassName="active" to={'/home/learning/recommendation'}>
+                    <NavLink activeClassName="active" to={'/learning/recommendation'}>
                         <span class="" >Recommendations
                             <img className="img-fluid" src="../../../assets/frontend/images/recommended.png" alt="" /></span>
                     </NavLink>
@@ -19,7 +19,7 @@ export default function LearningMenu() {
                     <span class="border-left">English
                         <img src="../../../assets/frontend/images/english.png" alt="" /></span>
 
-                    <NavLink activeClassName="active" to={'/home/awards/standard'}>
+                    <NavLink activeClassName="active" to={'/awards/standard'}>
                         <span class="border-left">Awards
                             <img src="../../../assets/frontend/images/award.png" alt="" /></span>
                     </NavLink>
