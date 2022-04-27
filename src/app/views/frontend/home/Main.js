@@ -47,16 +47,17 @@ export default function Home() {
             </Helmet>
             <div className="container">
 
-                <Link
+                {/* <Link
                     activeClass="active"
                     to="section1"
                     spy={true}
                     smooth={true}
-                    offset={70}
-                    duration={500}
-                >
+                    offset={-70}
+                    duration={5000}
+                > */}
 
-                    <Navbar onchange={handleChangeCountry} /> </Link>
+                <Navbar className="page-scroll" href="#section1" onchange={handleChangeCountry} />
+                {/* </Link> */}
             </div>
             <NavbarMenus />
             <Banner />

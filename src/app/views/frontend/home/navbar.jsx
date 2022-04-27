@@ -42,6 +42,7 @@ export default function Navbar(props) {
         const index = event.target.value;
         setCountryimage(counrtyinfo[index].image);
         props.onchange(counrtyinfo[index].id)
+
     }
 
 
