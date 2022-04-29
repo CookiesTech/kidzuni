@@ -30,22 +30,19 @@ export default function Certificates() {
     console.log(certificate_info);
 
     useEffect(() => {
-        // standardDtata();
-        // subjectList();
-
         async function fetchMyAPI() {
-            let data = { standard_id: 3, student_id: certificate_info?.id, country_code: certificate_info?.country_code }
-            await await topicsservice.subjecttopics(data)
+            let data = { standard_id: 3, student_id: certificate_info?.id, country_code: 3 }
+
+            await topicsservice.subjecttopics(data)
+
                 .then((response) => {
                     if (response?.data.status) {
-
+                        //console.log(response?.data.data); return false;
                         setTopics(response?.data.data.Topics);
-                        console.log(response?.data.status);
                     }
                 });
         }
         fetchMyAPI();
-
     }, []);
 
 
@@ -81,7 +78,7 @@ export default function Certificates() {
             <div className="container">
                 <LearningMenu />
 
-                {topics.length > 0 ? (
+                {topics.length < 0 ? (
 
                     topics?.map((topic, k) => {
                         return (
@@ -92,7 +89,6 @@ export default function Certificates() {
 
                                         <div class="title"><span>You Have Achieved</span></div>
                                         {topic.sub_topics?.map((topiclist, i) => (
-
                                             <div class="descr sub-title" key={`slide-${i}`}><p><span>{topiclist?.name} |&nbsp;</span></p></div>
                                         ))}
 
