@@ -19,7 +19,13 @@ export default function Registration() {
     const [type, setType] = useState('monthly');
     const [showschool, setShowSchool] = useState(false)
     const [showParent, setShowParent] = useState(true)
-
+    const initialValues = { name: "", email: "", password: "", countrycode: "", phonenumber: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [additional_price, setAdditionalPrice] = useState(0);
+    const navigate = useNavigate();
+    const [child_count, setChildCount] = useState(1)
     useEffect(() => {
         getMonthlyParentPackage();
         getSchoolStudentCount();
@@ -60,13 +66,7 @@ export default function Registration() {
         }
     }
 
-    const initialValues = { name: "", email: "", password: "", countrycode: "", phonenumber: "" };
-    const [formValues, setFormValues] = useState(initialValues);
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [additional_price, setAdditionalPrice] = useState(0);
-    const navigate = useNavigate();
-    const [child_count, setChildCount] = useState(1)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -225,20 +225,20 @@ export default function Registration() {
                                     <span className="info-heading">Select Your Plan Details</span><hr />
                                     <div className="plan-part">
                                         <span className="plan-heading">Package For</span>
-                                        <button type="button" style={packagefor == 'parent' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor === 'parent' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
                                             Parent
                                         </button>
-                                        <button type="button" style={packagefor == 'school' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor === 'school' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
                                             School
                                         </button>
                                     </div>
 
                                     <div className="type-part">
                                         <span className="plan-heading">Choose a Type</span>
-                                        <button type="button" name="type" style={type == 'monthly' ? { color: '#000' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type === 'monthly' ? { color: '#000' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
                                             Monthly
                                         </button>
-                                        <button type="button" name="type" style={type == 'annual' ? { color: '#000' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type === 'annual' ? { color: '#000' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
                                             Annual
                                         </button>
                                     </div>

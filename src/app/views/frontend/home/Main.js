@@ -1,7 +1,7 @@
 import Navbar from "./navbar";
 import Banner from "./banner";
 
-import { Link, animateScroll as scroll } from "react-scroll";
+//import { Link, animateScroll as scroll } from "react-scroll";
 import Courses from "./courses";
 import NavbarMenus from "./NavbarMenus";
 import Footer from "./footer";
@@ -15,15 +15,25 @@ export default function Home() {
     const [formData = [], setformData] = useState();
 
     useEffect(() => {
-        handleChangeCountry();
+        // handleChangeCountry();
         getSubjectandStandardData();
 
     }, []);
 
 
     const getSubjectandStandardData = async () => {
+        let data = '';
         try {
-            const data = await standardservice.getstandardandSubjectData(countrycode);
+            let user = JSON.parse(localStorage?.getItem?.('user-info'));
+            if (user) {
+
+                data = await standardservice.getstandardandSubjectData(user.country_code);
+            }
+            else {
+
+                data = await standardservice.getstandardandSubjectData(countrycode);
+            }
+
             setformData(data.data.data.standards);
         }
         catch (e) {
@@ -56,7 +66,7 @@ export default function Home() {
                     duration={5000}
                 > */}
 
-                <Navbar className="page-scroll" href="#section1" onchange={handleChangeCountry} />
+                <Navbar onchange={handleChangeCountry} />
                 {/* </Link> */}
             </div>
             <NavbarMenus />

@@ -43,4 +43,14 @@ export default class AnalyticsService extends ApiService {
         return response;
     };
 
+    fetchSubjectandStandard = async (data) => {
+
+        let Url = this.baseURL + 'analyticsFetchSubjectandStandard';
+        let response = await this.post(Url, data);
+        if (response.status !== 200) {
+            throw Error(response);
+        }
+        return response;
+    };
+
 }

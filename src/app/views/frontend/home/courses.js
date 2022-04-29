@@ -4,10 +4,12 @@ export default function Courses(props) {
     const [formdata = [], setformdata] = useState();
     useEffect(() => {
         fetchData();
-    }, [props]);
+        // eslint-disable-next-line no-use-before-define
+    }, [fetchData, props.data]);
 
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const fetchData = async () => {
         setformdata(props.data);
     }
@@ -52,8 +54,8 @@ export default function Courses(props) {
                                                     </li>
                                                 </span>
                                                 <div className="explore-detail">
-                                                    <Link className="nav-link" to={`/standard-${data?.standard_name}`}>
-                                                        <a className="nav-link" href="#!">Explore Details..</a>
+                                                    <Link className="nav-link" to={`/standard-${data?.id}`}>
+                                                        Explore Details..
                                                     </Link>
                                                 </div>
                                             </div>

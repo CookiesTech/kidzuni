@@ -7,10 +7,8 @@ import { styled } from '@mui/system';
 import QuizDetails from './QuizDetails';
 import NavbarMenus from '../../home/NavbarMenus';
 import { Helmet } from 'react-helmet';
-import SubjectlistService from '../../Services/SubjectlistService';
 import { config } from "app/config";
-import SubjectService from '../../Services/SubjectService';
-import UsageService from "../../Services/UsageService"
+import AnalyticsService from '../../Services/AnalyticsService';
 
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -19,41 +17,41 @@ const ContentBox = styled('div')(({ theme }) => ({
     },
 }))
 
-const Analytics = (props) => {
-    let subjectlistservice = new SubjectlistService(config.baseURL)
-    let subjectservice = new SubjectService(config.baseURL)
-
-    let countrycode = JSON.parse(localStorage?.getItem?.("user-info"));
-    console.log(countrycode);
-
-    const [subjectdata, setSubjectdata] = useState();
-
-    const [standraddata, setStandraddata] = useState();
-    const [usagedata, setUsagedata] = useState();
-    const [change, setChange] = useState();
-
+const Analytics = () => {
+    let userData = JSON.parse(localStorage?.getItem?.('user-info'));
+    let analyticsservice = new AnalyticsService(config.baseURL)
+    const [subjects = [], setSubjects] = useState();
+    const [standards = [], setStandards] = useState();
+    const [filterData, setFilterData] = useState()
     useEffect(() => {
-        subjectlistinfo();
+        fetchSubjectandStandard();
 
     }, [])
+    const fetchSubjectandStandard = async () => {
+        let data = { country_code: userData?.country_code };
+        await analyticsservice.fetchSubjectandStandard(data).then((res) => {
+            if (res?.data?.status) {
+                setFilterData({
+                    standard_id: res.data?.data?.standards[0].id,
+                    subject_id: res.data?.data?.subjects[0].id,
+                    country_code: userData?.country_code,
+                    date_range: 'month'
+                })
+                setSubjects(res.data?.data?.subjects);
+                setStandards(res.data?.data?.standards)
 
-    const subjectlistinfo = async () => {
-        // console.log("bhgvhjmfguyt");
-        try {
-            const res = await subjectlistservice.subjectlistdata();
-            setSubjectdata(res.data);
-            console.log("hdvjhgfy");
-
-        }
-        catch (e) {
-            console.log(e);
-        }
+            }
+        })
     }
 
+    const handleChange = (e) => {
+        setFilterData({ ...filterData, [e.target.name]: e.target.value })
+    }
+    //console.log(filterData);
     return (
         <div>
             <Helmet>
-                <title>KidzUni | Analytics Usage</title>
+                <title>KidzUni | Analytics| Usage</title>
             </Helmet>
             <div className='container'>
                 <Navbar />
@@ -65,31 +63,33 @@ const Analytics = (props) => {
                 <div className="row usage-select-sec">
                     <div className="usage-detail" >
                         <span>Subjects :</span>&nbsp;
-                        <select>
-                            {/* {
-                                subjectdata?.map((data, m) => (
-                                    <option key={m}>{data}</option>
+                        <select name="subject_id" onChange={handleChange}>
+                            <option >Select Subjects</option>
+                            {
+                                subjects?.map((data, m) => (
+                                    <option value={data.id}>{data.subject_name}</option>
 
                                 ))
-                            } */}
+                            }
                         </select>&nbsp;
 
                         <span>Standard :</span>&nbsp;
-                        <select>
-                            <option>All Standard</option>
-                            <option> Class I </option>
-                            <option> Class II </option>
-                            <option> Class III </option>
-                            <option> Class IV </option>
-                            <option> Class V </option>
-                            <option> Class VI </option>
+                        <select name="standard_id" onChange={handleChange}>
+                            <option>Select Standard</option>
+                            {
+                                standards?.map((data, m) => (
+                                    <option value={data.id}>{data.standard_name}</option>
+
+                                ))
+                            }
                         </select>&nbsp;
 
                         <span>Date Range :</span>&nbsp;
-                        <select>
-                            <option>This Month</option>
-                            <option> Yesterday </option>
-                            <option> Last Week </option>
+                        <select name="date_range" onChange={handleChange}>
+                            <option>Select Date Range</option>
+                            <option value="month">This Month</option>
+                            <option value="yesterday"> Yesterday </option>
+                            <option value="last_week"> Last Week </option>
                         </select>
                     </div>
                 </div>
