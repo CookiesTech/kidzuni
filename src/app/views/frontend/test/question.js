@@ -138,12 +138,12 @@ const Question = () => {
                 <>
                   <div className="row top-space">
 
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
                       <div className="timespent-score">
                         <h5>score: {score}</h5>
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-6">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
                       <div className="timespent-score">
                         <h5>Time Spent: <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></h5>
                       </div>

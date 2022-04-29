@@ -910,6 +910,10 @@ input[type=radio]:checked~.option {
   margin-top: -31px;
 }
 
+.country-part select {
+  margin-left: 44px;
+}
+
 .email-part {
   display: flex;
 }
@@ -1678,7 +1682,7 @@ input[type=radio]:checked~.option {
 
 .details-sub {
   position: relative;
-  left: 285px;
+  left: 253px;
   top: 15px;
 }
 
@@ -1696,7 +1700,7 @@ input[type=radio]:checked~.option {
   border-radius: 20px;
   background: #10a0b6;
   color: #fff;
-  margin-left: 400px;
+  margin-left: 200px;
 }
 
 .continue-practice button:focus {
@@ -2095,6 +2099,15 @@ ul li .icon {
 
 .awards-details tr {
   margin: 5px;
+}
+
+.practice-details {
+  margin-bottom: 20px;
+}
+
+.awards-details span {
+  float: right;
+  margin-top: -30px;
 }
 
 .practice-details h6 {
@@ -2516,7 +2529,7 @@ ul li .icon {
 .awards-bg-img {
   background-image: url(../images/bg-2.jpg);
   background-size: cover;
-  height: 420px;
+  height: 440px;
 
 }
 
@@ -2535,13 +2548,17 @@ ul li .icon {
 /*---Image-hover--*/
 
 .grade-sec .class-tab-box {
-  width: 80px;
-  height: 50px;
-  background-image: url("../images/cloud-travel.jpeg");
+  width: 70px;
+  margin-left: 10px;
+  height: 70px;
+  background-image: url('../images/rainbow.png');
+  background-size: cover;
 }
 
 .grade-sec:hover .class-tab-box {
-  background-image: url("../images/bg-1.jpg");
-  width: 80px;
-  height: 50px;
+  background-image: url("../images/rainbowgif.gif");
+  width: 70px;
+  margin-left: 10px;
+  height: 70px;
+  background-size: cover;
 }
