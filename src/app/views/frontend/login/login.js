@@ -134,34 +134,40 @@ export default function Login() {
                             </Grid>
                             <Grid item lg={7} md={7} sm={7} xs={12}>
                                 <Box p={4} height="100%">
-                                    <form autoComplete="off" onSubmit={formSubmit} >
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            class="form-control"
-                                            id="email"
-                                            required
-                                            value={inputValues.email}
-                                            onChange={inputChange}
-                                            placeholder="Enter Email id"
-                                        />
+                                    <form autoComplete="off" className='sign-in-data' onSubmit={formSubmit} >
+                                        <div className='login-input-detail'>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                class="form-control"
+                                                id="email"
+                                                required
+                                                value={inputValues.email}
+                                                onChange={inputChange}
+                                                placeholder="Enter Email id"
+                                            />
+                                        </div>
 
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            class="form-control"
-                                            placeholder="Password"
-                                            value={inputValues.password}
-                                            onChange={inputChange}
-                                            required
-                                        />
+                                        <div className='login-input-detail'>
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                class="form-control"
+                                                placeholder="Password"
+                                                value={inputValues.password}
+                                                onChange={inputChange}
+                                                required
+                                            />
+                                        </div>
+
                                         <div className='login-forgot'>
                                             <Link className="" to="/login/forgotpassword">Forgot Password?</Link>
                                         </div>
 
                                         <div className='register-part'>
-                                            <strong> Not a Member yet?</strong>
-                                            <Link to="/home/membership"><a className='nav-link' href="#!">Sign up{'>'}</a></Link>
+                                            <span><strong> Not a Member yet?</strong></span>&nbsp;
+
+                                            <Link to="/home/membership">Sign up{'>'}</Link>
                                         </div>
                                         <FlexBox>
                                             <Button

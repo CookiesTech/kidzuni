@@ -162,7 +162,7 @@ export default function StudentProfile() {
                                 </>
                             ) : (
                                 <>
-                                    {kidsinfo?.role == 5 ? (
+                                    {loginInfo?.role == 5 ? (
                                         <>
                                             <Tabs value={value} onChange={handleTabs}>
                                                 <Tab className="block-display" label="Kidz Setting" />
@@ -213,7 +213,7 @@ export default function StudentProfile() {
                                         </>
 
                                     ) : (
-                                        <p>hiuiyug</p>
+                                        <p>ss</p>
                                     )}
                                 </>
                             )}

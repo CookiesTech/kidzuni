@@ -1,6 +1,5 @@
 import Navbar from "./navbar";
 import Banner from "./banner";
-
 import { Link, animateScroll as scroll } from "react-scroll";
 import Courses from "./courses";
 import NavbarMenus from "./NavbarMenus";
@@ -56,7 +55,7 @@ export default function Home() {
                     duration={5000}
                 > */}
 
-                <Navbar className="page-scroll" href="#section1" onchange={handleChangeCountry} />
+                <Navbar href="#section1" onchange={handleChangeCountry} />
                 {/* </Link> */}
             </div>
             <NavbarMenus />

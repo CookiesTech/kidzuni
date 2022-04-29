@@ -95,7 +95,7 @@ export default function Login() {
                             {showForgot &&
                                 <Grid item lg={7} md={7} sm={7} xs={12}>
                                     <Box p={4} height="100%">
-                                        <form autoComplete='off' onSubmit={handleFormSubmit}>
+                                        <form autoComplete='off' className='update-pwd' onSubmit={handleFormSubmit}>
                                             <h5>Enter Your Email</h5>
                                             <input
                                                 type="text"

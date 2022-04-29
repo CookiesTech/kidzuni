@@ -225,20 +225,20 @@ export default function Registration() {
                                     <span className="info-heading">Select Your Plan Details</span><hr />
                                     <div className="plan-part">
                                         <span className="plan-heading">Package For</span>
-                                        <button type="button" style={packagefor == 'parent' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor == 'parent' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
                                             Parent
                                         </button>
-                                        <button type="button" style={packagefor == 'school' ? { color: '#000' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor == 'school' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
                                             School
                                         </button>
                                     </div>
 
                                     <div className="type-part">
                                         <span className="plan-heading">Choose a Type</span>
-                                        <button type="button" name="type" style={type == 'monthly' ? { color: '#000' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type == 'monthly' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
                                             Monthly
                                         </button>
-                                        <button type="button" name="type" style={type == 'annual' ? { color: '#000' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type == 'annual' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
                                             Annual
                                         </button>
                                     </div>
@@ -252,7 +252,15 @@ export default function Registration() {
 
                                                     <div className="cart_box">
                                                         <div>
-                                                            <input type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}></input>
+                                                            {/* <input type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}></input> */}
+                                                            <select type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -262,7 +270,7 @@ export default function Registration() {
                                                         <div className="productOption-price"><span>₹{inputValue} </span></div>
                                                         <div className="productOption-term">{type}</div>
                                                     </button>
-                                                    <span className="addtional-amount">additional price per kid:₹{additional_price}</span>
+                                                    <span className="addtional-amount">Additional price per kid:₹{additional_price}</span>
                                                 </div>
                                                 {/* {packageprice?.map((packagedetail, i) => (
                                                     <div className="maths-price">
@@ -344,7 +352,7 @@ export default function Registration() {
                                         <p className="text-danger">{formErrors.password}</p>
                                         <div className="country-part">
                                             <label>Countrycode</label>
-                                            <input
+                                            {/* <input
                                                 type="countrycode"
                                                 name="countrycode"
                                                 className="form-control"
@@ -353,7 +361,15 @@ export default function Registration() {
                                                 value={formValues.countrycode}
                                                 onChange={handleChange}
                                                 required
-                                            />
+                                            /> */}
+
+                                            <select name="countrycode" value={formValues.countrycode} onChange={handleChange} required>
+                                                <option>Select</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
                                         </div>
 
                                         <div className="phonenumber-part">
@@ -404,8 +420,8 @@ export default function Registration() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <Footer />
-        </div>
+        </div >
     )
 }

@@ -20,9 +20,8 @@ export default function Banner() {
                     <div className="sub-section">
                         <div className="sub-maths">
                             <span className="curriculam-maths text-space-top">
-                                <h4>Comperhensive Curriculam</h4>
-                                <a>Maths</a>
-                                <i className="fa fa-chevron-down"></i>
+                                <h4>LoremIpsum simply</h4>
+
                             </span>
                             <img className="" src="assets/frontend/images/c1.png" alt="cloud" />
                         </div>

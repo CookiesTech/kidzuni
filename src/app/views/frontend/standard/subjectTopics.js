@@ -8,10 +8,13 @@ export default function Topics() {
     const [topics = [], setTopics] = useState();
     const id = window.location.pathname.split("-").pop();
     let member_info = JSON.parse(localStorage?.getItem?.('user-info'));
+    console.log(member_info);
     useEffect(() => {
         async function fetchMyAPI() {
             let data = { standard_id: id, student_id: member_info?.id, country_code: member_info?.country_code };
+
             await topicsservice.subjecttopics(data)
+
                 .then((response) => {
                     if (response?.data.status) {
 

@@ -27,7 +27,7 @@ export default function Courses(props) {
 
                                 <div className="member grade-sec">
                                     <div className="section-box">
-                                        <div className="class-tab-box"><span></span></div>
+                                        <div className="class-tab-box"></div>
                                     </div>
                                     <div class="member-info">
                                         <h3>{data?.standard_name}</h3>

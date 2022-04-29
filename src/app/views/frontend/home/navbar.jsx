@@ -81,11 +81,11 @@ export default function Navbar(props) {
                                                 profile setting
                                             </Link>
                                         </a>
-                                        <a className="dropdown-item" href="#!">
+                                        {/* <a className="dropdown-item" href="#!">
                                             <Link className="nav-link " to="/profile-setting">
                                                 Membership
                                             </Link>
-                                        </a>
+                                        </a> */}
 
                                         <a className="dropdown-item logout-btn" href="#!" onClick={Logout}>
                                             Logout

@@ -32,6 +32,10 @@
         padding: 0.9rem 0.9rem;
     }
 
+    .change-country {
+        left: 10px;
+    }
+
     .user-show a {
         font-size: 14px;
     }
@@ -46,7 +50,7 @@
     }
 
     .menu-bar-sec {
-        padding: 10px 0px 10px 80px;
+        padding: 10px 0px 10px 63px;
     }
 
     .navbar-light .navbar-toggler {
@@ -792,6 +796,10 @@
         margin-top: 30px;
         position: relative;
         right: 78px;
+    }
+
+    .change-country {
+        left: 160px;
     }
 
     .home-searchbox {
