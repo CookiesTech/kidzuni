@@ -36,7 +36,7 @@ const Question = () => {
 
   const fetchQuestions = async () => {
     try {
-      const data = { subcategory_id: 1 };
+      const data = { subcategory_id: id };
       const res = await quizservice.getQuestions(data);
 
       if (res.data.status) {
@@ -152,7 +152,9 @@ const Question = () => {
                   <div className="question">
                     <div className="singleQuestion">
                       <div className="question-error-msg">
+                        {questions[currIndex]?.question_image ? (<img src={questions[currIndex]?.question_image} alt="..." width={100} />) : (<p></p>)
 
+                        }
                         <p>
                           {questions[currIndex]?.question_text}
                         </p>

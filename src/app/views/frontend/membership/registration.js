@@ -19,7 +19,13 @@ export default function Registration() {
     const [type, setType] = useState('monthly');
     const [showschool, setShowSchool] = useState(false)
     const [showParent, setShowParent] = useState(true)
-
+    const initialValues = { name: "", email: "", password: "", countrycode: "", phonenumber: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [additional_price, setAdditionalPrice] = useState(0);
+    const navigate = useNavigate();
+    const [child_count, setChildCount] = useState(1)
     useEffect(() => {
         getMonthlyParentPackage();
         getSchoolStudentCount();
@@ -60,13 +66,7 @@ export default function Registration() {
         }
     }
 
-    const initialValues = { name: "", email: "", password: "", countrycode: "", phonenumber: "" };
-    const [formValues, setFormValues] = useState(initialValues);
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [additional_price, setAdditionalPrice] = useState(0);
-    const navigate = useNavigate();
-    const [child_count, setChildCount] = useState(1)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;

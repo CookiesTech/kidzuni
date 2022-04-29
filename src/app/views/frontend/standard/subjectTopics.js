@@ -17,7 +17,7 @@ export default function Topics() {
 
                 .then((response) => {
                     if (response?.data.status) {
-
+                        //console.log(response?.data.data); return false;
                         setTopics(response?.data.data.Topics);
                     }
                 });
@@ -55,7 +55,7 @@ export default function Topics() {
                                                         <li key={`slide-${i}`}>{topiclist?.name}</li>
                                                     ) : (
                                                         <Link className="nav-link" to={'/test-' + topiclist.id}>
-                                                            <li key={`slide-${i}`}>{topiclist?.name} -({topiclist?.score > 0 ? (<>{topiclist?.score} <img src="assets/frontend/images/medal.svg" alt="..." width={10} /></>) : (<>{topiclist?.score}</>)})</li>
+                                                            <li key={`slide-${i}`}>{topiclist?.name} {topiclist?.score > 0 ? (<>-({topiclist?.score} <img src="assets/frontend/images/medal.svg" alt="..." width={10} />)</>) : (<></>)}</li>
                                                         </Link>
 
                                                     )}

@@ -75,10 +75,17 @@ const sessionRoutes = [
     },
 
     {
-        path: 'home/maths',
+        path: '/learning/maths',
         element: <MathsSubject />,
     },
-
+    {
+        path: '/learning/english',
+        element: <MathsSubject />,
+    },
+    {
+        path: '/learning/awards',
+        element: <AwardsClasses />,
+    },
     {
         path: 'home/maths/topics',
         element: <MathsTopics />,
@@ -89,10 +96,7 @@ const sessionRoutes = [
         element: <Awards />,
     },
 
-    {
-        path: 'awards/standard',
-        element: <AwardsClasses />,
-    },
+
 
     {
         path: 'awards/standard/certificates',
