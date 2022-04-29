@@ -17,13 +17,13 @@ export default function Registration() {
     const [schoolPackage = [], setschoolPackage] = useState();
     const [packagefor, setPackageFor] = useState('parent');
     const [type, setType] = useState('monthly');
-    const [showschool, setShowSchool] = useState(false)
     const [showParent, setShowParent] = useState(true)
     const initialValues = { name: "", email: "", password: "", countrycode: "", phonenumber: "" };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [additional_price, setAdditionalPrice] = useState(0);
+    const [singleKidPrice, setSingleKidPrice] = useState();
     const navigate = useNavigate();
     const [child_count, setChildCount] = useState(1)
     useEffect(() => {
@@ -56,10 +56,10 @@ export default function Registration() {
 
             let data1 = { package_for: packagefor, type: type }
             const data = await packageservice.getallpackage(data1);
-            setAdditionalPrice(data.data.data[0].additional_price);
-            //setPackagePrice(data.data.data);
+            setAdditionalPrice(data.data?.data[0]?.additional_price);
+            setSingleKidPrice(data?.data?.data[0]?.price)
 
-            setInputValue(data.data.data[0].price);
+            setInputValue(data.data?.data[0]?.price);
         }
         catch (e) {
             console.log(e);
@@ -128,23 +128,25 @@ export default function Registration() {
         return errors;
     };
 
-    const handleChildrenCountParent = (e, index) => {
+    const handleChildrenCountParent = (e) => {
         e.preventDefault();
         let count = parseInt(e.target.value);
-        let previous_price = inputValue;
-        if (count > 1) {
 
-            //let additional_price = parseInt(packageprice[index].additional_price);
+        if (count > 1) {
+            console.log(inputValue);
+
             count = parseInt(count - 1);
             let newPrice = parseInt(count * additional_price);
-            var n1 = parseInt(previous_price);
+            var n1 = parseInt(singleKidPrice);
             var n2 = parseInt(newPrice);
             var ans = n1 + n2;
             setChildCount(e.target.value);
             setInputValue(ans);
         }
         else {
-            setInputValue(previous_price);
+
+            setChildCount(e.target.value);
+            setInputValue(singleKidPrice);
         }
     }
 
@@ -173,14 +175,12 @@ export default function Registration() {
             setChildCount(0);
             setType('')
             setShowParent(false)
-            setShowSchool(true)
 
         } else if (e.target.value === 'parent') {
             setPackageFor('parent')
             setPackageFor(e.target.value)
             setInputValue(0)
             setAdditionalPrice(0)
-            setShowSchool(false)
             setShowParent(true)
         }
 
@@ -225,20 +225,20 @@ export default function Registration() {
                                     <span className="info-heading">Select Your Plan Details</span><hr />
                                     <div className="plan-part">
                                         <span className="plan-heading">Package For</span>
-                                        <button type="button" style={packagefor == 'parent' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor === 'parent' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="parent" className="select-option sub-input " onClick={handlePackageChange}>
                                             Parent
                                         </button>
-                                        <button type="button" style={packagefor == 'school' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
+                                        <button type="button" style={packagefor === 'school' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} name="package_for" value="school" className="select-option sub-input" onClick={handlePackageChange}>
                                             School
                                         </button>
                                     </div>
 
                                     <div className="type-part">
                                         <span className="plan-heading">Choose a Type</span>
-                                        <button type="button" name="type" style={type == 'monthly' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type === 'monthly' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="monthly" className="select-option sub-input" onClick={handleTypeChange}>
                                             Monthly
                                         </button>
-                                        <button type="button" name="type" style={type == 'annual' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
+                                        <button type="button" name="type" style={type === 'annual' ? { color: '#000', boxShadow: 'rgb(189 184 184) 1px 1px 4px 4px' } : { color: '#fff' }} value="annual" className="select-option sub-input" onClick={handleTypeChange}>
                                             Annual
                                         </button>
                                     </div>
@@ -252,7 +252,7 @@ export default function Registration() {
 
                                                     <div className="cart_box">
                                                         <div>
-                                                            {/* <input type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}></input> */}
+
                                                             <select type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}>
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -272,16 +272,7 @@ export default function Registration() {
                                                     </button>
                                                     <span className="addtional-amount">Additional price per kid:₹{additional_price}</span>
                                                 </div>
-                                                {/* {packageprice?.map((packagedetail, i) => (
-                                                    <div className="maths-price">
-                                                       
-                                                        <button type="button" className="select-option sub-input">
-                                                            <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                                            <div className="productOption-term">{type}</div>
-                                                        </button>
-                                                        <span className="addtional-amount">additional price per kid:₹{packagedetail.additional_price}</span>
-                                                    </div>
-                                                ))} */}
+
                                             </div>
                                         ) : (
                                             <>

@@ -8,16 +8,23 @@ export default function Topics() {
     const [topics = [], setTopics] = useState();
     const id = window.location.pathname.split("-").pop();
     let member_info = JSON.parse(localStorage?.getItem?.('user-info'));
-    console.log(member_info);
     useEffect(() => {
         async function fetchMyAPI() {
-            let data = { standard_id: id, student_id: member_info?.id, country_code: member_info?.country_code };
+            let country_code = '';
+            if (member_info) {
+                country_code = member_info?.country_code;
+            } else {
+
+                country_code = JSON.parse(localStorage?.getItem?.('country_code'));
+
+            }
+            let data = { standard_id: id, student_id: member_info?.id, country_code: country_code };
 
             await topicsservice.subjecttopics(data)
 
                 .then((response) => {
                     if (response?.data.status) {
-                        //console.log(response?.data.data); return false;
+
                         setTopics(response?.data.data.Topics);
                     }
                 });
@@ -40,7 +47,7 @@ export default function Topics() {
                     </div>
 
 
-                    {topics.length > 0 && member_info !== 'null' ? (
+                    {topics.length > 0 ? (
 
                         topics?.map((topic, k) => {
                             return (
@@ -50,7 +57,7 @@ export default function Topics() {
                                         {topic.sub_topics?.map((topiclist, i) => (
                                             <>
                                                 {
-                                                    member_info?.role === 3 || member_info === 'null' ? (
+                                                    member_info?.role === 3 || member_info === null ? (
 
                                                         <li key={`slide-${i}`}>{topiclist?.name}</li>
                                                     ) : (

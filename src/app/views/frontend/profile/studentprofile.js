@@ -9,8 +9,9 @@ import { Grid, Tabs, Tab, AppBar } from "@mui/material";
 
 
 export default function StudentProfile() {
+    let kidsinfo = [];
     let loginInfo = JSON.parse(localStorage?.getItem?.("user-info"));
-    let kidsinfo = JSON.parse(localStorage?.getItem?.('kidz_info'));
+    kidsinfo = JSON.parse(localStorage?.getItem?.('kidz_info'));
 
     // console.log(kidsinfo);
 
@@ -29,7 +30,7 @@ export default function StudentProfile() {
                 <div className="top-space profile-setting">
                     <Grid container spacing={3} sx={{ mb: '24px' }}>
                         <Grid item xs={12} md={12}>
-                            {loginInfo?.role == 3 ? (
+                            {loginInfo?.role === 3 ? (
                                 <>
 
                                     <Tabs value={value} onChange={handleTabs}>
@@ -75,7 +76,7 @@ export default function StudentProfile() {
                                             </TabPanel>
 
                                             <TabPanel value={value} index={2}>
-                                                {
+                                                {kidsinfo.length > 0 &&
                                                     kidsinfo.map((data, i) => (
 
                                                         <div className="member-profile-set kid-parent-set">
@@ -90,16 +91,6 @@ export default function StudentProfile() {
                                                                     required
                                                                 />
                                                             </div>
-                                                            {/* <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                        <input
-                                                            type="password"
-                                                            name="password"
-                                                            class="form-control"
-                                                            value={data.password}
-                                                            required
-                                                        />
-                                                    </div> */}
                                                             <div className="parent-edit-part">
                                                                 <Small sx={{ fontSize: 18 }}>Email</Small>
                                                                 <input
@@ -116,53 +107,13 @@ export default function StudentProfile() {
                                                 }
                                             </TabPanel>
 
-                                            <TabPanel value={value} index={2}>
-                                                {
-                                                    kidsinfo.map((data, i) => (
 
-                                                        <div className="member-profile-set kid-parent-set">
-                                                            <h4>Kidz Details -{'>'} {data.name}</h4>
-                                                            <div className="parent-edit-part">
-                                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                                <input
-                                                                    type="userName"
-                                                                    name="userName"
-                                                                    class="form-control"
-                                                                    value={data.name}
-                                                                    required
-                                                                />
-                                                            </div>
-                                                            {/* <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                        <input
-                                                            type="password"
-                                                            name="password"
-                                                            class="form-control"
-                                                            value={data.password}
-                                                            required
-                                                        />
-                                                    </div> */}
-                                                            <div className="parent-edit-part">
-                                                                <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                                <input
-                                                                    type="email"
-                                                                    name="email"
-                                                                    class="form-control"
-                                                                    value={data.email}
-                                                                    required
-                                                                />
-                                                            </div>
-
-                                                        </div>
-                                                    ))
-                                                }
-                                            </TabPanel>
                                         </div>
                                     </div>
                                 </>
                             ) : (
                                 <>
-                                    {loginInfo?.role == 5 ? (
+                                    {loginInfo?.role === 5 ? (
                                         <>
                                             <Tabs value={value} onChange={handleTabs}>
                                                 <Tab className="block-display" label="Kidz Setting" />
@@ -170,7 +121,7 @@ export default function StudentProfile() {
                                             <TabPanel value={value} index={0}>
 
                                                 {
-                                                    kidsinfo.map((data, i) => (
+                                                    kidsinfo?.map((data, i) => (
 
                                                         <div className="member-profile-set">
                                                             <h4>Kidz Details -{'>'} {data.name}</h4>

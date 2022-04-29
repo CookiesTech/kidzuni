@@ -9,7 +9,7 @@ import NavbarMenus from '../../home/NavbarMenus';
 import { Helmet } from 'react-helmet';
 import { config } from "app/config";
 import AnalyticsService from '../../Services/AnalyticsService';
-
+import { Link } from "react-router-dom"
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: {
@@ -24,7 +24,10 @@ const Analytics = () => {
     const [standards = [], setStandards] = useState();
     const [filterData, setFilterData] = useState()
     useEffect(() => {
-        fetchSubjectandStandard();
+        if (userData !== null) {
+            fetchSubjectandStandard();
+        }
+
 
     }, [])
     const fetchSubjectandStandard = async () => {
@@ -59,59 +62,63 @@ const Analytics = () => {
 
             <NavbarMenus />
             <div className='container'>
-                <AnalyticsMenu />
-                <div className="row usage-select-sec">
-                    <div className="usage-detail" >
-                        <span>Subjects :</span>&nbsp;
-                        <select name="subject_id" onChange={handleChange}>
-                            <option >Select Subjects</option>
-                            {
-                                subjects?.map((data, m) => (
-                                    <option value={data.id}>{data.subject_name}</option>
+                {userData !== null ? (<>
+                    <AnalyticsMenu />
+                    <div className="row usage-select-sec">
+                        <div className="usage-detail" >
+                            <span>Subjects :</span>&nbsp;
+                            <select name="subject_id" onChange={handleChange}>
+                                <option >Select Subjects</option>
+                                {
+                                    subjects?.map((data, m) => (
+                                        <option value={data.id}>{data.subject_name}</option>
 
-                                ))
-                            }
-                        </select>&nbsp;
+                                    ))
+                                }
+                            </select>&nbsp;
 
-                        <span>Standard :</span>&nbsp;
-                        <select name="standard_id" onChange={handleChange}>
-                            <option>Select Standard</option>
-                            {
-                                standards?.map((data, m) => (
-                                    <option value={data.id}>{data.standard_name}</option>
+                            <span>Standard :</span>&nbsp;
+                            <select name="standard_id" onChange={handleChange}>
+                                <option>Select Standard</option>
+                                {
+                                    standards?.map((data, m) => (
+                                        <option value={data.id}>{data.standard_name}</option>
 
-                                ))
-                            }
-                        </select>&nbsp;
+                                    ))
+                                }
+                            </select>&nbsp;
 
-                        <span>Date Range :</span>&nbsp;
-                        <select name="date_range" onChange={handleChange}>
-                            <option>Select Date Range</option>
-                            <option value="month">This Month</option>
-                            <option value="yesterday"> Yesterday </option>
-                            <option value="last_week"> Last Week </option>
-                        </select>
+                            <span>Date Range :</span>&nbsp;
+                            <select name="date_range" onChange={handleChange}>
+                                <option>Select Date Range</option>
+                                <option value="month">This Month</option>
+                                <option value="yesterday"> Yesterday </option>
+                                <option value="last_week"> Last Week </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div className="row top-space">
-                    <div className="usage-title">
-                        <h3>Usage Details </h3>
+                    <div className="row top-space">
+                        <div className="usage-title">
+                            <h3>Usage Details </h3>
+                        </div>
                     </div>
-                </div>
 
-                <Fragment>
-                    <ContentBox className="analytics">
-                        <Grid container spacing={3}>
-                            <Grid item lg={12} md={12} sm={12} xs={12}>
-                                <QuizDetails />
+                    <Fragment>
+                        <ContentBox className="analytics">
+                            <Grid container spacing={3}>
+                                <Grid item lg={12} md={12} sm={12} xs={12}>
+                                    <QuizDetails />
+
+                                </Grid>
+
 
                             </Grid>
+                        </ContentBox>
+                    </Fragment></>) : (<><p className="container"><br /> <Link className="" to="/user/login">
+                        <div><button class="kidzuni-btn">Please Login to Access This Page</button></div>
+                    </Link></p></>)}
 
-
-                        </Grid>
-                    </ContentBox>
-                </Fragment>
             </div>
             <Footer />
         </div >

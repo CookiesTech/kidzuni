@@ -11,26 +11,26 @@ toast.configure()
 export default function Navbar(props) {
     const navigate = useNavigate();
     let counrtyservice = new CounrtyService(config.baseURL);
-    let login = JSON.parse(localStorage?.getItem?.("user-info"));
+    let userData = JSON.parse(localStorage?.getItem?.("user-info"));
     const Logout = () => {
         localStorage.clear();
         toast.success("Successfully Logged Out");
         navigate(`/home`);
     };
-
     const [counrtyinfo, setCountryinfo] = useState([]);
     const [countryimage, setCountryimage] = useState();
-    const [countrycode, setcountrycode] = useState(3);
 
     useEffect(() => {
-        countrydata();
+        if (userData === null) {
+            countrydata();
+        }
+
     }, []);
 
     const countrydata = async () => {
         try {
             const data = await counrtyservice.countrylistdata();
             setCountryinfo(data.data.data);
-            //console.log(data.data.data);
             setCountryimage(data.data.data[0].image)
         }
         catch (e) {
@@ -41,6 +41,7 @@ export default function Navbar(props) {
     const handlecountry = async (event) => {
         const index = event.target.value;
         setCountryimage(counrtyinfo[index].image);
+        localStorage.setItem('country_code', counrtyinfo[index].id);
         props.onchange(counrtyinfo[index].id)
 
     }
@@ -55,7 +56,7 @@ export default function Navbar(props) {
                             <img src="../../../assets/frontend/images/ct-logo.png" alt="logo" />
                         </Link>
 
-                        {login ? (
+                        {userData ? (
                             <div className='login-after'>
                                 <div className="nav-item  user-show">
                                     <a href="#!"
@@ -66,7 +67,7 @@ export default function Navbar(props) {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {login?.role == 3 ? (
+                                        {userData?.role === 3 ? (
                                             <span>Welcome, Parent</span>
                                         ) : (
                                             <span>Welcome, Student</span>
@@ -76,20 +77,14 @@ export default function Navbar(props) {
                                         className="dropdown-menu home-dropdownshow"
                                         aria-labelledby="navbarDropdown"
                                     >
-                                        <a className="dropdown-item" href="#!">
-                                            <Link className="nav-link " to="/profile-setting">
-                                                profile setting
-                                            </Link>
-                                        </a>
-                                        {/* <a className="dropdown-item" href="#!">
-                                            <Link className="nav-link " to="/profile-setting">
-                                                Membership
-                                            </Link>
-                                        </a> */}
 
-                                        <a className="dropdown-item logout-btn" href="#!" onClick={Logout}>
+                                        <Link className="nav-link " to="/profile-setting">
+                                            profile setting
+                                        </Link>
+
+                                        <button className="dropdown-item logout-btn" onClick={Logout}>
                                             Logout
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -5,16 +5,22 @@ import { Link } from "react-router-dom"
 import NavbarMenus from "../home/NavbarMenus"
 import Helmet from "react-helmet"
 import StandardClass from "./Classes"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LearningMenu from "./LearningMenu"
 import StandardService from "../Services/StandardService"
 import { config } from "app/config"
-
+import { useNavigate } from "react-router-dom"
+toast.configure();
 export default function Recommendation() {
+    const navigate = useNavigate();
     let userData = JSON.parse(localStorage?.getItem?.('user-info'));
     let standardservice = new StandardService(config.baseURL)
     const [formData = [], setformData] = useState();
     useEffect(() => {
-        fetchRecommendation()
+        if (userData !== null) {
+            fetchRecommendation()
+        }
     }, []);
 
     const fetchRecommendation = async (id) => {
@@ -24,7 +30,6 @@ export default function Recommendation() {
             setformData(data.data.data);
         }
     }
-    console.log(formData);
 
     return (
         <div>
@@ -73,7 +78,9 @@ export default function Recommendation() {
                                 ))) : (<p>No Data Found</p>)}
 
                     </div>
-                </div>) : (<p className="container">Plz Login To View Details</p>)
+                </div>) : (<p className="container"><br /> <Link className="" to="/user/login">
+                    <div><button class="kidzuni-btn">Please Login to Access This Page</button></div>
+                </Link></p>)
             }
             <Footer />
         </div>

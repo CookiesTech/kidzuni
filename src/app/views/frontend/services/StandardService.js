@@ -2,11 +2,9 @@ import ApiService from "./ApiService";
 
 export default class StandardService extends ApiService {
 
-  getstandardandSubjectData = async (code) => {
-    const country = { country_code: code }
-    console.log(country);
+  getstandardandSubjectData = async (data) => {
     let Url = this.baseURL + 'getStandardandSubjects';
-    let response = await this.post(Url, country);
+    let response = await this.post(Url, data);
     if (response.status !== 200) {
       throw Error(response);
     }

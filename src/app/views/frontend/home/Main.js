@@ -30,11 +30,11 @@ export default function Home() {
                 data = await standardservice.getstandardandSubjectData(user.country_code);
             }
             else {
-
-                data = await standardservice.getstandardandSubjectData(countrycode);
+                localStorage.setItem('country_code', countrycode);
+                data = await standardservice.getstandardandSubjectData({ country_code: countrycode });
             }
 
-            setformData(data.data.data.standards);
+            setformData(data?.data?.data?.standards);
         }
         catch (e) {
             console.log(e);
@@ -43,7 +43,10 @@ export default function Home() {
     const handleChangeCountry = async (e) => {
         setCountryCode(e)
         try {
-            const data = await standardservice.getstandardandSubjectData(e);
+            // localStorage.clear('country_code');
+
+            const country = { country_code: e }
+            const data = await standardservice.getstandardandSubjectData(country);
             setformData(data?.data?.data?.standards);
         }
         catch (e) {

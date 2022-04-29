@@ -3,7 +3,6 @@ import Footer from "../home/footer"
 import Navbar from "../home/navbar"
 import LearningMenu from "./LearningMenu"
 
-
 export default function Awards() {
     return (
         <div>
@@ -31,7 +30,7 @@ export default function Awards() {
                     </div>
 
                     <div className="col-lg-5 col-md-5 col-xs-5 col-sm-5">
-                        <img className="img-fluid" src="../assets/frontend/images/development.jpg" />
+                        <img className="img-fluid" src="../assets/frontend/images/development.jpg" alt="..." />
                     </div>
                 </div>
 
@@ -42,7 +41,7 @@ export default function Awards() {
 
                 <div className="row top-space">
                     <div className="col-lg-5 col-md-5 col-xs-5 col-sm-5">
-                        <img className="img-fluid" src="../assets/frontend/images/treasure-box.jpg" />
+                        <img className="img-fluid" src="../assets/frontend/images/treasure-box.jpg" alt="..." />
                     </div>
 
                     <div className="col-lg-7 col-md-7 col-xs-7 col-sm-7">
@@ -75,7 +74,7 @@ export default function Awards() {
                     </div>
 
                     <div className="col-lg-5 col-md-5 col-xs-5 col-sm-5">
-                        <img className="img-fluid" src="../assets/frontend/images/certificate.jpg" />
+                        <img className="img-fluid" src="../assets/frontend/images/certificate.jpg" alt="..." />
                     </div>
                 </div>
 

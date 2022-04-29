@@ -35,13 +35,13 @@ export default function Courses(props) {
                                         <h3>{data?.standard_name}</h3>
                                         <p>{data?.description.substring(0, 90)}...</p>
                                         <hr />
-                                        {data?.subjects?.subjects ? (
+                                        {data?.subjects.length > 0 ? (
                                             <div className="">
                                                 <span className="subject-skills">
                                                     <li>
                                                         <div className="subject-info">
                                                             {
-                                                                data?.subjects?.subjects?.map((subjectname, i) => (
+                                                                data?.subjects?.map((subjectname, i) => (
                                                                     <div>
                                                                         <h6>{subjectname.subject_name}</h6>
                                                                         <Link className="nav-link" to={"/standard-" + data.id}>
@@ -60,7 +60,7 @@ export default function Courses(props) {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <h6>No Topics Found</h6>
+                                            <h6>No Subjects Found</h6>
                                         )}
                                     </div >
                                 </div >
