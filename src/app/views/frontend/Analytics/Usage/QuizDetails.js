@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Grid, Card, Icon } from '@mui/material'
 import { Box } from '@mui/system'
 import { Small } from 'app/components/Typography'
-import AnalyticsService from '../../Services/AnalyticsService'
 import PieChart from './PieChart';
 import { styled, useTheme } from '@mui/system';
 import { config } from 'app/config';
@@ -48,23 +47,14 @@ const Title = styled('span')(() => ({
     fontWeight: '500',
     textTransform: 'capitalize',
 }))
-const QuizDetails = () => {
-    let analysticsservice = new AnalyticsService(config.baseURL);
+const QuizDetails = (props) => {
+
     const { palette } = useTheme()
     const [formData, SetFormData] = useState();
     useEffect(() => {
-        fetchUsage();
-    }, []);
+        SetFormData(props?.data)
+    }, [props.data]);
 
-    const fetchUsage = async () => {
-
-        await analysticsservice.getAnalystics().then((res) => {
-            if (res.data.status) {
-
-                SetFormData(res.data.data);
-            }
-        })
-    }
 
     return (
         <Grid container spacing={3} sx={{ mb: '24px' }}>

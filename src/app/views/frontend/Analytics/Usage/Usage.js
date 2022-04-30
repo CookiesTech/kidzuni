@@ -22,10 +22,14 @@ const Analytics = () => {
     let analyticsservice = new AnalyticsService(config.baseURL)
     const [subjects = [], setSubjects] = useState();
     const [standards = [], setStandards] = useState();
-    const [filterData, setFilterData] = useState()
+    const [filterData, setFilterData] = useState({
+        country_code: userData?.country_code, standard_id: '', subject_id: '', date_range: 'month'
+    })
+    const [usageData, setUsageData] = useState();
     useEffect(() => {
         if (userData !== null) {
             fetchSubjectandStandard();
+            fetchUsage();
         }
 
 
@@ -34,23 +38,27 @@ const Analytics = () => {
         let data = { country_code: userData?.country_code };
         await analyticsservice.fetchSubjectandStandard(data).then((res) => {
             if (res?.data?.status) {
-                setFilterData({
-                    standard_id: res.data?.data?.standards[0].id,
-                    subject_id: res.data?.data?.subjects[0].id,
-                    country_code: userData?.country_code,
-                    date_range: 'month'
-                })
+
                 setSubjects(res.data?.data?.subjects);
-                setStandards(res.data?.data?.standards)
+                setStandards(res.data?.data?.standards);
 
             }
         })
     }
 
     const handleChange = (e) => {
-        setFilterData({ ...filterData, [e.target.name]: e.target.value })
+        e.preventDefault();
+        const { name, value } = e.target;
+        setFilterData({ ...filterData, [name]: value })
+        fetchUsage();
     }
-    //console.log(filterData);
+    const fetchUsage = async () => {
+        await analyticsservice.getAnalysticsUsage(filterData).then((res) => {
+            if (res.data.status) {
+                setUsageData(res.data.data);
+            }
+        })
+    }
     return (
         <div>
             <Helmet>
@@ -68,7 +76,7 @@ const Analytics = () => {
                         <div className="usage-detail" >
                             <span>Subjects :</span>&nbsp;
                             <select name="subject_id" onChange={handleChange}>
-                                <option >Select Subjects</option>
+
                                 {
                                     subjects?.map((data, m) => (
                                         <option value={data.id}>{data.subject_name}</option>
@@ -79,7 +87,7 @@ const Analytics = () => {
 
                             <span>Standard :</span>&nbsp;
                             <select name="standard_id" onChange={handleChange}>
-                                <option>Select Standard</option>
+
                                 {
                                     standards?.map((data, m) => (
                                         <option value={data.id}>{data.standard_name}</option>
@@ -90,7 +98,6 @@ const Analytics = () => {
 
                             <span>Date Range :</span>&nbsp;
                             <select name="date_range" onChange={handleChange}>
-                                <option>Select Date Range</option>
                                 <option value="month">This Month</option>
                                 <option value="yesterday"> Yesterday </option>
                                 <option value="last_week"> Last Week </option>
@@ -108,7 +115,7 @@ const Analytics = () => {
                         <ContentBox className="analytics">
                             <Grid container spacing={3}>
                                 <Grid item lg={12} md={12} sm={12} xs={12}>
-                                    <QuizDetails />
+                                    <QuizDetails data={usageData} />
 
                                 </Grid>
 

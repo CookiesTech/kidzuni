@@ -8,12 +8,14 @@ import Navbar from "../home/navbar";
 import Helmet from "react-helmet";
 import Footer from "../home/footer";
 import PackageService from "../Services/PackageService"
+import CounrtyService from '../Services/CountryService';
 import NavbarMenus from "../home/NavbarMenus";
 import { config } from 'app/config';
 toast.configure();
 export default function Registration() {
     let packageservice = new PackageService();
-    const [inputValue, setInputValue] = React.useState("");
+    let counrtyservice = new CounrtyService(config.baseURL);
+    const [inputValue, setInputValue] = useState("");
     const [schoolPackage = [], setschoolPackage] = useState();
     const [packagefor, setPackageFor] = useState('parent');
     const [type, setType] = useState('monthly');
@@ -26,17 +28,26 @@ export default function Registration() {
     const [singleKidPrice, setSingleKidPrice] = useState();
     const navigate = useNavigate();
     const [child_count, setChildCount] = useState(1)
+    const [counrtyinfo, setCountryinfo] = useState([]);
     useEffect(() => {
         getMonthlyParentPackage();
         getSchoolStudentCount();
-
+        countrydata();
 
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues);
         }
 
     }, [formErrors]);
-
+    const countrydata = async () => {
+        try {
+            const data = await counrtyservice.countrylistdata();
+            setCountryinfo(data.data.data);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
     const getSchoolStudentCount = async () => {
         try {
             let data1 = { package_for: 'school', type: 'monthly' }
@@ -69,6 +80,7 @@ export default function Registration() {
 
 
     const handleChange = (e) => {
+        console.log(e.target.value);
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
@@ -354,12 +366,13 @@ export default function Registration() {
                                                 required
                                             /> */}
 
-                                            <select name="countrycode" value={formValues.countrycode} onChange={handleChange} required>
-                                                <option>Select</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
+                                            <select name="countr_ycode" onChange={handleChange} required>
+                                                <option>Select Your Country</option>
+                                                {
+                                                    counrtyinfo?.map((countrylist, i) => (
+                                                        <option key={i} value={countrylist.id}>{countrylist.name}</option>
+                                                    ))
+                                                }
                                             </select>
                                         </div>
 

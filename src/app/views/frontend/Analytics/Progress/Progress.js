@@ -15,7 +15,7 @@ export default function Progress() {
         fetchProgress();
     }, []);
     const fetchProgress = async () => {
-        await analysticsservice.getProgress().then((res) => {
+        await analysticsservice.analysticsProgress().then((res) => {
             if (res.data.status) {
                 SetFormData(res.data.data);
             }

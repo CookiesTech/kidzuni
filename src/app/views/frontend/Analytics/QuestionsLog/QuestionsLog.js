@@ -20,7 +20,7 @@ export default function QuestionsLog() {
     }, []);
     const fetchQuestionLog = async () => {
         let data = { subcategory_id: id };
-        await analysticsservice.fetchQuestionLog(data).then((res) => {
+        await analysticsservice.analyticsQuestionLog(data).then((res) => {
             if (res.data.status) {
                 SetFormData(res.data.data);
             }
