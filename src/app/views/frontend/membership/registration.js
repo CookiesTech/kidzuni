@@ -14,7 +14,7 @@ import { config } from 'app/config';
 import { FaEyeSlash, FaEye } from 'react-icons/fa'
 toast.configure();
 export default function Registration() {
-    let packageservice = new PackageService();
+    let packageservice = new PackageService(config.baseURL);
     let counrtyservice = new CounrtyService(config.baseURL);
     const [inputValue, setInputValue] = useState("");
     const [schoolPackage = [], setschoolPackage] = useState();
@@ -32,7 +32,7 @@ export default function Registration() {
     const [counrtyinfo, setCountryinfo] = useState([]);
     const [passwordShow, setPasswordShow] = useState(false);
     useEffect(() => {
-        getMonthlyParentPackage();
+        getParentPackage();
         getSchoolStudentCount();
         countrydata();
 
@@ -52,37 +52,119 @@ export default function Registration() {
     }
     const getSchoolStudentCount = async () => {
         try {
-            let data1 = { package_for: 'school', type: 'monthly' }
+            let data1 = { package_for: 'school', type: type }
             const data = await packageservice.getallpackage(data1);
-
             setschoolPackage(data.data.data);
-
-            // setInputValue(data.data.data[0].price);
         }
         catch (e) {
             console.log(e);
         }
     }
 
-    const getMonthlyParentPackage = async () => {
+    const getParentPackage = async () => {
         try {
 
-            let data1 = { package_for: packagefor, type: type }
-            const data = await packageservice.getallpackage(data1);
-            setAdditionalPrice(data.data?.data[0]?.additional_price);
+            const data = await packageservice.getallpackage({ package_for: packagefor, type: type });
+            setAdditionalPrice(data?.data?.data[0]?.additional_price);
             setSingleKidPrice(data?.data?.data[0]?.price)
 
-            setInputValue(data.data?.data[0]?.price);
+            setInputValue(data?.data?.data[0]?.price);
         }
         catch (e) {
             console.log(e);
         }
+    }
+
+    const handleChildrenCountParent = (e) => {
+
+        if (parseInt(e.target.value) > 1) {
+            let additional_of_child = parseInt(e.target.value - 1);
+            let newPrice = parseInt(additional_of_child * additional_price);
+            var n1 = parseInt(singleKidPrice);//price for single student
+            var n2 = parseInt(newPrice);//have to minus selected student 1 balance student for applicable additional price
+            var ans = n1 + n2;
+            setChildCount(parseInt(e.target.value));
+
+            setInputValue(ans);
+        }
+        else {
+
+            setChildCount(e.target.value);
+            setInputValue(singleKidPrice);
+        }
+    }
+
+    const handleTypeChange = async (e) => {
+        let data1 = { package_for: packagefor, type: e.target.value }
+        const data = await packageservice.getallpackage(data1);
+
+        if (data.data.status) {
+            if (packagefor === 'parent') {
+                let total_child = child_count;
+                let additional_of_child = parseInt(total_child - 1);
+                let newPrice = parseInt(additional_of_child * data.data?.data[0]?.additional_price);
+                var n1 = parseInt(data?.data?.data[0]?.price);//price for single student
+                var n2 = parseInt(newPrice);//have to minus selected student 1 balance student for applicable additional price
+                var ans = n1 + n2;
+                setAdditionalPrice(data.data?.data[0]?.additional_price);
+                setSingleKidPrice(data?.data?.data[0]?.price)
+                setInputValue(ans);
+                setType(e.target.value)
+
+            }//for package school
+            else {
+                let data1 = { package_for: 'school', type: e.target.value }
+                const data = await packageservice.getallpackage(data1);
+                setschoolPackage(data.data.data);
+                setChildCount(0)
+                setType(e.target.value)
+                setInputValue(0);
+                setAdditionalPrice(0)
+            }
+        }
+
+    }
+
+    const handlePackageChange = async (e) => {
+        if (e.target.value === 'school') {
+            setPackageFor('school')
+            setInputValue(0)
+            setChildCount(0);
+            setAdditionalPrice(0)
+            setType('')
+            setShowParent(false)
+
+        } else {
+            setType('monthly')
+            let data1 = { package_for: e.target.value, type: 'monthly' }
+            const data = await packageservice.getallpackage(data1);
+            if (data.data.status) {
+                setPackageFor('parent');
+                setInputValue(parseInt(data?.data?.data[0]?.price));
+                setChildCount(1);
+                // setType('')
+                setAdditionalPrice(parseInt(data?.data?.data[0]?.additional_price));
+                setShowParent(true)
+            }
+        }
+
+    }
+    const handleChildrensCountSchool = (e) => {
+        console.log(schoolPackage);
+        console.log({ 'price': schoolPackage[e.target.value].price });
+        setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
+        setInputValue(schoolPackage[e.target.value].price)
+        setAdditionalPrice(0)
+    }
+
+    const togglePassword = () => {
+        setPasswordShow(!passwordShow)
     }
 
 
 
     const handleChange = (e) => {
-        console.log(e.target.value);
+
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
@@ -96,9 +178,9 @@ export default function Registration() {
             email: formValues.email,
             password: formValues.password,
             country_code: formValues.countrycode,
-            no_of_children: 1,
-            type: "monthly",
-            package_for: "parent",
+            no_of_children: child_count,
+            type: type,
+            package_for: packagefor,
             price: inputValue,
         };
 
@@ -141,74 +223,6 @@ export default function Registration() {
 
         return errors;
     };
-
-    const handleChildrenCountParent = (e) => {
-        e.preventDefault();
-        let count = parseInt(e.target.value);
-
-        if (count > 1) {
-            console.log(inputValue);
-
-            count = parseInt(count - 1);
-            let newPrice = parseInt(count * additional_price);
-            var n1 = parseInt(singleKidPrice);
-            var n2 = parseInt(newPrice);
-            var ans = n1 + n2;
-            setChildCount(e.target.value);
-            setInputValue(ans);
-        }
-        else {
-
-            setChildCount(e.target.value);
-            setInputValue(singleKidPrice);
-        }
-    }
-
-    const handleTypeChange = async (e) => {
-
-        let data1 = { package_for: packagefor, type: e.target.value }
-
-        const data = await packageservice.getallpackage(data1);
-
-        if (data.data.status) {
-            if (packagefor === 'parent') {
-                setAdditionalPrice(data.data.data[0].additional_price)
-            }
-            //setPackagePrice(data.data.data);
-            setChildCount()
-            setType(e.target.value)
-            setInputValue(0);
-        }
-
-    }
-
-    const handlePackageChange = (e) => {
-        if (e.target.value === 'school') {
-            setPackageFor('school')
-            setInputValue(0)
-            setChildCount(0);
-            setType('')
-            setShowParent(false)
-
-        } else if (e.target.value === 'parent') {
-            setPackageFor('parent')
-            setPackageFor(e.target.value)
-            setInputValue(0)
-            setAdditionalPrice(0)
-            setShowParent(true)
-        }
-
-    }
-    const handleChildrensCountSchool = (e) => {
-
-        e.preventDefault();
-        setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
-        setInputValue(schoolPackage[e.target.value].price)
-    }
-
-    const togglePassword = () => {
-        setPasswordShow(!passwordShow)
-    }
     return (
         <div>
             <Helmet>
@@ -271,7 +285,7 @@ export default function Registration() {
                                                     <div className="cart_box">
                                                         <div>
 
-                                                            <select type="number" name="count" onChange={(e) => handleChildrenCountParent(e)}>
+                                                            <select name="count" onChange={(e) => handleChildrenCountParent(e)}>
                                                                 <option>1</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
@@ -415,7 +429,10 @@ export default function Registration() {
                             <div className="membership-selected"><b>{type}</b> Membership</div>
                             <div className="child-count">{child_count} Child</div>
                             <div className="selected-amt">₹{inputValue}</div>
-                            <span className="addtional-amount">Additional price per kid:<strong>₹{additional_price}</strong></span>
+                            {packagefor === 'parent' ? (
+                                <span className="addtional-amount">Additional price per kid:<strong>₹{additional_price}</strong></span>
+                            ) : (<p></p>)}
+
                         </div>
                         <div className="join-benefit">
                             <h4>Benefits of Joining</h4>

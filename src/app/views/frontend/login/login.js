@@ -78,18 +78,13 @@ export default function Login() {
             if (parseInt(result?.data?.user?.role) === 3) {
                 localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
                 localStorage.setItem("kidz_cout", JSON.stringify(result.data.kids_data.length))
-                console.log(result.data.kids_data);
+                //console.log(result.data.kids_data);
             }
             navigate('/home')
 
         } else {
             toast.error("Login Failed");
         }
-
-        // localStorage.setItem('login', JSON.stringify({
-        //     login: true,
-        //     token: result.token,
-        // }))
 
     }
 

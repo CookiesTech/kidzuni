@@ -4,7 +4,7 @@ export default class ParentService extends ApiService {
 
   add_kids = async (data) => {
 
-    let Url = "http://feltech.in/kidzuni_backend/public/api/add_kids";
+    let Url = this.baseURL + "add_kids";
 
     let response = await this.post(Url, data);
     if (response.status !== 200) {
