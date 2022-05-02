@@ -30,7 +30,7 @@ export default function StudentProfile() {
                 <div className="top-space profile-setting">
                     <Grid container spacing={3} sx={{ mb: '24px' }}>
                         <Grid item xs={12} md={12}>
-                            {loginInfo?.role === 3 ? (
+                            {loginInfo?.role == 3 ? (
                                 <>
 
                                     <Tabs value={value} onChange={handleTabs}>
@@ -113,7 +113,7 @@ export default function StudentProfile() {
                                 </>
                             ) : (
                                 <>
-                                    {loginInfo?.role === 5 ? (
+                                    {loginInfo?.role == 5 ? (
                                         <>
                                             <Tabs value={value} onChange={handleTabs}>
                                                 <Tab className="block-display" label="Kidz Setting" />
@@ -121,7 +121,7 @@ export default function StudentProfile() {
                                             <TabPanel value={value} index={0}>
 
                                                 {
-                                                    kidsinfo?.map((data, i) => (
+                                                    kidsinfo?.map((data, k) => (
 
                                                         <div className="member-profile-set">
                                                             <h4>Kidz Details -{'>'} {data.name}</h4>
@@ -164,7 +164,7 @@ export default function StudentProfile() {
                                         </>
 
                                     ) : (
-                                        <p>ss</p>
+                                        <p>Data not Found</p>
                                     )}
                                 </>
                             )}

@@ -241,8 +241,7 @@ body {
 
 .member {
   box-shadow: 0 0 4px #333;
-  width: 300px;
-  margin: 100px 3.5%;
+  margin: 80px;
   background-color: #fff;
   text-align: center;
   position: relative;
@@ -250,7 +249,7 @@ body {
 
 .grade-sec {
   border-radius: 5px 5px 0 0;
-  padding: 0 0 42px;
+  padding: 0 0 30px;
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: auto;
@@ -385,9 +384,7 @@ body {
 }
 
 .footer-logo p {
-  padding: 5px;
-  margin-top: 10px;
-  font-size: 15px;
+  margin-top: -5px;
 }
 
 .foot-text>div {
@@ -840,7 +837,12 @@ input[type=radio]:checked~.option {
 
 .addtional-amount {
   vertical-align: -webkit-baseline-middle;
-  margin-left: 20px;
+  font-size: 18px;
+}
+
+.addtional-amount strong {
+  display: block;
+  font-size: 22px;
 }
 
 .plan-part button {
@@ -891,16 +893,12 @@ input[type=radio]:checked~.option {
   color: #0b863c;
 }
 
+.reg-detail-part label {
+  width: 260px;
+}
+
 .name-part {
   display: flex;
-}
-
-.name-part input {
-  margin-left: 100px;
-}
-
-.email-part input {
-  margin-left: 105px;
 }
 
 .country-part input {
@@ -911,15 +909,15 @@ input[type=radio]:checked~.option {
 }
 
 .country-part select {
-  margin-left: 44px;
+  margin-bottom: 15px;
+}
+
+.country-part label {
+  width: 188px !important;
 }
 
 .email-part {
   display: flex;
-}
-
-.password-part input {
-  margin-left: 71px
 }
 
 .password-part {
@@ -927,12 +925,18 @@ input[type=radio]:checked~.option {
   margin-top: 18px;
 }
 
-.phonenumber-part {
-  display: flex;
+.password-part span {
+  width: 0px !important;
 }
 
-.phonenumber-part input {
-  margin-left: 56px;
+.password-part span svg {
+  margin-left: -25px;
+  vertical-align: -webkit-baseline-middle;
+  font-size: 17px;
+}
+
+.phonenumber-part {
+  display: flex;
 }
 
 .children-count {
@@ -980,6 +984,10 @@ input[type=radio]:checked~.option {
 
 .register-info-detail>div {
   padding: 10px;
+}
+
+.register-info-detail span {
+  width: 180px;
 }
 
 .plan-sec {
@@ -1073,6 +1081,12 @@ input[type=radio]:checked~.option {
 
 .login-input-detail {
   margin-bottom: 10px;
+}
+
+.login-input-detail span {
+  float: right;
+  margin-top: -30px;
+  margin-right: 10px;
 }
 
 .login-forgot {
@@ -1682,7 +1696,6 @@ input[type=radio]:checked~.option {
 
 .details-sub {
   position: relative;
-  left: 253px;
   top: 15px;
 }
 
@@ -1700,7 +1713,6 @@ input[type=radio]:checked~.option {
   border-radius: 20px;
   background: #10a0b6;
   color: #fff;
-  margin-left: 200px;
 }
 
 .continue-practice button:focus {

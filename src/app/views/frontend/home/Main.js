@@ -14,6 +14,7 @@ export default function Home() {
     const [countrycode, setCountryCode] = useState(3);
     const [formData = [], setformData] = useState();
 
+
     useEffect(() => {
         // handleChangeCountry();
         getSubjectandStandardData();
@@ -35,6 +36,7 @@ export default function Home() {
             }
 
             setformData(data?.data?.data?.standards);
+
         }
         catch (e) {
             console.log(e);

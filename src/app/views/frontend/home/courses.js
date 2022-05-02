@@ -8,7 +8,6 @@ export default function Courses(props) {
     }, [fetchData, props.data]);
 
 
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const fetchData = async () => {
         setformdata(props.data);

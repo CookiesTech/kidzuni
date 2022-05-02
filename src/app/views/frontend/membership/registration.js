@@ -11,6 +11,7 @@ import PackageService from "../Services/PackageService"
 import CounrtyService from '../Services/CountryService';
 import NavbarMenus from "../home/NavbarMenus";
 import { config } from 'app/config';
+import { FaEyeSlash, FaEye } from 'react-icons/fa'
 toast.configure();
 export default function Registration() {
     let packageservice = new PackageService();
@@ -29,6 +30,7 @@ export default function Registration() {
     const navigate = useNavigate();
     const [child_count, setChildCount] = useState(1)
     const [counrtyinfo, setCountryinfo] = useState([]);
+    const [passwordShow, setPasswordShow] = useState(false);
     useEffect(() => {
         getMonthlyParentPackage();
         getSchoolStudentCount();
@@ -203,6 +205,10 @@ export default function Registration() {
         setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
         setInputValue(schoolPackage[e.target.value].price)
     }
+
+    const togglePassword = () => {
+        setPasswordShow(!passwordShow)
+    }
     return (
         <div>
             <Helmet>
@@ -277,12 +283,11 @@ export default function Registration() {
                                                     </div>
                                                 </div>
                                                 <div className="maths-price">
-
-                                                    <button type="button" className="select-option sub-input">
+                                                    {/* <button type="button" className="select-option sub-input">
                                                         <div className="productOption-price"><span>₹{inputValue} </span></div>
                                                         <div className="productOption-term">{type}</div>
-                                                    </button>
-                                                    <span className="addtional-amount">Additional price per kid:₹{additional_price}</span>
+                                                    </button> */}
+
                                                 </div>
 
                                             </div>
@@ -343,7 +348,7 @@ export default function Registration() {
                                         <div className="password-part">
                                             <label>Password</label>
                                             <input
-                                                type="password"
+                                                type={passwordShow ? "text" : "password"}
                                                 name="password"
                                                 className="form-control"
                                                 placeholder="Password"
@@ -351,22 +356,16 @@ export default function Registration() {
                                                 onChange={handleChange}
                                                 required
                                             />
+                                            <span onClick={togglePassword}>
+                                                {passwordShow ?
+                                                    <FaEye /> : <FaEyeSlash />
+                                                }
+                                            </span>
                                         </div>
                                         <p className="text-danger">{formErrors.password}</p>
                                         <div className="country-part">
-                                            <label>Countrycode</label>
-                                            {/* <input
-                                                type="countrycode"
-                                                name="countrycode"
-                                                className="form-control"
-                                                id="countrycode"
-                                                placeholder="Enter your Countrycode"
-                                                value={formValues.countrycode}
-                                                onChange={handleChange}
-                                                required
-                                            /> */}
-
-                                            <select name="countr_ycode" onChange={handleChange} required>
+                                            <label>Country</label>
+                                            <select name="countrycode" onChange={handleChange} required>
                                                 <option>Select Your Country</option>
                                                 {
                                                     counrtyinfo?.map((countrylist, i) => (
@@ -416,6 +415,7 @@ export default function Registration() {
                             <div className="membership-selected"><b>{type}</b> Membership</div>
                             <div className="child-count">{child_count} Child</div>
                             <div className="selected-amt">₹{inputValue}</div>
+                            <span className="addtional-amount">Additional price per kid:<strong>₹{additional_price}</strong></span>
                         </div>
                         <div className="join-benefit">
                             <h4>Benefits of Joining</h4>

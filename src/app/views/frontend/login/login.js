@@ -1,4 +1,4 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ import { config } from 'app/config';
 import "../assets/css/style.css"
 import Navbar from '../home/navbar';
 import Footer from '../home/footer';
+import { FaEyeSlash, FaEye } from 'react-icons/fa'
+
 toast.configure()
 export default function Login() {
     const FlexBox = styled(Box)(() => ({
@@ -47,6 +49,7 @@ export default function Login() {
     const [inputValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const [passwordShow, setPasswordShow] = useState(false);
 
     const inputChange = (e) => {
         const { name, value } = e.target;
@@ -83,7 +86,6 @@ export default function Login() {
             toast.error("Login Failed");
         }
 
-
         // localStorage.setItem('login', JSON.stringify({
         //     login: true,
         //     token: result.token,
@@ -107,6 +109,12 @@ export default function Login() {
             errors.password = "Password cannot exceed more than 10 characters";
         }
         return errors;
+    };
+
+    const togglePassword = () => {
+        // When the handler is invoked
+        // inverse the boolean state of passwordShown
+        setPasswordShow(!passwordShow);
     };
 
     return (
@@ -150,7 +158,7 @@ export default function Login() {
 
                                         <div className='login-input-detail'>
                                             <input
-                                                type="password"
+                                                type={passwordShow ? "text" : "password"}
                                                 name="password"
                                                 class="form-control"
                                                 placeholder="Password"
@@ -158,6 +166,11 @@ export default function Login() {
                                                 onChange={inputChange}
                                                 required
                                             />
+                                            <span onClick={togglePassword}>
+                                                {passwordShow ?
+                                                    <FaEye /> : <FaEyeSlash />
+                                                }
+                                            </span>
                                         </div>
 
                                         <div className='login-forgot'>
@@ -190,4 +203,4 @@ export default function Login() {
         </div>
 
     )
-} 
+}
