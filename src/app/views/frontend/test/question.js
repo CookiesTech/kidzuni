@@ -124,158 +124,160 @@ const Question = () => {
   }
   console.log(questions.length);
   return (
-    <div className="main">
-      {
-        showresult === false ? (
+    <div>
+      <div className="main">
+        {
+          showresult === false ? (
 
-          <>
-            <div>
-              <Helmet>
-                <title>KidzUni | Quiz Test</title>
-              </Helmet>
+            <div className="container">
+              <div>
+                <Helmet>
+                  <title>KidzUni | Quiz Test</title>
+                </Helmet>
 
-              {questions.length > 0 ? (
-                <>
-                  <div className="row top-space">
+                {questions.length > 0 ? (
+                  <>
+                    <div className="row top-space">
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
-                      <div className="timespent-score">
-                        <h5>score: {score}</h5>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
+                        <div className="timespent-score">
+                          <h5>score: {score}</h5>
+                        </div>
+                      </div>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
+                        <div className="timespent-score">
+                          <h5>Time Spent: <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></h5>
+                        </div>
                       </div>
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6">
-                      <div className="timespent-score">
-                        <h5>Time Spent: <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="question">
-                    <div className="singleQuestion">
-                      <div className="question-error-msg">
-                        {questions[currIndex]?.question_image ? (<img src={questions[currIndex]?.question_image} alt="..." width={100} />) : (<p></p>)
+                    <div className="question">
+                      <div className="singleQuestion">
+                        <div className="question-error-msg">
+                          {questions[currIndex]?.question_image ? (<img src={questions[currIndex]?.question_image} alt="..." width={100} />) : (<p></p>)
 
-                        }
-                        <p>
-                          {questions[currIndex]?.question_text}
-                        </p>
-                        {loading ? (
-                          <ErrorMessage>{error}</ErrorMessage>
-                        ) : (
-                          <div>
+                          }
+                          <p>
+                            {questions[currIndex]?.question_text}
+                          </p>
+                          {loading ? (
+                            <ErrorMessage>{error}</ErrorMessage>
+                          ) : (
+                            <div>
 
+                            </div>
+                          )}
+                          <div className="controls">
+                            {questions.length > currIndex ? (
+                              <p>
+
+                                <button
+                                  className='options-button' name="options" value={questions[currIndex]?.option1}
+                                  onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option1}</button>
+                                <button
+                                  className='options-button' name="options" value={questions[currIndex]?.option2}
+                                  onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option2}</button>
+
+                              </p>
+                            ) : (
+
+
+                              <Button
+                                variant="contained"
+                                color="success"
+                                size="large"
+                                className="test-complete-submit"
+                                style={{ width: 185 }}
+                                onClick={completeTest}
+                              >Complete
+                              </Button>
+
+
+                            )}
                           </div>
-                        )}
+                        </div>
+
                         <div className="controls">
                           {questions.length > currIndex ? (
-                            <p>
-
-                              <button
-                                className='options-button' name="options" value={questions[currIndex]?.option1}
-                                onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option1}</button>
-                              <button
-                                className='options-button' name="options" value={questions[currIndex]?.option2}
-                                onClick={(e) => handleCheck(e)}>{questions[currIndex]?.option2}</button>
-
-                            </p>
-                          ) : (
-
-
                             <Button
                               variant="contained"
                               color="success"
                               size="large"
                               className="test-complete-submit"
                               style={{ width: 185 }}
-                              onClick={completeTest}
-                            >Complete
+                              onClick={() => handleNext()}
+                            >Submit
                             </Button>
-
-
+                          ) : (
+                            <></>
                           )}
+
                         </div>
                       </div>
-
-                      <div className="controls">
-                        {questions.length > currIndex ? (
-                          <Button
-                            variant="contained"
-                            color="success"
-                            size="large"
-                            className="test-complete-submit"
-                            style={{ width: 185 }}
-                            onClick={() => handleNext()}
-                          >Submit
-                          </Button>
-                        ) : (
-                          <></>
-                        )}
-
-                      </div>
                     </div>
-                  </div>
-                </>
-              ) : (<p>No New Question Found for You !.. </p>)}
-            </div>
+                  </>
+                ) : (<p>No New Question Found for You !.. </p>)}
+              </div>
 
-          </>
-        ) : (<div className="success">
-
-          <div className="planet-cont">
-            <div className="planet"></div>
-            <div className="rings"></div>
-          </div>
-          <div className="test-completed">
-            <div className="congarts">
-              <h1>Congratulations!</h1>
             </div>
-            {/* <div className="test-complete-className">
+          ) : (<div className="success">
+
+            <div className="planet-cont">
+              <div className="planet"></div>
+              <div className="rings"></div>
+            </div>
+            <div className="test-completed">
+              <div className="congarts">
+                <h1>Congratulations!</h1>
+              </div>
+              {/* <div className="test-complete-className">
 
 
               <span> Sub-Topic(cout 1 to 3)</span>
             </div> */}
 
-            <div className="checkmark-circle">
-              <div className="background"></div>
-              <div className="checkmark draw"></div>
+              <div className="checkmark-circle">
+                <div className="background"></div>
+                <div className="checkmark draw"></div>
+              </div>
+              <h4>You Have Successfully Completed.</h4>
+
+              <div className="score-board">
+                <span>
+                  <img src=" assets/frontend/images/credit-score.png" alt="score" />
+                  <p>Smart scroe</p>
+                </span>
+                <span>
+                  <img src=" assets/frontend/images/time-spent.png" alt="time" />
+                  <p>Time Spent</p>
+                </span>
+                <span>
+                  <img src=" assets/frontend/images/target.png" alt="question" />
+                  <p>Questions</p>
+                </span>
+
+              </div>
             </div>
-            <h4>You Have Successfully Completed.</h4>
 
-            <div className="score-board">
-              <span>
-                <img src=" assets/frontend/images/credit-score.png" alt="score" />
-                <p>Smart scroe</p>
-              </span>
-              <span>
-                <img src=" assets/frontend/images/time-spent.png" alt="time" />
-                <p>Time Spent</p>
-              </span>
-              <span>
-                <img src=" assets/frontend/images/target.png" alt="question" />
-                <p>Questions</p>
-              </span>
-
+            <div className="yellow-planet">
+              <div className="planet-cont bottom">
+                <div className="planet bottom"></div>
+                <div className="rings bottom"></div>
+              </div>
             </div>
-          </div>
 
-          <div className="yellow-planet">
-            <div className="planet-cont bottom">
-              <div className="planet bottom"></div>
-              <div className="rings bottom"></div>
+
+            <div className="star"></div>
+            <div className="star k"></div>
+
+
+            <div className="rocket-cont">
+              <div className="rocket-top"></div>
+              <div className="rocket-bottom"></div>
+              <div className="flame"></div>
             </div>
-          </div>
-
-
-          <div className="star"></div>
-          <div className="star k"></div>
-
-
-          <div className="rocket-cont">
-            <div className="rocket-top"></div>
-            <div className="rocket-bottom"></div>
-            <div className="flame"></div>
-          </div>
-        </div>)}
-    </div>
+          </div>)}
+      </div>
+    </div >
   );
 };
 

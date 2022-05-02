@@ -19,7 +19,7 @@
 
 .options-button {
   margin: 5px;
-  padding: 5px;
+  padding: 7px;
   border-radius: 10px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .question-error-msg p {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .timespent-score {

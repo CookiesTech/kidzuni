@@ -303,11 +303,11 @@ export default function Registration() {
                                                 }
                                                 <div className="maths-price">
                                                     {/* <span className="plan-heading">Choose desired Subjects</span> */}
-                                                    <button type="button" className="select-option sub-input">
-                                                        {/* <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div> */}
-                                                        <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                                        <div className="productOption-term">{type}</div>
-                                                    </button>
+                                                    {/* <button type="button" className="select-option sub-input"> */}
+                                                    {/* <div className="productOption-name">Maths</div><div className="productOption-tag" id="">LKG - XII</div> */}
+                                                    {/* <div className="productOption-price"><span>₹{inputValue} </span></div>
+                                                        <div className="productOption-term">{type}</div> */}
+                                                    {/* </button> */}
                                                 </div>
                                             </>)
                                     }

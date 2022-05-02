@@ -30,6 +30,7 @@ const Progress = Loadable(lazy(() => import('../frontend/Analytics/Progress/Prog
 
 const TestCompleted = Loadable(lazy(() => import('../frontend/testcompleted/success')))
 
+
 const sessionRoutes = [
     {
         path: '/test_completed-:value',
@@ -64,6 +65,7 @@ const sessionRoutes = [
         path: 'home/membership',
         element: <Registration />,
     },
+
     {
         path: 'test-completed',
         element: <Success />,

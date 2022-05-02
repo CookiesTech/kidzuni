@@ -78,9 +78,11 @@ export default function Recommendation() {
                                 ))) : (<p>No Data Found</p>)}
 
                     </div>
-                </div>) : (<p className="container"><br /> <Link className="" to="/user/login">
-                    <div><button class="kidzuni-btn">Please Login to Access This Page</button></div>
-                </Link></p>)
+                </div>) : (<p className="container"><br />
+                    <div><span>Please Login to Access This Page</span>
+                        <Link className="" to="/user/login"><button class="kidzuni-btn">Login</button></Link>
+                    </div>
+                </p>)
             }
             <Footer />
         </div>
