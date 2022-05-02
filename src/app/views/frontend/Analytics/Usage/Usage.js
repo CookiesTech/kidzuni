@@ -47,7 +47,6 @@ const Analytics = () => {
     }
 
     const handleChange = (e) => {
-        e.preventDefault();
         const { name, value } = e.target;
         setFilterData({ ...filterData, [name]: value })
         fetchUsage();
