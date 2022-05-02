@@ -67,7 +67,7 @@ export default function Navbar(props) {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {userData?.role === 3 ? (
+                                        {userData?.role == 3 ? (
                                             <span>Welcome, Parent</span>
                                         ) : (
                                             <span>Welcome, Student</span>

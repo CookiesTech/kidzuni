@@ -14,6 +14,7 @@ export default function Home() {
     const [countrycode, setCountryCode] = useState(3);
     const [formData = [], setformData] = useState();
 
+
     useEffect(() => {
         // handleChangeCountry();
         getSubjectandStandardData();
@@ -26,8 +27,8 @@ export default function Home() {
         try {
             let user = JSON.parse(localStorage?.getItem?.('user-info'));
             if (user) {
-
-                data = await standardservice.getstandardandSubjectData(user.country_code);
+                let usercountrycode = (user.country_code)
+                data = await standardservice.getstandardandSubjectData({ country_code: usercountrycode });
             }
             else {
                 localStorage.setItem('country_code', countrycode);
@@ -35,6 +36,7 @@ export default function Home() {
             }
 
             setformData(data?.data?.data?.standards);
+
         }
         catch (e) {
             console.log(e);

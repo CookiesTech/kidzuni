@@ -62,7 +62,7 @@ export default function MathsSubject() {
                                             {/* <span>Course</span> */}
                                             <h5>{data.standard_name}</h5>
                                         </div>
-                                        <h6>{data.standard_name}</h6>
+                                        {/* <h6>{data.standard_name}</h6> */}
                                         <div className="details-sub">
 
                                             {
