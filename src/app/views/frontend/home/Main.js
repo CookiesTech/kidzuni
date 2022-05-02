@@ -27,8 +27,8 @@ export default function Home() {
         try {
             let user = JSON.parse(localStorage?.getItem?.('user-info'));
             if (user) {
-                let usercountrycode = (user.country_code)
-                data = await standardservice.getstandardandSubjectData({ country_code: usercountrycode });
+
+                data = await standardservice.getstandardandSubjectData({ country_code: user.country_code });
             }
             else {
                 localStorage.setItem('country_code', countrycode);
