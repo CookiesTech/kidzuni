@@ -115,7 +115,7 @@ export default function StudentProfile() {
                                 <>
                                     {loginInfo?.role == 5 ? (
                                         <>
-                                            <Tabs value={value} onChange={handleTabs}>
+                                            {/* <Tabs value={value} onChange={handleTabs}>
                                                 <Tab className="block-display" label="Kidz Setting" />
                                             </Tabs>
                                             <TabPanel value={value} index={0}>
@@ -135,16 +135,7 @@ export default function StudentProfile() {
                                                                     required
                                                                 />
                                                             </div>
-                                                            {/* <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>Password</Small>
-                                                        <input
-                                                            type="password"
-                                                            name="password"
-                                                            class="form-control"
-                                                            value={data.password}
-                                                            required
-                                                        />
-                                                    </div> */}
+
                                                             <div className="parent-edit-part">
                                                                 <Small sx={{ fontSize: 18 }}>Email</Small>
                                                                 <input
@@ -160,7 +151,7 @@ export default function StudentProfile() {
                                                     ))
                                                 }
                                                 <p>Kidz Info</p>
-                                            </TabPanel>
+                                            </TabPanel> */}
                                         </>
 
                                     ) : (

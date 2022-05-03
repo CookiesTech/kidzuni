@@ -29,7 +29,7 @@ const QuestionsLog = Loadable(lazy(() => import('../frontend/Analytics/Questions
 const Progress = Loadable(lazy(() => import('../frontend/Analytics/Progress/Progress')))
 
 const TestCompleted = Loadable(lazy(() => import('../frontend/testcompleted/success')))
-
+const RegisterSuccess = Loadable(lazy(() => import('../frontend/membership/registerSuccess')))
 
 const sessionRoutes = [
     {
@@ -65,7 +65,10 @@ const sessionRoutes = [
         path: 'home/membership',
         element: <Registration />,
     },
-
+    {
+        path: 'membership/register-completed',
+        element: <RegisterSuccess />,
+    },
     {
         path: 'test-completed',
         element: <Success />,

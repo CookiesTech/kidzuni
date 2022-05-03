@@ -791,6 +791,16 @@
     .continue-practice {
         margin-left: -93px;
     }
+
+    /*---login-alert-msg---*/
+    .alert {
+        width: 295px;
+        /* margin-left: -27px; */
+    }
+
+    .error::before {
+        margin-left: 0px;
+    }
 }
 
 /*-----Homepage-tab-----*/

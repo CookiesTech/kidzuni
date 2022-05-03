@@ -109,7 +109,7 @@ export default function Registration() {
 
         if (result.data.status) {
             toast.success("user successfully registered");
-            navigate('/user/login')
+            navigate('/membership/register-completed')
         } else {
             toast.error(result.data.message.email);
         }
@@ -200,7 +200,6 @@ export default function Registration() {
 
     }
     const handleChildrensCountSchool = (e) => {
-
         e.preventDefault();
         setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
         setInputValue(schoolPackage[e.target.value].price)
@@ -311,8 +310,6 @@ export default function Registration() {
                                                 </div>
                                             </>)
                                     }
-
-
                                     <hr />
                                     <span className="info-heading">Enter Your Details</span>
                                     <div className="reg-detail-part">
