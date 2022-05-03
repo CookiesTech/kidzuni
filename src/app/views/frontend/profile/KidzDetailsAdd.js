@@ -64,7 +64,8 @@ export default function KidzDetailAdd() {
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        if (inputList.length + 1 < balance) {
+
+        if (inputList.length + 1 <= balance) {
             setInputList([...inputList, { name: "", email: "", password: "" }]);
         } else {
             toast.error('you have reached the maximum limit')
@@ -74,12 +75,12 @@ export default function KidzDetailAdd() {
 
     const [open, setOpen] = useState(false); //collapse tab open
     const handleClick = () => {
-        if (balance > 0) {
+        if (balance !== 0) {
             setOpen(!open);
         }
         //reached maximum limit
         else {
-            toast.error('you have reached the maximum limit')
+            toast.error('you have reached the maximum limit55')
         }
     };
 
@@ -154,11 +155,12 @@ export default function KidzDetailAdd() {
                                                 </div>
                                             </div>
 
-                                            <button onClick={handleSubmit}>Submit</button>
+
                                         </div>
 
                                     );
                                 })}
+                                <button onClick={handleSubmit}>Submit</button>
                             </div>
                         </ListItemButton>
                     </List>

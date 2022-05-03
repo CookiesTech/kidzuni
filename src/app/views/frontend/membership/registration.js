@@ -37,7 +37,7 @@ export default function Registration() {
         countrydata();
 
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(formValues);
+
         }
 
     }, [formErrors]);
@@ -173,17 +173,24 @@ export default function Registration() {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);
+        let student_count = 0;
+        if (packagefor === 'school') {
+            const splited_count = child_count.split('-');
+            student_count = splited_count[1];
+        } else {
+            student_count = child_count;
+        }
         let data = {
             name: formValues.name,
             email: formValues.email,
             password: formValues.password,
             country_code: formValues.countrycode,
-            no_of_children: child_count,
+            no_of_children: student_count,
             type: type,
             package_for: packagefor,
             price: inputValue,
         };
-
+        //  console.log(data); return false;
         const result = await axios.post(
             config.baseURL + "register",
             data
@@ -191,7 +198,7 @@ export default function Registration() {
 
         if (result.data.status) {
             toast.success("user successfully registered");
-            navigate('/user/login')
+            navigate('/user/register_success')
         } else {
             toast.error(result.data.message.email);
         }
@@ -297,10 +304,6 @@ export default function Registration() {
                                                     </div>
                                                 </div>
                                                 <div className="maths-price">
-                                                    {/* <button type="button" className="select-option sub-input">
-                                                        <div className="productOption-price"><span>₹{inputValue} </span></div>
-                                                        <div className="productOption-term">{type}</div>
-                                                    </button> */}
 
                                                 </div>
 

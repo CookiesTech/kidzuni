@@ -21,7 +21,15 @@ const Question = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showresult, setshowresult] = useState(false);
+  let userData = JSON.parse(localStorage?.getItem?.("user-info"));
+  if (userData === null) {
+    toast.error('Please Login to Atten Test');
+    navigate('user/login')
 
+  } else if (userData?.role === 3) {
+    toast.error('Student Only Atten the tests');
+    navigate('/home')
+  }
   const {
     seconds,
     minutes,

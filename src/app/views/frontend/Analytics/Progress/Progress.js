@@ -39,7 +39,7 @@ export default function Progress() {
     const fetchProgress = async () => {
         await analyticsservice.analysticsProgress().then((res) => {
             if (res.data.status) {
-                SetFormData(res.data.data);
+                SetFormData(res?.data?.data);
             }
         })
     }
@@ -113,7 +113,7 @@ export default function Progress() {
                                         <td>{data?.total_attn}</td>
                                         <td>
                                             <div className="kidz-progress-level">
-                                                <progress max="100" value={data?.score}></progress>
+                                                <progress max="100" value={data?.score} ></progress>
                                             </div>
                                         </td>
 

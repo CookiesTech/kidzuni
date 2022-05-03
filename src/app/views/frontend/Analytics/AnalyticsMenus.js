@@ -15,9 +15,9 @@ export default function AnalyticsMenu() {
                         <span class="border-left">Progress
                             <img src="../../../assets/frontend/images/progress.png" alt="" /></span>
                     </NavLink>
-
+                    {/* 
                     <span class="border-left">Questions
-                        <img src="../../../assets/frontend/images/question.png" alt="" /></span>
+                        <img src="../../../assets/frontend/images/question.png" alt="" /></span> */}
 
                 </div>
             </div>

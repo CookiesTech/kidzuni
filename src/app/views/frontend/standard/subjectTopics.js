@@ -56,7 +56,10 @@ export default function Topics() {
                                     <div className="sub-list">
                                         {topic.sub_topics?.map((topiclist, i) => (
                                             <>
-                                                {
+                                                <Link className="nav-link" to={'/test-' + topiclist.id}>
+                                                    <li key={`slide-${i}`}>{topiclist?.name} {topiclist?.score > 0 ? (<>-({topiclist?.score} <img src="assets/frontend/images/medal.svg" alt="..." width={10} />)</>) : (<></>)}</li>
+                                                </Link>
+                                                {/* {
                                                     member_info?.role === 3 || member_info === null ? (
 
                                                         <li key={`slide-${i}`}>{topiclist?.name}</li>
@@ -65,7 +68,7 @@ export default function Topics() {
                                                             <li key={`slide-${i}`}>{topiclist?.name} {topiclist?.score > 0 ? (<>-({topiclist?.score} <img src="assets/frontend/images/medal.svg" alt="..." width={10} />)</>) : (<></>)}</li>
                                                         </Link>
 
-                                                    )}
+                                                    )} */}
                                             </>
 
                                         ))}

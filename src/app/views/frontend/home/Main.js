@@ -1,7 +1,5 @@
 import Navbar from "./navbar";
 import Banner from "./banner";
-
-//import { Link, animateScroll as scroll } from "react-scroll";
 import Courses from "./courses";
 import NavbarMenus from "./NavbarMenus";
 import Footer from "./footer";

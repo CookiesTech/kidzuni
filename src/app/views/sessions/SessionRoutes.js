@@ -3,7 +3,7 @@ import Loadable from 'app/components/Loadable/Loadable'
 import { List } from '@mui/material';
 
 
-
+const RegistrationSuccess = Loadable(lazy(() => import('../frontend/membership/registration_success')))
 const NotFound = Loadable(lazy(() => import('./NotFound')))
 const ForgotPassword = Loadable(lazy(() => import('./ForgotPassword')))
 const JwtLogin = Loadable(lazy(() => import('./login/JwtLogin')))
@@ -32,6 +32,10 @@ const TestCompleted = Loadable(lazy(() => import('../frontend/testcompleted/succ
 
 
 const sessionRoutes = [
+    {
+        path: '/user/register_success',
+        element: <RegistrationSuccess />,
+    },
     {
         path: '/test_completed-:value',
         element: <TestCompleted />,

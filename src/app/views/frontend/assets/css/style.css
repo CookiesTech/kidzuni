@@ -1,5 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+/*----register-success----*/
+.success-card h1 {
+  color: #88B04B;
+  font-weight: 900;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
 
+.success-card p {
+  color: #404F5E;
+  font-size: 20px;
+  margin: 0;
+}
+
+.success-card i {
+  color: #9ABC66;
+  font-size: 100px;
+  line-height: 200px;
+  margin-left: -15px;
+}
+
+.success-card {
+  background: white;
+  padding: 60px;
+  margin: auto;
+  border-radius: 4px;
+  box-shadow: rgb(200, 208, 216) 1px 1px 6px 3px;
+  display: inline-block;
+}
+
+.register-success {
+  border-radius: 200px;
+  height: 200px;
+  width: 200px;
+  background: #F8FAF5;
+  margin: 0 auto;
+}
+
+.register-completed {
+  text-align: center;
+  margin: auto !important;
+  display: block;
+  padding: 85px;
+}
 body {
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif !important;
