@@ -115,38 +115,41 @@ export default function StudentProfile() {
                                 <>
                                     {loginInfo?.role == 5 ? (
                                         <>
-                                            <Tabs value={value} onChange={handleTabs}>
+                                            {/* <Tabs value={value} onChange={handleTabs}>
                                                 <Tab className="block-display" label="Kidz Setting" />
                                             </Tabs>
                                             <TabPanel value={value} index={0}>
 
 
+                                                        <div className="member-profile-set">
+                                                            <h4>Kidz Details -{'>'} {data.name}</h4>
+                                                            <div className="parent-edit-part">
+                                                                <Small sx={{ fontSize: 18 }}>UserName</Small>
+                                                                <input
+                                                                    type="userName"
+                                                                    name="userName"
+                                                                    class="form-control"
+                                                                    value={data.name}
+                                                                    required
+                                                                />
+                                                            </div>
 
-                                                <div className="member-profile-set">
-                                                    <h4>Kidz Details -{'>'} {loginInfo?.name}</h4>
-                                                    <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>UserName</Small>
-                                                        <input
-                                                            type="userName"
-                                                            name="userName"
-                                                            value={loginInfo?.name}
-                                                            class="form-control"
-                                                        />
-                                                    </div>
+                                                            <div className="parent-edit-part">
+                                                                <Small sx={{ fontSize: 18 }}>Email</Small>
+                                                                <input
+                                                                    type="email"
+                                                                    name="email"
+                                                                    class="form-control"
+                                                                    value={data.email}
+                                                                    required
+                                                                />
+                                                            </div>
 
-                                                    <div className="parent-edit-part">
-                                                        <Small sx={{ fontSize: 18 }}>Email</Small>
-                                                        <input
-                                                            type="email"
-                                                            name="email"
-                                                            class="form-control"
-                                                            value={loginInfo?.email}
-                                                            required
-                                                        />
-                                                    </div>
-
-                                                </div>
-                                            </TabPanel>
+                                                        </div>
+                                                    ))
+                                                }
+                                                <p>Kidz Info</p>
+                                            </TabPanel> */}
                                         </>
 
                                     ) : (

@@ -89,6 +89,7 @@ const Question = () => {
         await quizservice.create(data).then((res) => {
           setScore(parseInt(res.data.score));
           setCurrIndex(currIndex + 1);
+
         });
 
       }//student answer is wrong

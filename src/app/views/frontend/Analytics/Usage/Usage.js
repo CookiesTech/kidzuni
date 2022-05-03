@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 import { config } from "app/config";
 import AnalyticsService from '../../Services/AnalyticsService';
 import { Link } from "react-router-dom"
+import ErrorMessageShow from '../../Error/Errormsg';
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: {
@@ -122,7 +123,7 @@ const Analytics = () => {
                             </Grid>
                         </ContentBox>
                     </Fragment></>) : (<><p className="container"><br /> <Link className="" to="/user/login">
-                        <div><button class="kidzuni-btn">Please Login to Access This Page</button></div>
+                        <div><ErrorMessageShow /> </div>
                     </Link></p></>)}
 
             </div>

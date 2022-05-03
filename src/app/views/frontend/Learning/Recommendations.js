@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LearningMenu from "./LearningMenu"
 import StandardService from "../Services/StandardService"
 import { config } from "app/config"
+import ErrorMessageShow from "../Error/Errormsg"
 import { useNavigate } from "react-router-dom"
 toast.configure();
 export default function Recommendation() {
@@ -79,8 +80,8 @@ export default function Recommendation() {
 
                     </div>
                 </div>) : (<p className="container"><br />
-                    <div><span>Please Login to Access This Page</span>
-                        <Link className="" to="/user/login"><button class="kidzuni-btn">Login</button></Link>
+                    <div>
+                        <ErrorMessageShow />
                     </div>
                 </p>)
             }
