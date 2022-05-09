@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Banner() {
+    const userData = JSON.parse(localStorage?.getItem?.('user-info'));
     return (
         <div>
 
@@ -28,12 +29,12 @@ export default function Banner() {
                     </div>
 
                 </div>
-
-                <button className="btn btn-success member-btn">
+                {userData == null ? (<button className="btn btn-success member-btn">
                     <Link className="" to={'/home/membership'}>
                         Become a Member!
                     </Link>
-                </button>
+                </button>) : (<></>)}
+
 
 
             </div>

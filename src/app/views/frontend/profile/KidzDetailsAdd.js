@@ -34,7 +34,7 @@ export default function KidzDetailAdd() {
             if (res.data.status) {
                 localStorage.setItem('kidz_info', JSON.stringify(res.data?.data))
                 setKidActualCount(res.data?.data?.filled_count)
-                localStorage.setItem('kidz_cout', JSON.stringify(res.data?.data));
+                localStorage.setItem('kidz_cout', JSON.stringify(res.data?.filled_count));
                 toast.success(res.data.message)
                 setInputList([{ name: "", email: "", password: "" }]);
                 // navigate('/profile-setting')
@@ -65,7 +65,7 @@ export default function KidzDetailAdd() {
     // handle click event of the Add button
     const handleAddClick = () => {
 
-        if (inputList.length + 1 <= balance) {
+        if (inputList.length < balance) {
             setInputList([...inputList, { name: "", email: "", password: "" }]);
         } else {
             toast.error('you have reached the maximum limit')

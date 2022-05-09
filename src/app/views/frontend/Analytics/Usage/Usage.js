@@ -23,14 +23,18 @@ const Analytics = () => {
     let analyticsservice = new AnalyticsService(config.baseURL)
     const [subjects = [], setSubjects] = useState();
     const [standards = [], setStandards] = useState();
+    const [kidsData = [], setkidsData] = useState();
     const [filterData, setFilterData] = useState({
-        country_code: userData?.country_code, standard_id: '', subject_id: '', date_range: 'month'
+        country_code: userData?.country_code, standard_id: null, subject_id: null, date_range: 'month'
     })
     const [usageData, setUsageData] = useState();
     useEffect(() => {
-        if (userData !== null) {
+        if (userData !== null && userData?.role == 5) {
             fetchSubjectandStandard();
-            fetchUsage();
+
+        } else if (userData !== null && userData?.role == 3) {
+            fetchSubjectandStandard();
+            fetchKidsList();
         }
 
 
@@ -39,10 +43,10 @@ const Analytics = () => {
         let data = { country_code: userData?.country_code };
         await analyticsservice.fetchSubjectandStandard(data).then((res) => {
             if (res?.data?.status) {
-
                 setSubjects(res.data?.data?.subjects);
                 setStandards(res.data?.data?.standards);
-
+                setFilterData({ ...filterData, standard_id: standards[0]?.id, subject_id: subjects[0]?.id });
+                fetchUsage();
             }
         })
     }
@@ -50,15 +54,36 @@ const Analytics = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFilterData({ ...filterData, [name]: value })
+        //  setFilterData({ [name]: value })
         fetchUsage();
     }
     const fetchUsage = async () => {
+
         await analyticsservice.getAnalysticsUsage(filterData).then((res) => {
             if (res.data.status) {
                 setUsageData(res.data.data);
             }
         })
     }
+    const fetchParentusage = async () => {
+        console.log(filterData);
+        await analyticsservice.fetchParentusage(filterData).then((res) => {
+            if (res.data.status) {
+                setUsageData(res.data.data);
+            }
+        })
+    }
+    const fetchKidsList = async () => {
+        await analyticsservice.fetchKidsList().then((res) => {
+            if (res.data.status) {
+                setkidsData(res.data.data);
+                setFilterData({ ...filterData, student_id: res.data.data[0]?.id });
+
+                fetchParentusage();
+            }
+        })
+    }
+
     return (
         <div>
             <Helmet>
@@ -69,66 +94,144 @@ const Analytics = () => {
             </div>
 
             <NavbarMenus />
-            <div className='container'>
-                {userData !== null ? (<>
-                    <AnalyticsMenu />
-                    <div className="row usage-select-sec">
-                        <div className="usage-detail" >
-                            <span>Subjects :</span>&nbsp;
-                            <select name="subject_id" onChange={handleChange}>
+            {
+                (() => {
+                    if (userData !== null && userData?.role == 5) {
+                        return (
+                            <div className='container'>
+                                <AnalyticsMenu />
+                                <div className="row usage-select-sec">
+                                    <div className="usage-detail" >
+                                        <span>Subjects :</span>&nbsp;
+                                        <select name="subject_id" onChange={handleChange}>
+                                            {
+                                                subjects?.map((data, m) => (
+                                                    <option value={data?.id}>{data?.subject_name}</option>
 
-                                {
-                                    subjects?.map((data, m) => (
-                                        <option value={data.id}>{data.subject_name}</option>
+                                                ))
+                                            }
+                                        </select>&nbsp;
 
-                                    ))
-                                }
-                            </select>&nbsp;
+                                        <span>Standard :</span>&nbsp;
+                                        <select name="standard_id" onChange={handleChange}>
 
-                            <span>Standard :</span>&nbsp;
-                            <select name="standard_id" onChange={handleChange}>
+                                            {
+                                                standards?.map((data, m) => (
+                                                    <option value={data?.id}>{data?.standard_name}</option>
 
-                                {
-                                    standards?.map((data, m) => (
-                                        <option value={data.id}>{data.standard_name}</option>
+                                                ))
+                                            }
+                                        </select>&nbsp;
 
-                                    ))
-                                }
-                            </select>&nbsp;
+                                        <span>Date Range :</span>&nbsp;
+                                        <select name="date_range" onChange={handleChange}>
+                                            <option value="month">This Month</option>
+                                            <option value="yesterday"> Yesterday </option>
+                                            <option value="last_week"> Last Week </option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <span>Date Range :</span>&nbsp;
-                            <select name="date_range" onChange={handleChange}>
-                                <option value="month">This Month</option>
-                                <option value="yesterday"> Yesterday </option>
-                                <option value="last_week"> Last Week </option>
-                            </select>
-                        </div>
-                    </div>
+                                <div className="row top-space">
+                                    <div className="usage-title">
+                                        <h3>Usage Details </h3>
+                                    </div>
+                                </div>
 
-                    <div className="row top-space">
-                        <div className="usage-title">
-                            <h3>Usage Details </h3>
-                        </div>
-                    </div>
+                                <Fragment>
+                                    <ContentBox className="analytics">
+                                        <Grid container spacing={3}>
+                                            <Grid item lg={12} md={12} sm={12} xs={12}>
+                                                <QuizDetails data={usageData} />
 
-                    <Fragment>
-                        <ContentBox className="analytics">
-                            <Grid container spacing={3}>
-                                <Grid item lg={12} md={12} sm={12} xs={12}>
-                                    <QuizDetails data={usageData} />
-
-                                </Grid>
+                                            </Grid>
 
 
-                            </Grid>
-                        </ContentBox>
-                    </Fragment></>) : (<><p className="container"><br /> <Link className="" to="/user/login">
-                        <div><ErrorMessageShow /> </div>
-                    </Link></p></>)}
+                                        </Grid>
+                                    </ContentBox>
+                                </Fragment>
+                            </div>
+                        )
+                    } else if (userData !== null && userData?.role == 3) {
+                        return (
+                            <div className='container'>
+                                <AnalyticsMenu />
+                                <div className="row usage-select-sec">
+                                    <div className="usage-detail" >
+                                        <span>Subjects :</span>&nbsp;
+                                        <select name="subject_id" onChange={handleChange}>
+                                            {
+                                                subjects?.map((data, m) => (
+                                                    <option value={data?.id}>{data?.subject_name}</option>
 
-            </div>
-            <Footer />
-        </div >
+                                                ))
+                                            }
+                                        </select>&nbsp;
+
+                                        <span>Standard :</span>&nbsp;
+                                        <select name="standard_id" onChange={handleChange}>
+
+                                            {
+                                                standards?.map((data, m) => (
+                                                    <option value={data?.id}>{data?.standard_name}</option>
+
+                                                ))
+                                            }
+                                        </select>&nbsp;
+
+                                        <span>Date Range :</span>&nbsp;
+                                        <select name="date_range" onChange={handleChange}>
+                                            <option value="month">This Month</option>
+                                            <option value="yesterday"> Yesterday </option>
+                                            <option value="last_week"> Last Week </option>
+                                        </select>
+
+                                        <span>KidsList :</span>&nbsp;
+                                        <select name="standard_id" onChange={handleChange}>
+
+                                            {
+                                                kidsData?.map((data, m) => (
+                                                    <option value={data?.id}>{data?.name}</option>
+
+                                                ))
+                                            }
+                                        </select>&nbsp;
+                                    </div>
+                                </div>
+
+                                <div className="row top-space">
+                                    <div className="usage-title">
+                                        <h3>Usage Details </h3>
+                                    </div>
+                                </div>
+
+                                <Fragment>
+                                    <ContentBox className="analytics">
+                                        <Grid container spacing={3}>
+                                            <Grid item lg={12} md={12} sm={12} xs={12}>
+                                                <QuizDetails data={usageData} />
+
+                                            </Grid>
+
+
+                                        </Grid>
+                                    </ContentBox>
+                                </Fragment>
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <p className="container"><br />
+                                <Link className="" to="/user/login">
+                                    <div><ErrorMessageShow />
+                                    </div>
+                                </Link>
+                            </p>
+                        )
+                    }
+                })()
+            }
+        </div>
     )
 }
 

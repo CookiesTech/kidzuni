@@ -16,8 +16,8 @@ export default function MathsSubject() {
     let userData = JSON.parse(localStorage?.getItem?.('user-info'));
     useEffect(() => {
         async function getLearningStandardMaths() {
-            let postData = { country_code: userData?.country_code }
-            await topicsservice.getLearningStandardMaths(postData)
+
+            await topicsservice.getLearningStandardMaths({ country_code: userData?.country_code })
                 .then((response) => {
                     if (response?.data?.status) {
                         setformData(response.data?.data)

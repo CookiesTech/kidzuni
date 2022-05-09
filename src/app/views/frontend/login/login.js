@@ -75,7 +75,7 @@ export default function Login() {
             localStorage.setItem("token", result.data.token)
 
 
-            if (parseInt(result?.data?.user?.role) === 3) {
+            if (parseInt(result?.data?.user?.role) === 3 || parseInt(result?.data?.user?.role) === 4) {
                 localStorage.setItem("kidz_info", JSON.stringify(result.data.kids_data))
                 localStorage.setItem("kidz_cout", JSON.stringify(result.data.kids_data.length))
                 //console.log(result.data.kids_data);

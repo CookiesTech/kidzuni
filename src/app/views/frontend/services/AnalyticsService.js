@@ -44,4 +44,23 @@ export default class AnalyticsService extends ApiService {
         return response;
     };
 
+    fetchKidsList = async () => {
+        let Url = this.baseURL + 'getStudentsList';
+        let response = await this.get(Url);
+        if (response.status !== 200) {
+            throw Error(response);
+        }
+        return response;
+    }
+
+    fetchParentusage = async (data) => {
+
+        let Url = this.baseURL + 'getParentAnalyticsusage';
+        let response = await this.post(Url, data);
+
+        if (response.status !== 200) {
+            throw Error(response);
+        }
+        return response;
+    };
 }

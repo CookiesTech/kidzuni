@@ -67,10 +67,10 @@ export default function Navbar(props) {
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                     >
-                                        {userData?.role == 3 ? (
-                                            <span>Welcome, Parent</span>
+                                        {userData?.role == 3 || userData?.role == 4 ? (
+                                            <span>Welcome, {userData?.role == 3 ? 'Parent' : 'Teacher'}</span>
                                         ) : (
-                                            <span>Welcome, Student</span>
+                                            <span>Welcome, {userData?.name}</span>
                                         )} <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                     </a>
                                     <div

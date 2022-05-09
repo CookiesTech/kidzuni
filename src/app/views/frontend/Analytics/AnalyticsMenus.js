@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 
 export default function AnalyticsMenu() {
+
     return (
         <div>
             <div className="">
@@ -15,9 +16,6 @@ export default function AnalyticsMenu() {
                         <span class="border-left">Progress
                             <img src="../../../assets/frontend/images/progress.png" alt="" /></span>
                     </NavLink>
-                    {/* 
-                    <span class="border-left">Questions
-                        <img src="../../../assets/frontend/images/question.png" alt="" /></span> */}
 
                 </div>
             </div>

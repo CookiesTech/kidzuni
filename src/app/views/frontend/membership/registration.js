@@ -198,11 +198,7 @@ export default function Registration() {
 
         if (result.data.status) {
             toast.success("user successfully registered");
-<<<<<<< HEAD
             navigate('/user/register_success')
-=======
-            navigate('/membership/register-completed')
->>>>>>> 4905e8f35322fcf8d76cd87893f1baa81cb38001
         } else {
             toast.error(result.data.message.email);
         }
@@ -234,76 +230,6 @@ export default function Registration() {
 
         return errors;
     };
-<<<<<<< HEAD
-=======
-
-    const handleChildrenCountParent = (e) => {
-        e.preventDefault();
-        let count = parseInt(e.target.value);
-
-        if (count > 1) {
-            console.log(inputValue);
-
-            count = parseInt(count - 1);
-            let newPrice = parseInt(count * additional_price);
-            var n1 = parseInt(singleKidPrice);
-            var n2 = parseInt(newPrice);
-            var ans = n1 + n2;
-            setChildCount(e.target.value);
-            setInputValue(ans);
-        }
-        else {
-
-            setChildCount(e.target.value);
-            setInputValue(singleKidPrice);
-        }
-    }
-
-    const handleTypeChange = async (e) => {
-
-        let data1 = { package_for: packagefor, type: e.target.value }
-
-        const data = await packageservice.getallpackage(data1);
-
-        if (data.data.status) {
-            if (packagefor === 'parent') {
-                setAdditionalPrice(data.data.data[0].additional_price)
-            }
-            //setPackagePrice(data.data.data);
-            setChildCount()
-            setType(e.target.value)
-            setInputValue(0);
-        }
-
-    }
-
-    const handlePackageChange = (e) => {
-        if (e.target.value === 'school') {
-            setPackageFor('school')
-            setInputValue(0)
-            setChildCount(0);
-            setType('')
-            setShowParent(false)
-
-        } else if (e.target.value === 'parent') {
-            setPackageFor('parent')
-            setPackageFor(e.target.value)
-            setInputValue(0)
-            setAdditionalPrice(0)
-            setShowParent(true)
-        }
-
-    }
-    const handleChildrensCountSchool = (e) => {
-        e.preventDefault();
-        setChildCount(schoolPackage[e.target.value].minimum_count + '-' + schoolPackage[e.target.value].maximum_count);
-        setInputValue(schoolPackage[e.target.value].price)
-    }
-
-    const togglePassword = () => {
-        setPasswordShow(!passwordShow)
-    }
->>>>>>> 4905e8f35322fcf8d76cd87893f1baa81cb38001
     return (
         <div>
             <Helmet>
@@ -485,9 +411,9 @@ export default function Registration() {
                                 </div>
 
                                 <div className="submit-btn">
-                                    {/* <Link className="" to={"/home"}> */}
+
                                     <button className="kidzuni-btn">Join a Member</button>
-                                    {/* </Link> */}
+
 
                                 </div>
                             </form>

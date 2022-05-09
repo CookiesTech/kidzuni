@@ -19,7 +19,7 @@ const App = () => {
                 <MatxTheme>
                     <AuthProvider>
                         {all_pages}
-                        <Routes>
+                        <Routes basename={'/kidzUni_frontend'}>
                             <Route path='/' element={<Navigate to="/home" />} />
                         </Routes>
                     </AuthProvider>
